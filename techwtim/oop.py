@@ -1,10 +1,79 @@
 # Object Orientd Programming in Python
 # Tech With Tim - Python Object Oriented Programming - For Beginners
-# object.method
-# 1) 0 
-# 2) 5:47
+# 1) 00:00 
+# 2) 05:47
 # 3) 16:45
 # 4) 27:50
+# 5) 41:00
+
+
+# *** 3.2) Pet, Dog, Cat, Fish - Objects with Inheritance ***
+
+# parent / instantiated / super / upper / general class
+class Pet:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+
+	def show(self):
+		print(f"I am {self.name} and I am {self.age} years old")
+
+	def speak(self):
+		print("I don't know what I say")
+
+# parent / derived / lower classes
+class Cat(Pet):
+	def __init__(self, name, age, color):
+		super().__init__(name, age) # ref super class for name & age
+		self.color = color
+		
+	def speak(self): # supercedes default in Pet
+		print("Meow")
+
+	def show(self): # supercedes default in Pet
+		print(f"I am {self.name} and I am {self.age} years old and I am {self.color}")
+
+class Dog(Pet):
+	def speak(self): # supercedes default in Pet
+		print("Bark")	
+
+class Fish(Pet):
+	pass	
+
+p = Pet("Tim", 19)
+p.show()
+p.speak()
+c = Cat("Bill", 34, "Black")
+c.show()
+c.speak()
+d = Dog("Jill", 25)
+d.show()
+d.speak()
+f = Fish("Bubbles", 10)
+f.show()
+f.speak()
+
+
+# *** 3.1) Dog & Cat - Objects without Inheritance ***
+
+class Cat:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+		
+	def speak(self):
+		print("Meow")
+		
+class Dog:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+		
+	def speak(self):
+		print("Bark")
+
+
+# *** 2) Student Roster Example - Classes Working Together ***
 
 class Student:
 	def __init__(self, name, age, grade):
@@ -40,39 +109,39 @@ s3 = Student("Jill", 19, 65)
 course = Course("Science", 2)
 course.add_student(s1)
 course.add_student(s2)
-print(course.get_average_grade())
+# print(course.add_student(s3))
+# print(course.get_average_grade())
 
 # print(course.students[0].name)
 
 
+# *** 1) Dog Functionality Example - Basics of Objects ***
 
+class Dog:
 
-#class Dog:
+	def __init__(self, name, age): # defining a class
+		self.name = name # nomenclature is "object.method"
+		self.age = age
 
-#	def __init__(self, name, age):
-#		self.name = name
-#		self.age = age
-
-#	def get_name(self):
-#			return self.name
+	def get_name(self): # defining a function
+			return self.name
 			
-#	def get_age(self):
-#		return self.age
+	def get_age(self):
+		return self.age
 
-#	def set_age(self, age):
-#		self.age = age
+	def set_age(self, age):
+		self.age = age
 
-#	def add_one(self, x):
-#		return x + 1
+	def add_one(self, x):
+		return x + 1
 		
-#	def bark(self):
-#		print("bark")
+	def bark(self):
+		print("bark")
 
-	
-# d = Dog("Tim", 34)
-# d.set_age(23)
+d = Dog("Tim", 34)
+d.set_age(23)
 # print(d.get_age())
-# d2 = Dog("Bill", 12)
+d2 = Dog("Bill", 12)
 # print(d2.get_age())
 
 # d.bark()
