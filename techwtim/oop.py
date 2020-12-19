@@ -5,6 +5,30 @@
 # 3) 16:45
 # 4) 27:50
 # 5) 41:00
+# 6) 45:40
+
+# ### 5) Class Methods ***
+
+
+
+# *** 4) Class Atributes - can be useful as constants ***
+
+class Person: # does NOT reference self; same for ALL instances
+	number_of_people = 0
+	GRAVITY = -9.8
+	
+	def __init__(self, name):
+		self.name = name
+		Person.number_of_people += 1
+
+# Person.number_of_people = 8 # changes value for ALL instances!		
+		
+p1 = Person("tim")
+#print(Person.number_of_people)
+p2 = Person("jill")
+#print(Person.number_of_people)
+
+
 
 
 # *** 3.2) Pet, Dog, Cat, Fish - Objects with Inheritance ***
@@ -41,17 +65,17 @@ class Fish(Pet):
 	pass	
 
 p = Pet("Tim", 19)
-p.show()
-p.speak()
+#p.show()
+#p.speak()
 c = Cat("Bill", 34, "Black")
-c.show()
-c.speak()
+#c.show()
+#c.speak()
 d = Dog("Jill", 25)
-d.show()
-d.speak()
+#d.show()
+#d.speak()
 f = Fish("Bubbles", 10)
-f.show()
-f.speak()
+#f.show()
+#f.speak()
 
 
 # *** 3.1) Dog & Cat - Objects without Inheritance ***
