@@ -1,17 +1,58 @@
 # Object Orientd Programming in Python
+# YouTube Link: https://youtu.be/JeznW_7DlB0
 # Tech With Tim - Python Object Oriented Programming - For Beginners
-# 1) 00:00 
-# 2) 05:47
-# 3) 16:45
-# 4) 27:50
-# 5) 41:00
-# 6) 45:40
-
-# ### 5) Class Methods ***
+# A) 00:00 
+# B) 05:47
+# C) 16:45
+# D) 27:50
+# E) 41:00
+# F) 45:40
 
 
+# *** 6) Static Methods - organize functions into a class ***
 
-# *** 4) Class Atributes - can be useful as constants ***
+class Math: # don't want this to be specific to instance
+	
+	@staticmethod # do something but don't *change* anything
+	def add5(x):
+		return x + 5
+
+	@staticmethod
+	def add10(x):
+		return x + 10
+		
+	@staticmethod
+	def pr():
+		print("run")
+						
+print(Math.add10(5))
+Math.pr()
+
+
+# *** 5) Class Methods ***
+
+class Person: # does NOT reference self; same for ALL instances
+	number_of_people = 0
+	GRAVITY = -9.8
+	
+	def __init__(self, name):
+		self.name = name
+		Person.add_person()
+
+	@classmethod # acts on class itself; not on a specific instance
+	def number_of_people_(cls):
+		return cls.number_of_people		
+
+	@classmethod
+	def add_person(cls):
+		cls.number_of_people += 1
+		
+p1 = Person("tim")
+p2 = Person("jill")
+# print(Person.number_of_people_())
+
+
+# *** 4) Class Atributes (useful as constants) ***
 
 class Person: # does NOT reference self; same for ALL instances
 	number_of_people = 0
@@ -21,14 +62,13 @@ class Person: # does NOT reference self; same for ALL instances
 		self.name = name
 		Person.number_of_people += 1
 
+
 # Person.number_of_people = 8 # changes value for ALL instances!		
 		
 p1 = Person("tim")
-#print(Person.number_of_people)
+# print(Person.number_of_people)
 p2 = Person("jill")
-#print(Person.number_of_people)
-
-
+# print(Person.number_of_people)
 
 
 # *** 3.2) Pet, Dog, Cat, Fish - Objects with Inheritance ***
