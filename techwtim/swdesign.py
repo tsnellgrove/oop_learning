@@ -3,6 +3,58 @@
 # A) 0:00 - Example 1 - Common Design Mistakes
 # B) 8:20 - Example 2 - Separate methods or functions that do just one thing
 # C) 18:30 - Example 3 -
+# D) 23:50 - splitting functions into cohesive modules
+
+
+# *** Example 3 - 
+# Problems: 1) Not cohesive - both list functins and hash functions
+
+# Better would be two functins - one for lists and one for HT
+# Now we have 2 cohesive functions
+
+
+
+
+"""
+LIST FUNCTIONS
+"""
+
+def	get_max(lst):
+		mx = float("-inf")
+	
+		for num in lst:
+				if num > mx:
+						mx = num
+						
+		return mx
+		
+def get_min(lst):
+		mn = float("inf")
+		
+		for num in lst:
+				if num < mn:
+						mn = num
+						
+		return num
+		
+def get_average(lst):
+		return sum(lst) / len(lst)
+		
+def get_median(lst):
+		lst = sorted(lst)
+		
+		if len(lst) % 2 == 0:
+				return (lst[ (len(lst)/2)-1] + lst[(len(lst))]) / 2
+		else:
+				return lst[(len(lst)-1)]/2
+
+list = [1,2,3,4,5]
+length = len(list)
+mod2 = length % 2
+median = get_median(list)
+print(length, mod2, median)				
+# Plus more has tabel examples. All saved in mathfunctions module to be imported and called
+
 
 
 # *** Example 2 - Solution 2
@@ -56,7 +108,7 @@ class GuessNumber:
 				print(f"You guessed it in {self.guesses} guesses")
 					
 game = GuessNumber(56, 0, 100)
-game.play()
+#game.play()
 
 
 # *** Example 2 - Solution 1
