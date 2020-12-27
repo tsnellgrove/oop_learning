@@ -4,6 +4,21 @@
 # B) 8:20 - Example 2 - Separate methods or functions that do just one thing
 # C) 18:30 - Example 3 -
 # D) 23:50 - splitting functions into cohesive modules
+# E) DONE
+
+# Packages:
+# Packages are a folder of related python modules
+# folder name could be "util"
+# add __init__.py file to folder in order to make folder a "package"
+
+# Can now do:
+# import util
+# Folder is cohesive (similar momdules) and each module contains cohesive functions; and each function does one thing well
+# specific call:
+# from util import ht_functions, list_functions
+# or with alias:
+# from util import ht_functions as ht
+# always ask yourself "how do I make this simple and cohesive formyself when I come back to it in 2 years"
 
 
 # *** Example 3 - 
@@ -11,8 +26,21 @@
 
 # Better would be two functins - one for lists and one for HT
 # Now we have 2 cohesive functions
+# important to use consistent naming conventions... like a "get" prefex before each function
+# can also import specific function:
+	
+# from list_functions import get_max, get_min
+# print(get_max[1,2,4,5,7])
 
+# beware of imports of just functions if multiple modules have the same function names!!
+# can resolve by explicitly importing module and using ht_functions.get_max()
 
+# can also use alias! Example:
+# from ht_functions import get_max as ht_get_max
+
+# can also use aliase to shorten module call. Example:
+# import ht_functions as h
+# h.get_max()
 
 
 """
