@@ -1,5 +1,9 @@
 # Tech with Tim
 
+# Python Objects & Classes Tutorial 3
+# Link: https://youtu.be/H2SQrZK2nvM
+# 0:00
+
 
 # Python Classes & Objects Tutorial 2
 # Link: https://youtu.be/jQiUOV15IRI
@@ -10,20 +14,24 @@
 # Tom Example
 
 class Item(object):
-		def __init__(self, name, desc):
+		def __init__(self, name, desc, takeable, weight):
 				self.name = name
 				self.desc = desc
-		
+				self.takeable = takeable
+				self.weight = weight
+	
 		def examine(self):
 				print(self.desc)
 		
 		def change_desc(self, new_desc):
 				self.desc = new_desc
 
-sword = Item('sword','The sword is shiny')
+sword = Item('sword','The sword is shiny', True, 5)
 sword.examine()
 sword.change_desc('The sword is rusty')
 sword.examine()
+print(sword.takeable)
+print(sword.weight)
 
 
 # Tim Example
@@ -43,6 +51,9 @@ class Dog(object):
 		def change_age(self, age):
 				self.age = age
 
+		def add_weight(self, weight):
+				self.weight = weight
+
 # classes allow you to create an infinite number of objects with each having all the attributes of the class
 
 
@@ -55,7 +66,8 @@ tim.change_age(5)
 # print(tim.name)
 # print(tim.li)
 # print(fred.li)
-
+tim.add_weight(70)
+# print(tim.weight)
 
 
 # Python Classes & Objects Tutorial 1
