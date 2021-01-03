@@ -12,6 +12,7 @@
 # 9:45 Create new Attributes
 
 # Tom Example
+# objects are nouns, methods are verbs
 
 class Item(object):
 		def __init__(self, name, desc, takeable, weight):
@@ -26,12 +27,24 @@ class Item(object):
 		def change_desc(self, new_desc):
 				self.desc = new_desc
 
-sword = Item('sword','The sword is shiny', True, 5)
+		def add_writing(self, text_desc, text):
+				self.desc = self.desc + " On the " + self.name + " there is " + text_desc + "."
+				self.text = text
+
+		def read_writing(self):
+				print(self.text)
+
+sword = Item('sword','The sword is shiny.', True, 5)
 sword.examine()
-sword.change_desc('The sword is rusty')
+sword.change_desc('The sword is rusty.')
 sword.examine()
 print(sword.takeable)
 print(sword.weight)
+sword.add_writing('dwarven runes', 'Goblin Wallaper')
+sword.examine()
+sword.read_writing()
+
+
 
 
 # Tim Example
