@@ -2,7 +2,61 @@
 
 # Python Objects & Classes Tutorial 3
 # Link: https://youtu.be/H2SQrZK2nvM
-# 0:00
+# 0:00 - 5:15 = simple inheritance
+
+
+# NEXT: Tom Example
+# inheritance
+
+
+class Item(object):
+		def __init__(self, name, desc, takeable, weight):
+				self.name = name
+				self.desc = desc
+				self.takeable = takeable
+				self.weight = weight
+	
+		def examine(self):
+				print(self.desc)
+		
+		def change_desc(self, new_desc):
+				self.desc = new_desc
+
+		def add_writing(self, text_desc, text):
+				self.desc = self.desc + " On the " + self.name + " there is " + text_desc + "."
+				self.text = text
+
+		def read_writing(self):
+				print(self.text)
+
+sword = Item('sword','The sword is shiny.', True, 5)
+#sword.examine()
+sword.change_desc('The sword is rusty.')
+# sword.examine()
+#print(sword.takeable)
+#print(sword.weight)
+sword.add_writing('dwarven runes', 'Goblin Wallaper')
+#sword.examine()
+#sword.read_writing()
+
+
+class Dog(object): # parent or super class
+		def __init__(self, name, age): 
+				self.name = name
+				self.age = age
+
+		def speak(self):
+				print("Hi, I am ", self.name, "and I am ", self.age, " years old")
+
+
+class Cat(Dog): # Class inherets the Dog Class; this is the child or derrived class
+		def __init__(self, name, age, color):
+				super().__init__(name, age) # calls the initialization of Dog (the super class)
+				self.color = color
+
+tim = Cat('tim', 5, 'blue')
+tim.speak()
+
 
 
 # Python Classes & Objects Tutorial 2
@@ -35,14 +89,14 @@ class Item(object):
 				print(self.text)
 
 sword = Item('sword','The sword is shiny.', True, 5)
-sword.examine()
+#sword.examine()
 sword.change_desc('The sword is rusty.')
-sword.examine()
-print(sword.takeable)
-print(sword.weight)
+# sword.examine()
+#print(sword.takeable)
+#print(sword.weight)
 sword.add_writing('dwarven runes', 'Goblin Wallaper')
-sword.examine()
-sword.read_writing()
+#sword.examine()
+#sword.read_writing()
 
 
 
