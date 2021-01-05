@@ -7,6 +7,8 @@
 
 # NEXT: Tom Example
 # inheritance
+# Create Door as child of Item [DONE]
+# Create ViewOnly as parent to Item [TBD]
 
 
 class Item(object):
@@ -27,17 +29,35 @@ class Item(object):
 				self.text = text
 
 		def read_writing(self):
-				print(self.text)
+				try:
+						print(self.text)
+				except:
+						print("There's nothing to read!")
+			
+class Door(Item):
+		def __init__(self, name, desc, takeable, weight, open_state, unlock_state):
+				super().__init__(name, desc, takeable, weight)
+				self.open_state = open_state
+
 
 sword = Item('sword','The sword is shiny.', True, 5)
-#sword.examine()
+sword.examine()
 sword.change_desc('The sword is rusty.')
-# sword.examine()
-#print(sword.takeable)
-#print(sword.weight)
+sword.examine()
+print(sword.takeable)
+print(sword.weight)
 sword.add_writing('dwarven runes', 'Goblin Wallaper')
-#sword.examine()
-#sword.read_writing()
+sword.examine()
+sword.read_writing()
+gate = Door('front gate', 'The front gate is daunting', False, 0, False, False)
+gate.examine()
+gate.change_desc('The front gate is HUGE!')
+gate.examine()
+print(gate.takeable)
+gate.read_writing()
+gate.add_writing('rusty letters', "Abandon Hope All Ye Who Even Thank About It")
+gate.read_writing()
+
 
 
 class Dog(object): # parent or super class
@@ -55,7 +75,7 @@ class Cat(Dog): # Class inherets the Dog Class; this is the child or derrived cl
 				self.color = color
 
 tim = Cat('tim', 5, 'blue')
-tim.speak()
+# tim.speak()
 
 
 
