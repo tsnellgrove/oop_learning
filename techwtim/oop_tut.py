@@ -8,16 +8,17 @@
 # NEXT: Tom Example
 # inheritance
 # Create Door as child of Item [DONE]
-# Create ViewOnly as parent to Item [TBD]
+# Create ViewOnly as parent to Item [DONE]
+# Create Container as child to door [TBD]
+# Create functions for Item and Door & Container [TBD]
+# Think through writing attribute for ViewOnly [TBD]
 
 
-class Item(object):
-		def __init__(self, name, desc, takeable, weight):
+class ViewOnly(object):
+		def __init__(self, name, desc):
 				self.name = name
 				self.desc = desc
-				self.takeable = takeable
-				self.weight = weight
-	
+
 		def examine(self):
 				print(self.desc)
 		
@@ -33,10 +34,16 @@ class Item(object):
 						print(self.text)
 				except:
 						print("There's nothing to read!")
-			
-class Door(Item):
-		def __init__(self, name, desc, takeable, weight, open_state, unlock_state):
-				super().__init__(name, desc, takeable, weight)
+
+class Item(ViewOnly):
+		def __init__(self, name, desc, takeable, weight):
+				super().__init__(name, desc)
+				self.takeable = takeable
+				self.weight = weight
+				
+class Door(ViewOnly):
+		def __init__(self, name, desc, open_state, unlock_state):
+				super().__init__(name, desc)
 				self.open_state = open_state
 
 
@@ -49,11 +56,10 @@ print(sword.weight)
 sword.add_writing('dwarven runes', 'Goblin Wallaper')
 sword.examine()
 sword.read_writing()
-gate = Door('front gate', 'The front gate is daunting', False, 0, False, False)
+gate = Door('front gate', 'The front gate is daunting', False, False)
 gate.examine()
 gate.change_desc('The front gate is HUGE!')
 gate.examine()
-print(gate.takeable)
 gate.read_writing()
 gate.add_writing('rusty letters', "Abandon Hope All Ye Who Even Thank About It")
 gate.read_writing()
