@@ -9,10 +9,12 @@
 # inheritance
 # Create Door as child of Item [DONE]
 # Create ViewOnly as parent to Item [DONE]
-# Create Container as child to door [TBD]
-# Create functions for Item and Door & Container [TBD]
+# Create Container as child to door [DONE]
+# Create functions for Item and Door & Container [DONE]
 # Think through writing attribute for ViewOnly [TBD]
 
+hand = []
+backpack = []
 
 class ViewOnly(object):
 		def __init__(self, name, desc):
@@ -36,33 +38,61 @@ class ViewOnly(object):
 						print("There's nothing to read!")
 
 class Item(ViewOnly):
-		def __init__(self, name, desc, takeable, weight):
+		def __init__(self, name, desc, takeable):
 				super().__init__(name, desc)
 				self.takeable = takeable
-				self.weight = weight
+				
+		def take(self):
+				if len(hand) == 0:
+						hand.append('sword')
+						print('taken')
+				else:
+						print('Your hand is full')
 				
 class Door(ViewOnly):
 		def __init__(self, name, desc, open_state, unlock_state):
 				super().__init__(name, desc)
 				self.open_state = open_state
+				self.unlock_state = unlock_state
+
+class Container(Door):
+		def __init__(self, name, desc, open_state, unlock_state, contains): # in this impplementation, containers cannot be taken
+				super().__init__(name, desc, open_state, unlock_state)
+				self.contains = contains
 
 
-sword = Item('sword','The sword is shiny.', True, 5)
-sword.examine()
-sword.change_desc('The sword is rusty.')
-sword.examine()
-print(sword.takeable)
-print(sword.weight)
-sword.add_writing('dwarven runes', 'Goblin Wallaper')
-sword.examine()
-sword.read_writing()
-gate = Door('front gate', 'The front gate is daunting', False, False)
-gate.examine()
-gate.change_desc('The front gate is HUGE!')
+dark_castle = ViewOnly('Dark Castle', 'The evil Dark Castle looms above you')
+entrance = ViewOnly('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate')
+gate = Door('Front Gate', 'The front gate is massive and imposing', False, False)
+gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
+gate.read_writing()
+dark_castle.examine()
+entrance.examine()
 gate.examine()
 gate.read_writing()
-gate.add_writing('rusty letters', "Abandon Hope All Ye Who Even Thank About It")
-gate.read_writing()
+sword = Item('sword','The sword is shiny.', True)
+sword.examine()
+sword.take()
+print(hand)
+sword.take()
+
+
+# sword = Item('sword','The sword is shiny.', True, 5)
+# sword.examine()
+# sword.change_desc('The sword is rusty.')
+# sword.examine()
+# print(sword.takeable)
+# print(sword.weight)
+# sword.add_writing('dwarven runes', 'Goblin Wallaper')
+# sword.examine()
+# sword.read_writing()
+# gate = Door('front gate', 'The front gate is daunting', False, False)
+# gate.examine()
+# gate.change_desc('The front gate is HUGE!')
+# gate.examine()
+# gate.read_writing()
+# gate.add_writing('rusty letters', "Abandon Hope All Ye Who Even Thank About It")
+# gate.read_writing()
 
 
 
