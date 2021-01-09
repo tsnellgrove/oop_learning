@@ -12,13 +12,18 @@
 # Create Container as child to door [DONE]
 # Create take & drop methods for Item [DONE]
 # Create unlock method for Door & Container [DONE]
-# Create open method for Door & Container [DONE]
+# Create open method for Door [DONE]
+# Create a Room child class of view_only... focus on inventory only - not movement [DONE]
+# Exercise inventory management using Room.room_objects and hand and take and drop [TBD]
+# More classes before this gets out of hand! [TBD]
+
 # Think through writing attribute for ViewOnly [TBD]
 # Too many calsses already... think about consolidation [TBD]
 
 
 hand = []
 backpack = []
+room = 'entrance'
 
 
 class ViewOnly(object):
@@ -42,6 +47,10 @@ class ViewOnly(object):
 				except:
 						print("There's nothing to read!")
 
+class Room(ViewOnly):
+		def __init__(self, name, desc, room_objects):
+				super().__init__(name, desc)
+				self.room_objects = room_objects
 
 class Item(ViewOnly):
 		def __init__(self, name, desc, takeable):
@@ -79,7 +88,17 @@ class Door(ViewOnly):
 								print("You aren't holding the key.")
 				else:
 						print("The " + name + " is already unlocked.")
-				
+
+		def open(self):
+				if self.open_state == False:
+						if self.unlock_state == True:
+								self.open_state = True
+								print("Openned.")
+						else:
+								print("The " + self.name + " is locked.")
+				else:
+						print("The " + self.name + " is already open.")			
+
 
 class Container(Door):
 		def __init__(self, name, desc, open_state, unlock_state, contains): # in this impplementation, containers cannot be taken
@@ -88,16 +107,15 @@ class Container(Door):
 
 
 dark_castle = ViewOnly('Dark Castle', 'The evil Dark Castle looms above you')
-entrance = ViewOnly('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate')
+entrance = Room('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['sword', 'rusty_key', 'gate'])
 rusty_key = Item('rusty_key', 'The key is rusty', True)
 sword = Item('sword','The sword is shiny.', True)
 gate = Door('Front Gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
 gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
 
 
-gate.read_writing()
-dark_castle.examine()
 entrance.examine()
+dark_castle.examine()
 gate.examine()
 gate.read_writing()
 sword.examine()
@@ -105,10 +123,14 @@ sword.take()
 print(hand)
 sword.take()
 sword.drop()
+gate.open()
+gate.unlock()
 rusty_key.examine()
 rusty_key.take()
 print(hand)
 gate.unlock()
+gate.open()
+gate.open()
 
 
 # sword = Item('sword','The sword is shiny.', True, 5)
