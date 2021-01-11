@@ -14,8 +14,12 @@
 # Create unlock method for Door & Container [DONE]
 # Create open method for Door [DONE]
 # Create a Room child class of view_only... focus on inventory only - not movement [DONE]
-# Exercise inventory management using Room.room_objects and hand and take and drop [TBD]
+# Exercise inventory management using Room.room_objects and hand and take and drop [IN-PROC]
+	# Update Room examine, take, and drop [DONE]
+	# Test implementation [TBD]
 # More classes before this gets out of hand! [TBD]
+# Not: I think I'm doing something wrong... inventory management with objects is not as elegant as I was expecting
+
 
 # Think through writing attribute for ViewOnly [TBD]
 # Too many calsses already... think about consolidation [TBD]
@@ -51,6 +55,10 @@ class Room(ViewOnly):
 		def __init__(self, name, desc, room_objects):
 				super().__init__(name, desc)
 				self.room_objects = room_objects
+				
+		def examine(self):
+				print(self.desc)
+				print("The room contains: " + ', '.join(self.room_objects))
 
 class Item(ViewOnly):
 		def __init__(self, name, desc, takeable):
@@ -58,15 +66,20 @@ class Item(ViewOnly):
 				self.takeable = takeable
 				
 		def take(self):
-				if len(hand) == 0:
-						hand.append(self.name)
-						print('taken')
+				if self.name in eval(room).room_objects:
+						if len(hand) == 0:
+								hand.append(self.name)
+								eval(room).room_objects.remove(self.name)
+								print('taken')
+						else:
+								print('Your hand is full.')
 				else:
-						print('Your hand is full')
+						print("There's no " + self.name + " to take here!")
 
 		def drop(self):
 				if self.name in hand:
 						hand.remove(self.name)
+						eval(room).room_objects.append(self.name)
 						print("Dropped")
 				else:
 						print("You're not holding the " + self.name + " in your hand.")	
@@ -114,6 +127,9 @@ gate = Door('Front Gate', 'The front gate is massive and imposing', False, False
 gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
 
 
+
+
+
 entrance.examine()
 dark_castle.examine()
 gate.examine()
@@ -131,6 +147,9 @@ print(hand)
 gate.unlock()
 gate.open()
 gate.open()
+print(eval(room).room_objects)
+
+
 
 
 # sword = Item('sword','The sword is shiny.', True, 5)
