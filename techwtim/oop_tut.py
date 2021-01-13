@@ -3,6 +3,10 @@
 # Python Objects & Classes Tutorial 3
 # Link: https://youtu.be/H2SQrZK2nvM
 # 0:00 - 5:15 = simple inheritance
+# 5:15 - 7:45 = overriding parent methodes / attributes
+
+
+
 
 
 # NEXT: Tom Example
@@ -127,29 +131,24 @@ gate = Door('Front Gate', 'The front gate is massive and imposing', False, False
 gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
 
 
-
-
-
-entrance.examine()
-dark_castle.examine()
-gate.examine()
-gate.read_writing()
-sword.examine()
-sword.take()
-print(hand)
-sword.take()
-sword.drop()
-gate.open()
-gate.unlock()
-rusty_key.examine()
-rusty_key.take()
-print(hand)
-gate.unlock()
-gate.open()
-gate.open()
-print(eval(room).room_objects)
-
-
+# entrance.examine()
+# dark_castle.examine()
+# gate.examine()
+# gate.read_writing()
+# sword.examine()
+# sword.take()
+# print(hand)
+# sword.take()
+# sword.drop()
+# gate.open()
+# gate.unlock()
+# rusty_key.examine()
+# rusty_key.take()
+# print(hand)
+# gate.unlock()
+# gate.open()
+# gate.open()
+# print(eval(room).room_objects)
 
 
 # sword = Item('sword','The sword is shiny.', True, 5)
@@ -179,15 +178,23 @@ class Dog(object): # parent or super class
 		def speak(self):
 				print("Hi, I am ", self.name, "and I am ", self.age, " years old")
 
+		def talk(self):
+				print("Bark!")
 
 class Cat(Dog): # Class inherets the Dog Class; this is the child or derrived class
 		def __init__(self, name, age, color):
 				super().__init__(name, age) # calls the initialization of Dog (the super class)
 				self.color = color
+				self.name = "tech"
+
+		def talk(self): # local child method over-rides parent method of same name
+				print("Meow!")
 
 tim = Cat('tim', 5, 'blue')
-# tim.speak()
-
+jim = Dog('jim', 70)
+tim.speak()
+tim.talk()
+jim.talk()
 
 
 # Python Classes & Objects Tutorial 2
