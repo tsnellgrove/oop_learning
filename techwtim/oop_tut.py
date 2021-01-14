@@ -1,12 +1,59 @@
 # Tech with Tim
 
+# Python Objects & Classes Tutorial 4
+# Link: https://youtu.be/39m3rstTN8w
+# 0:00 - 
+
+
+
+
+
+
+
 # Python Objects & Classes Tutorial 3
 # Link: https://youtu.be/H2SQrZK2nvM
 # 0:00 - 5:15 = simple inheritance
 # 5:15 - 7:45 = overriding parent methodes / attributes
 
 
+# Goal: One really general class that is "smaller" that applies to a bunch of sub-classes
 
+
+class Vehicle():
+		def __init__(self, price, gas, color):
+				self.price = price
+				self.gas = gas
+				self.color = color
+				
+		def fillUpTank(self):
+				self.gas = 100
+				
+		def emptyTank(self):
+				self.gas = 0
+				
+		def gasLeft(self):
+				return self.gas
+				
+class Car(Vehicle):
+		def __init__(self, price, gas, speed, color):
+				super().__init__(price, gas, color)
+				self.speed = speed
+		
+		def beep(self):
+				print('beep beep')
+
+class Truck(Vehicle):
+		def __init__(self, price, gas, tires, color):
+				super().__init__(price, gas, color)
+				self.tires = tires
+		
+		def beep(self):
+				print('honk honk')
+
+supe = Car(100, 50, 'fast', 'white')
+bigred = Truck(150, 75, 'slow', 'red')
+# supe.beep()
+# bigred.beep()
 
 
 # NEXT: Tom Example
@@ -27,6 +74,7 @@
 
 # Think through writing attribute for ViewOnly [TBD]
 # Too many calsses already... think about consolidation [TBD]
+
 
 
 hand = []
@@ -192,9 +240,9 @@ class Cat(Dog): # Class inherets the Dog Class; this is the child or derrived cl
 
 tim = Cat('tim', 5, 'blue')
 jim = Dog('jim', 70)
-tim.speak()
-tim.talk()
-jim.talk()
+# tim.speak()
+# tim.talk()
+# jim.talk()
 
 
 # Python Classes & Objects Tutorial 2
