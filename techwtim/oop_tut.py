@@ -3,6 +3,10 @@
 # Python Objects & Classes Tutorial 4
 # Link: https://youtu.be/39m3rstTN8w
 # 0:00 - 6:20 = create point math
+# 6:20 - end = override methods
+
+# How would I use this for Dark Castle? Would I use it? Possibly for triggers???
+
 
 
 class Point():
@@ -15,7 +19,7 @@ class Point():
 				self.x += x
 				self.y += y
 
-		def __add__(self, p):
+		def __add__(self, p): # We are "overloading" Python's built in "+" method and defining a specific method for "+" in the context of our Point class
 				return Point(self.x + p.x, self.y + p.y)
 
 		def __sub__(self, p):
@@ -23,6 +27,25 @@ class Point():
 
 		def __mul__(self, p):
 				return self.x * p.x + self.y * p.y
+
+		def length(self):
+				import math
+				return math.sqrt(self.x**2 + self.y**2)
+
+		def __gt__(self, p):
+				return self.length() > p.length()
+		
+		def __ge__(self, p):
+				return self.length() >= p.length()			
+			
+		def __lt__(self, p):
+				return self.length() < p.length()			
+		
+		def __le__(self, p):
+				return self.length() <= p.length()			
+			
+		def __eq__(self, p):
+				return self.x == p.x and self.y == p.y		
 
 		def __str__(self):
 				return "(" + str(self.x) + ", " + str(self.y) + ")"
@@ -37,7 +60,9 @@ p6 = p4 - p1
 p7 = p2 * p3
 
 print(p5, p6, p7)
-
+print(p1 == p2)
+print(p1 > p2)
+print(p4 <= p3)
 
 
 # Python Objects & Classes Tutorial 3
