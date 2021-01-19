@@ -3,6 +3,30 @@
 # Python Objects & Classes Tutorial 5
 # Link: https://youtu.be/MpuOuZKWUWw
 # 0:00 - 0:15 = Intro
+# 0:15 - 4:00 = Class Variables
+
+
+class Dog:
+		dogs = [] # class variable; must be inside class to reference; better practice if will be used 'staticaly'; dogs is not specific to instance - is the same for all objects in class; is class-wide
+		
+		def __init__ (self, name):
+				self.name = name
+				self.dogs.append(self)
+
+		@classmethod
+		def num_dogs(cls):
+				return len(cls.dogs)
+												
+		@classmethod
+		def bark(n):
+				"""barks n times"""
+				for _ in range(n):
+						print("Bark!")
+
+tim = Dog("Tim")
+jim = Dog("Jim")
+print(Dog.dogs) # can reference class variable as a class - not neccessarily by a specific instance
+print(tim.dogs) # But can also reference class variable by instance if desired - same output as for class
 
 
 
