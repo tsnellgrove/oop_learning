@@ -1,5 +1,11 @@
 # Tech with Tim
 
+# Python Objects & Classes Tutorial 5
+# Link: https://youtu.be/MpuOuZKWUWw
+# 0:00 - 0:15 = Intro
+
+
+
 # Python Objects & Classes Tutorial 4
 # Link: https://youtu.be/39m3rstTN8w
 # 0:00 - 6:20 = create point math
@@ -59,10 +65,10 @@ p5 = p1 + p2
 p6 = p4 - p1
 p7 = p2 * p3
 
-print(p5, p6, p7)
-print(p1 == p2)
-print(p1 > p2)
-print(p4 <= p3)
+# print(p5, p6, p7)
+# print(p1 == p2)
+# print(p1 > p2)
+# print(p4 <= p3)
 
 
 # Python Objects & Classes Tutorial 3
