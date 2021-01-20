@@ -1,5 +1,11 @@
 # Tech with Tim
 
+# Python Objects & Classes Tutorial 6
+# Link: https://youtu.be/xY__sjI5yVU
+# Title: Public & Private Classes
+
+
+
 # Python Objects & Classes Tutorial 5
 # Link: https://youtu.be/MpuOuZKWUWw
 # 0:00 - 0:15 = Intro
@@ -13,20 +19,25 @@ class Dog:
 				self.name = name
 				self.dogs.append(self)
 
-		@classmethod
+		# decorators denote a special method - static and class methods can be very useful
+
+		@classmethod # decorator - can call it on name of class
 		def num_dogs(cls):
 				return len(cls.dogs)
 												
-		@classmethod
+		@staticmethod # decorator - doesn't require class to be called - don't have to pass in class - just using as function but want to organize in class
 		def bark(n):
 				"""barks n times"""
 				for _ in range(n):
 						print("Bark!")
 
-tim = Dog("Tim")
-jim = Dog("Jim")
-print(Dog.dogs) # can reference class variable as a class - not neccessarily by a specific instance
-print(tim.dogs) # But can also reference class variable by instance if desired - same output as for class
+# tim = Dog("Tim")
+# jim = Dog("Jim")
+# print(Dog.dogs) # can reference class variable as a class - not neccessarily by a specific instance
+# print(tim.dogs) # But can also reference class variable by instance if desired - same output as for class
+# print(Dog.num_dogs()) # class method can be run against the class itself!
+# print(tim.num_dogs()) # class method can be run on object instance but still gives class answer
+# Dog.bark(5) # static method does not require any reference to class or instance
 
 
 
@@ -262,7 +273,8 @@ rusty_key = Item('rusty_key', 'The key is rusty', True)
 sword = Item('sword','The sword is shiny.', True)
 gate = Door('Front Gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
 gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
-
+sword.change_desc(sword.desc +' On the sword blad you see Dwarven Runes.')
+sword.add_writing('Dwarven Runes', "Goblin Wallopper")
 
 # entrance.examine()
 # dark_castle.examine()
