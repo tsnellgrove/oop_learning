@@ -4,6 +4,28 @@
 # Link: https://youtu.be/xY__sjI5yVU
 # Title: Public & Private Classes
 
+class _Private: # Private = only used within limited scope; is a convention but no formal restriction; initial "_" implies Private
+		def __init__(self, name):
+				self.name = name
+
+
+class NotPrivate: # Can be accessed by everyone; 
+		def __init__(self, name):
+				self.name = name
+				self.priv = _Private(name)
+		
+		def _display(self): # Private method (convention only)
+				print("Hello")
+				
+		def display(self): # Public method
+				print('Hi')
+
+
+# To use a class in another file, first: 'import <file>'
+# now, can use a class in file via x = <file>.<class> convention
+# Alternatively, can import the class so as to avoid <file>.<class>: 'from <file> import <class>'
+
+
 
 
 # Python Objects & Classes Tutorial 5
