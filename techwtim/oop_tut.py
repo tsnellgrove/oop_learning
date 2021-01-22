@@ -193,7 +193,7 @@ bigred = Truck(150, 75, 'slow', 'red')
 # Think through writing attribute for ViewOnly [TBD]
 # Too many calsses already... think about consolidation [TBD]
 
-
+# Idea: Rooms are really just conneectd containers...
 
 hand = []
 backpack = []
