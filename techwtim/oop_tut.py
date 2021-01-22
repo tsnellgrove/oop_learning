@@ -283,9 +283,10 @@ class Door(ViewOnly):
 						print("The " + self.name + " is already open.")			
 
 
-class Container(Door):
-		def __init__(self, name, desc, open_state, unlock_state, contains): # in this impplementation, containers cannot be taken
-				super().__init__(name, desc, open_state, unlock_state)
+class Container(Door, Item):
+		def __init__(self, name, desc, open_state, unlock_state, key, takeable, contains): # in this impplementation, containers cannot be taken
+				super().__init__(name, desc, open_state, unlock_state, key, takeable)
+#				super().__init__(takeable)
 				self.contains = contains
 
 
@@ -297,6 +298,8 @@ gate = Door('Front Gate', 'The front gate is massive and imposing', False, False
 gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
 sword.change_desc(sword.desc +' On the sword blad you see Dwarven Runes.')
 sword.add_writing('Dwarven Runes', "Goblin Wallopper")
+chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', False, 'potion')
+giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
 
 # entrance.examine()
 # dark_castle.examine()
