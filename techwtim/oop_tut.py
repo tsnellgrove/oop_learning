@@ -195,6 +195,13 @@ bigred = Truck(150, 75, 'slow', 'red')
 
 # Idea: Rooms are really just conneectd containers...
 
+# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, and multi inheritance from inherited classes... is just right out!  # So => make 'takable' a local attribute of container [DONE]
+
+#DONE: add takability to the 'take item' method
+
+# Link travel to doors or to rooms
+
+
 hand = []
 backpack = []
 room = 'entrance'
@@ -236,7 +243,7 @@ class Item(ViewOnly):
 				self.takeable = takeable
 				
 		def take(self):
-				if self.name in eval(room).room_objects:
+				if self.name in eval(room).room_objects and self.takeable:
 						if len(hand) == 0:
 								hand.append(self.name)
 								eval(room).room_objects.remove(self.name)
@@ -283,10 +290,10 @@ class Door(ViewOnly):
 						print("The " + self.name + " is already open.")			
 
 
-class Container(Door, Item):
+class Container(Door):
 		def __init__(self, name, desc, open_state, unlock_state, key, takeable, contains): # in this impplementation, containers cannot be taken
-				Door.__init__(self, name, desc, open_state, unlock_state, key)
-				Item.__init__(self, name, desc, takeable)
+				super().__init__(name, desc, open_state, unlock_state, key)
+				self.takeable = takeable
 				self.contains = contains
 
 
