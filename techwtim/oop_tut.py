@@ -286,7 +286,7 @@ class Door(ViewOnly):
 class Container(Door, Item):
 		def __init__(self, name, desc, open_state, unlock_state, key, takeable, contains): # in this impplementation, containers cannot be taken
 				Door.__init__(self, name, desc, open_state, unlock_state, key)
-				Item.__init__(self, takeable)
+				Item.__init__(self, name, desc, takeable)
 				self.contains = contains
 
 
