@@ -185,22 +185,21 @@ bigred = Truck(150, 75, 'slow', 'red')
 # Create a Room child class of view_only... focus on inventory only - not movement [DONE]
 # Exercise inventory management using Room.room_objects and hand and take and drop [IN-PROC]
 	# Update Room examine, take, and drop [DONE]
-	# Test implementation [TBD]
-# More classes before this gets out of hand! [TBD]
-# Not: I think I'm doing something wrong... inventory management with objects is not as elegant as I was expecting
+	# DONE: Test implementation
+	#DONE: add takability to the 'take item' method
+# DONE: More tutorials before this gets out of hand!
+# Note: I think I'm doing something wrong... inventory management with objects is not as elegant as I was expecting
 
-
-# Think through writing attribute for ViewOnly [TBD]
-# Too many calsses already... think about consolidation [TBD]
+# DONE: Too many calsses already... think about consolidation
+# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, and multi inheritance from inherited classes... is just right out!  # DONE: So => make 'takable' a local attribute of container
 
 # Idea: Rooms are really just conneectd containers...
+# IN-PROC: Link travel to doors or to rooms
+# IN-PROC: Troubleshooting movement
 
-# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, and multi inheritance from inherited classes... is just right out!  # So => make 'takable' a local attribute of container [DONE]
+# TBD: Link room inventory and player inventory
 
-#DONE: add takability to the 'take item' method
-
-# Link travel to doors or to rooms
-
+# TBD: Think through writing attribute for ViewOnly
 
 hand = []
 backpack = []
@@ -229,13 +228,25 @@ class ViewOnly(object):
 						print("There's nothing to read!")
 
 class Room(ViewOnly):
-		def __init__(self, name, desc, room_objects):
+		def __init__(self, name, desc, room_objects, valid_paths):
 				super().__init__(name, desc)
-				self.room_objects = room_objects
+				self.room_objects = room_objects # list of items in room
+				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
 				
 		def examine(self):
 				print(self.desc)
 				print("The room contains: " + ', '.join(self.room_objects))
+				
+		def go(self, direction):
+				if direction in self.valid_paths:
+						print(self.name)
+						print(direction)
+						next_room = self.valid_paths[direction]
+						print(next_room)
+						next_room.examine()
+				else:
+						print("You can't go that way.")
+		
 
 class Item(ViewOnly):
 		def __init__(self, name, desc, takeable):
@@ -298,7 +309,8 @@ class Container(Door):
 
 
 dark_castle = ViewOnly('Dark Castle', 'The evil Dark Castle looms above you')
-entrance = Room('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['sword', 'rusty_key', 'gate'])
+entrance = Room('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['rusty_key', 'gate'], {'north' : 'main_hall'})
+main_hall = Room('Main Hall', 'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'})
 rusty_key = Item('rusty_key', 'The key is rusty', True)
 sword = Item('sword','The sword is shiny.', True)
 gate = Door('Front Gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
@@ -307,6 +319,13 @@ sword.change_desc(sword.desc +' On the sword blad you see Dwarven Runes.')
 sword.add_writing('Dwarven Runes', "Goblin Wallopper")
 chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', False, 'potion')
 giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
+
+
+entrance.examine()
+print(entrance.valid_paths)
+entrance.go('south')
+entrance.go('north')
+
 
 # entrance.examine()
 # dark_castle.examine()
