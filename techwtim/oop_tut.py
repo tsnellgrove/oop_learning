@@ -191,15 +191,19 @@ bigred = Truck(150, 75, 'slow', 'red')
 # Note: I think I'm doing something wrong... inventory management with objects is not as elegant as I was expecting
 
 # DONE: Too many calsses already... think about consolidation
-# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, and multi inheritance from inherited classes... is just right out!  # DONE: So => make 'takable' a local attribute of container
+# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, and multi inheritance from inherited classes... is just right out!
+# DONE: So => make 'takable' a local attribute of container
 
 # Idea: Rooms are really just conneectd containers...
-# IN-PROC: Link travel to doors or to rooms
-# IN-PROC: Troubleshooting movement
+# DONE: Link travel to doors or to rooms? For now deciding on rooms
+# DONE: Troubleshooting movement
+# DONE: Implemnt doors in rooms
 
+# TBD: Implement While True input loop
 # TBD: Link room inventory and player inventory
-
 # TBD: Think through writing attribute for ViewOnly
+
+# At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 
 hand = []
 backpack = []
@@ -228,25 +232,28 @@ class ViewOnly(object):
 						print("There's nothing to read!")
 
 class Room(ViewOnly):
-		def __init__(self, name, desc, room_objects, valid_paths):
+		def __init__(self, name, desc, room_objects, valid_paths, door_paths):
 				super().__init__(name, desc)
 				self.room_objects = room_objects # list of items in room
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
+				self.door_paths = door_paths # dictionary of {direction1 : door1}
 				
 		def examine(self):
+				print(self.name)
 				print(self.desc)
 				print("The room contains: " + ', '.join(self.room_objects))
 				
 		def go(self, direction):
-				if direction in self.valid_paths:
-						print(self.name)
-						print(direction)
-						next_room = self.valid_paths[direction]
-						print(next_room)
-						next_room.examine()
-				else:
+				if direction not in self.valid_paths:
 						print("You can't go that way.")
-		
+				elif direction in self.door_paths:
+						door_open = eval(self.door_paths[direction]).open_state
+						if not door_open:
+								print("The " +  self.door_paths[direction] + " is closed.")
+				else:		
+						next_room = self.valid_paths[direction]
+						eval(next_room).examine()
+
 
 class Item(ViewOnly):
 		def __init__(self, name, desc, takeable):
@@ -309,8 +316,8 @@ class Container(Door):
 
 
 dark_castle = ViewOnly('Dark Castle', 'The evil Dark Castle looms above you')
-entrance = Room('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['rusty_key', 'gate'], {'north' : 'main_hall'})
-main_hall = Room('Main Hall', 'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'})
+entrance = Room('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
+main_hall = Room('Main Hall', 'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
 rusty_key = Item('rusty_key', 'The key is rusty', True)
 sword = Item('sword','The sword is shiny.', True)
 gate = Door('Front Gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
@@ -322,7 +329,7 @@ giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, '
 
 
 entrance.examine()
-print(entrance.valid_paths)
+# print(entrance.valid_paths)
 entrance.go('south')
 entrance.go('north')
 
