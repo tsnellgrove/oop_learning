@@ -24,9 +24,12 @@
 # DONE: Implemnt doors in rooms
 
 # DONE: Implement While True input loop
-# NEXT: Fix input conversion
-# TBD: Link room inventory and player inventory
+# DONE: Fix input conversion
+# TBD: Fix go command
+# TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
+# TBD: Link room inventory and player inventory
+
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 
@@ -152,6 +155,7 @@ sword.add_writing('Dwarven Runes', "Goblin Wallopper")
 chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', False, 'potion')
 giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
 
+entrance.examine()
 
 while True:
     user_input = input('Type your command: ')
@@ -163,15 +167,24 @@ while True:
         word2 = user_input_lst[1]
     else:
         word2 = "blank"
-    word2_obj = eval(word2)
-    word1_obj = word1 + '()'
-    eval(word2_obj.word1_obj)
+    if word1.lower() == 'quit':
+        break
+    else:
+        try:
+            word2_obj = eval(word2)
+        except:
+            print("There's no " + word2 + " here.")
+        try:
+            getattr(word2_obj, word1)()
+        except:
+            print("You can't " + word1 + " with the " + word2 + ".")
 
 
-entrance.examine()
+
+# entrance.examine()
 # print(entrance.valid_paths)
-entrance.go('south')
-entrance.go('north')
+#entrance.go('south')
+# entrance.go('north')
 
 
 # entrance.examine()
