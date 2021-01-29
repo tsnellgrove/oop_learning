@@ -25,7 +25,9 @@
 
 # DONE: Implement While True input loop
 # DONE: Fix input conversion
-# TBD: Fix go command
+# DONE: Fix go command - interpreter
+# TBD: Description of new room on change rooms
+# TBD: Enforce room.examine() based on location
 # TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
 # TBD: Link room inventory and player inventory
@@ -81,6 +83,7 @@ class Room(ViewOnly):
 				else:		
 						next_room = self.valid_paths[direction]
 						eval(next_room).examine()
+						room = next_room
 
 
 class Item(ViewOnly):
@@ -169,6 +172,9 @@ while True:
         word2 = "blank"
     if word1.lower() == 'quit':
         break
+    elif word1 == 'go':
+        room_obj = eval(room)
+        getattr(room_obj, word1)(word2)
     else:
         try:
             word2_obj = eval(word2)
