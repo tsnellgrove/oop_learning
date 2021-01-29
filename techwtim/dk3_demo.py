@@ -26,7 +26,7 @@
 # DONE: Implement While True input loop
 # DONE: Fix input conversion
 # DONE: Fix go command - interpreter
-# TBD: Description of new room on change rooms
+# DONE: Description of new room on change rooms
 # TBD: Enforce room.examine() based on location
 # TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
@@ -80,10 +80,10 @@ class Room(ViewOnly):
 						door_open = eval(self.door_paths[direction]).open_state
 						if not door_open:
 								print("The " +  self.door_paths[direction] + " is closed.")
-				else:		
-						next_room = self.valid_paths[direction]
-						eval(next_room).examine()
-						room = next_room
+						else:
+								next_room = self.valid_paths[direction]
+								eval(next_room).examine()
+								room = next_room
 
 
 class Item(ViewOnly):
