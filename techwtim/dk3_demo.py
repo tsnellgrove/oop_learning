@@ -28,7 +28,8 @@
 # DONE: Fix go command - interpreter
 # DONE: Description of new room on change rooms
 # DONE: Enforce room.examine() based on location
-# TBD: Update room based on go
+# DONE: Implement 'look'
+# TBD: Update room based on go (need stateful dict - or global room [bad])
 # TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
 
@@ -166,6 +167,7 @@ chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', Fals
 giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
 
 entrance.examine()
+print()
 
 while True:
     user_input = input('Type your command: ')
@@ -182,6 +184,11 @@ while True:
     elif word1 == 'go':
         room_obj = eval(room)
         getattr(room_obj, word1)(word2)
+        print()
+    elif word1 == 'look':
+        room_obj = eval(room)
+        room_obj.examine()
+        print()
     else:
         try:
             word2_obj = eval(word2)
