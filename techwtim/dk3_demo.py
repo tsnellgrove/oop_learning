@@ -27,10 +27,10 @@
 # DONE: Fix input conversion
 # DONE: Fix go command - interpreter
 # DONE: Description of new room on change rooms
-# TBD: Enforce room.examine() based on location
+# DONE: Enforce room.examine() based on location
+# TBD: Update room based on go
 # TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
-# TBD: Link room inventory and player inventory
 
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
@@ -46,7 +46,14 @@ class ViewOnly(object):
 				self.desc = desc
 
 		def examine(self):
-				print(self.desc)
+				examine_lst = eval(room).room_objects
+				examine_lst = examine_lst + hand
+				print(examine_lst)
+#				print(str(self.name))
+				if str(self.name) in examine_lst:
+						print(self.desc)
+				else:
+						print("You can't see a " + self.name + " here.")
 		
 		def change_desc(self, new_desc):
 				self.desc = new_desc
@@ -146,15 +153,15 @@ class Container(Door):
 				self.contains = contains
 
 
-dark_castle = ViewOnly('Dark Castle', 'The evil Dark Castle looms above you')
-entrance = Room('Entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
-main_hall = Room('Main Hall', 'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
+dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you')
+entrance = Room('entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
+main_hall = Room('main_hall', 'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
 rusty_key = Item('rusty_key', 'The key is rusty', True)
 sword = Item('sword','The sword is shiny.', True)
-gate = Door('Front Gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
-gate.add_writing('rusty letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
+gate = Door('gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
+gate.add_writing('rusty_letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
 sword.change_desc(sword.desc +' On the sword blad you see Dwarven Runes.')
-sword.add_writing('Dwarven Runes', "Goblin Wallopper")
+sword.add_writing('dwarven_runes', "Goblin Wallopper")
 chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', False, 'potion')
 giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
 
@@ -178,12 +185,16 @@ while True:
     else:
         try:
             word2_obj = eval(word2)
+            print()
         except:
             print("There's no " + word2 + " here.")
+            print()
         try:
             getattr(word2_obj, word1)()
+            print()
         except:
             print("You can't " + word1 + " with the " + word2 + ".")
+            print()
 
 
 
