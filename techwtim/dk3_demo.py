@@ -29,7 +29,8 @@
 # DONE: Description of new room on change rooms
 # DONE: Enforce room.examine() based on location
 # DONE: Implement 'look'
-# TBD: Update room based on go (need stateful dict - or global room [bad])
+# DONE: Update room based on go (try global room)
+# TBD: Pass room variable to class methods (state_dict)
 # TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
 
@@ -82,6 +83,7 @@ class Room(ViewOnly):
 				print("The room contains: " + ', '.join(self.room_objects))
 				
 		def go(self, direction):
+				global room
 				if direction not in self.valid_paths:
 						print("You can't go that way.")
 				elif direction in self.door_paths:
