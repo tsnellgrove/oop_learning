@@ -30,24 +30,35 @@
 # DONE: Enforce room.examine() based on location
 # DONE: Implement 'look'
 # DONE: Update room based on go (try global room)
-# TBD: Pass room variable to class methods (state_dict)
+# IN-PROC: Pass room variable to class methods (state_dict)
+#			IN-PROC: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
+
 # TBD: Fix read_writing => read
 # TBD: Think through writing attribute for ViewOnly
 
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 
-hand = []
-backpack = []
-room = 'entrance'
 
+#		hand = []
+#		backpack = []
+#		room = 'entrance'
+
+
+stateful_dict = {
+		'hand' : [], 
+		'backpack' : [],
+		'room' : 'entrance'
+		}
 
 class ViewOnly(object):
 		def __init__(self, name, desc):
 				self.name = name
 				self.desc = desc
 
-		def examine(self):
+		def examine(self, stateful_dict):
+				room = stateful_dict['room']
+#				print(room)
 				examine_lst = eval(room).room_objects
 				examine_lst = examine_lst + hand
 				print(examine_lst)
@@ -172,16 +183,18 @@ entrance.examine()
 print()
 
 while True:
+    room = stateful_dict['room']
+#    print(room)
     user_input = input('Type your command: ')
     lst = []
     lst.append(user_input)
     user_input_lst = lst[0].split()
-    word1 = user_input_lst[0]
+    word1 = user_input_lst[0].lower()
     if len(user_input_lst) > 1:
-        word2 = user_input_lst[1]
+        word2 = user_input_lst[1].lower()
     else:
         word2 = "blank"
-    if word1.lower() == 'quit':
+    if word1 == 'quit':
         break
     elif word1 == 'go':
         room_obj = eval(room)
@@ -198,12 +211,12 @@ while True:
         except:
             print("There's no " + word2 + " here.")
             print()
-        try:
-            getattr(word2_obj, word1)()
-            print()
-        except:
-            print("You can't " + word1 + " with the " + word2 + ".")
-            print()
+#        try:
+        getattr(word2_obj, word1)(room) # only works for examine()
+        print()
+#        except:
+#            print("You can't " + word1 + " with the " + word2 + ".")
+#            print()
 
 
 
