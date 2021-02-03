@@ -30,11 +30,11 @@
 # DONE: Enforce room.examine() based on location
 # DONE: Implement 'look'
 # DONE: Update room based on go (try global room)
-# IN-PROC: Pass room variable to class methods (state_dict)
-#			IN-PROC: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
+# DONE: Pass room variable to class methods (state_dict)
+#	DONE: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
 
-# TBD: Fix read_writing => read
-# TBD: Think through writing attribute for ViewOnly
+# DONE: Fix read_writing => read
+# TBD: Think through writing attribute for ViewOnly (i.e. should be read dwarven_runes instead of read sword)
 
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
@@ -58,10 +58,11 @@ class ViewOnly(object):
 
 		def examine(self, stateful_dict):
 				room = stateful_dict['room']
+				hand = stateful_dict['hand']
 #				print(room)
 				examine_lst = eval(room).room_objects
 				examine_lst = examine_lst + hand
-				print(examine_lst)
+#				print(examine_lst) # used for troubleshooting
 #				print(str(self.name))
 				if str(self.name) in examine_lst:
 						print(self.desc)
@@ -75,7 +76,7 @@ class ViewOnly(object):
 				self.desc = self.desc + " On the " + self.name + " there is " + text_desc + "."
 				self.text = text
 
-		def read_writing(self):
+		def read(self, stateful_dict):
 				try:
 						print(self.text)
 				except:
@@ -88,13 +89,14 @@ class Room(ViewOnly):
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
 				
-		def examine(self):
+		def examine(self, stateful_dict):
 				print(self.name)
 				print(self.desc)
 				print("The room contains: " + ', '.join(self.room_objects))
+				print()
 				
-		def go(self, direction):
-				global room
+		def go(self, direction, stateful_dict):
+				room = stateful_dict['room']
 				if direction not in self.valid_paths:
 						print("You can't go that way.")
 				elif direction in self.door_paths:
@@ -103,16 +105,17 @@ class Room(ViewOnly):
 								print("The " +  self.door_paths[direction] + " is closed.")
 						else:
 								next_room = self.valid_paths[direction]
-								eval(next_room).examine()
-								room = next_room
-
+								eval(next_room).examine(stateful_dict)
+								stateful_dict['room'] = next_room
 
 class Item(ViewOnly):
 		def __init__(self, name, desc, takeable):
 				super().__init__(name, desc)
 				self.takeable = takeable
 				
-		def take(self):
+		def take(self, stateful_dict):
+				room = stateful_dict['room']
+				hand = stateful_dict['hand']
 				if self.name in eval(room).room_objects and self.takeable:
 						if len(hand) == 0:
 								hand.append(self.name)
@@ -123,14 +126,15 @@ class Item(ViewOnly):
 				else:
 						print("There's no " + self.name + " to take here!")
 
-		def drop(self):
+		def drop(self, stateful_dict):
+				room = stateful_dict['room']
+				hand = stateful_dict['hand']
 				if self.name in hand:
 						hand.remove(self.name)
 						eval(room).room_objects.append(self.name)
 						print("Dropped")
 				else:
 						print("You're not holding the " + self.name + " in your hand.")	
-
 																
 class Door(ViewOnly):
 		def __init__(self, name, desc, open_state, unlock_state, key):
@@ -139,7 +143,8 @@ class Door(ViewOnly):
 				self.unlock_state = unlock_state
 				self.key = key
 				
-		def unlock(self):
+		def unlock(self, stateful_dict):
+				hand = stateful_dict['hand']
 				if self.unlock_state == False:
 						if self.key in hand:
 								print("Unlocked")
@@ -149,7 +154,7 @@ class Door(ViewOnly):
 				else:
 						print("The " + name + " is already unlocked.")
 
-		def open(self):
+		def open(self, stateful_dict):
 				if self.open_state == False:
 						if self.unlock_state == True:
 								self.open_state = True
@@ -179,12 +184,12 @@ sword.add_writing('dwarven_runes', "Goblin Wallopper")
 chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', False, 'potion')
 giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
 
-entrance.examine()
+entrance.examine(stateful_dict)
 print()
 
 while True:
     room = stateful_dict['room']
-#    print(room)
+#    print(stateful_dict)
     user_input = input('Type your command: ')
     lst = []
     lst.append(user_input)
@@ -198,11 +203,11 @@ while True:
         break
     elif word1 == 'go':
         room_obj = eval(room)
-        getattr(room_obj, word1)(word2)
+        getattr(room_obj, word1)(word2, stateful_dict)
         print()
     elif word1 == 'look':
         room_obj = eval(room)
-        room_obj.examine()
+        room_obj.examine(stateful_dict)
         print()
     else:
         try:
@@ -211,12 +216,12 @@ while True:
         except:
             print("There's no " + word2 + " here.")
             print()
-#        try:
-        getattr(word2_obj, word1)(room) # only works for examine()
-        print()
-#        except:
-#            print("You can't " + word1 + " with the " + word2 + ".")
-#            print()
+        try:
+            getattr(word2_obj, word1)(stateful_dict)
+            print()
+        except:
+            print("You can't " + word1 + " with the " + word2 + ".")
+            print()
 
 
 
