@@ -33,8 +33,21 @@
 # DONE: Pass room variable to class methods (state_dict)
 #	DONE: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
 
+# DONE: Think through writing attribute for ViewOnly (i.e. should be read dwarven_runes instead of read sword)
+# IDEA: Maybe what I want to do is create a method that can put one item *on* another... so that I can put the writing *on* the item?
+# IDEA: Similar problem to a container... need a list of things that can be *on* the item - 
+# IDEA: should be at the ViewOnly level since many objects can have writing on them...
+# IDEA: nead a name... maybe 'features'
+# IDEA: this could also be used for control panel
+
+# DONE: Extend examine() for class Door to include open or close state
 # DONE: Fix read_writing => read
-# TBD: Think through writing attribute for ViewOnly (i.e. should be read dwarven_runes instead of read sword)
+# DONE: Implement 'close'
+
+# TBD: Implement 'lock'
+# TBD: Writing as class
+# TBD: Implement features
+# TBD: Item in container
 
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
@@ -142,7 +155,15 @@ class Door(ViewOnly):
 				self.open_state = open_state
 				self.unlock_state = unlock_state
 				self.key = key
-				
+
+		def examine(self, stateful_dict):
+				print(self.desc)
+				if self.open_state:
+						print("The " + self.name + " is open.")
+				else:
+						print("The " + self.name + " is closed.")
+				print()
+
 		def unlock(self, stateful_dict):
 				hand = stateful_dict['hand']
 				if self.unlock_state == False:
@@ -164,6 +185,12 @@ class Door(ViewOnly):
 				else:
 						print("The " + self.name + " is already open.")			
 
+		def close(self, stateful_dict):
+				if self.open_state:
+						self.open_state = False
+						print("Closed.")
+				else:
+						print("The " + self.name + " is already closed.")			
 
 class Container(Door):
 		def __init__(self, name, desc, open_state, unlock_state, key, takeable, contains): # in this impplementation, containers cannot be taken
@@ -213,14 +240,14 @@ while True:
         try:
             word2_obj = eval(word2)
             print()
+            try:
+                getattr(word2_obj, word1)(stateful_dict)
+                print()
+            except:
+                print("You can't " + word1 + " with the " + word2 + ".")
+                print()
         except:
             print("There's no " + word2 + " here.")
-            print()
-        try:
-            getattr(word2_obj, word1)(stateful_dict)
-            print()
-        except:
-            print("You can't " + word1 + " with the " + word2 + ".")
             print()
 
 
