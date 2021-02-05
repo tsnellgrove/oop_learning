@@ -43,8 +43,8 @@
 # DONE: Extend examine() for class Door to include open or close state
 # DONE: Fix read_writing => read
 # DONE: Implement 'close'
+# DONE: Implement 'lock'
 
-# TBD: Implement 'lock'
 # TBD: Writing as class
 # TBD: Implement features
 # TBD: Item in container
@@ -173,7 +173,7 @@ class Door(ViewOnly):
 						else:
 								print("You aren't holding the key.")
 				else:
-						print("The " + name + " is already unlocked.")
+						print("The " + self.name + " is already unlocked.")
 
 		def open(self, stateful_dict):
 				if self.open_state == False:
@@ -191,6 +191,17 @@ class Door(ViewOnly):
 						print("Closed.")
 				else:
 						print("The " + self.name + " is already closed.")			
+
+		def lock(self, stateful_dict):
+				hand = stateful_dict['hand']
+				if self.key in hand:
+						if self.unlock_state:
+								print("Locked")
+								self.unlock_state = False
+						else:
+								print("The " + self.name + " is already locked.")
+				else:
+						print("You aren't holding the key.")
 
 class Container(Door):
 		def __init__(self, name, desc, open_state, unlock_state, key, takeable, contains): # in this impplementation, containers cannot be taken
