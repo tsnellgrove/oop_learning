@@ -45,10 +45,14 @@
 # DONE: Implement 'close'
 # DONE: Implement 'lock'
 
-# TBD: Writing as class
-# TBD: Implement features
-# TBD: Item in container
-
+# DONE: Implement features
+# DONE: Writing as class
+# DONE: Implement read for ViewOnly class
+# TBD: Extend examine method for classes Room and Door (vs. replace)
+# TBD: Test read for Door class
+# TBD: Move 'features' to Room class (since we only examine room features)
+# TBD: Implement containers
+# TBD: Is the Item class worth having???
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 
@@ -65,39 +69,53 @@ stateful_dict = {
 		}
 
 class ViewOnly(object):
-		def __init__(self, name, desc):
+		def __init__(self, name, desc, features, writing):
 				self.name = name
 				self.desc = desc
+				self.features = features
+				self.writing = writing
 
 		def examine(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
 #				print(room)
 				examine_lst = eval(room).room_objects
-				examine_lst = examine_lst + hand
+				features = eval(room).features
+				examine_lst = examine_lst + hand + features
 #				print(examine_lst) # used for troubleshooting
 #				print(str(self.name))
 				if str(self.name) in examine_lst:
 						print(self.desc)
+						if self.writing != 'null':
+								print("On the " + self.name + " you see: " + self.writing)
 				else:
 						print("You can't see a " + self.name + " here.")
 		
 		def change_desc(self, new_desc):
 				self.desc = new_desc
 
-		def add_writing(self, text_desc, text):
-				self.desc = self.desc + " On the " + self.name + " there is " + text_desc + "."
-				self.text = text
+#		def add_writing(self, text_desc, text):
+#				self.desc = self.desc + " On the " + self.name + " there is " + text_desc + "."
+#				self.text = text
+
+class Writing(ViewOnly):
+		def __init__(self, name, desc, features, writing, written_on):
+				super().__init__(name, desc, features, writing)
+				self.written_on = written_on
 
 		def read(self, stateful_dict):
-				try:
-						print(self.text)
-				except:
-						print("There's nothing to read!")
+				room = stateful_dict['room']
+				hand = stateful_dict['hand']
+				examine_lst = eval(room).room_objects
+				features = eval(room).features
+				examine_lst = examine_lst + hand + features
+				if self.written_on in examine_lst:
+						print(self.desc)
+						print()
 
 class Room(ViewOnly):
-		def __init__(self, name, desc, room_objects, valid_paths, door_paths):
-				super().__init__(name, desc)
+		def __init__(self, name, desc, features, writing, room_objects, valid_paths, door_paths):
+				super().__init__(name, desc, features, writing)
 				self.room_objects = room_objects # list of items in room
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
@@ -122,8 +140,8 @@ class Room(ViewOnly):
 								stateful_dict['room'] = next_room
 
 class Item(ViewOnly):
-		def __init__(self, name, desc, takeable):
-				super().__init__(name, desc)
+		def __init__(self, name, desc, features, writing, takeable):
+				super().__init__(name, desc, features, writing)
 				self.takeable = takeable
 				
 		def take(self, stateful_dict):
@@ -150,8 +168,8 @@ class Item(ViewOnly):
 						print("You're not holding the " + self.name + " in your hand.")	
 																
 class Door(ViewOnly):
-		def __init__(self, name, desc, open_state, unlock_state, key):
-				super().__init__(name, desc)
+		def __init__(self, name, desc, features, writing, open_state, unlock_state, key):
+				super().__init__(name, desc, features, writing)
 				self.open_state = open_state
 				self.unlock_state = unlock_state
 				self.key = key
@@ -204,25 +222,38 @@ class Door(ViewOnly):
 						print("You aren't holding the key.")
 
 class Container(Door):
-		def __init__(self, name, desc, open_state, unlock_state, key, takeable, contains): # in this impplementation, containers cannot be taken
-				super().__init__(name, desc, open_state, unlock_state, key)
-				self.takeable = takeable
-				self.contains = contains
+		def __init__(self, name, desc, features, writing, open_state, unlock_state, key, takeable, contains):
+				super().__init__(name, desc, features, writing, open_state, unlock_state, key)
+				self.takeable = takeable # can the container be taken?
+				self.contains = contains # list of items in the container
 
 
-dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you')
-entrance = Room('entrance', 'You stand before the daunting gate of Dark Castle. In front of you is the gate', ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
-main_hall = Room('main_hall', 'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
-rusty_key = Item('rusty_key', 'The key is rusty', True)
-sword = Item('sword','The sword is shiny.', True)
-gate = Door('gate', 'The front gate is massive and imposing', False, False, 'rusty_key')
-gate.add_writing('rusty_letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
-sword.change_desc(sword.desc +' On the sword blad you see Dwarven Runes.')
-sword.add_writing('dwarven_runes', "Goblin Wallopper")
-chest = Container('chest', 'An old wooden chest', False, True, 'brass_key', False, 'potion')
-giftbox = Container('giftbox', 'A pretty gift box', False, True, 'none', True, 'necklace')
+dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', [], 'null')
+entrance = Room('entrance',
+		'You stand before the daunting gate of Dark Castle. In front of you is the gate',
+		['dark_castle'], 'null', ['rusty_key', 'gate', 'sword'], {'north' : 'main_hall'}, {'north' : 'gate'})
+main_hall = Room('main_hall',
+		'A vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
+		[], 'null', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
+rusty_key = Item('rusty_key', 'The key is rusty', [], 'null', True)
+sword = Item('sword','The sword is shiny.', [], 'dwarven_runes', True)
+dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", [], 'null', 'sword')
+gate = Door('gate', 'The front gate is massive and imposing',
+		[], 'rusty_letters', False, False, 'rusty_key')
+rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', [], 'null', 'gate')
+chest = Container('chest', 'An old wooden chest', [], 'null',
+		False, True, 'brass_key', False, ['potion'])
+giftbox = Container('giftbox', 'A pretty gift box', [], 'null',
+		False, True, 'none', True, ['necklace'])
+
+# gate.add_writing('rusty_letters', "The Rusty Letters read: 'Abandon Hope All Ye Who Even Thank About It'")
+# sword.change_desc(sword.desc +' On the sword blad you see Dwarven Runes.')
+# sword.add_writing('dwarven_runes', "Goblin Wallopper")
 
 entrance.examine(stateful_dict)
+
+# dark_castle.examine(stateful_dict) # troubleshooting text
+
 print()
 
 while True:
