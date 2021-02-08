@@ -52,7 +52,16 @@
 # DONE: Test read for Door class
 # DONE: Move 'features' to Room class (since we only examine room features)
 # DONE: Re-add 'features' to ViewOnly class - because otherwise there is no way to include it in examine_lst
+
 # TBD: Implement containers
+# DONE: Decide how container contents should be presented and added to examine and take scope
+# DEC: Show container contents with hasattr upon open and then add to room objects
+# IN-PROC: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
+# TBD: Implement 'close' case for containers
+# TBD: Implment container.put(item) ???
+
+# TBD: Reconsider restricting 'features' to class Room using hasattr
+
 # TBD: Is the Item class worth having???
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
@@ -189,6 +198,12 @@ class Door(ViewOnly):
 						if self.unlock_state == True:
 								self.open_state = True
 								print("Openned.")
+								if hasattr(self, 'contains'):
+										print("The " + self.name + " contains: " + self.contains)
+										room = stateful_dict['room']
+										room_objects = eval(room).room_objects
+										room_objects = room_objects + self.contains
+										eval(room).room_objects = room_objects
 						else:
 								print("The " + self.name + " is locked.")
 				else:
@@ -220,20 +235,27 @@ class Container(Door):
 
 
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', [], 'null')
+
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
 		['dark_castle'], 'null', ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
-		[], 'null', ['sword', 'gate'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
-rusty_key = Item('rusty_key', 'The key is rusty', [], 'null', True)
-sword = Item('sword','The sword is shiny.', [], 'dwarven_runes', True)
-dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", [], 'null', 'sword')
+		[], 'null', ['sword', 'gate', 'brass_key', 'chest'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
+
 gate = Door('gate', 'The front gate is massive and imposing', [],
 		'rusty_letters', False, False, 'rusty_key')
+
+rusty_key = Item('rusty_key', 'The key is rusty', [], 'null', True)
+sword = Item('sword','The sword is shiny.', [], 'dwarven_runes', True)
+brass_key = Item('brass_key', 'The key is brass', [], 'null', True)
+potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', [], 'null', True)
+
 rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', [], 'null', 'gate')
+dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", [], 'null', 'sword')
+
 chest = Container('chest', 'An old wooden chest', [], 'null',
-		False, True, 'brass_key', False, ['potion'])
+		False, False, 'brass_key', False, ['potion'])
 giftbox = Container('giftbox', 'A pretty gift box', [], 'null',
 		False, True, 'none', True, ['necklace'])
 
