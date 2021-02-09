@@ -52,11 +52,13 @@
 # DONE: Test read for Door class
 # DONE: Move 'features' to Room class (since we only examine room features)
 # DONE: Re-add 'features' to ViewOnly class - because otherwise there is no way to include it in examine_lst
+# DONE: Add presence checking for examine on Door and Room classes
 
 # TBD: Implement containers
 # DONE: Decide how container contents should be presented and added to examine and take scope
 # DEC: Show container contents with hasattr upon open and then add to room objects
-# IN-PROC: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
+# DONE: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
+
 # TBD: Implement 'close' case for containers
 # TBD: Implment container.put(item) ???
 
@@ -122,8 +124,9 @@ class Room(ViewOnly):
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
-				print("The room contains: " + ', '.join(self.room_objects))
-				print()
+				if stateful_dict['room'] == self.name:
+						print("The room contains: " + ', '.join(self.room_objects))
+						print()
 				
 		def go(self, direction, stateful_dict):
 				room = stateful_dict['room']
@@ -176,11 +179,14 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				if self.open_state:
-						print("The " + self.name + " is open.")
-				else:
-						print("The " + self.name + " is closed.")
-				print()
+				room = stateful_dict['room']
+				room_objects = eval(room).room_objects
+				if self.name in room_objects:
+						if self.open_state:
+								print("The " + self.name + " is open.")
+						else:
+								print("The " + self.name + " is closed.")
+								print()
 
 		def unlock(self, stateful_dict):
 				hand = stateful_dict['hand']
@@ -199,7 +205,7 @@ class Door(ViewOnly):
 								self.open_state = True
 								print("Openned.")
 								if hasattr(self, 'contains'):
-										print("The " + self.name + " contains: " + self.contains)
+										print("The " + self.name + " contains: " + ', '.join(self.contains))
 										room = stateful_dict['room']
 										room_objects = eval(room).room_objects
 										room_objects = room_objects + self.contains
@@ -245,6 +251,8 @@ main_hall = Room('main_hall',
 
 gate = Door('gate', 'The front gate is massive and imposing', [],
 		'rusty_letters', False, False, 'rusty_key')
+screen_door = Door('screen_door', "You should never be able to examine the screen_door",
+		[], 'null', False, False, 'chrome_key')
 
 rusty_key = Item('rusty_key', 'The key is rusty', [], 'null', True)
 sword = Item('sword','The sword is shiny.', [], 'dwarven_runes', True)
