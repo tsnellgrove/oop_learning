@@ -59,10 +59,11 @@
 # DEC: Show container contents with hasattr upon open and then add to room objects
 # DONE: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
 
-# TBD: Implement 'close' case for containers
+# TBD: Implement / Troubleshoot 'close' case for containers
 # TBD: Implment container.put(item) ???
 
 # TBD: Reconsider restricting 'features' to class Room using hasattr
+# TBD: dis-allowe locking when Door / Container object is open?
 
 # TBD: Is the Item class worth having???
 
@@ -219,6 +220,15 @@ class Door(ViewOnly):
 				if self.open_state:
 						self.open_state = False
 						print("Closed.")
+						if hasattr(self, 'contains'):
+#								print("The " + self.name + " contains: " + ', '.join(self.contains))
+								if len(self.contains) > 0:
+										room = stateful_dict['room']
+										room_objects = eval(room).room_objects
+										new_list = [x for x in room_objects if (x not in self.ccontains)]
+#										room_objects = filter(lambda v: v not in self.contains, room_objects)
+#										room_objects = room_objects - self.contains
+										eval(room).room_objects = new_list
 				else:
 						print("The " + self.name + " is already closed.")			
 
