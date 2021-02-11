@@ -70,6 +70,19 @@
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 
+# ****** Interpreter Thoughts #
+
+# 1) Every noun as an obj_name, full_name, root_name
+# 2) All one_word commands => 1_word function
+# 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
+# 4) if sentence does not start with a verb => please start with a verb
+# 5) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
+# 6) Convert adjectives + noun => obj_name
+# 7) If no prep => verb_noun function
+# 8) If prep: Identify direct object and => prep_sentence function
+# NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
+
+
 
 stateful_dict = {
 		'hand' : [], 
