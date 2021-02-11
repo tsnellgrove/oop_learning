@@ -58,13 +58,14 @@
 # DONE: Decide how container contents should be presented and added to examine and take scope
 # DEC: Show container contents with hasattr upon open and then add to room objects
 # DONE: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
-
-# TBD: Implement / Troubleshoot 'close' case for containers
-# TBD: Implment container.put(item) ???
+# DONE: Implement / Troubleshoot 'close' case for containers
+# NOTE: Implemented close reduction of room_objects via sets which leads to re-order
 
 # TBD: Reconsider restricting 'features' to class Room using hasattr
-# TBD: dis-allowe locking when Door / Container object is open?
+# TBD: dis-allow locking when Door / Container object is open?
+# TBD: Consider representing container elements as sub elements of container in room
 
+# TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
@@ -75,6 +76,9 @@ stateful_dict = {
 		'backpack' : [],
 		'room' : 'entrance'
 		}
+
+def set_difference(a,b):
+    return list(set(a)-set(b))
 
 class ViewOnly(object):
 		def __init__(self, name, desc, features, writing):
@@ -87,9 +91,11 @@ class ViewOnly(object):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
 				examine_lst = eval(room).room_objects
-				features = eval(room).features
-				examine_lst = examine_lst + hand + features
+				examine_lst = examine_lst + hand
 				examine_lst.append(room)
+				if hasattr(eval(room), 'features'):
+						features = eval(room).features
+						examine_lst = examine_lst + features
 #				print(examine_lst) # used for troubleshooting
 				if str(self.name) in examine_lst:
 						print(self.desc)
@@ -144,7 +150,7 @@ class Room(ViewOnly):
 
 
 class Item(ViewOnly):
-		def __init__(self, name, desc, features, writing, takeable):
+		def __init__(self, name, desc, writing, features, takeable):
 				super().__init__(name, desc, features, writing)
 				self.takeable = takeable
 				
@@ -221,14 +227,12 @@ class Door(ViewOnly):
 						self.open_state = False
 						print("Closed.")
 						if hasattr(self, 'contains'):
-#								print("The " + self.name + " contains: " + ', '.join(self.contains))
 								if len(self.contains) > 0:
 										room = stateful_dict['room']
 										room_objects = eval(room).room_objects
-										new_list = [x for x in room_objects if (x not in self.ccontains)]
-#										room_objects = filter(lambda v: v not in self.contains, room_objects)
-#										room_objects = room_objects - self.contains
-										eval(room).room_objects = new_list
+										container_contents = self.contains
+										container_closed = set_difference(room_objects, container_contents)
+										eval(room).room_objects = container_closed
 				else:
 						print("The " + self.name + " is already closed.")			
 
