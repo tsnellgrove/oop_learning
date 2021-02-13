@@ -63,9 +63,15 @@
 
 # DONE: Reconsider restricting 'features' to class Room using hasattr
 # DONE: dis-allow locking when Door / Container object is open?
-# TBD: Consider representing container elements as sub elements of container in room
+# DONE: Represent container elements as sub elements of container in room
+# NOTE: Now I have a few more container problems:
+# TBD: First I need to make items in containers takable... but not list them in the room_objects inventory... perhaps I have an open_container_obj list? Or perhaps better yet, dynamically add contents of open containers to takeable scope?
+# TBD: Next, when I take the item from the container, I need to remove it from <container>.contains
+# TBD: I think this in turn means that the *item* needs to know what container it's in (like writing)?
+# NOTE: I didn't have these issues in the old Dark Castle because I had no 'close' command... so I could safely dump the contents of any container into room_obj the moment the container was openned. Now that containers can be closed I need to actually solve this problem.
 # TBD: Redirect prints to buffer
 
+# Some Day Maybe
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
@@ -147,8 +153,16 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self.name:
+						print()
 						print("The room contains: " + ', '.join(self.room_objects))
 						print()
+				for obj in self.room_objects:
+#						print(type(eval(obj)))
+#						if type(eval(obj)) == "<class '__main__.Container'>" \
+						if type(eval(obj)) == type(eval('chest')) \
+										and len(eval(obj).contains) > 0 \
+										and eval(obj).open_state == True:
+								print("The " + obj + " contains: " + ', '.join(eval(obj).contains))
 				
 		def go(self, direction, stateful_dict):
 				room = stateful_dict['room']
