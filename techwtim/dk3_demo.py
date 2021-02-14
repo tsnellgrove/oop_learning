@@ -65,10 +65,26 @@
 # DONE: dis-allow locking when Door / Container object is open?
 # DONE: Represent container elements as sub elements of container in room
 # NOTE: Now I have a few more container problems:
-# TBD: First I need to make items in containers takable... but not list them in the room_objects inventory... perhaps I have an open_container_obj list? Or perhaps better yet, dynamically add contents of open containers to takeable scope?
-# TBD: Next, when I take the item from the container, I need to remove it from <container>.contains
-# TBD: I think this in turn means that the *item* needs to know what container it's in (like writing)?
-# NOTE: I didn't have these issues in the old Dark Castle because I had no 'close' command... so I could safely dump the contents of any container into room_obj the moment the container was openned. Now that containers can be closed I need to actually solve this problem.
+# DONE: First I need to make items in containers takable... 
+#		but not list them in the room_objects inventory... 
+#		perhaps I have an open_container_obj list? 
+#		Or perhaps better yet, 
+#		dynamically add contents of open containers to takeable scope? [YES!!]
+# IDEA: Next, when I take the item from the container,
+#		I need to remove it from <container>.contains
+# TBD: I think this in turn means 
+#		that the *item* needs to know what container it's in (like writing)?...
+#		No... let's keep items 'dumb'... 
+#		it's the room's job to know what's in the room 
+#		and it's the container's job to know what's in the container... 
+#		to implement this we just reverse the take scope process... 
+#		we start with a for loop of open containers and remove from there if possible
+#		else remove from room_objects
+# NOTE: I didn't have these issues in the old Dark Castle 
+#		because I had no 'close' command... 
+#		so I could safely dump the contents of any container 
+#		into room_obj the moment the container was openned. 
+#		Now that containers can be closed I need to actually solve this problem.
 # TBD: Redirect prints to buffer
 
 # Some Day Maybe
@@ -186,7 +202,15 @@ class Item(ViewOnly):
 		def take(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-				if self.name in eval(room).room_objects and self.takeable:
+				room_objects = eval(room).room_objects
+				can_take = room_objects
+				for obj in room_objects:
+						if type(eval(obj)) == type(eval('chest')) \
+										and len(eval(obj).contains) > 0 \
+										and eval(obj).open_state == True:
+								can_take = can_take + eval(obj).contains
+				
+				if self.name in can_take and self.takeable:
 						if len(hand) == 0:
 								hand.append(self.name)
 								eval(room).room_objects.remove(self.name)
@@ -242,10 +266,10 @@ class Door(ViewOnly):
 								print("Openned.")
 								if hasattr(self, 'contains'):
 										print("The " + self.name + " contains: " + ', '.join(self.contains))
-										room = stateful_dict['room']
-										room_objects = eval(room).room_objects
-										room_objects = room_objects + self.contains
-										eval(room).room_objects = room_objects
+#										room = stateful_dict['room']
+#										room_objects = eval(room).room_objects
+#										room_objects = room_objects + self.contains
+#										eval(room).room_objects = room_objects
 						else:
 								print("The " + self.name + " is locked.")
 				else:
@@ -278,7 +302,7 @@ class Door(ViewOnly):
 						else:
 								print("You aren't holding the key.")
 				else:
-						print("You can't lock an open door.")
+						print("You can't lock something that's open.")
 
 class Container(Door):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key, takeable, contains):
