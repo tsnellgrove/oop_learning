@@ -72,7 +72,7 @@
 #		dynamically add contents of open containers to takeable scope? [YES!!]
 # IDEA: Next, when I take the item from the container,
 #		I need to remove it from <container>.contains
-# TBD: I think this in turn means 
+# DONE: I think this in turn means 
 #		that the *item* needs to know what container it's in (like writing)?...
 #		No... let's keep items 'dumb'... 
 #		it's the room's job to know what's in the room 
@@ -85,6 +85,15 @@
 #		so I could safely dump the contents of any container 
 #		into room_obj the moment the container was openned. 
 #		Now that containers can be closed I need to actually solve this problem.
+# NOTE2: Should writing work this same way?
+#		No - I think it makes sense for writing to know what it's on..
+#		Because the two are entwined... 
+#		the writing on one object can never move to another
+# DONE: Add 'the container is empty' description for empty containers
+# TBD: Can't examine items in open containers... 
+#		need to add open container contents to examine_lst
+# TBD: I use the 'look through open containers' code a lot => functionalize?
+
 # TBD: Redirect prints to buffer
 
 # Some Day Maybe
@@ -213,8 +222,18 @@ class Item(ViewOnly):
 				if self.name in can_take and self.takeable:
 						if len(hand) == 0:
 								hand.append(self.name)
-								eval(room).room_objects.remove(self.name)
-								print('taken')
+
+								taken_from_container = False
+								for obj in room_objects:
+										if type(eval(obj)) == type(eval('chest')) \
+														and len(eval(obj).contains) > 0 \
+														and eval(obj).open_state == True:
+												eval(obj).contains.remove(self.name)
+												taken_from_container = True
+
+								if taken_from_container == False:
+										eval(room).room_objects.remove(self.name)
+								print('Taken')
 						else:
 								print('Your hand is full.')
 				else:
@@ -244,6 +263,9 @@ class Door(ViewOnly):
 				if self.name in room_objects:
 						if self.open_state:
 								print("The " + self.name + " is open.")
+								if hasattr(self, 'contains'):
+										if len(self.contains) == 0:
+												print("The " + self.name + " is empty.")
 						else:
 								print("The " + self.name + " is closed.")
 								print()
@@ -265,7 +287,10 @@ class Door(ViewOnly):
 								self.open_state = True
 								print("Openned.")
 								if hasattr(self, 'contains'):
-										print("The " + self.name + " contains: " + ', '.join(self.contains))
+										if len(self.contains) == 0:
+												print("The " + self.name + " is empty.")
+										else:
+												print("The " + self.name + " contains: " + ', '.join(self.contains))
 #										room = stateful_dict['room']
 #										room_objects = eval(room).room_objects
 #										room_objects = room_objects + self.contains
