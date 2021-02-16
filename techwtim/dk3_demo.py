@@ -12,10 +12,12 @@
 	# DONE: Test implementation
 	#DONE: add takability to the 'take item' method
 # DONE: More tutorials before this gets out of hand!
-# Note: I think I'm doing something wrong... inventory management with objects is not as elegant as I was expecting
+# Note: I think I'm doing something wrong... 
+#		inventory management with objects is not as elegant as I was expecting
 
 # DONE: Too many calsses already... think about consolidation
-# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, and multi inheritance from inherited classes... is just right out!
+# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, 
+#		and multi inheritance from inherited classes... is just right out!
 # DONE: So => make 'takable' a local attribute of container
 
 # Idea: Rooms are really just conneectd containers...
@@ -33,8 +35,10 @@
 # DONE: Pass room variable to class methods (state_dict)
 #	DONE: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
 
-# DONE: Think through writing attribute for ViewOnly (i.e. should be read dwarven_runes instead of read sword)
-# IDEA: Maybe what I want to do is create a method that can put one item *on* another... so that I can put the writing *on* the item?
+# DONE: Think through writing attribute for ViewOnly 
+#		(i.e. should be read dwarven_runes instead of read sword)
+# IDEA: Maybe what I want to do is create a method that can put one item *on* another... 
+#		so that I can put the writing *on* the item?
 # IDEA: Similar problem to a container... need a list of things that can be *on* the item - 
 # IDEA: should be at the ViewOnly level since many objects can have writing on them...
 # IDEA: nead a name... maybe 'features'
@@ -51,7 +55,8 @@
 # DONE: Extend examine method for classes Room and Door (vs. replace)
 # DONE: Test read for Door class
 # DONE: Move 'features' to Room class (since we only examine room features)
-# DONE: Re-add 'features' to ViewOnly class - because otherwise there is no way to include it in examine_lst
+# DONE: Re-add 'features' to ViewOnly class - 
+#		because otherwise there is no way to include it in examine_lst
 # DONE: Add presence checking for examine on Door and Room classes
 
 # DONE: Implement containers
@@ -90,13 +95,13 @@
 #		Because the two are entwined... 
 #		the writing on one object can never move to another
 # DONE: Add 'the container is empty' description for empty containers
-# TBD: Can't examine items in open containers... 
+# DONE: Can't examine items in open containers... 
 #		need to add open container contents to examine_lst
-# TBD: I use the 'look through open containers' code a lot => functionalize?
 
 # TBD: Redirect prints to buffer
 
 # Some Day Maybe
+# TBD: I use the 'look through open containers' code a lot => functionalize?
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
@@ -135,13 +140,25 @@ class ViewOnly(object):
 		def examine(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-				examine_lst = eval(room).room_objects
-				examine_lst = examine_lst + hand
+				room_objects = eval(room).room_objects
+#				examine_lst = eval(room).room_objects
+#				examine_lst = examine_lst + hand
+				examine_lst = room_objects + hand
 				examine_lst.append(room)
 				if hasattr(eval(room), 'features'):
 						features = eval(room).features
 						examine_lst = examine_lst + features
 #				print(examine_lst) # used for troubleshooting
+
+				for obj in room_objects:
+						if type(eval(obj)) == type(eval('chest')) \
+										and len(eval(obj).contains) > 0 \
+										and eval(obj).open_state == True:
+								container_obj = eval(obj).contains
+								examine_lst = examine_lst + container_obj
+#								eval(obj).contains.remove(self.name)
+#								taken_from_container = True
+
 				if str(self.name) in examine_lst:
 						print(self.desc)
 						if self.writing != 'null':
@@ -266,6 +283,8 @@ class Door(ViewOnly):
 								if hasattr(self, 'contains'):
 										if len(self.contains) == 0:
 												print("The " + self.name + " is empty.")
+										else:
+												print("The " + self.name + "contains: "  + ', '.join(self.contains))
 						else:
 								print("The " + self.name + " is closed.")
 								print()
