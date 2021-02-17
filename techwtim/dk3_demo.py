@@ -99,6 +99,8 @@
 #		need to add open container contents to examine_lst
 
 # TBD: Redirect prints to buffer
+# DONE: Create stateful_dict['output_buffer']
+#	TBD: Convert print statements to buffer adds
 
 # Some Day Maybe
 # TBD: I use the 'look through open containers' code a lot => functionalize?
@@ -124,7 +126,8 @@
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
-		'room' : 'entrance'
+		'room' : 'entrance',
+		'output_buffer' : ""
 		}
 
 def set_difference(a,b):
@@ -417,6 +420,7 @@ while True:
             print()
             try:
                 getattr(word2_obj, word1)(stateful_dict)
+                print(stateful_dict['output_buffer'])
                 print()
             except:
                 print("You can't " + word1 + " with the " + word2 + ".")
