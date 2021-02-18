@@ -98,12 +98,16 @@
 # DONE: Can't examine items in open containers... 
 #		need to add open container contents to examine_lst
 
-# TBD: Redirect prints to buffer
-# DONE: Create stateful_dict['output_buffer']
-#	TBD: Convert print statements to buffer adds
+# IN-PROC: Redirect prints to buffer
+# DONE: Create stateful_dict['out_buff']
+# DONE: Create buffer() helper function
+#	DONE: "Bufferize" classes ViewOnly and Writing
+# TBD: "Bufferize" remaining classes 
+
+# TBD: Does read need open containers added to examine scope? 
+#		Really need to functionalize!!
 
 # Some Day Maybe
-# TBD: I use the 'look through open containers' code a lot => functionalize?
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
@@ -111,6 +115,7 @@
 
 # ****** Interpreter Thoughts #
 
+# 0) Functionalize Interpreter and use out_buff
 # 1) Every noun as an obj_name, full_name, root_name
 # 2) All one_word commands => 1_word function
 # 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
@@ -123,16 +128,27 @@
 
 
 
+# stateful dictionary of persistent values
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
 		'room' : 'entrance',
-		'output_buffer' : ""
+		'out_buff' : ""
 		}
 
+
+# helper functions
 def set_difference(a,b):
     return list(set(a)-set(b))
 
+
+def buffer(stateful_dict, output):
+		out_buff = stateful_dict['out_buff']
+		out_buff = out_buff + output + "\n"
+		stateful_dict['out_buff'] = out_buff
+
+
+# classes
 class ViewOnly(object):
 		def __init__(self, name, desc, writing):
 				self.name = name
@@ -144,6 +160,7 @@ class ViewOnly(object):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
 				room_objects = eval(room).room_objects
+				out_buff = stateful_dict['out_buff']
 #				examine_lst = eval(room).room_objects
 #				examine_lst = examine_lst + hand
 				examine_lst = room_objects + hand
@@ -163,11 +180,14 @@ class ViewOnly(object):
 #								taken_from_container = True
 
 				if str(self.name) in examine_lst:
-						print(self.desc)
+						output = self.desc
+						buffer(stateful_dict, output)
 						if self.writing != 'null':
-								print("On the " + self.name + " you see: " + self.writing)
+								output = "On the " + self.name + " you see: " + self.writing
+								buffer(stateful_dict, output)
 				else:
-						print("You can't see a " + self.name + " here.")
+						output = "You can't see a " + self.name + " here."
+						buffer(stateful_dict, output)
 		
 		def change_desc(self, new_desc):
 				self.desc = new_desc
@@ -180,12 +200,13 @@ class Writing(ViewOnly):
 		def read(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
+				out_buff = stateful_dict['out_buff']
 				examine_lst = eval(room).room_objects
 				features = eval(room).features
 				examine_lst = examine_lst + hand + features
 				if self.written_on in examine_lst:
-						print(self.desc)
-						print()
+						output = self.desc
+						buffer(stateful_dict, output)
 
 class Room(ViewOnly):
 		def __init__(self, name, desc, writing, features, room_objects, valid_paths, door_paths):
@@ -358,6 +379,7 @@ class Container(Door):
 				self.contains = contains # list of items in the container
 
 
+# object instantiation
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', 'null')
 
 entrance = Room('entrance',
@@ -386,15 +408,18 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 		False, True, 'none', True, ['necklace'])
 
 
+# start text
 entrance.examine(stateful_dict)
+print("B: " + stateful_dict['out_buff'])
 
 # gate.examine(stateful_dict) # troubleshooting text
 
-print()
 
+# main loop
 while True:
     room = stateful_dict['room']
 #    print(stateful_dict) # troubleshooting text
+    stateful_dict['out_buff'] = ""
     user_input = input('Type your command: ')
     lst = []
     lst.append(user_input)
@@ -410,17 +435,19 @@ while True:
         room_obj = eval(room)
         getattr(room_obj, word1)(word2, stateful_dict)
         print()
+        print("B: " + stateful_dict['out_buff'])
     elif word1 == 'look':
         room_obj = eval(room)
         room_obj.examine(stateful_dict)
         print()
+        print("B: " + stateful_dict['out_buff'])
     else:
         try:
             word2_obj = eval(word2)
             print()
             try:
                 getattr(word2_obj, word1)(stateful_dict)
-                print(stateful_dict['output_buffer'])
+                print("B: " + stateful_dict['out_buff'])
                 print()
             except:
                 print("You can't " + word1 + " with the " + word2 + ".")
