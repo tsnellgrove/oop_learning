@@ -102,7 +102,8 @@
 # DONE: Create stateful_dict['out_buff']
 # DONE: Create buffer() helper function
 #	DONE: "Bufferize" classes ViewOnly and Writing
-# TBD: "Bufferize" remaining classes 
+# DONE: "Bufferize" classes Room and Item
+# TBD: "Bufferize" class Door and main
 
 # TBD: Does read need open containers added to examine scope? 
 #		Really need to functionalize!!
@@ -153,7 +154,6 @@ class ViewOnly(object):
 		def __init__(self, name, desc, writing):
 				self.name = name
 				self.desc = desc
-#				self.features = features
 				self.writing = writing
 
 		def examine(self, stateful_dict):
@@ -161,8 +161,6 @@ class ViewOnly(object):
 				hand = stateful_dict['hand']
 				room_objects = eval(room).room_objects
 				out_buff = stateful_dict['out_buff']
-#				examine_lst = eval(room).room_objects
-#				examine_lst = examine_lst + hand
 				examine_lst = room_objects + hand
 				examine_lst.append(room)
 				if hasattr(eval(room), 'features'):
@@ -176,8 +174,6 @@ class ViewOnly(object):
 										and eval(obj).open_state == True:
 								container_obj = eval(obj).contains
 								examine_lst = examine_lst + container_obj
-#								eval(obj).contains.remove(self.name)
-#								taken_from_container = True
 
 				if str(self.name) in examine_lst:
 						output = self.desc
@@ -219,25 +215,26 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self.name:
-						print()
-						print("The room contains: " + ', '.join(self.room_objects))
-						print()
+						output = "The room contains: " + ', '.join(self.room_objects)
+						buffer(stateful_dict, output)
+						
 				for obj in self.room_objects:
-#						print(type(eval(obj)))
-#						if type(eval(obj)) == "<class '__main__.Container'>" \
 						if type(eval(obj)) == type(eval('chest')) \
 										and len(eval(obj).contains) > 0 \
 										and eval(obj).open_state == True:
-								print("The " + obj + " contains: " + ', '.join(eval(obj).contains))
+								output = "The " + obj + " contains: " + ', '.join(eval(obj).contains)
+								buffer(stateful_dict, output)
 				
 		def go(self, direction, stateful_dict):
 				room = stateful_dict['room']
 				if direction not in self.valid_paths:
-						print("You can't go that way.")
+						output = "You can't go that way."
+						buffer(stateful_dict, output)
 				elif direction in self.door_paths:
 						door_open = eval(self.door_paths[direction]).open_state
 						if not door_open:
-								print("The " +  self.door_paths[direction] + " is closed.")
+								output = "The " +  self.door_paths[direction] + " is closed."
+								buffer(stateful_dict, output)
 						else:
 								next_room = self.valid_paths[direction]
 								stateful_dict['room'] = next_room
@@ -274,11 +271,14 @@ class Item(ViewOnly):
 
 								if taken_from_container == False:
 										eval(room).room_objects.remove(self.name)
-								print('Taken')
+								output = "Taken"
+								buffer(stateful_dict, output)
 						else:
-								print('Your hand is full.')
+								output = "Your hand is full."
+								buffer(stateful_dict, output)
 				else:
-						print("There's no " + self.name + " to take here!")
+						output = "There's no " + self.name + " to take here!"
+						buffer(stateful_dict, output)
 
 		def drop(self, stateful_dict):
 				room = stateful_dict['room']
@@ -286,9 +286,11 @@ class Item(ViewOnly):
 				if self.name in hand:
 						hand.remove(self.name)
 						eval(room).room_objects.append(self.name)
-						print("Dropped")
+						output = "Dropped"
+						buffer(stateful_dict, output)
 				else:
-						print("You're not holding the " + self.name + " in your hand.")	
+						output = "You're not holding the " + self.name + " in your hand."
+						buffer(stateful_dict, output)
 
 class Door(ViewOnly):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key):
