@@ -103,8 +103,11 @@
 # DONE: Create buffer() helper function
 #	DONE: "Bufferize" classes ViewOnly and Writing
 # DONE: "Bufferize" classes Room and Item
-# TBD: "Bufferize" class Door and main
+# DONE: "Bufferize" class Door method examine
+# TBD: "Bufferize" class Door remaining methods
+# TBD: "Bufferize" main
 
+# TBD: functionalize main
 # TBD: Does read need open containers added to examine scope? 
 #		Really need to functionalize!!
 
@@ -305,15 +308,18 @@ class Door(ViewOnly):
 				room_objects = eval(room).room_objects
 				if self.name in room_objects:
 						if self.open_state:
-								print("The " + self.name + " is open.")
+								output = "The " + self.name + " is open."
+								buffer(stateful_dict, output)
 								if hasattr(self, 'contains'):
 										if len(self.contains) == 0:
-												print("The " + self.name + " is empty.")
+												output = "The " + self.name + " is empty."
+												buffer(stateful_dict, output)
 										else:
-												print("The " + self.name + "contains: "  + ', '.join(self.contains))
+												output = "The " + self.name + "contains: "  + ', '.join(self.contains)
+												buffer(stateful_dict, output)
 						else:
-								print("The " + self.name + " is closed.")
-								print()
+								output = "The " + self.name + " is closed."
+								buffer(stateful_dict, output)
 
 		def unlock(self, stateful_dict):
 				hand = stateful_dict['hand']
