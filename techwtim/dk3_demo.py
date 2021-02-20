@@ -98,16 +98,17 @@
 # DONE: Can't examine items in open containers... 
 #		need to add open container contents to examine_lst
 
-# IN-PROC: Redirect prints to buffer
+# DONE: Redirect prints to buffer
 # DONE: Create stateful_dict['out_buff']
 # DONE: Create buffer() helper function
 #	DONE: "Bufferize" classes ViewOnly and Writing
 # DONE: "Bufferize" classes Room and Item
 # DONE: "Bufferize" class Door method examine
-# TBD: "Bufferize" class Door remaining methods
-# TBD: "Bufferize" main
+# DONE: "Bufferize" class Door remaining methods
 
 # TBD: functionalize main
+# TBD: "Bufferize" main
+
 # TBD: Does read need open containers added to examine scope? 
 #		Really need to functionalize!!
 
@@ -325,36 +326,41 @@ class Door(ViewOnly):
 				hand = stateful_dict['hand']
 				if self.unlock_state == False:
 						if self.key in hand:
-								print("Unlocked")
+								output = "Unlocked"
+								buffer(stateful_dict, output)
 								self.unlock_state = True
 						else:
-								print("You aren't holding the key.")
+								output = "You aren't holding the key."
+								buffer(stateful_dict, output)
 				else:
-						print("The " + self.name + " is already unlocked.")
+						output = "The " + self.name + " is already unlocked."
+						buffer(stateful_dict, output)
 
 		def open(self, stateful_dict):
 				if self.open_state == False:
 						if self.unlock_state == True:
 								self.open_state = True
-								print("Openned.")
+								output = "Openned"
+								buffer(stateful_dict, output)
 								if hasattr(self, 'contains'):
 										if len(self.contains) == 0:
-												print("The " + self.name + " is empty.")
+												output = "The " + self.name + " is empty."
+												buffer(stateful_dict, output)
 										else:
-												print("The " + self.name + " contains: " + ', '.join(self.contains))
-#										room = stateful_dict['room']
-#										room_objects = eval(room).room_objects
-#										room_objects = room_objects + self.contains
-#										eval(room).room_objects = room_objects
+												output = "The " + self.name + " contains: " + ', '.join(self.contains)
+												buffer(stateful_dict, output)
 						else:
-								print("The " + self.name + " is locked.")
+								output = "The " + self.name + " is locked."
+								buffer(stateful_dict, output)
 				else:
-						print("The " + self.name + " is already open.")			
+						output = "The " + self.name + " is already open."
+						buffer(stateful_dict, output)
 
 		def close(self, stateful_dict):
 				if self.open_state:
 						self.open_state = False
-						print("Closed.")
+						output = "Closed"
+						buffer(stateful_dict, output)
 						if hasattr(self, 'contains'):
 								if len(self.contains) > 0:
 										room = stateful_dict['room']
@@ -363,22 +369,26 @@ class Door(ViewOnly):
 										container_closed = set_difference(room_objects, container_contents)
 										eval(room).room_objects = container_closed
 				else:
-						print("The " + self.name + " is already closed.")			
+						output = "The " + self.name + " is already closed."
+						buffer(stateful_dict, output)
 
 		def lock(self, stateful_dict):
-#				print(self.open_state)
 				if self.open_state == False:
 						hand = stateful_dict['hand']
 						if self.key in hand:
 								if self.unlock_state:
-										print("Locked")
+										output = "Locked"
+										buffer(stateful_dict, output)
 										self.unlock_state = False
 								else:
-										print("The " + self.name + " is already locked.")
+										output = "The " + self.name + " is already locked."
+										buffer(stateful_dict, output)
 						else:
-								print("You aren't holding the key.")
+								output = "You aren't holding the key."
+								buffer(stateful_dict, output)
 				else:
-						print("You can't lock something that's open.")
+						output = "You can't lock something that's open."
+						buffer(stateful_dict, output)
 
 class Container(Door):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key, takeable, contains):
@@ -420,7 +430,7 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 entrance.examine(stateful_dict)
 print("B: " + stateful_dict['out_buff'])
 
-# gate.examine(stateful_dict) # troubleshooting text
+# gate.lock(stateful_dict) # troubleshooting text
 
 
 # main loop
