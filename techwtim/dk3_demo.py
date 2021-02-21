@@ -106,8 +106,8 @@
 # DONE: "Bufferize" class Door method examine
 # DONE: "Bufferize" class Door remaining methods
 
-# TBD: functionalize main
-# TBD: "Bufferize" main
+# DONE: functionalize interpreter
+# DONE: "Bufferize" interpreter
 
 # TBD: Does read need open containers added to examine scope? 
 #		Really need to functionalize!!
@@ -120,7 +120,9 @@
 
 # ****** Interpreter Thoughts #
 
-# 0) Functionalize Interpreter and use out_buff
+# 0) DONE: Functionalize Interpreter and use out_buff
+# 0.5) fix 'quit'
+# 0.7 fix 'start'
 # 1) Every noun as an obj_name, full_name, root_name
 # 2) All one_word commands => 1_word function
 # 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
@@ -426,19 +428,8 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 		False, True, 'none', True, ['necklace'])
 
 
-# start text
-entrance.examine(stateful_dict)
-print("B: " + stateful_dict['out_buff'])
-
-# gate.lock(stateful_dict) # troubleshooting text
-
-
-# main loop
-while True:
-    room = stateful_dict['room']
-#    print(stateful_dict) # troubleshooting text
-    stateful_dict['out_buff'] = ""
-    user_input = input('Type your command: ')
+# interpreter function
+def interpreter(stateful_dict, user_input):
     lst = []
     lst.append(user_input)
     user_input_lst = lst[0].split()
@@ -447,33 +438,44 @@ while True:
         word2 = user_input_lst[1].lower()
     else:
         word2 = "blank"
-    if word1 == 'quit':
-        break
-    elif word1 == 'go':
+#    if word1 == 'quit':
+#        break
+    if word1 == 'go':
         room_obj = eval(room)
         getattr(room_obj, word1)(word2, stateful_dict)
-        print()
-        print("B: " + stateful_dict['out_buff'])
     elif word1 == 'look':
         room_obj = eval(room)
         room_obj.examine(stateful_dict)
-        print()
-        print("B: " + stateful_dict['out_buff'])
     else:
         try:
             word2_obj = eval(word2)
-            print()
             try:
                 getattr(word2_obj, word1)(stateful_dict)
-                print("B: " + stateful_dict['out_buff'])
-                print()
             except:
-                print("You can't " + word1 + " with the " + word2 + ".")
-                print()
+                output = "You can't " + word1 + " with the " + word2 + "."
+                buffer(stateful_dict, output)
         except:
-            print("There's no " + word2 + " here.")
-            print()
+            output = "There's no " + word2 + " here."
+            buffer(stateful_dict, output)
 
+
+# start text
+entrance.examine(stateful_dict)
+print("S: " + stateful_dict['out_buff'])
+# gate.lock(stateful_dict) # troubleshooting text
+
+
+# main loop
+while True:
+		room = stateful_dict['room']
+#    print(stateful_dict) # troubleshooting text
+		stateful_dict['out_buff'] = ""
+		user_input = input('Type your command: ')
+		if user_input == "quit":
+				print("Goodbye!")
+				break
+		interpreter(stateful_dict, user_input)
+		print("B: " + stateful_dict['out_buff'])
 
 
 # entrance.examine()
