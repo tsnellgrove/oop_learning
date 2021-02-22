@@ -109,8 +109,8 @@
 # DONE: functionalize interpreter
 # DONE: "Bufferize" interpreter
 
-# TBD: Does read need open containers added to examine scope? 
-#		Really need to functionalize!!
+# DONE: Added open containers to read scope 
+#	TBD: Functionalize container scan, perhaps look in room first
 
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
@@ -202,10 +202,19 @@ class Writing(ViewOnly):
 		def read(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-				out_buff = stateful_dict['out_buff']
-				examine_lst = eval(room).room_objects
+				room_objects = eval(room).room_objects
+#				out_buff = stateful_dict['out_buff']
+#				examine_lst = eval(room).room_objects
 				features = eval(room).features
-				examine_lst = examine_lst + hand + features
+				examine_lst = room_objects + hand + features
+
+				for obj in room_objects:
+						if type(eval(obj)) == type(eval('chest')) \
+										and len(eval(obj).contains) > 0 \
+										and eval(obj).open_state == True:
+								container_obj = eval(obj).contains
+								examine_lst = examine_lst + container_obj
+
 				if self.written_on in examine_lst:
 						output = self.desc
 						buffer(stateful_dict, output)
