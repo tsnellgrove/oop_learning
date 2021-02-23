@@ -110,7 +110,7 @@
 # DONE: "Bufferize" interpreter
 
 # DONE: Added open containers to read scope 
-#	TBD: Functionalize container scan, perhaps look in room first
+#	DONE: Functionalize container scan, perhaps look in room first
 
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
@@ -148,11 +148,19 @@ stateful_dict = {
 def set_difference(a,b):
     return list(set(a)-set(b))
 
-
 def buffer(stateful_dict, output):
 		out_buff = stateful_dict['out_buff']
 		out_buff = out_buff + output + "\n"
 		stateful_dict['out_buff'] = out_buff
+
+def open_cont_scan(stateful_dict, room_objects):
+		container_obj = []
+		for obj in room_objects:
+				if type(eval(obj)) == type(eval('chest')) \
+								and len(eval(obj).contains) > 0 \
+								and eval(obj).open_state == True:
+						container_obj = container_obj + eval(obj).contains
+		return container_obj
 
 
 # classes
@@ -174,12 +182,8 @@ class ViewOnly(object):
 						examine_lst = examine_lst + features
 #				print(examine_lst) # used for troubleshooting
 
-				for obj in room_objects:
-						if type(eval(obj)) == type(eval('chest')) \
-										and len(eval(obj).contains) > 0 \
-										and eval(obj).open_state == True:
-								container_obj = eval(obj).contains
-								examine_lst = examine_lst + container_obj
+				container_obj = open_cont_scan(stateful_dict, room_objects)
+				examine_lst = examine_lst + container_obj
 
 				if str(self.name) in examine_lst:
 						output = self.desc
@@ -206,16 +210,12 @@ class Writing(ViewOnly):
 #				out_buff = stateful_dict['out_buff']
 #				examine_lst = eval(room).room_objects
 				features = eval(room).features
-				examine_lst = room_objects + hand + features
+				read_lst = room_objects + hand + features
 
-				for obj in room_objects:
-						if type(eval(obj)) == type(eval('chest')) \
-										and len(eval(obj).contains) > 0 \
-										and eval(obj).open_state == True:
-								container_obj = eval(obj).contains
-								examine_lst = examine_lst + container_obj
+				container_obj = open_cont_scan(stateful_dict, room_objects)
+				read_lst = read_lst + container_obj
 
-				if self.written_on in examine_lst:
+				if self.written_on in read_lst:
 						output = self.desc
 						buffer(stateful_dict, output)
 
@@ -266,12 +266,10 @@ class Item(ViewOnly):
 				hand = stateful_dict['hand']
 				room_objects = eval(room).room_objects
 				can_take = room_objects
-				for obj in room_objects:
-						if type(eval(obj)) == type(eval('chest')) \
-										and len(eval(obj).contains) > 0 \
-										and eval(obj).open_state == True:
-								can_take = can_take + eval(obj).contains
-				
+
+				container_obj = open_cont_scan(stateful_dict, room_objects)
+				can_take = can_take + container_obj
+
 				if self.name in can_take and self.takeable:
 						if len(hand) == 0:
 								hand.append(self.name)
