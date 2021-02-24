@@ -1,3 +1,10 @@
+# program: dark castle v3
+# name: Tom Snellgrove
+# date: feb 24, 2021
+# description: a zork-like text adventure game written in object-oriented python
+
+# to-dos
+
 # NEXT: Tom Example
 # inheritance
 # Create Door as child of Item [DONE]
@@ -112,11 +119,20 @@
 # DONE: Added open containers to read scope 
 #	DONE: Functionalize container scan, perhaps look in room first
 
+
+# At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
+#	 IN-PROC - 13:45 - Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
+
+
+# new ideas:
+#		use a display_intro function
+
+
+
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
-# At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 
 # ****** Interpreter Thoughts #
 
