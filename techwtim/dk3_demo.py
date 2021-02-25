@@ -121,7 +121,7 @@
 
 
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
-#	 IN-PROC - 13:45 - Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
+#	 IN-PROC - 22:00 - Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
 
 
 # new ideas:
