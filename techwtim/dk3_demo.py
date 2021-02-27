@@ -123,11 +123,14 @@
 # At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 #		DONE: Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
 #			Basic but good start
-#		IN-PROC - 8:00 - OOP text adv tut: https://youtu.be/VxhZZHnig8U
+#		DONE: OOP text adv tut: https://youtu.be/VxhZZHnig8U
+#			I can't stand this instructor's code style - more lessons after this one but can't face them
+#		IN-PROC - 0:00 - advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
 
 
 # new ideas:
 #		use a display_intro function
+# 	import pprtint from pprint | pprint(vars(<object>))
 
 
 
