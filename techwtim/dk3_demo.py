@@ -125,12 +125,14 @@
 #			Basic but good start
 #		DONE: OOP text adv tut: https://youtu.be/VxhZZHnig8U
 #			I can't stand this instructor's code style - more lessons after this one but can't face them
-#		IN-PROC - 0:00 - advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
+#		IN-PROC - 7:40 - advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
 
 
 # new ideas:
 #		use a display_intro function
 # 	import pprtint from pprint | pprint(vars(<object>))
+#		check https://github.com/ArmstrongJ/pyohio2013
+#		get to know cmd module - can cmd be used with flask??
 
 
 
