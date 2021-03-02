@@ -125,7 +125,7 @@
 #			Basic but good start
 #		DONE: OOP text adv tut: https://youtu.be/VxhZZHnig8U
 #			I can't stand this instructor's code style - more lessons after this one but can't face them
-#		IN-PROC - 20:40 - advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
+#		IN-PROC - 34:10 - 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
 
 
 # new ideas:
@@ -135,7 +135,8 @@
 #		get to know cmd module - can cmd be used with flask??
 # 	rooms to have lists of neighbors, objects, characters
 #		store rooms in json using json module? (import json) [see adv OOP at 15:30]
-
+#		room descriptions in json but then json-based rooms in sql DB??
+#		read through 2013 code in detail!!!
 
 
 # Some Day Maybe
