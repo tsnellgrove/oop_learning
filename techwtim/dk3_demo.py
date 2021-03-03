@@ -125,7 +125,8 @@
 #			Basic but good start
 #		DONE: OOP text adv tut: https://youtu.be/VxhZZHnig8U
 #			I can't stand this instructor's code style - more lessons after this one but can't face them
-#		IN-PROC - 34:10 - 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
+#		DONE: 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
+#			Great lesson! But all about console so need to pick and choose ideas
 
 
 # new ideas:
@@ -137,6 +138,13 @@
 #		store rooms in json using json module? (import json) [see adv OOP at 15:30]
 #		room descriptions in json but then json-based rooms in sql DB??
 #		read through 2013 code in detail!!!
+#		make a copy of game DB for each player - enables "saved game"... 
+#		but will still need to differentiate static from stateful?
+#		modules for making file copy: tempfile, shutil
+#		curses module for status bar ??
+#		"nltk" (?) for interpreter??
+#		sqlite3 for DB?
+#		check out "robotadventure" from end of 2013 presentation
 
 
 # Some Day Maybe
