@@ -127,7 +127,8 @@
 #			I can't stand this instructor's code style - more lessons after this one but can't face them
 #		DONE: 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
 #			Great lesson! But all about console so need to pick and choose ideas
-
+#		NOTE: Did a bit of research - looks like cmd can be used with Flask; need to learn more about NLTK
+#		NEXT: NLTK vid: https://youtu.be/1taCGR3_jlA
 
 # new ideas:
 #		use a display_intro function
@@ -167,6 +168,10 @@
 # 8) If prep: Identify direct object and => prep_sentence function
 # NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
 
+
+# import statements
+import cmd
+import nltk
 
 
 # stateful dictionary of persistent values
