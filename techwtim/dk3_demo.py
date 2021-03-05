@@ -128,7 +128,7 @@
 #		DONE: 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
 #			Great lesson! But all about console so need to pick and choose ideas
 #		NOTE: Did a bit of research - looks like cmd can be used with Flask; need to learn more about NLTK
-#		NEXT: NLTK vid: https://youtu.be/1taCGR3_jlA
+#		DONE: NLTK vid: https://youtu.be/1taCGR3_jlA
 
 # new ideas:
 #		use a display_intro function
@@ -146,6 +146,17 @@
 #		"nltk" (?) for interpreter??
 #		sqlite3 for DB?
 #		check out "robotadventure" from end of 2013 presentation
+#		how to eliminate eval()
+
+# Decisions:
+#		No need for curses in a flask app
+#		Don't use nltk - is overkill (and besides, I want to write me own interpreter)
+#		For now, don't use cmd - want more practice with classes
+#		Do figure out how to avoid using eval()
+
+# To Decide:
+#		Rooms in JSON?
+#		How to use DB??
 
 
 # Some Day Maybe
