@@ -129,6 +129,8 @@
 #			Great lesson! But all about console so need to pick and choose ideas
 #		NOTE: Did a bit of research - looks like cmd can be used with Flask; need to learn more about NLTK
 #		DONE: NLTK vid: https://youtu.be/1taCGR3_jlA
+#		DONE: Found Jeffery Armstrong from 2013 PyOhio Text Adv: https://github.com/ArmstrongJ?tab=overview&from=2021-03-01&to=2021-03-06
+#		NEXT: Understand robotadventure code better... learn about interpreter, DB, and JSON descriptions
 
 # new ideas:
 #		use a display_intro function
