@@ -159,7 +159,7 @@
 # To Decide:
 #		Rooms in JSON?
 #		How to use DB??
-
+#			- Since I'm designing a web game, I need to separate stateful and static
 
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
