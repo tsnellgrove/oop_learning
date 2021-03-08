@@ -161,6 +161,10 @@
 #		How to use DB??
 #			- Since I'm designing a web game, I need to separate stateful and static
 
+# Next to dos
+# DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
+# NEXT: Replace eval() usage w/ Str_to_class()
+
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
@@ -184,7 +188,7 @@
 
 # import statements
 import cmd
-import nltk
+import sys
 
 
 # stateful dictionary of persistent values
@@ -213,6 +217,9 @@ def open_cont_scan(stateful_dict, room_objects):
 								and eval(obj).open_state == True:
 						container_obj = container_obj + eval(obj).contains
 		return container_obj
+
+def str_to_class(str):
+    return getattr(sys.modules[__name__], str)
 
 
 # classes
@@ -489,33 +496,36 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
-    lst = []
-    lst.append(user_input)
-    user_input_lst = lst[0].split()
-    word1 = user_input_lst[0].lower()
-    if len(user_input_lst) > 1:
-        word2 = user_input_lst[1].lower()
-    else:
-        word2 = "blank"
+		room = stateful_dict['room']
+		lst = []
+		lst.append(user_input)
+		user_input_lst = lst[0].split()
+		word1 = user_input_lst[0].lower()
+		if len(user_input_lst) > 1:
+				word2 = user_input_lst[1].lower()
+		else:
+				word2 = "blank"
 #    if word1 == 'quit':
 #        break
-    if word1 == 'go':
-        room_obj = eval(room)
-        getattr(room_obj, word1)(word2, stateful_dict)
-    elif word1 == 'look':
-        room_obj = eval(room)
-        room_obj.examine(stateful_dict)
-    else:
-        try:
-            word2_obj = eval(word2)
-            try:
-                getattr(word2_obj, word1)(stateful_dict)
-            except:
-                output = "You can't " + word1 + " with the " + word2 + "."
-                buffer(stateful_dict, output)
-        except:
-            output = "There's no " + word2 + " here."
-            buffer(stateful_dict, output)
+		if word1 == 'go':
+##				room_obj = eval(room)
+##				room_obj = getattr(room, name)
+				room_obj = str_to_class(room)
+				getattr(room_obj, word1)(word2, stateful_dict)
+		elif word1 == 'look':
+				room_obj = eval(room)
+				room_obj.examine(stateful_dict)
+		else:
+				try:
+						word2_obj = eval(word2)
+						try:
+								getattr(word2_obj, word1)(stateful_dict)
+						except:
+								output = "You can't " + word1 + " with the " + word2 + "."
+								buffer(stateful_dict, output)
+				except:
+						output = "There's no " + word2 + " here."
+						buffer(stateful_dict, output)
 
 
 # start text
@@ -526,7 +536,6 @@ print("S: " + stateful_dict['out_buff'])
 
 # main loop
 while True:
-		room = stateful_dict['room']
 #    print(stateful_dict) # troubleshooting text
 		stateful_dict['out_buff'] = ""
 		user_input = input('Type your command: ')
