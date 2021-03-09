@@ -163,9 +163,11 @@
 
 # Next to dos
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
-# NEXT: Replace eval() usage w/ Str_to_class()
+# IN-PROC: Replace eval() usage w/ str_to_class()
 
 # Some Day Maybe
+# TBD: new naming convention to clarify between room_obj and room_objects ??
+# TBD: Sort out whole naming convention of name_type vs. name_objects (containter too)
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
@@ -322,8 +324,9 @@ class Item(ViewOnly):
 				
 		def take(self, stateful_dict):
 				room = stateful_dict['room']
+				room_obj = str_to_class(room)
 				hand = stateful_dict['hand']
-				room_objects = eval(room).room_objects
+				room_objects = room_obj.room_objects
 				can_take = room_objects
 
 				container_obj = open_cont_scan(stateful_dict, room_objects)
@@ -342,7 +345,7 @@ class Item(ViewOnly):
 												taken_from_container = True
 
 								if taken_from_container == False:
-										eval(room).room_objects.remove(self.name)
+										room_obj.room_objects.remove(self.name)
 								output = "Taken"
 								buffer(stateful_dict, output)
 						else:
@@ -505,19 +508,15 @@ def interpreter(stateful_dict, user_input):
 				word2 = user_input_lst[1].lower()
 		else:
 				word2 = "blank"
-#    if word1 == 'quit':
-#        break
 		if word1 == 'go':
-##				room_obj = eval(room)
-##				room_obj = getattr(room, name)
 				room_obj = str_to_class(room)
 				getattr(room_obj, word1)(word2, stateful_dict)
 		elif word1 == 'look':
-				room_obj = eval(room)
+				room_obj = str_to_class(room)
 				room_obj.examine(stateful_dict)
 		else:
 				try:
-						word2_obj = eval(word2)
+						word2_obj = str_to_class(word2)
 						try:
 								getattr(word2_obj, word1)(stateful_dict)
 						except:
