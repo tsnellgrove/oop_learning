@@ -164,10 +164,11 @@
 # Next to dos
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
 # IN-PROC: Replace eval() usage w/ str_to_class()
-
-# Some Day Maybe
+# TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ??
 # TBD: Sort out whole naming convention of name_type vs. name_objects (containter too)
+
+# Some Day Maybe
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
 
@@ -234,12 +235,12 @@ class ViewOnly(object):
 		def examine(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-				room_objects = eval(room).room_objects
-				out_buff = stateful_dict['out_buff']
+				room_obj = str_to_class(room)
+				room_objects = room_obj.room_objects
 				examine_lst = room_objects + hand
 				examine_lst.append(room)
-				if hasattr(eval(room), 'features'):
-						features = eval(room).features
+				if hasattr(room_obj, 'features'):
+						features = room_obj.features
 						examine_lst = examine_lst + features
 #				print(examine_lst) # used for troubleshooting
 
@@ -267,10 +268,9 @@ class Writing(ViewOnly):
 		def read(self, stateful_dict):
 				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-				room_objects = eval(room).room_objects
-#				out_buff = stateful_dict['out_buff']
-#				examine_lst = eval(room).room_objects
-				features = eval(room).features
+				room_obj = str_to_class(room)
+				room_objects = room_obj.room_objects
+				features = room_obj.features
 				read_lst = room_objects + hand + features
 
 				container_obj = open_cont_scan(stateful_dict, room_objects)
@@ -357,10 +357,11 @@ class Item(ViewOnly):
 
 		def drop(self, stateful_dict):
 				room = stateful_dict['room']
+				room_obj = str_to_class(room)
 				hand = stateful_dict['hand']
 				if self.name in hand:
 						hand.remove(self.name)
-						eval(room).room_objects.append(self.name)
+						room_obj.room_objects.append(self.name)
 						output = "Dropped"
 						buffer(stateful_dict, output)
 				else:
