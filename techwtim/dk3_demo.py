@@ -165,7 +165,7 @@
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
 # IN-PROC: Replace eval() usage w/ str_to_class()
 # TBD: Make examine scope check a function
-# TBD: new naming convention to clarify between room_obj and room_objects ??
+# TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # TBD: Sort out whole naming convention of name_type vs. name_objects (containter too)
 
 # Some Day Maybe
@@ -213,13 +213,15 @@ def buffer(stateful_dict, output):
 		stateful_dict['out_buff'] = out_buff
 
 def open_cont_scan(stateful_dict, room_objects):
-		container_obj = []
-		for obj in room_objects:
-				if type(eval(obj)) == type(eval('chest')) \
-								and len(eval(obj).contains) > 0 \
-								and eval(obj).open_state == True:
-						container_obj = container_obj + eval(obj).contains
-		return container_obj
+		container_lst = []
+		for item in room_objects:
+				container_obj = str_to_class('chest')
+				item_obj = str_to_class(item)
+				if type(item_obj) == type(container_obj) \
+								and len(item_obj.contains) > 0 \
+								and item_obj.open_state == True:
+						container_lst = container_lst + item_obj.contains
+		return container_lst
 
 def str_to_class(str):
     return getattr(sys.modules[__name__], str)
