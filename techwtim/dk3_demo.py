@@ -164,6 +164,7 @@
 # Next to dos
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
 # IN-PROC: Replace eval() usage w/ str_to_class()
+# TBD: Why does close need to remove container items from room_obj?
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # TBD: Sort out whole naming convention of name_type vs. name_objects (containter too)
@@ -380,7 +381,8 @@ class Door(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
 				room = stateful_dict['room']
-				room_objects = eval(room).room_objects
+				room_obj = str_to_class(room)
+				room_objects = room_obj.room_objects
 				if self.name in room_objects:
 						if self.open_state:
 								output = "The " + self.name + " is open."
@@ -438,10 +440,11 @@ class Door(ViewOnly):
 						if hasattr(self, 'contains'):
 								if len(self.contains) > 0:
 										room = stateful_dict['room']
-										room_objects = eval(room).room_objects
+										room_obj = str_to_class(room)
+										room_objects = room_obj.room_objects
 										container_contents = self.contains
 										container_closed = set_difference(room_objects, container_contents)
-										eval(room).room_objects = container_closed
+										room_obj.room_objects = container_closed
 				else:
 						output = "The " + self.name + " is already closed."
 						buffer(stateful_dict, output)
