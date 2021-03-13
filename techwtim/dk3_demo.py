@@ -310,14 +310,16 @@ class Room(ViewOnly):
 						output = "You can't go that way."
 						buffer(stateful_dict, output)
 				elif direction in self.door_paths:
-						door_open = eval(self.door_paths[direction]).open_state
+						door_obj = str_to_class(self.door_paths[direction])
+						door_open = door_obj.open_state
 						if not door_open:
 								output = "The " +  self.door_paths[direction] + " is closed."
 								buffer(stateful_dict, output)
 						else:
 								next_room = self.valid_paths[direction]
 								stateful_dict['room'] = next_room
-								eval(next_room).examine(stateful_dict)
+								next_room_obj = str_to_class(next_room)
+								next_room_obj.examine(stateful_dict)
 
 
 class Item(ViewOnly):
