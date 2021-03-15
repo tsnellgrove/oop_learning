@@ -167,7 +167,8 @@
 # TBD: Why does close need to remove container items from room_obj?
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
-# TBD: Sort out whole naming convention of name_type vs. name_objects (containter too)
+# 		Sort out whole naming convention of name_type vs. name_objects (containter too)
+# 		Maybe only for lst, dict, and obj?
 
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
@@ -296,14 +297,16 @@ class Room(ViewOnly):
 				if stateful_dict['room'] == self.name:
 						output = "The room contains: " + ', '.join(self.room_objects)
 						buffer(stateful_dict, output)
-						
-				for obj in self.room_objects:
-						if type(eval(obj)) == type(eval('chest')) \
-										and len(eval(obj).contains) > 0 \
-										and eval(obj).open_state == True:
-								output = "The " + obj + " contains: " + ', '.join(eval(obj).contains)
+
+				for item in self.room_objects:
+						container_obj = str_to_class('chest')
+						item_obj = str_to_class(item)
+						if type(item_obj) == type(container_obj) \
+										and len(item_obj.contains) > 0 \
+										and item_obj.open_state == True:
+								output = "The " + item + " contains: " + ', '.join(item_obj.contains)
 								buffer(stateful_dict, output)
-				
+
 		def go(self, direction, stateful_dict):
 				room = stateful_dict['room']
 				if direction not in self.valid_paths:
