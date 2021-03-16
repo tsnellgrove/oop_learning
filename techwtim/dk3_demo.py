@@ -163,7 +163,9 @@
 
 # Next to dos
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
-# IN-PROC: Replace eval() usage w/ str_to_class()
+# DONE: Replace eval() usage w/ str_to_class()
+# FIX: 'take' is broken post eval() remove - and ensure that removal logic really works
+# Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
 # TBD: Why does close need to remove container items from room_obj?
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
@@ -194,15 +196,6 @@
 # import statements
 import cmd
 import sys
-
-
-# stateful dictionary of persistent values
-stateful_dict = {
-		'hand' : [], 
-		'backpack' : [],
-		'room' : 'entrance',
-		'out_buff' : ""
-		}
 
 
 # helper functions
@@ -238,11 +231,13 @@ class ViewOnly(object):
 
 		def examine(self, stateful_dict):
 				room = stateful_dict['room']
+###				room_obj = stateful_dict['room']
 				hand = stateful_dict['hand']
 				room_obj = str_to_class(room)
 				room_objects = room_obj.room_objects
 				examine_lst = room_objects + hand
 				examine_lst.append(room)
+###				examine_lst.append(room_obj)
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
 						examine_lst = examine_lst + features
@@ -346,10 +341,12 @@ class Item(ViewOnly):
 
 								taken_from_container = False
 								for obj in room_objects:
-										if type(eval(obj)) == type(eval('chest')) \
-														and len(eval(obj).contains) > 0 \
-														and eval(obj).open_state == True:
-												eval(obj).contains.remove(self.name)
+										container_obj = str_to_class('chest')
+										item_obj = str_to_class(item)
+										if type(item_obj) == type(container_obj) \
+														and len(item_obj.contains) > 0 \
+														and item_obj.open_state == True:
+												item_obj.contains.remove(self.name)
 												taken_from_container = True
 
 								if taken_from_container == False:
@@ -508,6 +505,16 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 		False, True, 'none', True, ['necklace'])
 
 
+# stateful dictionary of persistent values
+stateful_dict = {
+		'hand' : [], 
+		'backpack' : [],
+		'room' : 'entrance',
+		'room_obj' : entrance,
+		'out_buff' : ""
+		}
+
+
 # interpreter function
 def interpreter(stateful_dict, user_input):
 		room = stateful_dict['room']
@@ -536,6 +543,10 @@ def interpreter(stateful_dict, user_input):
 				except:
 						output = "There's no " + word2 + " here."
 						buffer(stateful_dict, output)
+
+
+# test
+print("T: " + stateful_dict['room_obj'].desc)
 
 
 # start text
