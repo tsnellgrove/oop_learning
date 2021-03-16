@@ -164,9 +164,10 @@
 # Next to dos
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
 # DONE: Replace eval() usage w/ str_to_class()
-# FIX: 'take' is broken post eval() remove - and ensure that removal logic really works
-# Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
-# TBD: Why does close need to remove container items from room_obj?
+# DONE: 'take' is broken post eval() remove
+# FIX: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
+# TBD: Why does close need to remove container items from room_obj? Old legacy logic
+# TBD: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # 		Sort out whole naming convention of name_type vs. name_objects (containter too)
@@ -340,7 +341,7 @@ class Item(ViewOnly):
 								hand.append(self.name)
 
 								taken_from_container = False
-								for obj in room_objects:
+								for item in room_objects:
 										container_obj = str_to_class('chest')
 										item_obj = str_to_class(item)
 										if type(item_obj) == type(container_obj) \
@@ -546,12 +547,12 @@ def interpreter(stateful_dict, user_input):
 
 
 # test
-print("T: " + stateful_dict['room_obj'].desc)
-
+print("TEST: " + stateful_dict['room_obj'].desc)
+rusty_key.take(stateful_dict)
 
 # start text
 entrance.examine(stateful_dict)
-print("S: " + stateful_dict['out_buff'])
+print("START: " + stateful_dict['out_buff'])
 # gate.lock(stateful_dict) # troubleshooting text
 
 
@@ -564,7 +565,7 @@ while True:
 				print("Goodbye!")
 				break
 		interpreter(stateful_dict, user_input)
-		print("B: " + stateful_dict['out_buff'])
+		print("BUFFER: " + stateful_dict['out_buff'])
 
 
 # entrance.examine()
