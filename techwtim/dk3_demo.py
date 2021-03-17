@@ -165,7 +165,7 @@
 # DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
 # DONE: Replace eval() usage w/ str_to_class()
 # DONE: 'take' is broken post eval() remove
-# FIX: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
+# DONE: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
 # TBD: Why does close need to remove container items from room_obj? Old legacy logic
 # TBD: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
 # TBD: Make examine scope check a function
@@ -347,11 +347,13 @@ class Item(ViewOnly):
 										if type(item_obj) == type(container_obj) \
 														and len(item_obj.contains) > 0 \
 														and item_obj.open_state == True:
-												item_obj.contains.remove(self.name)
-												taken_from_container = True
+												if self.name in item_obj.contains:
+														item_obj.contains.remove(self.name)
+														taken_from_container = True
 
 								if taken_from_container == False:
 										room_obj.room_objects.remove(self.name)
+
 								output = "Taken"
 								buffer(stateful_dict, output)
 						else:
