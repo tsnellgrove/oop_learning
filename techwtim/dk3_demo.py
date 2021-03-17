@@ -166,7 +166,7 @@
 # DONE: Replace eval() usage w/ str_to_class()
 # DONE: 'take' is broken post eval() remove
 # DONE: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
-# TBD: Why does close need to remove container items from room_obj? Old legacy logic
+# DONE: Why does close need to remove container items from room_obj? Old legacy logic
 # TBD: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
@@ -442,14 +442,6 @@ class Door(ViewOnly):
 						self.open_state = False
 						output = "Closed"
 						buffer(stateful_dict, output)
-						if hasattr(self, 'contains'):
-								if len(self.contains) > 0:
-										room = stateful_dict['room']
-										room_obj = str_to_class(room)
-										room_objects = room_obj.room_objects
-										container_contents = self.contains
-										container_closed = set_difference(room_objects, container_contents)
-										room_obj.room_objects = container_closed
 				else:
 						output = "The " + self.name + " is already closed."
 						buffer(stateful_dict, output)
