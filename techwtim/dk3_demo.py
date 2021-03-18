@@ -167,7 +167,8 @@
 # DONE: 'take' is broken post eval() remove
 # DONE: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
 # DONE: Why does close need to remove container items from room_obj? Old legacy logic
-# TBD: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
+# IN-PROC: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
+	# Not sure this will save time
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # 		Sort out whole naming convention of name_type vs. name_objects (containter too)
@@ -231,14 +232,14 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-				room = stateful_dict['room']
-###				room_obj = stateful_dict['room']
+				room = stateful_dict['room'] # keep for examine_lst.append ?
+				room_obj = stateful_dict['room_obj'] # room_obj
 				hand = stateful_dict['hand']
-				room_obj = str_to_class(room)
+##				room_obj = str_to_class(room) # don't need?
 				room_objects = room_obj.room_objects
 				examine_lst = room_objects + hand
 				examine_lst.append(room)
-###				examine_lst.append(room_obj)
+###				examine_lst.append(room_obj) # doesen't work? examine_lst is a list of str elements
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
 						examine_lst = examine_lst + features
@@ -318,6 +319,7 @@ class Room(ViewOnly):
 								next_room = self.valid_paths[direction]
 								stateful_dict['room'] = next_room
 								next_room_obj = str_to_class(next_room)
+								stateful_dict['room_obj'] = next_room_obj # room_obj
 								next_room_obj.examine(stateful_dict)
 
 
@@ -386,7 +388,8 @@ class Door(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
 				room = stateful_dict['room']
-				room_obj = str_to_class(room)
+#				room_obj = str_to_class(room)
+				room_obj = stateful_dict['room_obj'] # room_obj
 				room_objects = room_obj.room_objects
 				if self.name in room_objects:
 						if self.open_state:
@@ -542,7 +545,8 @@ def interpreter(stateful_dict, user_input):
 
 # test
 print("TEST: " + stateful_dict['room_obj'].desc)
-rusty_key.take(stateful_dict)
+# rusty_key.take(stateful_dict)
+
 
 # start text
 entrance.examine(stateful_dict)
