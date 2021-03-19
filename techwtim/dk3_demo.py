@@ -169,6 +169,7 @@
 # DONE: Why does close need to remove container items from room_obj? Old legacy logic
 # IN-PROC: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
 	# Not sure this will save time
+	# Try using .name property of Room instead of tracking room in stateful_dict
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # 		Sort out whole naming convention of name_type vs. name_objects (containter too)
@@ -232,13 +233,13 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-				room = stateful_dict['room'] # keep for examine_lst.append ?
+##				room = stateful_dict['room'] # keep for examine_lst.append ?
 				room_obj = stateful_dict['room_obj'] # room_obj
 				hand = stateful_dict['hand']
 ##				room_obj = str_to_class(room) # don't need?
 				room_objects = room_obj.room_objects
 				examine_lst = room_objects + hand
-				examine_lst.append(room)
+				examine_lst.append(room_obj.name)
 ###				examine_lst.append(room_obj) # doesen't work? examine_lst is a list of str elements
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
