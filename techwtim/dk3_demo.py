@@ -174,7 +174,7 @@
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # 		Sort out whole naming convention of name_type vs. name_objects (containter too)
 # 		Maybe only for lst, dict, and obj?
-
+# TBD: Can I buffer at the end of each method??
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
@@ -268,9 +268,10 @@ class Writing(ViewOnly):
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
-				room = stateful_dict['room']
+##				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-				room_obj = str_to_class(room)
+##				room_obj = str_to_class(room)
+				room_obj = stateful_dict['room_obj']
 				room_objects = room_obj.room_objects
 				features = room_obj.features
 				read_lst = room_objects + hand + features
@@ -292,7 +293,8 @@ class Room(ViewOnly):
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
-				if stateful_dict['room'] == self.name:
+##				if stateful_dict['room'] == self.name:
+				if stateful_dict['room_obj'] == self:
 						output = "The room contains: " + ', '.join(self.room_objects)
 						buffer(stateful_dict, output)
 
@@ -306,7 +308,8 @@ class Room(ViewOnly):
 								buffer(stateful_dict, output)
 
 		def go(self, direction, stateful_dict):
-				room = stateful_dict['room']
+##				room = stateful_dict['room']
+				room_obj = stateful_dict['room_obj']
 				if direction not in self.valid_paths:
 						output = "You can't go that way."
 						buffer(stateful_dict, output)
@@ -318,7 +321,7 @@ class Room(ViewOnly):
 								buffer(stateful_dict, output)
 						else:
 								next_room = self.valid_paths[direction]
-								stateful_dict['room'] = next_room
+								stateful_dict['room'] = next_room # can't get rid of 'room' yet
 								next_room_obj = str_to_class(next_room)
 								stateful_dict['room_obj'] = next_room_obj # room_obj
 								next_room_obj.examine(stateful_dict)
@@ -330,8 +333,9 @@ class Item(ViewOnly):
 				self.takeable = takeable
 				
 		def take(self, stateful_dict):
-				room = stateful_dict['room']
-				room_obj = str_to_class(room)
+##				room = stateful_dict['room']
+##				room_obj = str_to_class(room)
+				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
 				room_objects = room_obj.room_objects
 				can_take = room_objects
@@ -367,8 +371,9 @@ class Item(ViewOnly):
 						buffer(stateful_dict, output)
 
 		def drop(self, stateful_dict):
-				room = stateful_dict['room']
-				room_obj = str_to_class(room)
+##				room = stateful_dict['room']
+##				room_obj = str_to_class(room)
+				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
 				if self.name in hand:
 						hand.remove(self.name)
@@ -388,8 +393,8 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				room = stateful_dict['room']
-#				room_obj = str_to_class(room)
+##				room = stateful_dict['room']
+##				room_obj = str_to_class(room)
 				room_obj = stateful_dict['room_obj'] # room_obj
 				room_objects = room_obj.room_objects
 				if self.name in room_objects:
@@ -516,7 +521,8 @@ stateful_dict = {
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
-		room = stateful_dict['room']
+##		room = stateful_dict['room']
+		room_obj = stateful_dict['room_obj']
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
@@ -526,10 +532,10 @@ def interpreter(stateful_dict, user_input):
 		else:
 				word2 = "blank"
 		if word1 == 'go':
-				room_obj = str_to_class(room)
+##				room_obj = str_to_class(room)
 				getattr(room_obj, word1)(word2, stateful_dict)
 		elif word1 == 'look':
-				room_obj = str_to_class(room)
+##				room_obj = str_to_class(room)
 				room_obj.examine(stateful_dict)
 		else:
 				try:
@@ -545,7 +551,7 @@ def interpreter(stateful_dict, user_input):
 
 
 # test
-print("TEST: " + stateful_dict['room_obj'].desc)
+# print("TEST: " + stateful_dict['room_obj'].desc)
 # rusty_key.take(stateful_dict)
 
 
