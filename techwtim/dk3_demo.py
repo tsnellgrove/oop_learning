@@ -321,7 +321,7 @@ class Room(ViewOnly):
 								buffer(stateful_dict, output)
 						else:
 								next_room = self.valid_paths[direction]
-								stateful_dict['room'] = next_room # can't get rid of 'room' yet
+####								stateful_dict['room'] = next_room # can't get rid of 'room' yet
 								next_room_obj = str_to_class(next_room)
 								stateful_dict['room_obj'] = next_room_obj # room_obj
 								next_room_obj.examine(stateful_dict)
@@ -513,7 +513,7 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
-		'room' : 'entrance',
+##		'room' : 'entrance',
 		'room_obj' : entrance,
 		'out_buff' : ""
 		}
