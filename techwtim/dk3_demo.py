@@ -167,14 +167,19 @@
 # DONE: 'take' is broken post eval() remove
 # DONE: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
 # DONE: Why does close need to remove container items from room_obj? Old legacy logic
-# IN-PROC: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
-	# Not sure this will save time
-	# Try using .name property of Room instead of tracking room in stateful_dict
+# DONE: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
+	# DONE: Try using .name property of Room instead of tracking room in stateful_dict
+# DONE: Simplify open_cont_scan
+
+# TBD: Should hand and room_objects also contain actual objects instead of text? 
 # TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # 		Sort out whole naming convention of name_type vs. name_objects (containter too)
 # 		Maybe only for lst, dict, and obj?
 # TBD: Can I buffer at the end of each method??
+# TBD: Inventory command!!
+# TBD: Put command
+
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
 # TBD: Is the Item class worth having???
@@ -213,9 +218,8 @@ def buffer(stateful_dict, output):
 def open_cont_scan(stateful_dict, room_objects):
 		container_lst = []
 		for item in room_objects:
-				container_obj = str_to_class('chest')
 				item_obj = str_to_class(item)
-				if type(item_obj) == type(container_obj) \
+				if type(item_obj) == type(chest) \
 								and len(item_obj.contains) > 0 \
 								and item_obj.open_state == True:
 						container_lst = container_lst + item_obj.contains
@@ -233,14 +237,11 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-##				room = stateful_dict['room'] # keep for examine_lst.append ?
 				room_obj = stateful_dict['room_obj'] # room_obj
 				hand = stateful_dict['hand']
-##				room_obj = str_to_class(room) # don't need?
 				room_objects = room_obj.room_objects
 				examine_lst = room_objects + hand
 				examine_lst.append(room_obj.name)
-###				examine_lst.append(room_obj) # doesen't work? examine_lst is a list of str elements
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
 						examine_lst = examine_lst + features
@@ -268,9 +269,7 @@ class Writing(ViewOnly):
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
-##				room = stateful_dict['room']
 				hand = stateful_dict['hand']
-##				room_obj = str_to_class(room)
 				room_obj = stateful_dict['room_obj']
 				room_objects = room_obj.room_objects
 				features = room_obj.features
@@ -293,22 +292,19 @@ class Room(ViewOnly):
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
-##				if stateful_dict['room'] == self.name:
 				if stateful_dict['room_obj'] == self:
 						output = "The room contains: " + ', '.join(self.room_objects)
 						buffer(stateful_dict, output)
 
 				for item in self.room_objects:
-						container_obj = str_to_class('chest')
 						item_obj = str_to_class(item)
-						if type(item_obj) == type(container_obj) \
+						if type(item_obj) == type(chest) \
 										and len(item_obj.contains) > 0 \
 										and item_obj.open_state == True:
 								output = "The " + item + " contains: " + ', '.join(item_obj.contains)
 								buffer(stateful_dict, output)
 
 		def go(self, direction, stateful_dict):
-##				room = stateful_dict['room']
 				room_obj = stateful_dict['room_obj']
 				if direction not in self.valid_paths:
 						output = "You can't go that way."
@@ -321,7 +317,6 @@ class Room(ViewOnly):
 								buffer(stateful_dict, output)
 						else:
 								next_room = self.valid_paths[direction]
-####								stateful_dict['room'] = next_room # can't get rid of 'room' yet
 								next_room_obj = str_to_class(next_room)
 								stateful_dict['room_obj'] = next_room_obj # room_obj
 								next_room_obj.examine(stateful_dict)
@@ -333,8 +328,6 @@ class Item(ViewOnly):
 				self.takeable = takeable
 				
 		def take(self, stateful_dict):
-##				room = stateful_dict['room']
-##				room_obj = str_to_class(room)
 				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
 				room_objects = room_obj.room_objects
@@ -349,9 +342,8 @@ class Item(ViewOnly):
 
 								taken_from_container = False
 								for item in room_objects:
-										container_obj = str_to_class('chest')
 										item_obj = str_to_class(item)
-										if type(item_obj) == type(container_obj) \
+										if type(item_obj) == type(chest) \
 														and len(item_obj.contains) > 0 \
 														and item_obj.open_state == True:
 												if self.name in item_obj.contains:
@@ -371,8 +363,6 @@ class Item(ViewOnly):
 						buffer(stateful_dict, output)
 
 		def drop(self, stateful_dict):
-##				room = stateful_dict['room']
-##				room_obj = str_to_class(room)
 				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
 				if self.name in hand:
@@ -393,8 +383,6 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-##				room = stateful_dict['room']
-##				room_obj = str_to_class(room)
 				room_obj = stateful_dict['room_obj'] # room_obj
 				room_objects = room_obj.room_objects
 				if self.name in room_objects:
@@ -513,7 +501,6 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
-##		'room' : 'entrance',
 		'room_obj' : entrance,
 		'out_buff' : ""
 		}
@@ -521,7 +508,6 @@ stateful_dict = {
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
-##		room = stateful_dict['room']
 		room_obj = stateful_dict['room_obj']
 		lst = []
 		lst.append(user_input)
@@ -532,10 +518,8 @@ def interpreter(stateful_dict, user_input):
 		else:
 				word2 = "blank"
 		if word1 == 'go':
-##				room_obj = str_to_class(room)
 				getattr(room_obj, word1)(word2, stateful_dict)
 		elif word1 == 'look':
-##				room_obj = str_to_class(room)
 				room_obj.examine(stateful_dict)
 		else:
 				try:
