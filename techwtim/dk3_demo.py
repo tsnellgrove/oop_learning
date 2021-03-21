@@ -171,11 +171,12 @@
 	# DONE: Try using .name property of Room instead of tracking room in stateful_dict
 # DONE: Simplify open_cont_scan
 
-# TBD: Should hand and room_objects also contain actual objects instead of text? 
-# TBD: Make examine scope check a function
 # TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 # 		Sort out whole naming convention of name_type vs. name_objects (containter too)
 # 		Maybe only for lst, dict, and obj?
+#			room_objects => room_elements
+# TBD: Should hand and room_objects also contain actual objects instead of text? 
+# TBD: Make examine scope check a function
 # TBD: Can I buffer at the end of each method??
 # TBD: Inventory command!!
 # TBD: Put command
