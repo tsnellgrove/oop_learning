@@ -171,10 +171,12 @@
 	# DONE: Try using .name property of Room instead of tracking room in stateful_dict
 # DONE: Simplify open_cont_scan
 
-# TBD: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
-# 		Sort out whole naming convention of name_type vs. name_objects (containter too)
-# 		Maybe only for lst, dict, and obj?
-#			room_objects => room_elements
+# IN-PROC: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
+#		DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
+#		DONE: room_objects => room_elements
+#		TBD: items in room_elements loop => elements
+# 	TBD: Maybe only for lst, dict, and obj?
+
 # TBD: Should hand and room_objects also contain actual objects instead of text? 
 # TBD: Make examine scope check a function
 # TBD: Can I buffer at the end of each method??
@@ -216,9 +218,9 @@ def buffer(stateful_dict, output):
 		out_buff = out_buff + output + "\n"
 		stateful_dict['out_buff'] = out_buff
 
-def open_cont_scan(stateful_dict, room_objects):
+def open_cont_scan(stateful_dict, room_elements):
 		container_lst = []
-		for item in room_objects:
+		for item in room_elements:
 				item_obj = str_to_class(item)
 				if type(item_obj) == type(chest) \
 								and len(item_obj.contains) > 0 \
@@ -240,15 +242,15 @@ class ViewOnly(object):
 		def examine(self, stateful_dict):
 				room_obj = stateful_dict['room_obj'] # room_obj
 				hand = stateful_dict['hand']
-				room_objects = room_obj.room_objects
-				examine_lst = room_objects + hand
+				room_elements = room_obj.room_elements
+				examine_lst = room_elements + hand
 				examine_lst.append(room_obj.name)
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
 						examine_lst = examine_lst + features
 #				print(examine_lst) # used for troubleshooting
 
-				container_obj = open_cont_scan(stateful_dict, room_objects)
+				container_obj = open_cont_scan(stateful_dict, room_elements)
 				examine_lst = examine_lst + container_obj
 
 				if str(self.name) in examine_lst:
@@ -272,11 +274,11 @@ class Writing(ViewOnly):
 		def read(self, stateful_dict):
 				hand = stateful_dict['hand']
 				room_obj = stateful_dict['room_obj']
-				room_objects = room_obj.room_objects
+				room_elements = room_obj.room_elements
 				features = room_obj.features
-				read_lst = room_objects + hand + features
+				read_lst = room_elements + hand + features
 
-				container_obj = open_cont_scan(stateful_dict, room_objects)
+				container_obj = open_cont_scan(stateful_dict, room_elements)
 				read_lst = read_lst + container_obj
 
 				if self.written_on in read_lst:
@@ -284,20 +286,20 @@ class Writing(ViewOnly):
 						buffer(stateful_dict, output)
 
 class Room(ViewOnly):
-		def __init__(self, name, desc, writing, features, room_objects, valid_paths, door_paths):
+		def __init__(self, name, desc, writing, features, room_elements, valid_paths, door_paths):
 				super().__init__(name, desc, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
-				self.room_objects = room_objects # list of items in room
+				self.room_elements = room_elements # list of items in room
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room_obj'] == self:
-						output = "The room contains: " + ', '.join(self.room_objects)
+						output = "The room contains: " + ', '.join(self.room_elements)
 						buffer(stateful_dict, output)
 
-				for item in self.room_objects:
+				for item in self.room_elements:
 						item_obj = str_to_class(item)
 						if type(item_obj) == type(chest) \
 										and len(item_obj.contains) > 0 \
@@ -331,10 +333,10 @@ class Item(ViewOnly):
 		def take(self, stateful_dict):
 				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
-				room_objects = room_obj.room_objects
-				can_take = room_objects
+				room_elements = room_obj.room_elements
+				can_take = room_elements
 
-				container_obj = open_cont_scan(stateful_dict, room_objects)
+				container_obj = open_cont_scan(stateful_dict, room_elements)
 				can_take = can_take + container_obj
 
 				if self.name in can_take and self.takeable:
@@ -342,7 +344,7 @@ class Item(ViewOnly):
 								hand.append(self.name)
 
 								taken_from_container = False
-								for item in room_objects:
+								for item in room_elements:
 										item_obj = str_to_class(item)
 										if type(item_obj) == type(chest) \
 														and len(item_obj.contains) > 0 \
@@ -352,7 +354,7 @@ class Item(ViewOnly):
 														taken_from_container = True
 
 								if taken_from_container == False:
-										room_obj.room_objects.remove(self.name)
+										room_obj.room_elements.remove(self.name)
 
 								output = "Taken"
 								buffer(stateful_dict, output)
@@ -368,7 +370,7 @@ class Item(ViewOnly):
 				hand = stateful_dict['hand']
 				if self.name in hand:
 						hand.remove(self.name)
-						room_obj.room_objects.append(self.name)
+						room_obj.room_elements.append(self.name)
 						output = "Dropped"
 						buffer(stateful_dict, output)
 				else:
@@ -385,8 +387,8 @@ class Door(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
 				room_obj = stateful_dict['room_obj'] # room_obj
-				room_objects = room_obj.room_objects
-				if self.name in room_objects:
+				room_elements = room_obj.room_elements
+				if self.name in room_elements:
 						if self.open_state:
 								output = "The " + self.name + " is open."
 								buffer(stateful_dict, output)
@@ -581,7 +583,7 @@ while True:
 # gate.unlock()
 # gate.open()
 # gate.open()
-# print(eval(room).room_objects)
+# print(eval(room).room_elements)
 
 
 # sword = Item('sword','The sword is shiny.', True, 5)
