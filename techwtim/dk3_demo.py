@@ -174,9 +174,11 @@
 # IN-PROC: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 #		DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
 #		DONE: room_objects => room_elements
-#		TBD: items in room_elements loop => elements
+#		DONE: items in room_elements loop => elements
+#		TBD: room_element => objects?
 # 	TBD: Maybe only for lst, dict, and obj?
 
+# TBD: if type() => hasattrib
 # TBD: Should hand and room_objects also contain actual objects instead of text? 
 # TBD: Make examine scope check a function
 # TBD: Can I buffer at the end of each method??
@@ -220,12 +222,12 @@ def buffer(stateful_dict, output):
 
 def open_cont_scan(stateful_dict, room_elements):
 		container_lst = []
-		for item in room_elements:
-				item_obj = str_to_class(item)
-				if type(item_obj) == type(chest) \
-								and len(item_obj.contains) > 0 \
-								and item_obj.open_state == True:
-						container_lst = container_lst + item_obj.contains
+		for element in room_elements:
+				element_obj = str_to_class(element)
+				if type(element_obj) == type(chest) \
+								and len(element_obj.contains) > 0 \
+								and element_obj.open_state == True:
+						container_lst = container_lst + element_obj.contains
 		return container_lst
 
 def str_to_class(str):
@@ -289,7 +291,7 @@ class Room(ViewOnly):
 		def __init__(self, name, desc, writing, features, room_elements, valid_paths, door_paths):
 				super().__init__(name, desc, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
-				self.room_elements = room_elements # list of items in room
+				self.room_elements = room_elements # list of elements in room
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
 			
@@ -299,12 +301,12 @@ class Room(ViewOnly):
 						output = "The room contains: " + ', '.join(self.room_elements)
 						buffer(stateful_dict, output)
 
-				for item in self.room_elements:
-						item_obj = str_to_class(item)
-						if type(item_obj) == type(chest) \
-										and len(item_obj.contains) > 0 \
-										and item_obj.open_state == True:
-								output = "The " + item + " contains: " + ', '.join(item_obj.contains)
+				for element in self.room_elements:
+						element_obj = str_to_class(element)
+						if type(element_obj) == type(chest) \
+										and len(element_obj.contains) > 0 \
+										and element_obj.open_state == True:
+								output = "The " + element + " contains: " + ', '.join(element_obj.contains)
 								buffer(stateful_dict, output)
 
 		def go(self, direction, stateful_dict):
@@ -344,13 +346,13 @@ class Item(ViewOnly):
 								hand.append(self.name)
 
 								taken_from_container = False
-								for item in room_elements:
-										item_obj = str_to_class(item)
-										if type(item_obj) == type(chest) \
-														and len(item_obj.contains) > 0 \
-														and item_obj.open_state == True:
-												if self.name in item_obj.contains:
-														item_obj.contains.remove(self.name)
+								for element in room_elements:
+										element_obj = str_to_class(element)
+										if type(element_obj) == type(chest) \
+														and len(element_obj.contains) > 0 \
+														and element_obj.open_state == True:
+												if self.name in element_obj.contains:
+														element_obj.contains.remove(self.name)
 														taken_from_container = True
 
 								if taken_from_container == False:
@@ -474,13 +476,6 @@ class Container(Door):
 # object instantiation
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', 'null')
 
-entrance = Room('entrance',
-		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		'null', ['dark_castle'], ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
-main_hall = Room('main_hall',
-		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
-		'null', [], ['sword', 'gate', 'brass_key', 'chest'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
-
 gate = Door('gate', 'The front gate is massive and imposing',
 		'rusty_letters', False, False, 'rusty_key')
 screen_door = Door('screen_door', "You should never be able to examine the screen_door",
@@ -498,6 +493,13 @@ chest = Container('chest', 'An old wooden chest', 'null',
 		False, False, 'brass_key', False, ['potion'])
 giftbox = Container('giftbox', 'A pretty gift box', 'null',
 		False, True, 'none', True, ['necklace'])
+
+entrance = Room('entrance',
+		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
+		'null', ['dark_castle'], ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
+main_hall = Room('main_hall',
+		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
+		'null', [], ['sword', 'gate', 'brass_key', 'chest'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
 
 
 # stateful dictionary of persistent values
