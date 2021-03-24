@@ -175,7 +175,8 @@
 #		DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
 #		DONE: room_objects => room_elements
 #		DONE: items in room_elements loop => elements
-#		TBD: room_element => objects?
+#		IN-PROC: room_element => objects?
+#			TBD: Review list usage and Testing!!
 # 	TBD: Maybe only for lst, dict, and obj?
 
 # TBD: if type() => hasattrib
@@ -222,8 +223,9 @@ def buffer(stateful_dict, output):
 
 def open_cont_scan(stateful_dict, room_elements):
 		container_lst = []
-		for element in room_elements:
-				element_obj = str_to_class(element)
+##		for element in room_elements:
+		for element_obj in room_elements:
+##				element_obj = str_to_class(element)
 				if type(element_obj) == type(chest) \
 								and len(element_obj.contains) > 0 \
 								and element_obj.open_state == True:
@@ -233,6 +235,11 @@ def open_cont_scan(stateful_dict, room_elements):
 def str_to_class(str):
     return getattr(sys.modules[__name__], str)
 
+def objlst_to_strlst(obj_lst):
+		str_lst = [] # new code for room_elements = objects
+		for obj in obj_lst:
+				str_lst.append(obj.name)
+		return str_lst
 
 # classes
 class ViewOnly(object):
@@ -298,15 +305,23 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room_obj'] == self:
-						output = "The room contains: " + ', '.join(self.room_elements)
+						room_lst = objlst_to_strlst(self.room_elements)
+###						output = "The room contains: " + ', '.join(self.room_elements)
+						output = "The room contains: " + ', '.join(room_lst)
 						buffer(stateful_dict, output)
 
-				for element in self.room_elements:
-						element_obj = str_to_class(element)
+##				for element in self.room_elements:
+				for element_obj in self.room_elements:
+##						element_obj = str_to_class(element)
 						if type(element_obj) == type(chest) \
 										and len(element_obj.contains) > 0 \
 										and element_obj.open_state == True:
-								output = "The " + element + " contains: " + ', '.join(element_obj.contains)
+								contains_lst = objlst_to_strlst(element_obj.contains)
+###								contains_lst = [] # new code for room_elements = objects
+###								for container_obj in element_obj:
+###										contains_lst.append(element_obj.name)
+##								output = "The " + element + " contains: " + ', '.join(element_obj.contains)
+								output = "The " + element_obj.name + " contains: " + ', '.join(contains_lst)
 								buffer(stateful_dict, output)
 
 		def go(self, direction, stateful_dict):
@@ -346,8 +361,9 @@ class Item(ViewOnly):
 								hand.append(self.name)
 
 								taken_from_container = False
-								for element in room_elements:
-										element_obj = str_to_class(element)
+##								for element in room_elements:
+								for element_obj in room_elements:
+##										element_obj = str_to_class(element)
 										if type(element_obj) == type(chest) \
 														and len(element_obj.contains) > 0 \
 														and element_obj.open_state == True:
@@ -496,10 +512,10 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		'null', ['dark_castle'], ['rusty_key', 'gate'], {'north' : 'main_hall'}, {'north' : 'gate'})
+		'null', ['dark_castle'], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : 'gate'})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
-		'null', [], ['sword', 'gate', 'brass_key', 'chest'], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
+		'null', [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
 
 
 # stateful dictionary of persistent values
