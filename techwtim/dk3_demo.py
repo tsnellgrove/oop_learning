@@ -176,7 +176,9 @@
 #		DONE: room_objects => room_elements
 #		DONE: items in room_elements loop => elements
 #		IN-PROC: room_element => objects?
-#			TBD: Review list usage and Testing!!
+#			DONE: Initial troubleshooting in entrance
+#			NEXT: unlock, lock, open, close
+#			TBD: Containers
 # 	TBD: Maybe only for lst, dict, and obj?
 
 # TBD: if type() => hasattrib
@@ -253,7 +255,8 @@ class ViewOnly(object):
 				hand = stateful_dict['hand']
 				room_elements = room_obj.room_elements
 				examine_lst = room_elements + hand
-				examine_lst.append(room_obj.name)
+##				examine_lst.append(room_obj.name)
+				examine_lst.append(room_obj)
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
 						examine_lst = examine_lst + features
@@ -262,7 +265,8 @@ class ViewOnly(object):
 				container_obj = open_cont_scan(stateful_dict, room_elements)
 				examine_lst = examine_lst + container_obj
 
-				if str(self.name) in examine_lst:
+##				if str(self.name) in examine_lst:
+				if self in examine_lst:
 						output = self.desc
 						buffer(stateful_dict, output)
 						if self.writing != 'null':
@@ -356,9 +360,11 @@ class Item(ViewOnly):
 				container_obj = open_cont_scan(stateful_dict, room_elements)
 				can_take = can_take + container_obj
 
-				if self.name in can_take and self.takeable:
+##				if self.name in can_take and self.takeable:
+				if self in can_take and self.takeable:
 						if len(hand) == 0:
-								hand.append(self.name)
+##								hand.append(self.name)
+								hand.append(self)
 
 								taken_from_container = False
 ##								for element in room_elements:
@@ -372,7 +378,8 @@ class Item(ViewOnly):
 														taken_from_container = True
 
 								if taken_from_container == False:
-										room_obj.room_elements.remove(self.name)
+##										room_obj.room_elements.remove(self.name)
+										room_obj.room_elements.remove(self)
 
 								output = "Taken"
 								buffer(stateful_dict, output)
@@ -386,9 +393,12 @@ class Item(ViewOnly):
 		def drop(self, stateful_dict):
 				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
-				if self.name in hand:
-						hand.remove(self.name)
-						room_obj.room_elements.append(self.name)
+##				if self.name in hand:
+				if self in hand:
+##						hand.remove(self.name)
+						hand.remove(self)
+##						room_obj.room_elements.append(self.name)
+						room_obj.room_elements.append(self)
 						output = "Dropped"
 						buffer(stateful_dict, output)
 				else:
@@ -502,8 +512,8 @@ sword = Item('sword','The sword is shiny.', 'dwarven_runes', True)
 brass_key = Item('brass_key', 'The key is brass', 'null', True)
 potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', 'null', True)
 
-rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', 'null', 'gate')
-dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', 'sword')
+rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', 'null', gate)
+dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', sword)
 
 chest = Container('chest', 'An old wooden chest', 'null',
 		False, False, 'brass_key', False, ['potion'])
@@ -512,7 +522,7 @@ giftbox = Container('giftbox', 'A pretty gift box', 'null',
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		'null', ['dark_castle'], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : 'gate'})
+		'null', [dark_castle], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : 'gate'})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
 		'null', [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
