@@ -177,8 +177,10 @@
 #		DONE: items in room_elements loop => elements
 #		IN-PROC: room_element => objects?
 #			DONE: Initial troubleshooting in entrance
-#			NEXT: unlock, lock, open, close
-#			TBD: Containers
+#			DONE: unlock, lock, open, close
+#			DONE: Containers
+#			TBD: What about directions / doors
+#			TBD: Testing & Clean-up
 # 	TBD: Maybe only for lst, dict, and obj?
 
 # TBD: if type() => hasattrib
@@ -373,8 +375,10 @@ class Item(ViewOnly):
 										if type(element_obj) == type(chest) \
 														and len(element_obj.contains) > 0 \
 														and element_obj.open_state == True:
-												if self.name in element_obj.contains:
-														element_obj.contains.remove(self.name)
+##												if self.name in element_obj.contains:
+												if self in element_obj.contains:
+##														element_obj.contains.remove(self.name)
+														element_obj.contains.remove(self)
 														taken_from_container = True
 
 								if taken_from_container == False:
@@ -425,7 +429,9 @@ class Door(ViewOnly):
 												output = "The " + self.name + " is empty."
 												buffer(stateful_dict, output)
 										else:
-												output = "The " + self.name + "contains: "  + ', '.join(self.contains)
+												contains_lst = objlst_to_strlst(self.contains)
+##												output = "The " + self.name + "contains: "  + ', '.join(self.contains)
+												output = "The " + self.name + "contains: "  + ', '.join(contains_lst)
 												buffer(stateful_dict, output)
 						else:
 								output = "The " + self.name + " is closed."
@@ -456,7 +462,9 @@ class Door(ViewOnly):
 												output = "The " + self.name + " is empty."
 												buffer(stateful_dict, output)
 										else:
-												output = "The " + self.name + " contains: " + ', '.join(self.contains)
+												contains_lst = objlst_to_strlst(self.contains)
+##												output = "The " + self.name + " contains: " + ', '.join(self.contains)
+												output = "The " + self.name + " contains: " + ', '.join(contains_lst)
 												buffer(stateful_dict, output)
 						else:
 								output = "The " + self.name + " is locked."
@@ -502,23 +510,23 @@ class Container(Door):
 # object instantiation
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', 'null')
 
-gate = Door('gate', 'The front gate is massive and imposing',
-		'rusty_letters', False, False, 'rusty_key')
-screen_door = Door('screen_door', "You should never be able to examine the screen_door",
-		'null', False, False, 'chrome_key')
-
 rusty_key = Item('rusty_key', 'The key is rusty', 'null', True)
 sword = Item('sword','The sword is shiny.', 'dwarven_runes', True)
 brass_key = Item('brass_key', 'The key is brass', 'null', True)
 potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', 'null', True)
 
+chest = Container('chest', 'An old wooden chest', 'null',
+		False, False, brass_key, False, [potion])
+# giftbox = Container('giftbox', 'A pretty gift box', 'null',
+#		False, True, 'none', True, [necklace])
+
+gate = Door('gate', 'The front gate is massive and imposing',
+		'rusty_letters', False, False, rusty_key)
+#screen_door = Door('screen_door', "You should never be able to examine the screen_door",
+#		'null', False, False, chrome_key)
+
 rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', 'null', gate)
 dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', sword)
-
-chest = Container('chest', 'An old wooden chest', 'null',
-		False, False, 'brass_key', False, ['potion'])
-giftbox = Container('giftbox', 'A pretty gift box', 'null',
-		False, True, 'none', True, ['necklace'])
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
