@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: feb 24, 2021
+# date: Mar 27, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 # to-dos
@@ -175,13 +175,14 @@
 #		DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
 #		DONE: room_objects => room_elements
 #		DONE: items in room_elements loop => elements
-#		IN-PROC: room_element => objects?
+#		DONE: room_element => objects?
 #			DONE: Initial troubleshooting in entrance
 #			DONE: unlock, lock, open, close
 #			DONE: Containers
 #			DONE: What about directions / doors
-#			TBD: Testing & Clean-up
+#			DONE: Testing & Clean-up
 # 	TBD: Maybe only for lst, dict, and obj?
+#		TBD: Std solution for obj variables with reciprocal properties
 
 # TBD: if type() => hasattrib
 # TBD: Should hand and room_objects also contain actual objects instead of text? 
@@ -227,9 +228,7 @@ def buffer(stateful_dict, output):
 
 def open_cont_scan(stateful_dict, room_elements):
 		container_lst = []
-##		for element in room_elements:
 		for element_obj in room_elements:
-##				element_obj = str_to_class(element)
 				if type(element_obj) == type(chest) \
 								and len(element_obj.contains) > 0 \
 								and element_obj.open_state == True:
@@ -240,7 +239,7 @@ def str_to_class(str):
     return getattr(sys.modules[__name__], str)
 
 def objlst_to_strlst(obj_lst):
-		str_lst = [] # new code for room_elements = objects
+		str_lst = []
 		for obj in obj_lst:
 				str_lst.append(obj.name)
 		return str_lst
@@ -253,11 +252,10 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-				room_obj = stateful_dict['room_obj'] # room_obj
+				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
 				room_elements = room_obj.room_elements
 				examine_lst = room_elements + hand
-##				examine_lst.append(room_obj.name)
 				examine_lst.append(room_obj)
 				if hasattr(room_obj, 'features'):
 						features = room_obj.features
@@ -267,12 +265,11 @@ class ViewOnly(object):
 				container_obj = open_cont_scan(stateful_dict, room_elements)
 				examine_lst = examine_lst + container_obj
 
-##				if str(self.name) in examine_lst:
 				if self in examine_lst:
 						output = self.desc
 						buffer(stateful_dict, output)
 						if self.writing != 'null':
-								output = "On the " + self.name + " you see: " + self.writing
+								output = "On the " + self.name + " you see: " + self.writing.name
 								buffer(stateful_dict, output)
 				else:
 						output = "You can't see a " + self.name + " here."
@@ -312,21 +309,14 @@ class Room(ViewOnly):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room_obj'] == self:
 						room_lst = objlst_to_strlst(self.room_elements)
-###						output = "The room contains: " + ', '.join(self.room_elements)
 						output = "The room contains: " + ', '.join(room_lst)
 						buffer(stateful_dict, output)
 
-##				for element in self.room_elements:
 				for element_obj in self.room_elements:
-##						element_obj = str_to_class(element)
 						if type(element_obj) == type(chest) \
 										and len(element_obj.contains) > 0 \
 										and element_obj.open_state == True:
 								contains_lst = objlst_to_strlst(element_obj.contains)
-###								contains_lst = [] # new code for room_elements = objects
-###								for container_obj in element_obj:
-###										contains_lst.append(element_obj.name)
-##								output = "The " + element + " contains: " + ', '.join(element_obj.contains)
 								output = "The " + element_obj.name + " contains: " + ', '.join(contains_lst)
 								buffer(stateful_dict, output)
 
@@ -336,18 +326,14 @@ class Room(ViewOnly):
 						output = "You can't go that way."
 						buffer(stateful_dict, output)
 				elif direction in self.door_paths:
-##						door_obj = str_to_class(self.door_paths[direction])
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
 						if not door_open:
-##								output = "The " +  self.door_paths[direction] + " is closed."
 								output = "The " +  self.door_paths[direction].name + " is closed."
 								buffer(stateful_dict, output)
 						else:
-##								next_room = self.valid_paths[direction]
 								next_room_obj = self.valid_paths[direction]
-##								next_room_obj = str_to_class(next_room)
-								stateful_dict['room_obj'] = next_room_obj # room_obj
+								stateful_dict['room_obj'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 
 
@@ -365,27 +351,20 @@ class Item(ViewOnly):
 				container_obj = open_cont_scan(stateful_dict, room_elements)
 				can_take = can_take + container_obj
 
-##				if self.name in can_take and self.takeable:
 				if self in can_take and self.takeable:
 						if len(hand) == 0:
-##								hand.append(self.name)
 								hand.append(self)
 
 								taken_from_container = False
-##								for element in room_elements:
 								for element_obj in room_elements:
-##										element_obj = str_to_class(element)
 										if type(element_obj) == type(chest) \
 														and len(element_obj.contains) > 0 \
 														and element_obj.open_state == True:
-##												if self.name in element_obj.contains:
 												if self in element_obj.contains:
-##														element_obj.contains.remove(self.name)
 														element_obj.contains.remove(self)
 														taken_from_container = True
 
 								if taken_from_container == False:
-##										room_obj.room_elements.remove(self.name)
 										room_obj.room_elements.remove(self)
 
 								output = "Taken"
@@ -400,11 +379,8 @@ class Item(ViewOnly):
 		def drop(self, stateful_dict):
 				room_obj = stateful_dict['room_obj']
 				hand = stateful_dict['hand']
-##				if self.name in hand:
 				if self in hand:
-##						hand.remove(self.name)
 						hand.remove(self)
-##						room_obj.room_elements.append(self.name)
 						room_obj.room_elements.append(self)
 						output = "Dropped"
 						buffer(stateful_dict, output)
@@ -421,9 +397,8 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				room_obj = stateful_dict['room_obj'] # room_obj
+				room_obj = stateful_dict['room_obj']
 				room_elements = room_obj.room_elements
-##				if self.name in room_elements:
 				if self in room_elements:
 						if self.open_state:
 								output = "The " + self.name + " is open."
@@ -434,7 +409,6 @@ class Door(ViewOnly):
 												buffer(stateful_dict, output)
 										else:
 												contains_lst = objlst_to_strlst(self.contains)
-##												output = "The " + self.name + "contains: "  + ', '.join(self.contains)
 												output = "The " + self.name + "contains: "  + ', '.join(contains_lst)
 												buffer(stateful_dict, output)
 						else:
@@ -467,7 +441,6 @@ class Door(ViewOnly):
 												buffer(stateful_dict, output)
 										else:
 												contains_lst = objlst_to_strlst(self.contains)
-##												output = "The " + self.name + " contains: " + ', '.join(self.contains)
 												output = "The " + self.name + " contains: " + ', '.join(contains_lst)
 												buffer(stateful_dict, output)
 						else:
@@ -514,8 +487,11 @@ class Container(Door):
 # object instantiation
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', 'null')
 
+rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', 'null', 'gate')
+dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', 'sword')
+
 rusty_key = Item('rusty_key', 'The key is rusty', 'null', True)
-sword = Item('sword','The sword is shiny.', 'dwarven_runes', True)
+sword = Item('sword','The sword is shiny.', dwarven_runes, True)
 brass_key = Item('brass_key', 'The key is brass', 'null', True)
 potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', 'null', True)
 
@@ -525,12 +501,9 @@ chest = Container('chest', 'An old wooden chest', 'null',
 #		False, True, 'none', True, [necklace])
 
 gate = Door('gate', 'The front gate is massive and imposing',
-		'rusty_letters', False, False, rusty_key)
+		rusty_letters, False, False, rusty_key)
 #screen_door = Door('screen_door', "You should never be able to examine the screen_door",
 #		'null', False, False, chrome_key)
-
-rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', 'null', gate)
-dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', sword)
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
@@ -543,6 +516,9 @@ main_hall = Room('main_hall',
 entrance.valid_paths['north'] = main_hall
 main_hall.valid_paths['south'] = entrance
 
+# writton on deffinitions after variable assignments to avoid undefined variables
+rusty_letters.written_on = gate
+dwarven_runes.written_on = sword
 
 # stateful dictionary of persistent values
 stateful_dict = {
