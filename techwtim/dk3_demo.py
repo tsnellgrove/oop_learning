@@ -179,7 +179,7 @@
 #			DONE: Initial troubleshooting in entrance
 #			DONE: unlock, lock, open, close
 #			DONE: Containers
-#			TBD: What about directions / doors
+#			DONE: What about directions / doors
 #			TBD: Testing & Clean-up
 # 	TBD: Maybe only for lst, dict, and obj?
 
@@ -336,14 +336,17 @@ class Room(ViewOnly):
 						output = "You can't go that way."
 						buffer(stateful_dict, output)
 				elif direction in self.door_paths:
-						door_obj = str_to_class(self.door_paths[direction])
+##						door_obj = str_to_class(self.door_paths[direction])
+						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
 						if not door_open:
-								output = "The " +  self.door_paths[direction] + " is closed."
+##								output = "The " +  self.door_paths[direction] + " is closed."
+								output = "The " +  self.door_paths[direction].name + " is closed."
 								buffer(stateful_dict, output)
 						else:
-								next_room = self.valid_paths[direction]
-								next_room_obj = str_to_class(next_room)
+##								next_room = self.valid_paths[direction]
+								next_room_obj = self.valid_paths[direction]
+##								next_room_obj = str_to_class(next_room)
 								stateful_dict['room_obj'] = next_room_obj # room_obj
 								next_room_obj.examine(stateful_dict)
 
@@ -420,7 +423,8 @@ class Door(ViewOnly):
 				super(Door, self).examine(stateful_dict)
 				room_obj = stateful_dict['room_obj'] # room_obj
 				room_elements = room_obj.room_elements
-				if self.name in room_elements:
+##				if self.name in room_elements:
+				if self in room_elements:
 						if self.open_state:
 								output = "The " + self.name + " is open."
 								buffer(stateful_dict, output)
@@ -530,10 +534,14 @@ dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', sword)
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		'null', [dark_castle], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : 'gate'})
+		'null', [dark_castle], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : gate})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
-		'null', [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : 'gate'})
+		'null', [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : gate})
+
+# next room definitions after room definitions to avoid undefined variables
+entrance.valid_paths['north'] = main_hall
+main_hall.valid_paths['south'] = entrance
 
 
 # stateful dictionary of persistent values
