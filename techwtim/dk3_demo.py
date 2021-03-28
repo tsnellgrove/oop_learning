@@ -181,13 +181,15 @@
 #			DONE: Containers
 #			DONE: What about directions / doors
 #			DONE: Testing & Clean-up
-# 	TBD: Maybe only for lst, dict, and obj?
-#		TBD: Std solution for obj variables with reciprocal properties
+# 		DONE: Should hand and room_objects also contain actual objects instead of text? 
 
-# TBD: if type() => hasattrib
-# TBD: Should hand and room_objects also contain actual objects instead of text? 
+# DONE: if type() => hasattrib
+# TBD: Can I buffer at the end of each method?? // Buffer to one line
+# TBD: Naming convention for lst, dict, and obj?
+#	TBD: Std solution for obj variables with reciprocal properties
+#	TBD: Std solution for null for writing (vs. text 'null')
 # TBD: Make examine scope check a function
-# TBD: Can I buffer at the end of each method??
+
 # TBD: Inventory command!!
 # TBD: Put command
 
@@ -217,10 +219,12 @@ import cmd
 import sys
 
 
-# helper functions
+# NOT IN USE
 def set_difference(a,b):
     return list(set(a)-set(b))
 
+
+# helper functions
 def buffer(stateful_dict, output):
 		out_buff = stateful_dict['out_buff']
 		out_buff = out_buff + output + "\n"
@@ -229,7 +233,7 @@ def buffer(stateful_dict, output):
 def open_cont_scan(stateful_dict, room_elements):
 		container_lst = []
 		for element_obj in room_elements:
-				if type(element_obj) == type(chest) \
+				if hasattr(element_obj, 'contains') \
 								and len(element_obj.contains) > 0 \
 								and element_obj.open_state == True:
 						container_lst = container_lst + element_obj.contains
@@ -243,6 +247,7 @@ def objlst_to_strlst(obj_lst):
 		for obj in obj_lst:
 				str_lst.append(obj.name)
 		return str_lst
+
 
 # classes
 class ViewOnly(object):
@@ -313,7 +318,7 @@ class Room(ViewOnly):
 						buffer(stateful_dict, output)
 
 				for element_obj in self.room_elements:
-						if type(element_obj) == type(chest) \
+						if hasattr(element_obj, 'contains') \
 										and len(element_obj.contains) > 0 \
 										and element_obj.open_state == True:
 								contains_lst = objlst_to_strlst(element_obj.contains)
@@ -357,7 +362,7 @@ class Item(ViewOnly):
 
 								taken_from_container = False
 								for element_obj in room_elements:
-										if type(element_obj) == type(chest) \
+										if hasattr(element_obj, 'contains') \
 														and len(element_obj.contains) > 0 \
 														and element_obj.open_state == True:
 												if self in element_obj.contains:
