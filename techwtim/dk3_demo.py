@@ -271,8 +271,7 @@ class ViewOnly(object):
 				examine_lst = examine_lst + container_obj
 
 				if self in examine_lst:
-						output = self.desc
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, self.desc)
 						if self.writing != 'null':
 								output = "On the " + self.name + " you see: " + self.writing.name
 								buffer(stateful_dict, output)
@@ -299,8 +298,7 @@ class Writing(ViewOnly):
 				read_lst = read_lst + container_obj
 
 				if self.written_on in read_lst:
-						output = self.desc
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, self.desc)
 
 class Room(ViewOnly):
 		def __init__(self, name, desc, writing, features, room_elements, valid_paths, door_paths):
@@ -328,8 +326,7 @@ class Room(ViewOnly):
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room_obj']
 				if direction not in self.valid_paths:
-						output = "You can't go that way."
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't go that way.")
 				elif direction in self.door_paths:
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
@@ -372,11 +369,9 @@ class Item(ViewOnly):
 								if taken_from_container == False:
 										room_obj.room_elements.remove(self)
 
-								output = "Taken"
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "Taken")
 						else:
-								output = "Your hand is full."
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "Your hand is full.")
 				else:
 						output = "There's no " + self.name + " to take here!"
 						buffer(stateful_dict, output)
@@ -387,8 +382,7 @@ class Item(ViewOnly):
 				if self in hand:
 						hand.remove(self)
 						room_obj.room_elements.append(self)
-						output = "Dropped"
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "Dropped")
 				else:
 						output = "You're not holding the " + self.name + " in your hand."
 						buffer(stateful_dict, output)
@@ -424,12 +418,10 @@ class Door(ViewOnly):
 				hand = stateful_dict['hand']
 				if self.unlock_state == False:
 						if self.key in hand:
-								output = "Unlocked"
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "Unlocked")
 								self.unlock_state = True
 						else:
-								output = "You aren't holding the key."
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "You aren't holding the key.")
 				else:
 						output = "The " + self.name + " is already unlocked."
 						buffer(stateful_dict, output)
@@ -438,8 +430,7 @@ class Door(ViewOnly):
 				if self.open_state == False:
 						if self.unlock_state == True:
 								self.open_state = True
-								output = "Openned"
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "Openned")
 								if hasattr(self, 'contains'):
 										if len(self.contains) == 0:
 												output = "The " + self.name + " is empty."
@@ -469,18 +460,15 @@ class Door(ViewOnly):
 						hand = stateful_dict['hand']
 						if self.key in hand:
 								if self.unlock_state:
-										output = "Locked"
-										buffer(stateful_dict, output)
+										buffer(stateful_dict, "Locked")
 										self.unlock_state = False
 								else:
 										output = "The " + self.name + " is already locked."
 										buffer(stateful_dict, output)
 						else:
-								output = "You aren't holding the key."
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "You aren't holding the key.")
 				else:
-						output = "You can't lock something that's open."
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't lock something that's open.")
 
 class Container(Door):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key, takeable, contains):
