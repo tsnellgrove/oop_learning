@@ -184,8 +184,11 @@
 # 		DONE: Should hand and room_objects also contain actual objects instead of text? 
 
 # DONE: if type() => hasattrib
-# TBD: Can I buffer at the end of each method?? // Buffer to one line
-# TBD: Naming convention for lst, dict, and obj?
+# DONE: Can I buffer at the end of each method?? // Buffer to one line
+# IN-PROC: Naming convention for lst, dict, and obj?
+#		DONE: Thinking about this more... I don't want to type post-fix my primary variables... just my local ones
+#		DONE: Variable renames for stateful_dict and helper functions
+#		TBD: Variable renames for class methods
 #	TBD: Std solution for obj variables with reciprocal properties
 #	TBD: Std solution for null for writing (vs. text 'null')
 # TBD: Make examine scope check a function
@@ -225,18 +228,18 @@ def set_difference(a,b):
 
 
 # helper functions
-def buffer(stateful_dict, output):
+def buffer(stateful_dict, output_str):
 		out_buff = stateful_dict['out_buff']
-		out_buff = out_buff + output + "\n"
+		out_buff = out_buff + output_str + "\n"
 		stateful_dict['out_buff'] = out_buff
 
-def open_cont_scan(stateful_dict, room_elements):
+def open_cont_scan(stateful_dict, room_elements_lst):
 		container_lst = []
-		for element_obj in room_elements:
-				if hasattr(element_obj, 'contains') \
-								and len(element_obj.contains) > 0 \
-								and element_obj.open_state == True:
-						container_lst = container_lst + element_obj.contains
+		for obj in room_elements_lst:
+				if hasattr(obj, 'contains') \
+								and len(obj.contains) > 0 \
+								and obj.open_state == True:
+						container_lst = container_lst + obj.contains
 		return container_lst
 
 def str_to_class(str):
@@ -257,7 +260,7 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-				room_obj = stateful_dict['room_obj']
+				room_obj = stateful_dict['room']
 				hand = stateful_dict['hand']
 				room_elements = room_obj.room_elements
 				examine_lst = room_elements + hand
@@ -289,7 +292,7 @@ class Writing(ViewOnly):
 
 		def read(self, stateful_dict):
 				hand = stateful_dict['hand']
-				room_obj = stateful_dict['room_obj']
+				room_obj = stateful_dict['room']
 				room_elements = room_obj.room_elements
 				features = room_obj.features
 				read_lst = room_elements + hand + features
@@ -310,7 +313,7 @@ class Room(ViewOnly):
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
-				if stateful_dict['room_obj'] == self:
+				if stateful_dict['room'] == self:
 						room_lst = objlst_to_strlst(self.room_elements)
 						output = "The room contains: " + ', '.join(room_lst)
 						buffer(stateful_dict, output)
@@ -324,7 +327,7 @@ class Room(ViewOnly):
 								buffer(stateful_dict, output)
 
 		def go(self, direction, stateful_dict):
-				room_obj = stateful_dict['room_obj']
+				room_obj = stateful_dict['room']
 				if direction not in self.valid_paths:
 						buffer(stateful_dict, "You can't go that way.")
 				elif direction in self.door_paths:
@@ -335,7 +338,7 @@ class Room(ViewOnly):
 								buffer(stateful_dict, output)
 						else:
 								next_room_obj = self.valid_paths[direction]
-								stateful_dict['room_obj'] = next_room_obj
+								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 
 
@@ -345,7 +348,7 @@ class Item(ViewOnly):
 				self.takeable = takeable
 				
 		def take(self, stateful_dict):
-				room_obj = stateful_dict['room_obj']
+				room_obj = stateful_dict['room']
 				hand = stateful_dict['hand']
 				room_elements = room_obj.room_elements
 				can_take = room_elements
@@ -377,7 +380,7 @@ class Item(ViewOnly):
 						buffer(stateful_dict, output)
 
 		def drop(self, stateful_dict):
-				room_obj = stateful_dict['room_obj']
+				room_obj = stateful_dict['room']
 				hand = stateful_dict['hand']
 				if self in hand:
 						hand.remove(self)
@@ -396,7 +399,7 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				room_obj = stateful_dict['room_obj']
+				room_obj = stateful_dict['room']
 				room_elements = room_obj.room_elements
 				if self in room_elements:
 						if self.open_state:
@@ -517,14 +520,14 @@ dwarven_runes.written_on = sword
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
-		'room_obj' : entrance,
+		'room' : entrance,
 		'out_buff' : ""
 		}
 
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
-		room_obj = stateful_dict['room_obj']
+		room_obj = stateful_dict['room']
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
@@ -551,7 +554,7 @@ def interpreter(stateful_dict, user_input):
 
 
 # test
-# print("TEST: " + stateful_dict['room_obj'].desc)
+# print("TEST: " + stateful_dict['room'].desc)
 # rusty_key.take(stateful_dict)
 
 
