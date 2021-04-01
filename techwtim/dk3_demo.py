@@ -189,7 +189,8 @@
 #		DONE: Thinking about this more... I don't want to type post-fix my primary variables... just my local ones
 #		DONE: Variable renames for stateful_dict and helper functions
 #		DONE: Variable renames for class methods for ViewOnly and Writing
-#		TBD: Variable renames for other class methods
+#		TBD: Variable renames for class methods for class Room
+#		TBD: Variable renames
 #	TBD: Std solution for obj variables with reciprocal properties
 #	TBD: Std solution for null for writing (vs. text 'null')
 # TBD: Make examine scope check a function
@@ -237,9 +238,9 @@ def buffer(stateful_dict, output_str):
 		out_buff = out_buff + output_str + "\n"
 		stateful_dict['out_buff'] = out_buff
 
-def open_cont_scan(stateful_dict, room_stuff_lst):
+def open_cont_scan(stateful_dict, room_obj_lst):
 		container_lst = []
-		for obj in room_stuff_lst:
+		for obj in room_obj_lst:
 				if hasattr(obj, 'contains') \
 								and len(obj.contains) > 0 \
 								and obj.open_state == True:
@@ -266,13 +267,13 @@ class ViewOnly(object):
 		def examine(self, stateful_dict):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
-				room_stuff_lst = room_obj.room_stuff
-				examine_lst = room_stuff_lst + hand_lst
+				room_obj_lst = room_obj.room_stuff
+				examine_lst = room_obj_lst + hand_lst
 				examine_lst.append(room_obj)
 				if hasattr(room_obj, 'features'):
 						features_lst = room_obj.features
 						examine_lst = examine_lst + features_lst
-				container_lst = open_cont_scan(stateful_dict, room_stuff_lst)
+				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
 				examine_lst = examine_lst + container_lst
 #				print(examine_lst) # used for troubleshooting
 
@@ -293,10 +294,10 @@ class Writing(ViewOnly):
 		def read(self, stateful_dict):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
-				room_stuff_lst = room_obj.room_stuff
+				room_obj_lst = room_obj.room_stuff
 				features_lst = room_obj.features
-				container_lst = open_cont_scan(stateful_dict, room_stuff_lst)
-				read_lst = room_stuff_lst + hand_lst + features_lst + container_lst
+				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+				read_lst = room_obj_lst + hand_lst + features_lst + container_lst
 
 				if self.written_on in read_lst:
 						buffer(stateful_dict, self.desc)
@@ -315,16 +316,16 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self:
-						room_lst = objlst_to_strlst(self.room_stuff)
-						output = "The room contains: " + ', '.join(room_lst)
+						room_str_lst = objlst_to_strlst(self.room_stuff)
+						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
 
-				for element_obj in self.room_stuff:
-						if hasattr(element_obj, 'contains') \
-										and len(element_obj.contains) > 0 \
-										and element_obj.open_state == True:
-								contains_lst = objlst_to_strlst(element_obj.contains)
-								output = "The " + element_obj.name + " contains: " + ', '.join(contains_lst)
+				for obj in self.room_stuff:
+						if hasattr(obj, 'contains') \
+										and len(obj.contains) > 0 \
+										and obj.open_state == True:
+								contains_lst = objlst_to_strlst(obj.contains)
+								output = "The " + obj.name + " contains: " + ', '.join(contains_lst)
 								buffer(stateful_dict, output)
 
 		def go(self, direction, stateful_dict):
@@ -335,7 +336,7 @@ class Room(ViewOnly):
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
 						if not door_open:
-								output = "The " +  self.door_paths[direction].name + " is closed."
+								output = "The " +  door_obj.name + " is closed."
 								buffer(stateful_dict, output)
 						else:
 								next_room_obj = self.valid_paths[direction]
