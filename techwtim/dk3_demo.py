@@ -188,13 +188,18 @@
 # IN-PROC: Naming convention for lst, dict, and obj?
 #		DONE: Thinking about this more... I don't want to type post-fix my primary variables... just my local ones
 #		DONE: Variable renames for stateful_dict and helper functions
-#		DONE: Variable renames for class methods for ViewOnly and Writing
-#		TBD: Variable renames for class methods for class Room
-#		TBD: Variable renames
-#	TBD: Std solution for obj variables with reciprocal properties
-#	TBD: Std solution for null for writing (vs. text 'null')
+#		DONE: Variable renames for methods for ViewOnly and Writing
+#		DONE: Variable renames for methods for class Room
+#		TBD: Variable renames for methods for class Item
+#		TBE: Variable renames for methods
+# TBD: am I testing class Door methods (unlock, lock, open, close) for door in room? Maybe creat another room to test??
+# TBD: room.room_stuf => room.room_obj_lst ??
 # TBD: Make examine scope check a function
+# TBD: Extend use of open_cont_scan to all methods (how?)
+#	TBD: Std solution for null for writing (vs. text 'null')
+#	TBD: Std solution for obj variables with reciprocal properties
 
+# TBD: Interpreter review!!!
 # TBD: Inventory command!!
 # TBD: Put command
 
@@ -351,24 +356,22 @@ class Item(ViewOnly):
 				
 		def take(self, stateful_dict):
 				room_obj = stateful_dict['room']
-				hand = stateful_dict['hand']
-				room_stuff = room_obj.room_stuff
-				can_take = room_stuff
+				hand_lst = stateful_dict['hand']
+				room_obj_lst = room_obj.room_stuff
+				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+				can_take_lst = room_obj_lst + container_lst
 
-				container_obj = open_cont_scan(stateful_dict, room_stuff)
-				can_take = can_take + container_obj
-
-				if self in can_take and self.takeable:
-						if len(hand) == 0:
-								hand.append(self)
+				if self in can_take_lst and self.takeable:
+						if len(hand_lst) == 0:
+								hand_lst.append(self)
 
 								taken_from_container = False
-								for element_obj in room_stuff:
-										if hasattr(element_obj, 'contains') \
-														and len(element_obj.contains) > 0 \
-														and element_obj.open_state == True:
-												if self in element_obj.contains:
-														element_obj.contains.remove(self)
+								for obj in room_obj_lst:
+										if hasattr(obj, 'contains') \
+														and len(obj.contains) > 0 \
+														and obj.open_state == True:
+												if self in obj.contains:
+														obj.contains.remove(self)
 														taken_from_container = True
 
 								if taken_from_container == False:
@@ -383,9 +386,9 @@ class Item(ViewOnly):
 
 		def drop(self, stateful_dict):
 				room_obj = stateful_dict['room']
-				hand = stateful_dict['hand']
-				if self in hand:
-						hand.remove(self)
+				hand_lst = stateful_dict['hand']
+				if self in hand_lst:
+						hand_lst.remove(self)
 						room_obj.room_stuff.append(self)
 						buffer(stateful_dict, "Dropped")
 				else:
