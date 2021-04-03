@@ -193,8 +193,8 @@
 #		DONE: Variable renames for methods for class Item
 #		DONE: Variable renames for methods for class Door
 # DONE: am I testing class Door methods (unlock, lock, open, close) for door in room?
+# TBD: Make examine scope check a function (include hand_lst, container_lst, room_obj_lst, & features_lst ?)
 # TBD: room.room_stuf => room.room_obj_lst ??
-# TBD: Make examine scope check a function
 # TBD: Extend use of open_cont_scan to all methods (how?)
 #	TBD: Std solution for null for writing (vs. text 'null')
 #	TBD: Std solution for obj variables with reciprocal properties
@@ -389,15 +389,21 @@ class Item(ViewOnly):
 						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 		def drop(self, stateful_dict):
-				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
-				if self in hand_lst:
-						hand_lst.remove(self)
-						room_obj.room_stuff.append(self)
-						buffer(stateful_dict, "Dropped")
+				room_obj = stateful_dict['room']
+				room_obj_lst = room_obj.room_stuff
+				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+				item_lst = hand_lst + room_obj_lst + container_lst
+				if self in item_lst:
+						if self in hand_lst:
+								hand_lst.remove(self)
+								room_obj.room_stuff.append(self)
+								buffer(stateful_dict, "Dropped")
+						else:
+								output = "You're not holding the " + self.name + " in your hand."
+								buffer(stateful_dict, output)
 				else:
-						output = "You're not holding the " + self.name + " in your hand."
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 class Door(ViewOnly):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key):
