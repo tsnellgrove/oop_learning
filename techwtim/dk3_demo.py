@@ -190,18 +190,23 @@
 #		DONE: Variable renames for stateful_dict and helper functions
 #		DONE: Variable renames for methods for ViewOnly and Writing
 #		DONE: Variable renames for methods for class Room
-#		TBD: Variable renames for methods for class Item
-#		TBE: Variable renames for methods
-# TBD: am I testing class Door methods (unlock, lock, open, close) for door in room? Maybe creat another room to test??
+#		DONE: Variable renames for methods for class Item
+#		DONE: Variable renames for methods for class Door
+# DONE: am I testing class Door methods (unlock, lock, open, close) for door in room?
 # TBD: room.room_stuf => room.room_obj_lst ??
 # TBD: Make examine scope check a function
 # TBD: Extend use of open_cont_scan to all methods (how?)
 #	TBD: Std solution for null for writing (vs. text 'null')
 #	TBD: Std solution for obj variables with reciprocal properties
+# TBD: How to handle a container in a container?
+#		IDEA: Only closed containers allowed in containers?
+#		IDEA: You can't open a container in a container?
 
 # TBD: Interpreter review!!!
 # TBD: Inventory command!!
 # TBD: Put command
+
+# TBD: Put client-server structure in place early!!
 
 # Some Day Maybe
 # TBD: Implment container.put(item) ???
@@ -307,7 +312,7 @@ class Writing(ViewOnly):
 				if self.written_on in read_lst:
 						buffer(stateful_dict, self.desc)
 				else:
-						output = "You can't see any " + self.name + " here."
+						output = "You can't see a " + self.name + " here."
 						buffer(stateful_dict, output)
 
 class Room(ViewOnly):
@@ -381,8 +386,7 @@ class Item(ViewOnly):
 						else:
 								buffer(stateful_dict, "Your hand is full.")
 				else:
-						output = "There's no " + self.name + " to take here!"
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 		def drop(self, stateful_dict):
 				room_obj = stateful_dict['room']
@@ -405,78 +409,95 @@ class Door(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
 				room_obj = stateful_dict['room']
-				room_stuff = room_obj.room_stuff
-				if self in room_stuff:
+				room_obj_lst = room_obj.room_stuff
+				if self in room_obj_lst: # if not included get a "can't see" folled by open/close state
 						if self.open_state:
-								output = "The " + self.name + " is open."
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "The " + self.name + " is open.")
+
 								if hasattr(self, 'contains'):
 										if len(self.contains) == 0:
-												output = "The " + self.name + " is empty."
-												buffer(stateful_dict, output)
+												buffer(stateful_dict, "The " + self.name + " is empty.")
 										else:
 												contains_lst = objlst_to_strlst(self.contains)
-												output = "The " + self.name + "contains: "  + ', '.join(contains_lst)
+												output = "The " + self.name + " contains: "  + ', '.join(contains_lst)
 												buffer(stateful_dict, output)
+
 						else:
-								output = "The " + self.name + " is closed."
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "The " + self.name + " is closed.")
+#				else:
+#						buffer(stateful_dict, "You can't see a " + self.name + " here.") # if not commented out get a double "can't see"
 
 		def unlock(self, stateful_dict):
-				hand = stateful_dict['hand']
-				if self.unlock_state == False:
-						if self.key in hand:
-								buffer(stateful_dict, "Unlocked")
-								self.unlock_state = True
+				hand_lst = stateful_dict['hand']
+				room_obj = stateful_dict['room']
+				room_obj_lst = room_obj.room_stuff
+				if self in room_obj_lst:
+						if self.unlock_state == False:
+								if self.key in hand_lst:
+										buffer(stateful_dict, "Unlocked")
+										self.unlock_state = True
+								else:
+										buffer(stateful_dict, "You aren't holding the key.")
 						else:
-								buffer(stateful_dict, "You aren't holding the key.")
+								buffer(stateful_dict, "The " + self.name + " is already unlocked.")
 				else:
-						output = "The " + self.name + " is already unlocked."
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 		def open(self, stateful_dict):
-				if self.open_state == False:
-						if self.unlock_state == True:
-								self.open_state = True
-								buffer(stateful_dict, "Openned")
-								if hasattr(self, 'contains'):
-										if len(self.contains) == 0:
-												output = "The " + self.name + " is empty."
-												buffer(stateful_dict, output)
-										else:
-												contains_lst = objlst_to_strlst(self.contains)
-												output = "The " + self.name + " contains: " + ', '.join(contains_lst)
-												buffer(stateful_dict, output)
+				room_obj = stateful_dict['room']
+				room_obj_lst = room_obj.room_stuff
+				if self in room_obj_lst:
+						if self.open_state == False:
+								if self.unlock_state == True:
+										self.open_state = True
+										buffer(stateful_dict, "Openned")
+
+										if hasattr(self, 'contains'):
+												if len(self.contains) == 0:
+														buffer(stateful_dict, "The " + self.name + " is empty.")
+												else:
+														contains_lst = objlst_to_strlst(self.contains)
+														output = "The " + self.name + " contains: " + ', '.join(contains_lst)
+														buffer(stateful_dict, output)
+
+								else:
+										buffer(stateful_dict, "The " + self.name + " is locked.")
 						else:
-								output = "The " + self.name + " is locked."
-								buffer(stateful_dict, output)
+								buffer(stateful_dict, "The " + self.name + " is already open.")
 				else:
-						output = "The " + self.name + " is already open."
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+
 
 		def close(self, stateful_dict):
-				if self.open_state:
-						self.open_state = False
-						output = "Closed"
-						buffer(stateful_dict, output)
+				room_obj = stateful_dict['room']
+				room_obj_lst = room_obj.room_stuff
+				if self in room_obj_lst:
+						if self.open_state:
+								self.open_state = False
+								buffer(stateful_dict, "Closed")
+						else:
+								buffer(stateful_dict, "The " + self.name + " is already closed.")
 				else:
-						output = "The " + self.name + " is already closed."
-						buffer(stateful_dict, output)
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 		def lock(self, stateful_dict):
-				if self.open_state == False:
-						hand = stateful_dict['hand']
-						if self.key in hand:
-								if self.unlock_state:
-										buffer(stateful_dict, "Locked")
-										self.unlock_state = False
+				room_obj = stateful_dict['room']
+				room_obj_lst = room_obj.room_stuff
+				if self in room_obj_lst:
+						if self.open_state == False:
+								hand_lst = stateful_dict['hand']
+								if self.key in hand_lst:
+										if self.unlock_state:
+												buffer(stateful_dict, "Locked")
+												self.unlock_state = False
+										else:
+												buffer(stateful_dict, "The " + self.name + " is already locked.")
 								else:
-										output = "The " + self.name + " is already locked."
-										buffer(stateful_dict, output)
+										buffer(stateful_dict, "You aren't holding the key.")
 						else:
-								buffer(stateful_dict, "You aren't holding the key.")
+								buffer(stateful_dict, "You can't lock something that's open.")
 				else:
-						buffer(stateful_dict, "You can't lock something that's open.")
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 class Container(Door):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key, takeable, contains):
@@ -578,7 +599,7 @@ while True:
 				print("Goodbye!")
 				break
 		interpreter(stateful_dict, user_input)
-		print("BUFFER: " + stateful_dict['out_buff'])
+		print(stateful_dict['out_buff'])
 
 
 # entrance.examine()
