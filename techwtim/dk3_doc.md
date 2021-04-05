@@ -189,7 +189,7 @@
 #		DONE: Variable renames for methods for class Door
 # DONE: am I testing class Door methods (unlock, lock, open, close) for door in room?
 DONE: Create separate doc file for to-do notes
-TBD: Make examine scope check a function (include hand_lst, container_lst, room_obj_lst, & features_lst ?) (boolean for buffer)
+IN-PROC: Make examine scope check a function (include hand_lst, container_lst, room_obj_lst, & features_lst ?) (boolean for buffer)
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Extend use of open_cont_scan to all methods (how?)
 TBD: Std solution for null for writing (vs. text 'null')

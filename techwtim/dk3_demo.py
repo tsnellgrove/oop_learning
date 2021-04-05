@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 4, 2021
+# date: Apr 5, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -41,6 +41,24 @@ def objlst_to_strlst(obj_lst):
 				str_lst.append(obj.name)
 		return str_lst
 
+def scope_check(obj, stateful_dict, do_output):
+		room_obj = stateful_dict['room']
+		hand_lst = stateful_dict['hand']
+		room_obj_lst = room_obj.room_stuff
+		container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+		scope_lst = room_obj_lst + hand_lst + container_lst
+		scope_lst.append(room_obj)
+		if hasattr(room_obj, 'features'):
+				features_lst = room_obj.features
+				scope_lst = scope_lst + features_lst
+		if obj in scope_lst:
+				in_scope = True
+		else:
+				in_scope = False
+				if do_output:
+						buffer(stateful_dict, "You can't see a " + obj.name + " here.")
+		return in_scope
+
 
 # classes
 class ViewOnly(object):
@@ -50,26 +68,27 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-				room_obj = stateful_dict['room']
-				hand_lst = stateful_dict['hand']
-				room_obj_lst = room_obj.room_stuff
-				examine_lst = room_obj_lst + hand_lst
-				examine_lst.append(room_obj)
-				if hasattr(room_obj, 'features'):
-						features_lst = room_obj.features
-						examine_lst = examine_lst + features_lst
-				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
-				examine_lst = examine_lst + container_lst
+##				room_obj = stateful_dict['room']
+##				hand_lst = stateful_dict['hand']
+##				room_obj_lst = room_obj.room_stuff
+##				examine_lst = room_obj_lst + hand_lst
+##				examine_lst.append(room_obj)
+##				if hasattr(room_obj, 'features'):
+##						features_lst = room_obj.features
+##						examine_lst = examine_lst + features_lst
+##				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+##				examine_lst = examine_lst + container_lst
 #				print(examine_lst) # used for troubleshooting
 
-				if self in examine_lst:
+##				if self in examine_lst:
+				if scope_check(self, stateful_dict, do_output=True):
 						buffer(stateful_dict, self.desc)
 						if self.writing != 'null':
 								output = "On the " + self.name + " you see: " + self.writing.name
 								buffer(stateful_dict, output)
-				else:
-						output = "You can't see a " + self.name + " here."
-						buffer(stateful_dict, output)
+##				else:
+##						output = "You can't see a " + self.name + " here."
+##						buffer(stateful_dict, output)
 		
 class Writing(ViewOnly):
 		def __init__(self, name, desc, writing, written_on):
@@ -363,6 +382,7 @@ def interpreter(stateful_dict, user_input):
 # test
 # print("TEST: " + stateful_dict['room'].desc)
 # rusty_key.take(stateful_dict)
+# sword.examine(stateful_dict)
 
 
 # start text
