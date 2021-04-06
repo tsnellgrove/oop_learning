@@ -96,18 +96,19 @@ class Writing(ViewOnly):
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
-				room_obj = stateful_dict['room']
-				hand_lst = stateful_dict['hand']
-				room_obj_lst = room_obj.room_stuff
-				features_lst = room_obj.features
-				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
-				read_lst = room_obj_lst + hand_lst + features_lst + container_lst
+##				room_obj = stateful_dict['room']
+##				hand_lst = stateful_dict['hand']
+##				room_obj_lst = room_obj.room_stuff
+##				features_lst = room_obj.features
+##				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+##				read_lst = room_obj_lst + hand_lst + features_lst + container_lst
 
-				if self.written_on in read_lst:
+##				if self.written_on in read_lst:
+				if scope_check(self.written_on, stateful_dict, do_output=False):
 						buffer(stateful_dict, self.desc)
 				else:
-						output = "You can't see a " + self.name + " here."
-						buffer(stateful_dict, output)
+##						output = "You can't see a " + self.name + " here."
+						buffer(stateful_dict, "You can't see any " + self.name + " here.")
 
 class Room(ViewOnly):
 		def __init__(self, name, desc, writing, features, room_stuff, valid_paths, door_paths):
