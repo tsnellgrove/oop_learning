@@ -141,8 +141,8 @@ class Room(ViewOnly):
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
 						if not door_open:
-								output = "The " +  door_obj.name + " is closed."
-								buffer(stateful_dict, output)
+##								output = "The " +  door_obj.name + " is closed."
+								buffer(stateful_dict, "The " +  door_obj.name + " is closed.")
 						else:
 								next_room_obj = self.valid_paths[direction]
 								stateful_dict['room'] = next_room_obj
@@ -158,30 +158,33 @@ class Item(ViewOnly):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
 				room_obj_lst = room_obj.room_stuff
-				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
-				can_take_lst = room_obj_lst + container_lst
+##				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
+##				can_take_lst = room_obj_lst + container_lst
 
-				if self in can_take_lst and self.takeable:
-						if len(hand_lst) == 0:
-								hand_lst.append(self)
+##				if self in can_take_lst and self.takeable:
+				if scope_check(self, stateful_dict, do_output=True):
+						if self.takeable:
+								if len(hand_lst) == 0:
+										hand_lst.append(self)
 
-								taken_from_container = False
-								for obj in room_obj_lst:
-										if hasattr(obj, 'contains') \
-														and len(obj.contains) > 0 \
-														and obj.open_state == True:
-												if self in obj.contains:
-														obj.contains.remove(self)
-														taken_from_container = True
+										taken_from_container = False
+										for obj in room_obj_lst:
+												if hasattr(obj, 'contains') \
+																and len(obj.contains) > 0 \
+																and obj.open_state == True:
+														if self in obj.contains:
+																obj.contains.remove(self)
+																taken_from_container = True
+										if taken_from_container == False:
+												room_obj.room_stuff.remove(self)
 
-								if taken_from_container == False:
-										room_obj.room_stuff.remove(self)
-
-								buffer(stateful_dict, "Taken")
+										buffer(stateful_dict, "Taken")
+								else:
+										buffer(stateful_dict, "Your hand is full.")
 						else:
-								buffer(stateful_dict, "Your hand is full.")
-				else:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+								buffer(stateful_dict, "You can't take the " + self.name)
+##				else:
+##						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 		def drop(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -209,9 +212,10 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				room_obj = stateful_dict['room']
-				room_obj_lst = room_obj.room_stuff
-				if self in room_obj_lst: # if not included get a "can't see" folled by open/close state
+##				room_obj = stateful_dict['room']
+##				room_obj_lst = room_obj.room_stuff
+##				if self in room_obj_lst: # if not included get a "can't see" followed by open/close state
+				if scope_check(self, stateful_dict, do_output=False):
 						if self.open_state:
 								buffer(stateful_dict, "The " + self.name + " is open.")
 
@@ -230,9 +234,10 @@ class Door(ViewOnly):
 
 		def unlock(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
-				room_obj = stateful_dict['room']
-				room_obj_lst = room_obj.room_stuff
-				if self in room_obj_lst:
+##				room_obj = stateful_dict['room']
+##				room_obj_lst = room_obj.room_stuff
+##				if self in room_obj_lst:
+				if scope_check(self, stateful_dict, do_output=True):
 						if self.unlock_state == False:
 								if self.key in hand_lst:
 										buffer(stateful_dict, "Unlocked")
@@ -241,8 +246,8 @@ class Door(ViewOnly):
 										buffer(stateful_dict, "You aren't holding the key.")
 						else:
 								buffer(stateful_dict, "The " + self.name + " is already unlocked.")
-				else:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+##				else:
+##						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 		def open(self, stateful_dict):
 				room_obj = stateful_dict['room']
