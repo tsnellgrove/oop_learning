@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 7, 2021
+# date: Apr 8, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -159,10 +159,7 @@ class Item(ViewOnly):
 		def drop(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				room_obj = stateful_dict['room']
-				room_obj_lst = room_obj.room_stuff
-				container_lst = open_cont_scan(stateful_dict, room_obj_lst)
-				item_lst = hand_lst + room_obj_lst + container_lst
-				if self in item_lst:
+				if scope_check(self, stateful_dict, do_output=True):
 						if self in hand_lst:
 								hand_lst.remove(self)
 								room_obj.room_stuff.append(self)
@@ -170,8 +167,6 @@ class Item(ViewOnly):
 						else:
 								output = "You're not holding the " + self.name + " in your hand."
 								buffer(stateful_dict, output)
-				else:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
 
 class Door(ViewOnly):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key):

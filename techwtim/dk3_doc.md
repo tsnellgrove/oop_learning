@@ -190,6 +190,11 @@
 # DONE: am I testing class Door methods (unlock, lock, open, close) for door in room?
 DONE: Create separate doc file for to-do notes
 DONE: Make examine scope check a function (include hand_lst, container_lst, room_obj_lst, & features_lst ?) (boolean for buffer)
+DONE: drop => scope_check function
+TBD: for Door class examine and open and Room class examine - functionalized container code
+TBD: take => check room_stuff first
+
+
 TBD: Extend use of open_cont_scan to all methods (how?)
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Std solution for null for writing (vs. text 'null')
@@ -198,28 +203,28 @@ TBD: How to handle a container in a container?
 	IDEA: Only closed containers allowed in containers?
 	IDEA: You can't open a container in a container?
 
-# TBD: Interpreter review!!!
-# TBD: Inventory command!!
-# TBD: Put command
+TBD: Interpreter review!!!
+TBD: Inventory command!!
+TBD: Put command
 
-# TBD: Put client-server structure in place early!!
+TBD: Put client-server structure in place early!!
 
-# Some Day Maybe
-# TBD: Implment container.put(item) ???
-# TBD: Is the Item class worth having???
+Some Day Maybe
+TBD: Implment container.put(item) ???
+TBD: Is the Item class worth having???
 
 
-# ****** Interpreter Thoughts #
+****** Interpreter Thoughts #
 
-# 0) DONE: Functionalize Interpreter and use out_buff
-# 0.5) fix 'quit'
-# 0.7 fix 'start'
-# 1) Every noun as an obj_name, full_name, root_name
-# 2) All one_word commands => 1_word function
-# 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
-# 4) if sentence does not start with a verb => please start with a verb
-# 5) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
-# 6) Convert adjectives + noun => obj_name
-# 7) If no prep => verb_noun function
-# 8) If prep: Identify direct object and => prep_sentence function
-# NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
+0) DONE: Functionalize Interpreter and use out_buff
+0.5) fix 'quit'
+0.7 fix 'start'
+1) Every noun as an obj_name, full_name, root_name
+2) All one_word commands => 1_word function
+3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
+4) if sentence does not start with a verb => please start with a verb
+5) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
+6) Convert adjectives + noun => obj_name
+7) If no prep => verb_noun function
+8) If prep: Identify direct object and => prep_sentence function
+NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
