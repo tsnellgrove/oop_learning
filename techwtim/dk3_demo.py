@@ -59,6 +59,14 @@ def scope_check(obj, stateful_dict, do_output):
 						buffer(stateful_dict, "You can't see a " + obj.name + " here.")
 		return in_scope
 
+def container_desc(cont_obj, stateful_dict):
+		if len(cont_obj.contains) == 0:
+				buffer(stateful_dict, "The " + cont_obj.name + " is empty.")
+		else:
+				contains_lst = objlst_to_strlst(cont_obj.contains)
+				output = "The " + cont_obj.name + " contains: "  + ', '.join(contains_lst)
+				buffer(stateful_dict, output)
+
 
 # classes
 class ViewOnly(object):
@@ -95,19 +103,13 @@ class Room(ViewOnly):
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
-
 				if stateful_dict['room'] == self:
 						room_str_lst = objlst_to_strlst(self.room_stuff)
 						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
-
 				for obj in self.room_stuff:
-						if hasattr(obj, 'contains') \
-										and len(obj.contains) > 0 \
-										and obj.open_state == True:
-								contains_lst = objlst_to_strlst(obj.contains)
-								output = "The " + obj.name + " contains: " + ', '.join(contains_lst)
-								buffer(stateful_dict, output)
+						if hasattr(obj, 'contains') and obj.open_state == True:
+								container_desc(obj, stateful_dict)
 
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
@@ -177,19 +179,11 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-
 				if scope_check(self, stateful_dict, do_output=False):
 						if self.open_state:
 								buffer(stateful_dict, "The " + self.name + " is open.")
-
 								if hasattr(self, 'contains'):
-										if len(self.contains) == 0:
-												buffer(stateful_dict, "The " + self.name + " is empty.")
-										else:
-												contains_lst = objlst_to_strlst(self.contains)
-												output = "The " + self.name + " contains: "  + ', '.join(contains_lst)
-												buffer(stateful_dict, output)
-
+										container_desc(self, stateful_dict)
 						else:
 								buffer(stateful_dict, "The " + self.name + " is closed.")
 
@@ -211,15 +205,8 @@ class Door(ViewOnly):
 								if self.unlock_state == True:
 										self.open_state = True
 										buffer(stateful_dict, "Openned")
-
 										if hasattr(self, 'contains'):
-												if len(self.contains) == 0:
-														buffer(stateful_dict, "The " + self.name + " is empty.")
-												else:
-														contains_lst = objlst_to_strlst(self.contains)
-														output = "The " + self.name + " contains: " + ', '.join(contains_lst)
-														buffer(stateful_dict, output)
-
+												container_desc(self, stateful_dict)
 								else:
 										buffer(stateful_dict, "The " + self.name + " is locked.")
 						else:

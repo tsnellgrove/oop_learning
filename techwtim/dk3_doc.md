@@ -191,7 +191,7 @@
 DONE: Create separate doc file for to-do notes
 DONE: Make examine scope check a function (include hand_lst, container_lst, room_obj_lst, & features_lst ?) (boolean for buffer)
 DONE: drop => scope_check function
-TBD: for Door class examine and open and Room class examine - functionalized container code
+DONE: for Door class examine and open and Room class examine - functionalized container code
 TBD: take => check room_stuff first
 
 
