@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 8, 2021
+# date: Apr 10, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -24,13 +24,13 @@ def buffer(stateful_dict, output_str):
 		stateful_dict['out_buff'] = out_buff
 
 def open_cont_scan(stateful_dict, room_obj_lst):
-		container_lst = []
+		open_cont_obj_lst = []
 		for obj in room_obj_lst:
 				if hasattr(obj, 'contains') \
 								and len(obj.contains) > 0 \
 								and obj.open_state == True:
-						container_lst = container_lst + obj.contains
-		return container_lst
+						open_cont_obj_lst = open_cont_obj_lst + obj.contains
+		return open_cont_obj_lst
 
 def str_to_class(str):
     return getattr(sys.modules[__name__], str)
@@ -45,8 +45,8 @@ def scope_check(obj, stateful_dict, do_output):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		room_obj_lst = room_obj.room_stuff
-		container_lst = open_cont_scan(stateful_dict, room_obj_lst)
-		scope_lst = room_obj_lst + hand_lst + container_lst
+		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
+		scope_lst = room_obj_lst + hand_lst + open_cont_obj_lst
 		scope_lst.append(room_obj)
 		if hasattr(room_obj, 'features'):
 				features_lst = room_obj.features
@@ -63,8 +63,8 @@ def container_desc(cont_obj, stateful_dict):
 		if len(cont_obj.contains) == 0:
 				buffer(stateful_dict, "The " + cont_obj.name + " is empty.")
 		else:
-				contains_lst = objlst_to_strlst(cont_obj.contains)
-				output = "The " + cont_obj.name + " contains: "  + ', '.join(contains_lst)
+				cont_str_lst = objlst_to_strlst(cont_obj.contains)
+				output = "The " + cont_obj.name + " contains: "  + ', '.join(cont_str_lst)
 				buffer(stateful_dict, output)
 
 
@@ -78,10 +78,10 @@ class ViewOnly(object):
 		def examine(self, stateful_dict):
 				if scope_check(self, stateful_dict, do_output=True):
 						buffer(stateful_dict, self.desc)
-						if self.writing != 'null':
+						if self.writing is not None:
 								output = "On the " + self.name + " you see: " + self.writing.name
 								buffer(stateful_dict, output)
-		
+
 class Writing(ViewOnly):
 		def __init__(self, name, desc, writing, written_on):
 				super().__init__(name, desc, writing)
@@ -125,7 +125,6 @@ class Room(ViewOnly):
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 
-
 class Item(ViewOnly):
 		def __init__(self, name, desc, writing, takeable):
 				super().__init__(name, desc, writing)
@@ -140,18 +139,15 @@ class Item(ViewOnly):
 						if self.takeable:
 								if len(hand_lst) == 0:
 										hand_lst.append(self)
-
-										taken_from_container = False
-										for obj in room_obj_lst:
-												if hasattr(obj, 'contains') \
-																and len(obj.contains) > 0 \
-																and obj.open_state == True:
-														if self in obj.contains:
-																obj.contains.remove(self)
-																taken_from_container = True
-										if taken_from_container == False:
+										if self in room_obj_lst:
 												room_obj.room_stuff.remove(self)
-
+										else:
+												for obj in room_obj_lst:
+														if hasattr(obj, 'contains') \
+																		and len(obj.contains) > 0 \
+																		and obj.open_state == True:
+																if self in obj.contains:
+																		obj.contains.remove(self)
 										buffer(stateful_dict, "Taken")
 								else:
 										buffer(stateful_dict, "Your hand is full.")
@@ -243,32 +239,30 @@ class Container(Door):
 
 
 # object instantiation
-dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', 'null')
+dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', None)
 
-rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', 'null', 'gate')
-dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", 'null', 'sword')
+rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
+dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", None, 'sword')
 
-rusty_key = Item('rusty_key', 'The key is rusty', 'null', True)
+rusty_key = Item('rusty_key', 'The key is rusty', None, True)
 sword = Item('sword','The sword is shiny.', dwarven_runes, True)
-brass_key = Item('brass_key', 'The key is brass', 'null', True)
-potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', 'null', True)
+brass_key = Item('brass_key', 'The key is brass', None, True)
+potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', None, True)
 
-chest = Container('chest', 'An old wooden chest', 'null',
-		False, False, brass_key, False, [potion])
-# giftbox = Container('giftbox', 'A pretty gift box', 'null',
-#		False, True, 'none', True, [necklace])
+chest = Container('chest', 'An old wooden chest', None,
+				False, False, brass_key, False, [potion])
+# giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
 
-gate = Door('gate', 'The front gate is massive and imposing',
-		rusty_letters, False, False, rusty_key)
-#screen_door = Door('screen_door', "You should never be able to examine the screen_door",
-#		'null', False, False, chrome_key)
+gate = Door('gate', 'The front gate is massive and imposing', rusty_letters,
+				False, False, rusty_key)
+# screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		'null', [dark_castle], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : gate})
+		None, [dark_castle], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : gate})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
-		'null', [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : gate})
+		None, [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : gate})
 
 # next room definitions after room definitions to avoid undefined variables
 entrance.valid_paths['north'] = main_hall

@@ -178,47 +178,57 @@
 #			DONE: Testing & Clean-up
 # 		DONE: Should hand and room_objects also contain actual objects instead of text? 
 
-# DONE: if type() => hasattrib
-# DONE: Can I buffer at the end of each method?? // Buffer to one line
-# IN-PROC: Naming convention for lst, dict, and obj?
-#		DONE: Thinking about this more... I don't want to type post-fix my primary variables... just my local ones
-#		DONE: Variable renames for stateful_dict and helper functions
-#		DONE: Variable renames for methods for ViewOnly and Writing
-#		DONE: Variable renames for methods for class Room
-#		DONE: Variable renames for methods for class Item
-#		DONE: Variable renames for methods for class Door
-# DONE: am I testing class Door methods (unlock, lock, open, close) for door in room?
+DONE: if type() => hasattrib
+DONE: Can I buffer at the end of each method?? // Buffer to one line
+IN-PROC: Naming convention for lst, dict, and obj?
+	DONE: Thinking about this more... I don't want to type post-fix my primary variables... just my local ones
+	DONE: Variable renames for stateful_dict and helper functions
+	DONE: Variable renames for methods for ViewOnly and Writing
+	DONE: Variable renames for methods for class Room
+	DONE: Variable renames for methods for class Item
+	DONE: Variable renames for methods for class Door
+DONE: am I testing class Door methods (unlock, lock, open, close) for door in room?
 DONE: Create separate doc file for to-do notes
 DONE: Make examine scope check a function (include hand_lst, container_lst, room_obj_lst, & features_lst ?) (boolean for buffer)
 DONE: drop => scope_check function
 DONE: for Door class examine and open and Room class examine - functionalized container code
-TBD: take => check room_stuff first
-
-
-TBD: Extend use of open_cont_scan to all methods (how?)
-TBD: room.room_stuf => room.room_obj_lst ??
-TBD: Std solution for null for writing (vs. text 'null')
-TBD: Std solution for obj variables with reciprocal properties
-TBD: How to handle a container in a container?
-	IDEA: Only closed containers allowed in containers?
-	IDEA: You can't open a container in a container?
+DONE: take => check room_stuff first
+DONE: Extend use of open_cont_scan to all methods (how?)
+DONE: Std solution for null for writing (vs. text 'null') => None
 
 TBD: Interpreter review!!!
 TBD: Inventory command!!
 TBD: Put command
+TBD: Implement formal flask code vs. app separation
+
+TBD: How to handle a container in a container?
+	IDEA: Only closed containers allowed in containers?
+	IDEA: You can't open a container in a container?
 
 TBD: Put client-server structure in place early!!
+
+Expert Questions:
+TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
+TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
+
 
 Some Day Maybe
 TBD: Implment container.put(item) ???
 TBD: Is the Item class worth having???
-
+TBD: room.room_stuf => room.room_obj_lst ??
 
 ****** Interpreter Thoughts #
 
 0) DONE: Functionalize Interpreter and use out_buff
-0.5) fix 'quit'
-0.7 fix 'start'
+0.2) Should burt be an object???
+0.3) Create a list of one-word commands from dkv2: 'help', 'inventory', 'look', 'credits', 'north', 'south', 'east', 'west', 'score', 'version'
+0.4) think through synonyms (e.g. 'n' == 'north' == 'go north' )
+0.5) Concept of 'universal scope' variables which should always be viewable - check dkv2
+	Things burt always has with him: 'backpack', 'burt', 'hand', 'conscience' 
+	Meta-game entities that should always be available: 'credits', 'help', 'version', 'score', ... 
+0.6) time to implement backpack?
+0.8) fix 'quit'
+0.9 fix 'start'
 1) Every noun as an obj_name, full_name, root_name
 2) All one_word commands => 1_word function
 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
