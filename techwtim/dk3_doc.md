@@ -166,21 +166,21 @@
 	# DONE: Try using .name property of Room instead of tracking room in stateful_dict
 # DONE: Simplify open_cont_scan
 
-# IN-PROC: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
-#		DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
-#		DONE: room_objects => room_elements
-#		DONE: items in room_elements loop => elements
-#		DONE: room_element => objects?
-#			DONE: Initial troubleshooting in entrance
-#			DONE: unlock, lock, open, close
-#			DONE: Containers
-#			DONE: What about directions / doors
-#			DONE: Testing & Clean-up
-# 		DONE: Should hand and room_objects also contain actual objects instead of text? 
+DONE: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
+	DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
+	DONE: room_objects => room_elements
+	DONE: items in room_elements loop => elements
+	DONE: room_element => objects?
+		DONE: Initial troubleshooting in entrance
+		DONE: unlock, lock, open, close
+		DONE: Containers
+		DONE: What about directions / doors
+		DONE: Testing & Clean-up
+		DONE: Should hand and room_objects also contain actual objects instead of text? 
 
 DONE: if type() => hasattrib
 DONE: Can I buffer at the end of each method?? // Buffer to one line
-IN-PROC: Naming convention for lst, dict, and obj?
+DONE: Naming convention for lst, dict, and obj?
 	DONE: Thinking about this more... I don't want to type post-fix my primary variables... just my local ones
 	DONE: Variable renames for stateful_dict and helper functions
 	DONE: Variable renames for methods for ViewOnly and Writing
@@ -219,9 +219,13 @@ TBD: room.room_stuf => room.room_obj_lst ??
 
 ****** Interpreter Thoughts #
 
-0) DONE: Functionalize Interpreter and use out_buff
-0.2) Should burt be an object???
-0.3) Create a list of one-word commands from dkv2: 'help', 'inventory', 'look', 'credits', 'north', 'south', 'east', 'west', 'score', 'version'
+DONE: 0) Functionalize Interpreter and use out_buff
+DONE: 0.2) Should burt be an object??? (for now, No)
+DONE: 0.3) Create a list of one-word commands from dkv2:
+	simple, true one-word commands: 'score', 'version'
+	complex, true, one-word commands:	'inventory', 'look'
+	one-word commands to be converted to two words: 'help', 'credits', 'north', 'south', 'east', 'west'
+0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
 0.4) think through synonyms (e.g. 'n' == 'north' == 'go north' )
 0.5) Concept of 'universal scope' variables which should always be viewable - check dkv2
 	Things burt always has with him: 'backpack', 'burt', 'hand', 'conscience' 

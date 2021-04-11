@@ -277,8 +277,14 @@ stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
 		'room' : entrance,
-		'out_buff' : ""
+		'out_buff' : "",
+		'score' : 0
 		}
+
+#one-word command dictionary
+one_word_dict = {
+		'look' : 'room_obj.examine(stateful_dict)' # probably not the right approach
+}
 
 
 # interpreter function
@@ -288,6 +294,12 @@ def interpreter(stateful_dict, user_input):
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
 		word1 = user_input_lst[0].lower()
+
+
+##		if len(user_input_lst) == 1: # new code start
+##				if word1 in one_word_dict:
+
+
 		if len(user_input_lst) > 1:
 				word2 = user_input_lst[1].lower()
 		else:
