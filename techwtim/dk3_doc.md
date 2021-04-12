@@ -156,15 +156,15 @@
 #		How to use DB??
 #			- Since I'm designing a web game, I need to separate stateful and static
 
-# Next to dos
-# DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
-# DONE: Replace eval() usage w/ str_to_class()
-# DONE: 'take' is broken post eval() remove
-# DONE: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
-# DONE: Why does close need to remove container items from room_obj? Old legacy logic
-# DONE: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
-	# DONE: Try using .name property of Room instead of tracking room in stateful_dict
-# DONE: Simplify open_cont_scan
+Next to dos
+DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
+DONE: Replace eval() usage w/ str_to_class()
+DONE: 'take' is broken post eval() remove
+DONE: 'take' removal logic doesn't check for item_obj being in container before attempting to remove it
+DONE: Why does close need to remove container items from room_obj? Old legacy logic
+DONE: Wouldn't it be a lot simpler if we just stored room_obj in stateful_dict rather than room_str ?
+	DONE: Try using .name property of Room instead of tracking room in stateful_dict
+DONE: Simplify open_cont_scan
 
 DONE: new naming convention to clarify between room_obj and room_objects ?? Need a new term for "objects"
 	DONE: Sort out whole naming convention of name_type vs. name_objects (containter too)
@@ -223,8 +223,9 @@ DONE: 0) Functionalize Interpreter and use out_buff
 DONE: 0.2) Should burt be an object??? (for now, No)
 DONE: 0.3) Create a list of one-word commands from dkv2:
 	simple, true one-word commands: 'score', 'version'
-	complex, true, one-word commands:	'inventory', 'look'
+	complex, true, one-word commands:	'inventory'
 	one-word commands to be converted to two words: 'help', 'credits', 'north', 'south', 'east', 'west'
+	complex two-word conversions: 'look'
 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
 0.4) think through synonyms (e.g. 'n' == 'north' == 'go north' )
 0.5) Concept of 'universal scope' variables which should always be viewable - check dkv2

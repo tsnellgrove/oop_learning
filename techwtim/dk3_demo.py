@@ -278,10 +278,12 @@ stateful_dict = {
 		'backpack' : [],
 		'room' : entrance,
 		'out_buff' : "",
-		'score' : 0
+		'score' : 0, 
+		'version' : '3.01'
 		}
 
-#one-word command dictionary
+#interpreter words
+one_word_only_lst = ['score', 'version', 'inventory']
 one_word_dict = {
 		'look' : 'room_obj.examine(stateful_dict)' # probably not the right approach
 }
@@ -297,28 +299,34 @@ def interpreter(stateful_dict, user_input):
 
 
 ##		if len(user_input_lst) == 1: # new code start
-##				if word1 in one_word_dict:
 
 
-		if len(user_input_lst) > 1:
-				word2 = user_input_lst[1].lower()
+		if word1 in one_word_only_lst:
+				if word1 == 'score':
+						buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
+				elif word1 == 'version':
+						buffer(stateful_dict, stateful_dict['version'])
 		else:
-				word2 = "blank"
-		if word1 == 'go':
-				getattr(room_obj, word1)(word2, stateful_dict)
-		elif word1 == 'look':
-				room_obj.examine(stateful_dict)
-		else:
-				try:
-						word2_obj = str_to_class(word2)
+
+				if len(user_input_lst) > 1:
+						word2 = user_input_lst[1].lower()
+				else:
+						word2 = "blank"
+				if word1 == 'go':
+						getattr(room_obj, word1)(word2, stateful_dict)
+				elif word1 == 'look':
+						room_obj.examine(stateful_dict)
+				else:
 						try:
-								getattr(word2_obj, word1)(stateful_dict)
+								word2_obj = str_to_class(word2)
+								try:
+										getattr(word2_obj, word1)(stateful_dict)
+								except:
+										output = "You can't " + word1 + " with the " + word2 + "."
+										buffer(stateful_dict, output)
 						except:
-								output = "You can't " + word1 + " with the " + word2 + "."
+								output = "There's no " + word2 + " here."
 								buffer(stateful_dict, output)
-				except:
-						output = "There's no " + word2 + " here."
-						buffer(stateful_dict, output)
 
 
 # test
