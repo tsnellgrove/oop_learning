@@ -44,9 +44,10 @@ def objlst_to_strlst(obj_lst):
 def scope_check(obj, stateful_dict, do_output):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
+		universal_lst = stateful_dict['universal']
 		room_obj_lst = room_obj.room_stuff
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
-		scope_lst = room_obj_lst + hand_lst + open_cont_obj_lst
+		scope_lst = room_obj_lst + hand_lst + universal_lst + open_cont_obj_lst
 		scope_lst.append(room_obj)
 		if hasattr(room_obj, 'features'):
 				features_lst = room_obj.features
@@ -66,6 +67,14 @@ def container_desc(cont_obj, stateful_dict):
 				cont_str_lst = objlst_to_strlst(cont_obj.contains)
 				output = "The " + cont_obj.name + " contains: "  + ', '.join(cont_str_lst)
 				buffer(stateful_dict, output)
+
+def inventory(stateful_dict):
+		hand_obj_lst = stateful_dict['hand']
+		if len(hand_obj_lst) == 0:
+				hand_str = "nothing"
+		else:
+				hand_str = "the " + stateful_dict['hand'][0].name
+		buffer(stateful_dict, "In your hand you are holding " + hand_str)
 
 
 # classes
@@ -240,6 +249,12 @@ class Container(Door):
 
 # object instantiation
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', None)
+backpack = ViewOnly('backpack', "Your trusty, well-worn leather backpack", None)
+burt = ViewOnly('Burt', "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
+hand = ViewOnly('hand', "That is indeed your very own hand", None)
+conscience = ViewOnly('conscience', "A tad murky Burt - what would your dear old Nana say?", None)
+help = ViewOnly('help', "Detailed help text for new players [to be written]", None)
+credits = ViewOnly('credits', "Standard credits from dkv2 + my 4 playtesters!", None)
 
 rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
 dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", None, 'sword')
@@ -276,6 +291,7 @@ dwarven_runes.written_on = sword
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [],
+		'universal' : [backpack, burt, hand, conscience, help, credits],
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 
@@ -306,6 +322,8 @@ def interpreter(stateful_dict, user_input):
 						buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
 				elif word1 == 'version':
 						buffer(stateful_dict, stateful_dict['version'])
+				elif word1 == 'inventory':
+						inventory(stateful_dict)
 		else:
 
 				if len(user_input_lst) > 1:

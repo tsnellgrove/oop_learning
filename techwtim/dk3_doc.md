@@ -145,16 +145,16 @@
 #		check out "robotadventure" from end of 2013 presentation
 #		how to eliminate eval()
 
-# Decisions:
-#		No need for curses in a flask app
-#		Don't use nltk - is overkill (and besides, I want to write me own interpreter)
-#		For now, don't use cmd - want more practice with classes
-#		Do figure out how to avoid using eval()
+Decisions:
+	No need for curses in a flask app
+	Don't use nltk - is overkill (and besides, I want to write me own interpreter)
+	For now, don't use cmd - want more practice with classes
+	Do figure out how to avoid using eval()
 
-# To Decide:
-#		Rooms in JSON?
-#		How to use DB??
-#			- Since I'm designing a web game, I need to separate stateful and static
+To Decide:
+	Rooms in JSON?
+	How to use DB??
+		- Since I'm designing a web game, I need to separate stateful and static
 
 Next to dos
 DONE: Figure out how to replace eval() w/ getattr() => use str_to_class() snippet
@@ -221,16 +221,17 @@ TBD: room.room_stuf => room.room_obj_lst ??
 
 DONE: 0) Functionalize Interpreter and use out_buff
 DONE: 0.2) Should burt be an object??? (for now, No)
-DONE: 0.3) Create a list of one-word commands from dkv2:
-	simple, true one-word commands: 'score', 'version'
-	complex, true, one-word commands:	'inventory'
-	one-word commands to be converted to two words: 'help', 'credits', 'north', 'south', 'east', 'west'
+DONE: 0.3) Create a list of true one-word commands from dkv2:
+	DONE: simple, true one-word commands: 'score', 'version'
+	DONE: complex, true, one-word commands:	'inventory'
+DONE: 0.31) Concept of 'universal scope' variables which should always be viewable - check dkv2
+	Things burt always has with him: 'backpack', 'burt', 'hand', 'conscience' 
+	Meta-game entities that should always be available: 'credits', 'help' 
+0.32) one-word commands to be converted to two words
+	simple: 'help', 'credits', 'north', 'south', 'east', 'west'
 	complex two-word conversions: 'look'
 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
-0.4) think through synonyms (e.g. 'n' == 'north' == 'go north' )
-0.5) Concept of 'universal scope' variables which should always be viewable - check dkv2
-	Things burt always has with him: 'backpack', 'burt', 'hand', 'conscience' 
-	Meta-game entities that should always be available: 'credits', 'help', 'version', 'score', ... 
+0.4) think through synonyms (e.g. 'n' == 'north' == 'go north' ) (n, s, e, w, i = inventory)
 0.6) time to implement backpack?
 0.8) fix 'quit'
 0.9 fix 'start'
