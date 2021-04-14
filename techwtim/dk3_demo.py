@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 10, 2021
+# date: Apr 14, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -299,7 +299,23 @@ stateful_dict = {
 		}
 
 #interpreter words
-one_word_only_lst = ['score', 'version', 'inventory']
+one_word_only_lst = ['score', 'version', 'inventory', 'look']
+abreviations_dict = {
+		'n' : 'north',
+		's' : 'south',
+		'e' : 'east',
+		'w' : 'west',
+		'i' : 'inventory',
+		'get' : 'take'
+}
+one_word_convert_dict = {
+		'help' : 'examine',
+		'credits' : 'examine',
+		'north' : 'go',
+		'south' : 'go',
+		'east' : 'go',
+		'west' : 'go'
+}
 one_word_dict = {
 		'look' : 'room_obj.examine(stateful_dict)' # probably not the right approach
 }
@@ -311,20 +327,38 @@ def interpreter(stateful_dict, user_input):
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
-		word1 = user_input_lst[0].lower()
+		n = 0
+		for word in user_input_lst:
+				word = word.lower()
+				if word in abreviations_dict:
+						word = abreviations_dict[word]
+				user_input_lst[n] = word
+				n += 1
+
+##		word1 = user_input_lst[0].lower()
+		word1 = user_input_lst[0]
 
 
 ##		if len(user_input_lst) == 1: # new code start
 
 
-		if word1 in one_word_only_lst:
+		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
 				if word1 == 'score':
 						buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
 				elif word1 == 'version':
 						buffer(stateful_dict, stateful_dict['version'])
 				elif word1 == 'inventory':
 						inventory(stateful_dict)
+				elif word1 == 'look':
+						room_obj.examine(stateful_dict)
+				return
+
 		else:
+
+				if len(user_input_lst) == 1 and word1 in one_word_convert_dict:
+						user_input_lst.append(word1)
+						user_input_lst[0] = one_word_convert_dict[word1]
+						word1 = user_input_lst[0]
 
 				if len(user_input_lst) > 1:
 						word2 = user_input_lst[1].lower()
@@ -332,8 +366,8 @@ def interpreter(stateful_dict, user_input):
 						word2 = "blank"
 				if word1 == 'go':
 						getattr(room_obj, word1)(word2, stateful_dict)
-				elif word1 == 'look':
-						room_obj.examine(stateful_dict)
+##				elif word1 == 'look':
+##						room_obj.examine(stateful_dict)
 				else:
 						try:
 								word2_obj = str_to_class(word2)

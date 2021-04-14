@@ -127,23 +127,23 @@
 #		DONE: Found Jeffery Armstrong from 2013 PyOhio Text Adv: https://github.com/ArmstrongJ?tab=overview&from=2021-03-01&to=2021-03-06
 #		NEXT: Understand robotadventure code better... learn about interpreter, DB, and JSON descriptions
 
-# new ideas:
-#		use a display_intro function
-# 	import pprtint from pprint | pprint(vars(<object>))
-#		check https://github.com/ArmstrongJ/pyohio2013
-#		get to know cmd module - can cmd be used with flask??
-# 	rooms to have lists of neighbors, objects, characters
-#		store rooms in json using json module? (import json) [see adv OOP at 15:30]
-#		room descriptions in json but then json-based rooms in sql DB??
-#		read through 2013 code in detail!!!
-#		make a copy of game DB for each player - enables "saved game"... 
-#		but will still need to differentiate static from stateful?
-#		modules for making file copy: tempfile, shutil
-#		curses module for status bar ??
-#		"nltk" (?) for interpreter??
-#		sqlite3 for DB?
-#		check out "robotadventure" from end of 2013 presentation
-#		how to eliminate eval()
+new ideas:
+	use a display_intro function
+	import pprtint from pprint | pprint(vars(<object>))
+	check https://github.com/ArmstrongJ/pyohio2013
+	get to know cmd module - can cmd be used with flask??
+	rooms to have lists of neighbors, objects, characters
+	store rooms in json using json module? (import json) [see adv OOP at 15:30]
+	room descriptions in json but then json-based rooms in sql DB??
+	read through 2013 code in detail!!!
+	make a copy of game DB for each player - enables "saved game"... 
+	but will still need to differentiate static from stateful?
+	modules for making file copy: tempfile, shutil
+	curses module for status bar ??
+	"nltk" (?) for interpreter??
+	sqlite3 for DB?
+	check out "robotadventure" from end of 2013 presentation
+	how to eliminate eval()
 
 Decisions:
 	No need for curses in a flask app
@@ -223,15 +223,14 @@ DONE: 0) Functionalize Interpreter and use out_buff
 DONE: 0.2) Should burt be an object??? (for now, No)
 DONE: 0.3) Create a list of true one-word commands from dkv2:
 	DONE: simple, true one-word commands: 'score', 'version'
-	DONE: complex, true, one-word commands:	'inventory'
+	DONE: complex, true, one-word commands:	'inventory', 'look'
 DONE: 0.31) Concept of 'universal scope' variables which should always be viewable - check dkv2
 	Things burt always has with him: 'backpack', 'burt', 'hand', 'conscience' 
 	Meta-game entities that should always be available: 'credits', 'help' 
-0.32) one-word commands to be converted to two words
+DONE: 0.315) think through synonyms (e.g. 'n' == 'north' == 'go north' ) (n, s, e, w, i = inventory)
+DONE: 0.32) one-word commands to be converted to two words
 	simple: 'help', 'credits', 'north', 'south', 'east', 'west'
-	complex two-word conversions: 'look'
-0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
-0.4) think through synonyms (e.g. 'n' == 'north' == 'go north' ) (n, s, e, w, i = inventory)
+DONE: 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
 0.6) time to implement backpack?
 0.8) fix 'quit'
 0.9 fix 'start'
