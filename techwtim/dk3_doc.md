@@ -115,17 +115,17 @@
 #	DONE: Functionalize container scan, perhaps look in room first
 
 
-# At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
-#		DONE: Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
-#			Basic but good start
-#		DONE: OOP text adv tut: https://youtu.be/VxhZZHnig8U
-#			I can't stand this instructor's code style - more lessons after this one but can't face them
-#		DONE: 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
-#			Great lesson! But all about console so need to pick and choose ideas
-#		NOTE: Did a bit of research - looks like cmd can be used with Flask; need to learn more about NLTK
-#		DONE: NLTK vid: https://youtu.be/1taCGR3_jlA
-#		DONE: Found Jeffery Armstrong from 2013 PyOhio Text Adv: https://github.com/ArmstrongJ?tab=overview&from=2021-03-01&to=2021-03-06
-#		NEXT: Understand robotadventure code better... learn about interpreter, DB, and JSON descriptions
+At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
+	DONE: Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
+		Basic but good start
+	DONE: OOP text adv tut: https://youtu.be/VxhZZHnig8U
+		I can't stand this instructor's code style - more lessons after this one but can't face them
+	DONE: 2013 advanced OOP Txt Adv: https://youtu.be/8CDePunJlck
+		Great lesson! But all about console so need to pick and choose ideas
+	NOTE: Did a bit of research - looks like cmd can be used with Flask; need to learn more about NLTK
+	DONE: NLTK vid: https://youtu.be/1taCGR3_jlA
+	DONE: Found Jeffery Armstrong from 2013 PyOhio Text Adv: https://github.com/ArmstrongJ?tab=overview&from=2021-03-01&to=2021-03-06
+	NEXT: Understand robotadventure code better... learn about interpreter, DB, and JSON descriptions
 
 new ideas:
 	use a display_intro function
@@ -231,6 +231,7 @@ DONE: 0.315) think through synonyms (e.g. 'n' == 'north' == 'go north' ) (n, s, 
 DONE: 0.32) one-word commands to be converted to two words
 	simple: 'help', 'credits', 'north', 'south', 'east', 'west'
 DONE: 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
+IN-PROC: 0.4) handle articles (a, an, the)
 0.6) time to implement backpack?
 0.8) fix 'quit'
 0.9 fix 'start'

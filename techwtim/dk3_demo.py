@@ -298,14 +298,16 @@ stateful_dict = {
 		'version' : '3.01'
 		}
 
-#interpreter words
+#interpreter vocab
 one_word_only_lst = ['score', 'version', 'inventory', 'look']
+articles_lst = ['a', 'an', 'the']
 abreviations_dict = {
 		'n' : 'north',
 		's' : 'south',
 		'e' : 'east',
 		'w' : 'west',
 		'i' : 'inventory',
+		'l' : 'look',
 		'get' : 'take'
 }
 one_word_convert_dict = {
@@ -316,9 +318,6 @@ one_word_convert_dict = {
 		'east' : 'go',
 		'west' : 'go'
 }
-one_word_dict = {
-		'look' : 'room_obj.examine(stateful_dict)' # probably not the right approach
-}
 
 
 # interpreter function
@@ -327,10 +326,14 @@ def interpreter(stateful_dict, user_input):
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
+
 		n = 0
 		for word in user_input_lst:
 				word = word.lower()
-				if word in abreviations_dict:
+				if word in articles_lst:
+						del user_input_lst[n]
+						n -= 1
+				elif word in abreviations_dict:
 						word = abreviations_dict[word]
 				user_input_lst[n] = word
 				n += 1
