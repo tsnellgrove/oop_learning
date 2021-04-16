@@ -325,26 +325,26 @@ def interpreter(stateful_dict, user_input):
 		room_obj = stateful_dict['room']
 		lst = []
 		lst.append(user_input)
-		user_input_lst = lst[0].split()
+		user_input_lst = lst[0].split() # convert user input string into word list
 
-		n = 0
+		n = 0 # convert all words to lower case and substitute abreviations
 		for word in user_input_lst:
-				word = word.lower()
-				if word in articles_lst:
-						del user_input_lst[n]
-						n -= 1
-				elif word in abreviations_dict:
+				word = word.lower()	
+				if word in abreviations_dict:
 						word = abreviations_dict[word]
 				user_input_lst[n] = word
 				n += 1
 
-##		word1 = user_input_lst[0].lower()
+		for article in articles_lst: # strip out articles
+				user_input_lst = [word for word in user_input_lst if word != article]
+ 
+		if len(user_input_lst) < 1: # handle case where the _only_ input is articles
+				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
+				return 
+
 		word1 = user_input_lst[0]
 
-
-##		if len(user_input_lst) == 1: # new code start
-
-
+		# handle true one-word commands
 		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
 				if word1 == 'score':
 						buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
@@ -357,7 +357,7 @@ def interpreter(stateful_dict, user_input):
 				return
 
 		else:
-
+				# convert implicit one-word commands into explecit two-word commands
 				if len(user_input_lst) == 1 and word1 in one_word_convert_dict:
 						user_input_lst.append(word1)
 						user_input_lst[0] = one_word_convert_dict[word1]
@@ -369,8 +369,6 @@ def interpreter(stateful_dict, user_input):
 						word2 = "blank"
 				if word1 == 'go':
 						getattr(room_obj, word1)(word2, stateful_dict)
-##				elif word1 == 'look':
-##						room_obj.examine(stateful_dict)
 				else:
 						try:
 								word2_obj = str_to_class(word2)

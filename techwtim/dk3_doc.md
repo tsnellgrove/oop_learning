@@ -100,19 +100,19 @@
 # DONE: Can't examine items in open containers... 
 #		need to add open container contents to examine_lst
 
-# DONE: Redirect prints to buffer
-# DONE: Create stateful_dict['out_buff']
-# DONE: Create buffer() helper function
-#	DONE: "Bufferize" classes ViewOnly and Writing
-# DONE: "Bufferize" classes Room and Item
-# DONE: "Bufferize" class Door method examine
-# DONE: "Bufferize" class Door remaining methods
+DONE: Redirect prints to buffer
+DONE: Create stateful_dict['out_buff']
+DONE: Create buffer() helper function
+DONE: "Bufferize" classes ViewOnly and Writing
+DONE: "Bufferize" classes Room and Item
+DONE: "Bufferize" class Door method examine
+DONE: "Bufferize" class Door remaining methods
 
-# DONE: functionalize interpreter
-# DONE: "Bufferize" interpreter
+DONE: functionalize interpreter
+DONE: "Bufferize" interpreter
 
-# DONE: Added open containers to read scope 
-#	DONE: Functionalize container scan, perhaps look in room first
+DONE: Added open containers to read scope 
+DONE: Functionalize container scan, perhaps look in room first
 
 
 At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
@@ -231,10 +231,11 @@ DONE: 0.315) think through synonyms (e.g. 'n' == 'north' == 'go north' ) (n, s, 
 DONE: 0.32) one-word commands to be converted to two words
 	simple: 'help', 'credits', 'north', 'south', 'east', 'west'
 DONE: 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
-IN-PROC: 0.4) handle articles (a, an, the)
+DONE: 0.4) handle articles (a, an, the)
 0.6) time to implement backpack?
-0.8) fix 'quit'
-0.9 fix 'start'
+0.7) convert to true flask vs. app structure
+	0.73) fix 'quit'
+	0.76 fix 'start'
 1) Every noun as an obj_name, full_name, root_name
 2) All one_word commands => 1_word function
 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
