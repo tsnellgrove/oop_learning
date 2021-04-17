@@ -241,6 +241,7 @@ TBD: Std solution for declaring obj variables with reciprocal properties (e.g. w
 TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
 	Perhaps the key is to make creatures behave as state machines... 
 	each has conditions under which they will guard, attack, gift, etc..
+	Also room 'events' with conditionals?
 
 
 Some Day Maybe
