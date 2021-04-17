@@ -68,17 +68,17 @@
 # DONE: Implement / Troubleshoot 'close' case for containers
 # NOTE: Implemented close reduction of room_objects via sets which leads to re-order
 
-# DONE: Reconsider restricting 'features' to class Room using hasattr
-# DONE: dis-allow locking when Door / Container object is open?
-# DONE: Represent container elements as sub elements of container in room
-# NOTE: Now I have a few more container problems:
-# DONE: First I need to make items in containers takable... 
-#		but not list them in the room_objects inventory... 
-#		perhaps I have an open_container_obj list? 
-#		Or perhaps better yet, 
-#		dynamically add contents of open containers to takeable scope? [YES!!]
-# IDEA: Next, when I take the item from the container,
-#		I need to remove it from <container>.contains
+DONE: Reconsider restricting 'features' to class Room using hasattr
+DONE: dis-allow locking when Door / Container object is open?
+DONE: Represent container elements as sub elements of container in room
+NOTE: Now I have a few more container problems:
+DONE: First I need to make items in containers takable... 
+	but not list them in the room_objects inventory... 
+	perhaps I have an open_container_obj list? 
+	Or perhaps better yet, 
+	dynamically add contents of open containers to takeable scope? [YES!!]
+IDEA: Next, when I take the item from the container,
+	I need to remove it from <container>.contains
 # DONE: I think this in turn means 
 #		that the *item* needs to know what container it's in (like writing)?...
 #		No... let's keep items 'dumb'... 
@@ -196,29 +196,7 @@ DONE: take => check room_stuff first
 DONE: Extend use of open_cont_scan to all methods (how?)
 DONE: Std solution for null for writing (vs. text 'null') => None
 
-TBD: Interpreter review!!!
-TBD: Inventory command!!
-TBD: Put command
-TBD: Implement formal flask code vs. app separation
-
-TBD: How to handle a container in a container?
-	IDEA: Only closed containers allowed in containers?
-	IDEA: You can't open a container in a container?
-
-TBD: Put client-server structure in place early!!
-
-Expert Questions:
-TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
-TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
-
-
-Some Day Maybe
-TBD: Implment container.put(item) ???
-TBD: Is the Item class worth having???
-TBD: room.room_stuf => room.room_obj_lst ??
-
-****** Interpreter Thoughts #
-
+*** Interpreter and Origanizational Coding ***
 DONE: 0) Functionalize Interpreter and use out_buff
 DONE: 0.2) Should burt be an object??? (for now, No)
 DONE: 0.3) Create a list of true one-word commands from dkv2:
@@ -232,7 +210,9 @@ DONE: 0.32) one-word commands to be converted to two words
 	simple: 'help', 'credits', 'north', 'south', 'east', 'west'
 DONE: 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
 DONE: 0.4) handle articles (a, an, the)
-0.6) time to implement backpack?
+DONE: 0.6) time to implement backpack?
+0.63) Every scope search happens in a room, and every room has a feature list - so why are features different in scope function?
+0.65) review dkv2 verb methods... maybe move fail statements to top??
 0.7) convert to true flask vs. app structure
 	0.73) fix 'quit'
 	0.76 fix 'start'
@@ -245,3 +225,27 @@ DONE: 0.4) handle articles (a, an, the)
 7) If no prep => verb_noun function
 8) If prep: Identify direct object and => prep_sentence function
 NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
+
+TBD: Interpreter review!!!
+TBD: Put command
+TBD: Implement formal flask code vs. app separation
+
+TBD: How to handle a container in a container?
+	IDEA: Only closed containers allowed in containers?
+	IDEA: You can't open a container in a container?
+
+TBD: Put client-server structure in place early!!
+
+Expert Questions:
+TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
+TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
+	Perhaps the key is to make creatures behave as state machines... 
+	each has conditions under which they will guard, attack, gift, etc..
+
+
+Some Day Maybe
+TBD: Implment container.put(item) ???
+TBD: Is the Item class worth having???
+TBD: room.room_stuf => room.room_obj_lst ??
+
+

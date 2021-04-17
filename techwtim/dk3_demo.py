@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 14, 2021
+# date: Apr 17, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -44,10 +44,12 @@ def objlst_to_strlst(obj_lst):
 def scope_check(obj, stateful_dict, do_output):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
+		backpack_lst = stateful_dict['backpack']
 		universal_lst = stateful_dict['universal']
 		room_obj_lst = room_obj.room_stuff
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
-		scope_lst = room_obj_lst + hand_lst + universal_lst + open_cont_obj_lst
+		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+						+ universal_lst + open_cont_obj_lst)
 		scope_lst.append(room_obj)
 		if hasattr(room_obj, 'features'):
 				features_lst = room_obj.features
@@ -70,11 +72,19 @@ def container_desc(cont_obj, stateful_dict):
 
 def inventory(stateful_dict):
 		hand_obj_lst = stateful_dict['hand']
+		backpack_str_lst = objlst_to_strlst(stateful_dict['backpack'])
+
 		if len(hand_obj_lst) == 0:
 				hand_str = "nothing"
 		else:
 				hand_str = "the " + stateful_dict['hand'][0].name
 		buffer(stateful_dict, "In your hand you are holding " + hand_str)
+
+		if len(backpack_str_lst) == 0:
+				backpack_str = "nothing"
+		else:
+				backpack_str = ', '.join(backpack_str_lst)
+		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
 
 # classes
@@ -142,24 +152,26 @@ class Item(ViewOnly):
 		def take(self, stateful_dict):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
+				backpack_lst = stateful_dict['backpack']
 				room_obj_lst = room_obj.room_stuff
-
 				if scope_check(self, stateful_dict, do_output=True):
 						if self.takeable:
-								if len(hand_lst) == 0:
-										hand_lst.append(self)
-										if self in room_obj_lst:
-												room_obj.room_stuff.remove(self)
-										else:
-												for obj in room_obj_lst:
-														if hasattr(obj, 'contains') \
-																		and len(obj.contains) > 0 \
-																		and obj.open_state == True:
-																if self in obj.contains:
-																		obj.contains.remove(self)
-										buffer(stateful_dict, "Taken")
+								if len(hand_lst) > 0:
+										stateful_dict['backpack'].append(hand_lst[0])
+										stateful_dict['hand'].remove(hand_lst[0])
+								hand_lst.append(self)
+								buffer(stateful_dict, "Taken")
+								if self in backpack_lst:
+										stateful_dict['backpack'].remove(self)								
+								elif self in room_obj_lst:
+										room_obj.room_stuff.remove(self)
 								else:
-										buffer(stateful_dict, "Your hand is full.")
+										for obj in room_obj_lst:
+												if hasattr(obj, 'contains') \
+																and len(obj.contains) > 0 \
+																and obj.open_state == True:
+														if self in obj.contains:
+																obj.contains.remove(self)
 						else:
 								buffer(stateful_dict, "You can't take the " + self.name)
 
@@ -274,7 +286,7 @@ gate = Door('gate', 'The front gate is massive and imposing', rusty_letters,
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		None, [dark_castle], [rusty_key, gate], {'north' : 'main_hall'}, {'north' : gate})
+		None, [dark_castle], [gate], {'north' : 'main_hall'}, {'north' : gate})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
 		None, [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : gate})
@@ -290,7 +302,7 @@ dwarven_runes.written_on = sword
 # stateful dictionary of persistent values
 stateful_dict = {
 		'hand' : [], 
-		'backpack' : [],
+		'backpack' : [rusty_key],
 		'universal' : [backpack, burt, hand, conscience, help, credits],
 		'room' : entrance,
 		'out_buff' : "",
