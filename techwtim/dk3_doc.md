@@ -79,15 +79,15 @@ DONE: First I need to make items in containers takable...
 	dynamically add contents of open containers to takeable scope? [YES!!]
 IDEA: Next, when I take the item from the container,
 	I need to remove it from <container>.contains
-# DONE: I think this in turn means 
-#		that the *item* needs to know what container it's in (like writing)?...
-#		No... let's keep items 'dumb'... 
-#		it's the room's job to know what's in the room 
-#		and it's the container's job to know what's in the container... 
-#		to implement this we just reverse the take scope process... 
-#		we start with a for loop of open containers and remove from there if possible
-#		else remove from room_objects
-# NOTE: I didn't have these issues in the old Dark Castle 
+DONE: I think this in turn means 
+	that the *item* needs to know what container it's in (like writing)?...
+	No... let's keep items 'dumb'... 
+	it's the room's job to know what's in the room 
+	and it's the container's job to know what's in the container... 
+	to implement this we just reverse the take scope process... 
+	we start with a for loop of open containers and remove from there if possible
+	else remove from room_objects
+NOTE: I didn't have these issues in the old Dark Castle 
 #		because I had no 'close' command... 
 #		so I could safely dump the contents of any container 
 #		into room_obj the moment the container was openned. 
@@ -211,10 +211,10 @@ DONE: 0.32) one-word commands to be converted to two words
 DONE: 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
 DONE: 0.4) handle articles (a, an, the)
 DONE: 0.6) time to implement backpack?
-0.63) Every scope search happens in a room, and every room has a feature list - so why are features different in scope function?
+DONE: 0.63) Every scope search happens in a room, and every room has a feature list - so why are features different in scope function?
 0.65) review dkv2 verb methods... maybe move fail statements to top??
 0.7) convert to true flask vs. app structure
-	0.73) fix 'quit'
+	0.73) fix 'quit' and add 'q' abreviation
 	0.76 fix 'start'
 1) Every noun as an obj_name, full_name, root_name
 2) All one_word commands => 1_word function

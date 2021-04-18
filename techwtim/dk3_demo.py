@@ -47,13 +47,12 @@ def scope_check(obj, stateful_dict, do_output):
 		backpack_lst = stateful_dict['backpack']
 		universal_lst = stateful_dict['universal']
 		room_obj_lst = room_obj.room_stuff
+		features_lst = room_obj.features
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
-						+ universal_lst + open_cont_obj_lst)
+						+ universal_lst + features_lst + open_cont_obj_lst)
 		scope_lst.append(room_obj)
-		if hasattr(room_obj, 'features'):
-				features_lst = room_obj.features
-				scope_lst = scope_lst + features_lst
+
 		if obj in scope_lst:
 				in_scope = True
 		else:
@@ -320,7 +319,8 @@ abreviations_dict = {
 		'w' : 'west',
 		'i' : 'inventory',
 		'l' : 'look',
-		'get' : 'take'
+		'get' : 'take',
+		'x' : 'examine'
 }
 one_word_convert_dict = {
 		'help' : 'examine',
