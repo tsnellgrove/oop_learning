@@ -88,17 +88,17 @@ DONE: I think this in turn means
 	we start with a for loop of open containers and remove from there if possible
 	else remove from room_objects
 NOTE: I didn't have these issues in the old Dark Castle 
-#		because I had no 'close' command... 
-#		so I could safely dump the contents of any container 
-#		into room_obj the moment the container was openned. 
-#		Now that containers can be closed I need to actually solve this problem.
-# NOTE2: Should writing work this same way?
-#		No - I think it makes sense for writing to know what it's on..
-#		Because the two are entwined... 
-#		the writing on one object can never move to another
-# DONE: Add 'the container is empty' description for empty containers
-# DONE: Can't examine items in open containers... 
-#		need to add open container contents to examine_lst
+	because I had no 'close' command... 
+	so I could safely dump the contents of any container 
+	into room_obj the moment the container was openned. 
+	Now that containers can be closed I need to actually solve this problem.
+NOTE2: Should writing work this same way?
+	No - I think it makes sense for writing to know what it's on..
+	Because the two are entwined... 
+	the writing on one object can never move to another
+DONE: Add 'the container is empty' description for empty containers
+DONE: Can't examine items in open containers... 
+	need to add open container contents to examine_lst
 
 DONE: Redirect prints to buffer
 DONE: Create stateful_dict['out_buff']
@@ -196,7 +196,7 @@ DONE: take => check room_stuff first
 DONE: Extend use of open_cont_scan to all methods (how?)
 DONE: Std solution for null for writing (vs. text 'null') => None
 
-*** Interpreter and Origanizational Coding ***
+*** Interpreter Basics ***
 DONE: 0) Functionalize Interpreter and use out_buff
 DONE: 0.2) Should burt be an object??? (for now, No)
 DONE: 0.3) Create a list of true one-word commands from dkv2:
@@ -210,12 +210,21 @@ DONE: 0.32) one-word commands to be converted to two words
 	simple: 'help', 'credits', 'north', 'south', 'east', 'west'
 DONE: 0.33: first handle true one-word commands, then dict lookup word 2 for converted words and pass to 2-word code
 DONE: 0.4) handle articles (a, an, the)
+
+*** Time for some code maintenance / plubming ***
 DONE: 0.6) time to implement backpack?
 DONE: 0.63) Every scope search happens in a room, and every room has a feature list - so why are features different in scope function?
-0.65) review dkv2 verb methods... maybe move fail statements to top??
+IN-PROC: 0.65) review dkv2 verb methods... maybe move fail statements to top??
+		DONE: Door Class
+		TBD: Item Class
+		TBD: Other Classes
+6.7) Consider removing buffer from scope_check function... reads more clearly inline in method
 0.7) convert to true flask vs. app structure
+	0.71) introduce end function
 	0.73) fix 'quit' and add 'q' abreviation
 	0.76 fix 'start'
+
+*** Interpreter Adjectives & Preposistions ***
 1) Every noun as an obj_name, full_name, root_name
 2) All one_word commands => 1_word function
 3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
@@ -233,6 +242,7 @@ TBD: Implement formal flask code vs. app separation
 TBD: How to handle a container in a container?
 	IDEA: Only closed containers allowed in containers?
 	IDEA: You can't open a container in a container?
+TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door open method)
 
 TBD: Put client-server structure in place early!!
 

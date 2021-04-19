@@ -195,61 +195,62 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				if scope_check(self, stateful_dict, do_output=False):
-						if self.open_state:
-								buffer(stateful_dict, "The " + self.name + " is open.")
-								if hasattr(self, 'contains'):
-										container_desc(self, stateful_dict)
-						else:
-								buffer(stateful_dict, "The " + self.name + " is closed.")
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						pass
+				elif self.open_state == False:
+						buffer(stateful_dict, "The " + self.name + " is closed.")
+				else:
+						buffer(stateful_dict, "The " + self.name + " is open.")
+						if hasattr(self, 'contains'):
+								container_desc(self, stateful_dict)
 
 		def unlock(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
-				if scope_check(self, stateful_dict, do_output=True):
-						if self.unlock_state == False:
-								if self.key in hand_lst:
-										buffer(stateful_dict, "Unlocked")
-										self.unlock_state = True
-								else:
-										buffer(stateful_dict, "You aren't holding the key.")
-						else:
-								buffer(stateful_dict, "The " + self.name + " is already unlocked.")
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				elif self.unlock_state == True:
+						buffer(stateful_dict, "The " + self.name + " is already unlocked.")
+				elif self.key not in hand_lst:
+						buffer(stateful_dict, "You aren't holding the key.")
+				else:
+						buffer(stateful_dict, "Unlocked")
+						self.unlock_state = True
 
 		def open(self, stateful_dict):
-				if scope_check(self, stateful_dict, do_output=True):
-						if self.open_state == False:
-								if self.unlock_state == True:
-										self.open_state = True
-										buffer(stateful_dict, "Openned")
-										if hasattr(self, 'contains'):
-												container_desc(self, stateful_dict)
-								else:
-										buffer(stateful_dict, "The " + self.name + " is locked.")
-						else:
-								buffer(stateful_dict, "The " + self.name + " is already open.")
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				elif self.open_state == True:
+						buffer(stateful_dict, "The " + self.name + " is already open.")
+				elif self.unlock_state == False:
+						buffer(stateful_dict, "The " + self.name + " is locked.")
+				else:
+						self.open_state = True
+						buffer(stateful_dict, "Openned")
+						if hasattr(self, 'contains'):
+								container_desc(self, stateful_dict)
 
 		def close(self, stateful_dict):
-				if scope_check(self, stateful_dict, do_output=True):
-						if self.open_state:
-								self.open_state = False
-								buffer(stateful_dict, "Closed")
-						else:
-								buffer(stateful_dict, "The " + self.name + " is already closed.")
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				elif self.open_state == False:
+						buffer(stateful_dict, "The " + self.name + " is already closed.")
+				else:
+						self.open_state = False
+						buffer(stateful_dict, "Closed")
 
 		def lock(self, stateful_dict):
-				if scope_check(self, stateful_dict, do_output=True):
-						if self.open_state == False:
-								hand_lst = stateful_dict['hand']
-								if self.key in hand_lst:
-										if self.unlock_state:
-												buffer(stateful_dict, "Locked")
-												self.unlock_state = False
-										else:
-												buffer(stateful_dict, "The " + self.name + " is already locked.")
-								else:
-										buffer(stateful_dict, "You aren't holding the key.")
-						else:
-								buffer(stateful_dict, "You can't lock something that's open.")
+				hand_lst = stateful_dict['hand']
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				elif self.open_state == True:
+						buffer(stateful_dict, "You can't lock something that's open.")						
+				elif self.key not in hand_lst:
+						buffer(stateful_dict, "You aren't holding the key.")
+				elif self.unlock_state == False:
+						buffer(stateful_dict, "The " + self.name + " is already locked.")
+				else:
+						buffer(stateful_dict, "Locked")
+						self.unlock_state = False
 
 class Container(Door):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key, takeable, contains):
@@ -398,6 +399,7 @@ def interpreter(stateful_dict, user_input):
 # print("TEST: " + stateful_dict['room'].desc)
 # rusty_key.take(stateful_dict)
 # sword.examine(stateful_dict)
+chest.unlock(stateful_dict)
 
 
 # start text
