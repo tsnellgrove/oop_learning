@@ -61,12 +61,12 @@
 #		because otherwise there is no way to include it in examine_lst
 # DONE: Add presence checking for examine on Door and Room classes
 
-# DONE: Implement containers
-# DONE: Decide how container contents should be presented and added to examine and take scope
-# DEC: Show container contents with hasattr upon open and then add to room objects
-# DONE: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
-# DONE: Implement / Troubleshoot 'close' case for containers
-# NOTE: Implemented close reduction of room_objects via sets which leads to re-order
+DONE: Implement containers
+DONE: Decide how container contents should be presented and added to examine and take scope
+DEC: Show container contents with hasattr upon open and then add to room objects
+DONE: Implement 'open' case for containers (troubleshoot and implement case of empty containers)
+DONE: Implement / Troubleshoot 'close' case for containers
+NOTE: Implemented close reduction of room_objects via sets which leads to re-order
 
 DONE: Reconsider restricting 'features' to class Room using hasattr
 DONE: dis-allow locking when Door / Container object is open?
@@ -216,10 +216,11 @@ DONE: 0.6) time to implement backpack?
 DONE: 0.63) Every scope search happens in a room, and every room has a feature list - so why are features different in scope function?
 IN-PROC: 0.65) review dkv2 verb methods... maybe move fail statements to top??
 		DONE: Door Class
-		TBD: Item Class
-		TBD: Other Classes
-6.7) Consider removing buffer from scope_check function... reads more clearly inline in method
-0.7) convert to true flask vs. app structure
+		DONE: Item Class
+		DONE: Room Class
+		DONE: Other Classes
+6.7) Remove buffer from scope_check function... reads more clearly inline in method
+0.7) convert to true flask vs. app structure (but don't worry about passing yet)
 	0.71) introduce end function
 	0.73) fix 'quit' and add 'q' abreviation
 	0.76 fix 'start'

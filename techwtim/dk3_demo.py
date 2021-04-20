@@ -59,7 +59,7 @@ def scope_check(obj, stateful_dict, do_output):
 				in_scope = False
 				if do_output:
 						buffer(stateful_dict, "You can't see a " + obj.name + " here.")
-		return in_scope
+		return in_scope # could just 'return obj in scope_lst'
 
 def container_desc(cont_obj, stateful_dict):
 		if len(cont_obj.contains) == 0:
@@ -94,7 +94,9 @@ class ViewOnly(object):
 				self.writing = writing
 
 		def examine(self, stateful_dict):
-				if scope_check(self, stateful_dict, do_output=True):
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				else:
 						buffer(stateful_dict, self.desc)
 						if self.writing is not None:
 								output = "On the " + self.name + " you see: " + self.writing.name
@@ -106,10 +108,10 @@ class Writing(ViewOnly):
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
-				if scope_check(self.written_on, stateful_dict, do_output=False):
-						buffer(stateful_dict, self.desc)
-				else:
+				if scope_check(self.written_on, stateful_dict, do_output=False) == False:
 						buffer(stateful_dict, "You can't see any " + self.name + " here.")
+				else:
+						buffer(stateful_dict, self.desc)
 
 class Room(ViewOnly):
 		def __init__(self, name, desc, writing, features, room_stuff, valid_paths, door_paths):
@@ -147,44 +149,46 @@ class Item(ViewOnly):
 		def __init__(self, name, desc, writing, takeable):
 				super().__init__(name, desc, writing)
 				self.takeable = takeable
-				
+
 		def take(self, stateful_dict):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
 				backpack_lst = stateful_dict['backpack']
 				room_obj_lst = room_obj.room_stuff
-				if scope_check(self, stateful_dict, do_output=True):
-						if self.takeable:
-								if len(hand_lst) > 0:
-										stateful_dict['backpack'].append(hand_lst[0])
-										stateful_dict['hand'].remove(hand_lst[0])
-								hand_lst.append(self)
-								buffer(stateful_dict, "Taken")
-								if self in backpack_lst:
-										stateful_dict['backpack'].remove(self)								
-								elif self in room_obj_lst:
-										room_obj.room_stuff.remove(self)
-								else:
-										for obj in room_obj_lst:
-												if hasattr(obj, 'contains') \
-																and len(obj.contains) > 0 \
-																and obj.open_state == True:
-														if self in obj.contains:
-																obj.contains.remove(self)
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				elif self.takeable == False:
+						buffer(stateful_dict, "You can't take the " + self.name)
+				else:
+						if len(hand_lst) > 0: # if hand not empty move item to backpack
+								stateful_dict['backpack'].append(hand_lst[0])
+								stateful_dict['hand'].remove(hand_lst[0])
+						hand_lst.append(self) # put taken item in hand
+						buffer(stateful_dict, "Taken")
+						if self in backpack_lst: # if taken from backpack, remove from backpack
+								stateful_dict['backpack'].remove(self)								
+						elif self in room_obj_lst: # if taken from room, remove from room
+								room_obj.room_stuff.remove(self)
 						else:
-								buffer(stateful_dict, "You can't take the " + self.name)
+								for obj in room_obj_lst: # eles remove item from the container it's in
+										if hasattr(obj, 'contains') \
+														and len(obj.contains) > 0 \
+														and obj.open_state == True:
+												if self in obj.contains:
+														obj.contains.remove(self)
 
 		def drop(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				room_obj = stateful_dict['room']
-				if scope_check(self, stateful_dict, do_output=True):
-						if self in hand_lst:
-								hand_lst.remove(self)
-								room_obj.room_stuff.append(self)
-								buffer(stateful_dict, "Dropped")
-						else:
-								output = "You're not holding the " + self.name + " in your hand."
-								buffer(stateful_dict, output)
+				if scope_check(self, stateful_dict, do_output=False) == False:
+						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+				elif self not in hand_lst:
+						output = "You're not holding the " + self.name + " in your hand."
+						buffer(stateful_dict, output)
+				else:
+						hand_lst.remove(self)
+						room_obj.room_stuff.append(self)
+						buffer(stateful_dict, "Dropped")
 
 class Door(ViewOnly):
 		def __init__(self, name, desc, writing, open_state, unlock_state, key):
