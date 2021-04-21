@@ -51,15 +51,15 @@
 # DONE: Implement 'close'
 # DONE: Implement 'lock'
 
-# DONE: Implement features
-# DONE: Writing as class
-# DONE: Implement read for ViewOnly class
-# DONE: Extend examine method for classes Room and Door (vs. replace)
-# DONE: Test read for Door class
-# DONE: Move 'features' to Room class (since we only examine room features)
-# DONE: Re-add 'features' to ViewOnly class - 
-#		because otherwise there is no way to include it in examine_lst
-# DONE: Add presence checking for examine on Door and Room classes
+DONE: Implement features
+DONE: Writing as class
+DONE: Implement read for ViewOnly class
+DONE: Extend examine method for classes Room and Door (vs. replace)
+DONE: Test read for Door class
+DONE: Move 'features' to Room class (since we only examine room features)
+DONE: Re-add 'features' to ViewOnly class - 
+	because otherwise there is no way to include it in examine_lst
+DONE: Add presence checking for examine on Door and Room classes
 
 DONE: Implement containers
 DONE: Decide how container contents should be presented and added to examine and take scope
@@ -214,12 +214,12 @@ DONE: 0.4) handle articles (a, an, the)
 *** Time for some code maintenance / plubming ***
 DONE: 0.6) time to implement backpack?
 DONE: 0.63) Every scope search happens in a room, and every room has a feature list - so why are features different in scope function?
-IN-PROC: 0.65) review dkv2 verb methods... maybe move fail statements to top??
+DONE: 0.65) review dkv2 verb methods... maybe move fail statements to top??
 		DONE: Door Class
 		DONE: Item Class
 		DONE: Room Class
 		DONE: Other Classes
-6.7) Remove buffer from scope_check function... reads more clearly inline in method
+DONE: 6.7) Remove buffer from scope_check function... reads more clearly inline in method
 0.7) convert to true flask vs. app structure (but don't worry about passing yet)
 	0.71) introduce end function
 	0.73) fix 'quit' and add 'q' abreviation
