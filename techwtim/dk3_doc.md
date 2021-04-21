@@ -247,6 +247,8 @@ TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door 
 
 TBD: Put client-server structure in place early!!
 
+IDEA: descriptions in separate descript_dict to be loaded from static text
+
 Expert Questions:
 TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
 TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
