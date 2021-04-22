@@ -46,10 +46,10 @@
 # IDEA: nead a name... maybe 'features'
 # IDEA: this could also be used for control panel
 
-# DONE: Extend examine() for class Door to include open or close state
-# DONE: Fix read_writing => read
-# DONE: Implement 'close'
-# DONE: Implement 'lock'
+DONE: Extend examine() for class Door to include open or close state
+DONE: Fix read_writing => read
+DONE: Implement 'close'
+DONE: Implement 'lock'
 
 DONE: Implement features
 DONE: Writing as class
@@ -220,10 +220,13 @@ DONE: 0.65) review dkv2 verb methods... maybe move fail statements to top??
 		DONE: Room Class
 		DONE: Other Classes
 DONE: 6.7) Remove buffer from scope_check function... reads more clearly inline in method
-0.7) convert to true flask vs. app structure (but don't worry about passing yet)
+IN-PROC: 0.7) convert to true flask vs. app structure (but don't worry about passing yet) [see version 2.1.4 for ideas]
 	0.71) introduce end function
+	introduce move counter
 	0.73) fix 'quit' and add 'q' abreviation
 	0.76 fix 'start'
+	IDEA: descriptions in separate descript_dict to be loaded from static text
+
 
 *** Interpreter Adjectives & Preposistions ***
 1) Every noun as an obj_name, full_name, root_name
@@ -246,8 +249,6 @@ TBD: How to handle a container in a container?
 TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door open method)
 
 TBD: Put client-server structure in place early!!
-
-IDEA: descriptions in separate descript_dict to be loaded from static text
 
 Expert Questions:
 TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)

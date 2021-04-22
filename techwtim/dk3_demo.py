@@ -405,6 +405,21 @@ print("START: " + stateful_dict['out_buff'])
 # gate.lock(stateful_dict) # troubleshooting text
 
 
+# starting variables
+end_of_game = False # move to stateful_dict
+start_of_game = True # move to stateful_dict
+
+# While not end_of_game:
+#		if start_of_game:
+#				user_input = "start of game"
+#				start_of_game = False
+#		else:
+#				user_input = input('Type your command: ')
+#				interpreter(stateful_dict, user_input)
+#				print(stateful_dict['out_buff'])
+#print("THANKS FOR PLAYING!!")
+
+
 # main loop
 while True:
 #    print(stateful_dict) # troubleshooting text
