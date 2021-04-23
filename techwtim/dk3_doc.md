@@ -251,6 +251,12 @@ TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door 
 
 TBD: Put client-server structure in place early!!
 
+
+IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for moat ????
+	- default, default description, default method
+	- special event first time, seft_description, seft_method, count
+	- special event additional times, seat_description, seat_method, count
+
 Expert Questions:
 TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
 TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
