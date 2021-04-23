@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 17, 2021
+# date: Apr 23, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -93,17 +93,17 @@ def end(stateful_dict):
 #		title = static_dict['titles_dict'][title_score]
 
 		if game_ending == 'death':
-				buffer("You have died.")
+				buffer(stateful_dict, "You have died.")
 		elif game_ending == 'quit':
-				buffer("You have quit.")
+				buffer(stateful_dict, "You have quit.")
 		elif game_ending == 'won':
-				buffer("You have won!")
-		buffer("Your adventure ended after " + str(moves) + " moves.")
+				buffer(stateful_dict, "You have won!")
+		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
 #    print_score(state_dict, static_dict)
 #		buffer("Your title is: " + title)
 		if game_ending == 'won':
-				buffer(credits.examine(stateful_dict))
-		state_dict['end_of_game'] = True
+				buffer(stateful_dict, credits.examine(stateful_dict))
+		stateful_dict['end_of_game'] = True
 		return
 
 
@@ -365,6 +365,7 @@ one_word_convert_dict = {
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
+		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
 		room_obj = stateful_dict['room']
 		lst = []
 		lst.append(user_input)
@@ -398,6 +399,8 @@ def interpreter(stateful_dict, user_input):
 				elif word1 == 'look':
 						room_obj.examine(stateful_dict)
 				elif word1 == 'quit':
+						stateful_dict['game_ending'] = "quit"
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						end(stateful_dict)
 				return
 
@@ -422,56 +425,49 @@ def interpreter(stateful_dict, user_input):
 								except:
 										output = "You can't " + word1 + " with the " + word2 + "."
 										buffer(stateful_dict, output)
+										stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						except:
 								output = "There's no " + word2 + " here."
 								buffer(stateful_dict, output)
+								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 
 
 # test
 # print("TEST: " + stateful_dict['room'].desc)
 # rusty_key.take(stateful_dict)
 # sword.examine(stateful_dict)
-chest.unlock(stateful_dict)
+# chest.unlock(stateful_dict)
 
 
-# start text
-entrance.examine(stateful_dict)
-print("START: " + stateful_dict['out_buff'])
-# gate.lock(stateful_dict) # troubleshooting text
+#While True: # why error ???
+#		if start_of_game:
+#				user_input = "start of game"
+#				start_of_game = False
+#		else:
+#				user_input = input('Type your command: ')
+#				interpreter(stateful_dict, user_input)
+#				print(stateful_dict['out_buff'])
+#print("THANKS FOR PLAYING!!")
 
 
-# starting variables
-## end_of_game = False # move to stateful_dict
+# main loop
 start_of_game = True # move to stateful_dict
-
-While stateful_dict['end_of_game'] == False:
+while stateful_dict['end_of_game'] == False:
+		stateful_dict['out_buff'] = "" # resets buffer
 		if start_of_game:
-				user_input = "start of game"
+				entrance.examine(stateful_dict)
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
 				interpreter(stateful_dict, user_input)
-				print(stateful_dict['out_buff'])
+		print(stateful_dict['out_buff'])
 print("THANKS FOR PLAYING!!")
-
-
-# main loop
-##while True:
-#    print(stateful_dict) # troubleshooting text
-##		stateful_dict['out_buff'] = ""
-##		user_input = input('Type your command: ')
-##		if user_input == "quit":
-##				print("Goodbye!")
-##				break
-##		interpreter(stateful_dict, user_input)
-##		print(stateful_dict['out_buff'])
 
 
 # entrance.examine()
 # print(entrance.valid_paths)
-#entrance.go('south')
+# entrance.go('south')
 # entrance.go('north')
-
 
 # entrance.examine()
 # dark_castle.examine()
@@ -491,7 +487,6 @@ print("THANKS FOR PLAYING!!")
 # gate.open()
 # gate.open()
 # print(eval(room).room_stuff)
-
 
 # sword = Item('sword','The sword is shiny.', True, 5)
 # sword.examine()

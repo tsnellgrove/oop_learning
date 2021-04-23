@@ -37,14 +37,14 @@
 # DONE: Pass room variable to class methods (state_dict)
 #	DONE: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
 
-# DONE: Think through writing attribute for ViewOnly 
-#		(i.e. should be read dwarven_runes instead of read sword)
-# IDEA: Maybe what I want to do is create a method that can put one item *on* another... 
-#		so that I can put the writing *on* the item?
-# IDEA: Similar problem to a container... need a list of things that can be *on* the item - 
-# IDEA: should be at the ViewOnly level since many objects can have writing on them...
-# IDEA: nead a name... maybe 'features'
-# IDEA: this could also be used for control panel
+DONE: Think through writing attribute for ViewOnly 
+	(i.e. should be read dwarven_runes instead of read sword)
+IDEA: Maybe what I want to do is create a method that can put one item *on* another... 
+	so that I can put the writing *on* the item?
+IDEA: Similar problem to a container... need a list of things that can be *on* the item - 
+IDEA: should be at the ViewOnly level since many objects can have writing on them...
+IDEA: nead a name... maybe 'features'
+IDEA: this could also be used for control panel
 
 DONE: Extend examine() for class Door to include open or close state
 DONE: Fix read_writing => read
@@ -221,11 +221,12 @@ DONE: 0.65) review dkv2 verb methods... maybe move fail statements to top??
 		DONE: Other Classes
 DONE: 6.7) Remove buffer from scope_check function... reads more clearly inline in method
 IN-PROC: 0.7) convert to true flask vs. app structure (but don't worry about passing yet) [see version 2.1.4 for ideas]
-	0.71) introduce end function
-	introduce move counter
-	0.73) fix 'quit' and add 'q' abreviation
-	0.76 fix 'start'
+	DONE: 0.71) introduce end function
+	DONE: introduce move counter
+	DONE: 0.73) fix 'quit' and add 'q' abreviation
+	TBD: 0.76 fix 'start'
 	IDEA: descriptions in separate descript_dict to be loaded from static text
+	IDEA: static_dict ??
 
 
 *** Interpreter Adjectives & Preposistions ***
