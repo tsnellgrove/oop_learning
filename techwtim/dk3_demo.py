@@ -78,6 +78,34 @@ def inventory(stateful_dict):
 				backpack_str = ', '.join(backpack_str_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
+def end(stateful_dict):
+
+		score = stateful_dict['current_score']
+		moves = stateful_dict['move_counter']
+		game_ending = stateful_dict['game_ending']
+
+#		if score < 0:
+#				title_score = -10
+#		elif score == 0:
+#				title_score = 0
+#		else:
+#				title_score = math.ceil(score / 10) * 10
+#		title = static_dict['titles_dict'][title_score]
+
+		if game_ending == 'death':
+				buffer("You have died.")
+		elif game_ending == 'quit':
+				buffer("You have quit.")
+		elif game_ending == 'won':
+				buffer("You have won!")
+		buffer("Your adventure ended after " + str(moves) + " moves.")
+#    print_score(state_dict, static_dict)
+#		buffer("Your title is: " + title)
+		if game_ending == 'won':
+				buffer(credits.examine(stateful_dict))
+		state_dict['end_of_game'] = True
+		return
+
 
 # classes
 class ViewOnly(object):
@@ -304,11 +332,15 @@ stateful_dict = {
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 
-		'version' : '3.01'
+		'version' : '3.01',
+		'end_of_game' : False,
+		'current_score' : 0,
+		'move_counter' : 0,
+		'game_ending' : ""
 		}
 
 #interpreter vocab
-one_word_only_lst = ['score', 'version', 'inventory', 'look']
+one_word_only_lst = ['score', 'version', 'inventory', 'look', 'quit']
 articles_lst = ['a', 'an', 'the']
 abreviations_dict = {
 		'n' : 'north',
@@ -318,7 +350,8 @@ abreviations_dict = {
 		'i' : 'inventory',
 		'l' : 'look',
 		'get' : 'take',
-		'x' : 'examine'
+		'x' : 'examine',
+		'q' : 'quit'
 }
 one_word_convert_dict = {
 		'help' : 'examine',
@@ -364,6 +397,8 @@ def interpreter(stateful_dict, user_input):
 						inventory(stateful_dict)
 				elif word1 == 'look':
 						room_obj.examine(stateful_dict)
+				elif word1 == 'quit':
+						end(stateful_dict)
 				return
 
 		else:
@@ -406,30 +441,30 @@ print("START: " + stateful_dict['out_buff'])
 
 
 # starting variables
-end_of_game = False # move to stateful_dict
+## end_of_game = False # move to stateful_dict
 start_of_game = True # move to stateful_dict
 
-# While not end_of_game:
-#		if start_of_game:
-#				user_input = "start of game"
-#				start_of_game = False
-#		else:
-#				user_input = input('Type your command: ')
-#				interpreter(stateful_dict, user_input)
-#				print(stateful_dict['out_buff'])
-#print("THANKS FOR PLAYING!!")
+While stateful_dict['end_of_game'] == False:
+		if start_of_game:
+				user_input = "start of game"
+				start_of_game = False
+		else:
+				user_input = input('Type your command: ')
+				interpreter(stateful_dict, user_input)
+				print(stateful_dict['out_buff'])
+print("THANKS FOR PLAYING!!")
 
 
 # main loop
-while True:
+##while True:
 #    print(stateful_dict) # troubleshooting text
-		stateful_dict['out_buff'] = ""
-		user_input = input('Type your command: ')
-		if user_input == "quit":
-				print("Goodbye!")
-				break
-		interpreter(stateful_dict, user_input)
-		print(stateful_dict['out_buff'])
+##		stateful_dict['out_buff'] = ""
+##		user_input = input('Type your command: ')
+##		if user_input == "quit":
+##				print("Goodbye!")
+##				break
+##		interpreter(stateful_dict, user_input)
+##		print(stateful_dict['out_buff'])
 
 
 # entrance.examine()
