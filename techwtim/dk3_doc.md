@@ -225,6 +225,7 @@ IN-PROC: 0.7) convert to true flask vs. app structure (but don't worry about pas
 	DONE: introduce move counter
 	DONE: 0.73) fix 'quit' and add 'q' abreviation
 	DONE: 0.76 fix 'start'
+	DONE: add github remote
 	IDEA: descriptions in separate descript_dict to be loaded from static text (isolate data & code) ???
 			DONE: email Franco to ask about pythonic approach to storing objects with multi-line string attributes; maybe store as JSON and import?
 			TBD: Resolve use of descript_dict
