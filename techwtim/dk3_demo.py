@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 23, 2021
+# date: Apr 24, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -288,7 +288,7 @@ class Container(Door):
 dark_castle = ViewOnly('dark_castle', 'The evil Dark Castle looms above you', None)
 backpack = ViewOnly('backpack', "Your trusty, well-worn leather backpack", None)
 burt = ViewOnly('Burt', "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
-hand = ViewOnly('hand', "That is indeed your very own hand", None)
+fist = ViewOnly('fist', "That is indeed your very own fist", None)
 conscience = ViewOnly('conscience', "A tad murky Burt - what would your dear old Nana say?", None)
 help = ViewOnly('help', "Detailed help text for new players [to be written]", None)
 credits = ViewOnly('credits', "Standard credits from dkv2 + my 4 playtesters!", None)
@@ -328,7 +328,7 @@ dwarven_runes.written_on = sword
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, hand, conscience, help, credits],
+		'universal' : [backpack, burt, fist, conscience, help, credits],
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 
@@ -340,7 +340,7 @@ stateful_dict = {
 		}
 
 #interpreter vocab
-one_word_only_lst = ['score', 'version', 'inventory', 'look', 'quit']
+one_word_only_lst = ['score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
 articles_lst = ['a', 'an', 'the']
 abreviations_dict = {
 		'n' : 'north',
@@ -362,6 +362,9 @@ one_word_convert_dict = {
 		'west' : 'go'
 }
 
+descript_dict = {
+		'introduction' : "This is the introduction [to be written]"
+}
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
@@ -390,7 +393,12 @@ def interpreter(stateful_dict, user_input):
 
 		# handle true one-word commands
 		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
-				if word1 == 'score':
+				if word1 == 'xyzzy42':
+						buffer(stateful_dict, descript_dict["introduction"])
+						help.examine(stateful_dict)
+						buffer(stateful_dict, "")
+						entrance.examine(stateful_dict)
+				elif word1 == 'score':
 						buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
 				elif word1 == 'version':
 						buffer(stateful_dict, stateful_dict['version'])
@@ -451,15 +459,15 @@ def interpreter(stateful_dict, user_input):
 
 
 # main loop
-start_of_game = True # move to stateful_dict
+start_of_game = True
 while stateful_dict['end_of_game'] == False:
 		stateful_dict['out_buff'] = "" # resets buffer
 		if start_of_game:
-				entrance.examine(stateful_dict)
+				user_input = "xyzzy42" # the magic word!!
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-				interpreter(stateful_dict, user_input)
+		interpreter(stateful_dict, user_input)
 		print(stateful_dict['out_buff'])
 print("THANKS FOR PLAYING!!")
 
