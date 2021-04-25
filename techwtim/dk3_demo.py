@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 24, 2021
+# date: Apr 25, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 

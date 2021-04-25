@@ -220,28 +220,51 @@ DONE: 0.65) review dkv2 verb methods... maybe move fail statements to top??
 		DONE: Room Class
 		DONE: Other Classes
 DONE: 6.7) Remove buffer from scope_check function... reads more clearly inline in method
-IN-PROC: 0.7) convert to true flask vs. app structure (but don't worry about passing yet) [see version 2.1.4 for ideas]
+DONE: 0.7) convert to true flask vs. app structure (but don't worry about passing yet) [see version 2.1.4 for ideas]
 	DONE: 0.71) introduce end function
 	DONE: introduce move counter
 	DONE: 0.73) fix 'quit' and add 'q' abreviation
 	DONE: 0.76 fix 'start'
 	DONE: add github remote
-	IDEA: descriptions in separate descript_dict to be loaded from static text (isolate data & code) ???
-			DONE: email Franco to ask about pythonic approach to storing objects with multi-line string attributes; maybe store as JSON and import?
-			TBD: Resolve use of descript_dict
+	DONE: email Franco to ask about pythonic approach to storing objects with multi-line string attributes; maybe store as JSON and import?
+
+*** Interpreter Adjectives & Preposistions ***
+Fini 1-word commands
+1) Sort out 1 word vs. 2 word commands and error out all non-defined one-word commands
+2) All one_word commands => 1_word function
+
+Word commands:
+3) use lists to identify words as verbs; (adjectives and prepositions later; nouns never?)
+4) if sentence does not start with a verb => please start with a verb
+
+
+Adjectives:
+5) Every noun as an obj_name, full_name, root_name
+6) Convert adjectives + noun => obj_name
+7) Enable use of root nouns? With error code if multiple same root in scope?
+
+Preposistions
+8) use lists to identify words as prepositions 
+9) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
+10) If no prep => verb_noun function
+11) If prep: Identify direct object and => prep_sentence function
+NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
+
+
+TBD: Integrate advice from Franco!
+	TBD: I think it’s fine to have a big string in your class.  I think it’s also fine to have a separate dictionary or file or db or whatever for big static strings and just put the key into your class.  Or put each object in its own module so you can define a constant nearby but not in the class
+	TBD: Use more modules; I would definitely move object instantiation out of the module where the classes are defined.
+	TBD: You may also benefit from a single function that takes the object type (Door, etc) as well and instantiates the correct class.	
+	TBD: Once you've done that, you might want to have an entire object description in some string format on disk.   I personally kind of like using standard python objects (tuples of strings, mainly) instead of JSON, but YMMV.
+	TBD: Try tupples for descript_dict
+		Franco on Tupples: A tuple is most suitable for immutable data with a well-defined order.  The static data that you pass to class constructors is often a good example.Another useful time for tuples is when you want dictionary keys with more than one field.  You cannot use something mutable there.
+	TBD: Try argument unpacking ( https://www.geeksforgeeks.org/packing-and-unpacking-arguments-in-python/ )
+	
+IDEA: descriptions in separate descript_dict to be loaded from static text (isolate data & code) ???								
+	TBD: Resolve use of descript_dict
 	IDEA: static_dict ??
 
 
-*** Interpreter Adjectives & Preposistions ***
-1) Every noun as an obj_name, full_name, root_name
-2) All one_word commands => 1_word function
-3) use lists to identify words as nouns, verbs, adjectives, articles, and prepositions
-4) if sentence does not start with a verb => please start with a verb
-5) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
-6) Convert adjectives + noun => obj_name
-7) If no prep => verb_noun function
-8) If prep: Identify direct object and => prep_sentence function
-NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
 
 TBD: Interpreter review!!!
 TBD: Put command
