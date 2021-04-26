@@ -374,7 +374,8 @@ def interpreter(stateful_dict, user_input):
 		lst.append(user_input)
 		user_input_lst = lst[0].split() # convert user input string into word list
 
-		n = 0 # convert all words to lower case and substitute abreviations
+		# convert all words to lower case and substitute abreviations
+		n = 0 
 		for word in user_input_lst:
 				word = word.lower()	
 				if word in abreviations_dict:
@@ -382,62 +383,70 @@ def interpreter(stateful_dict, user_input):
 				user_input_lst[n] = word
 				n += 1
 
-		for article in articles_lst: # strip out articles
+		# strip out articles
+		for article in articles_lst:
 				user_input_lst = [word for word in user_input_lst if word != article]
  
-		if len(user_input_lst) < 1: # handle case where the _only_ input is articles
+ 		# no input or the only input is articles
+		if len(user_input_lst) < 1: 
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
-				return 
-
-		word1 = user_input_lst[0]
+				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				return 		
 
 		# handle true one-word commands
-		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
-				if word1 == 'xyzzy42':
-						buffer(stateful_dict, descript_dict["introduction"])
-						help.examine(stateful_dict)
-						buffer(stateful_dict, "")
-						entrance.examine(stateful_dict)
-				elif word1 == 'score':
-						buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
-				elif word1 == 'version':
-						buffer(stateful_dict, stateful_dict['version'])
-				elif word1 == 'inventory':
-						inventory(stateful_dict)
-				elif word1 == 'look':
-						room_obj.examine(stateful_dict)
-				elif word1 == 'quit':
-						stateful_dict['game_ending'] = "quit"
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
-						end(stateful_dict)
-				return
-
-		else:
-				# convert implicit one-word commands into explecit two-word commands
-				if len(user_input_lst) == 1 and word1 in one_word_convert_dict:
+		if len(user_input_lst) == 1:
+				word1 = user_input_lst[0]
+				if word1 in one_word_only_lst:
+						if word1 == 'xyzzy42':
+								buffer(stateful_dict, descript_dict["introduction"])
+								help.examine(stateful_dict)
+								buffer(stateful_dict, "")
+								entrance.examine(stateful_dict)
+						elif word1 == 'score':
+								buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
+						elif word1 == 'version':
+								buffer(stateful_dict, stateful_dict['version'])
+						elif word1 == 'inventory':
+								inventory(stateful_dict)
+						elif word1 == 'look':
+								room_obj.examine(stateful_dict)
+						elif word1 == 'quit':
+								stateful_dict['game_ending'] = "quit"
+								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 2
+								end(stateful_dict)
+						return
+				elif word1 in one_word_convert_dict:
 						user_input_lst.append(word1)
 						user_input_lst[0] = one_word_convert_dict[word1]
 						word1 = user_input_lst[0]
+				else:
+						buffer(stateful_dict, "I don't understand what you're trying to say?")
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						return 
 
-				if len(user_input_lst) > 1:
-						word2 = user_input_lst[1].lower()
-				else:
-						word2 = "blank"
-				if word1 == 'go':
-						getattr(room_obj, word1)(word2, stateful_dict)
-				else:
+		# two-word commands
+		if len(user_input_lst) > 1:
+				word1 = user_input_lst[0].lower()
+				word2 = user_input_lst[1].lower()
+		else:
+				buffer(stateful_dict, "HOW DID WE GET HERE???")
+				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				return 
+		if word1 == 'go':
+				getattr(room_obj, word1)(word2, stateful_dict)
+		else:
+				try:
+						word2_obj = str_to_class(word2)
 						try:
-								word2_obj = str_to_class(word2)
-								try:
-										getattr(word2_obj, word1)(stateful_dict)
-								except:
-										output = "You can't " + word1 + " with the " + word2 + "."
-										buffer(stateful_dict, output)
-										stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+								getattr(word2_obj, word1)(stateful_dict)
 						except:
-								output = "There's no " + word2 + " here."
+								output = "You can't " + word1 + " with the " + word2 + "."
 								buffer(stateful_dict, output)
 								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				except:
+						output = "There's no " + word2 + " here."
+						buffer(stateful_dict, output)
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 
 
 # test
@@ -445,17 +454,6 @@ def interpreter(stateful_dict, user_input):
 # rusty_key.take(stateful_dict)
 # sword.examine(stateful_dict)
 # chest.unlock(stateful_dict)
-
-
-#While True: # why error ???
-#		if start_of_game:
-#				user_input = "start of game"
-#				start_of_game = False
-#		else:
-#				user_input = input('Type your command: ')
-#				interpreter(stateful_dict, user_input)
-#				print(stateful_dict['out_buff'])
-#print("THANKS FOR PLAYING!!")
 
 
 # main loop

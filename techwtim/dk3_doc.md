@@ -27,15 +27,15 @@
 # DONE: Troubleshooting movement
 # DONE: Implemnt doors in rooms
 
-# DONE: Implement While True input loop
-# DONE: Fix input conversion
-# DONE: Fix go command - interpreter
-# DONE: Description of new room on change rooms
-# DONE: Enforce room.examine() based on location
-# DONE: Implement 'look'
-# DONE: Update room based on go (try global room)
-# DONE: Pass room variable to class methods (state_dict)
-#	DONE: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
+DONE: Implement While True input loop
+DONE: Fix input conversion
+DONE: Fix go command - interpreter
+DONE: Description of new room on change rooms
+DONE: Enforce room.examine() based on location
+DONE: Implement 'look'
+DONE: Update room based on go (try global room)
+DONE: Pass room variable to class methods (state_dict)
+DONE: Troubleshoot "examine gate"... maybe implemnt room across all methods first??
 
 DONE: Think through writing attribute for ViewOnly 
 	(i.e. should be read dwarven_runes instead of read sword)
@@ -230,13 +230,11 @@ DONE: 0.7) convert to true flask vs. app structure (but don't worry about passin
 
 *** Interpreter Adjectives & Preposistions ***
 Fini 1-word commands
-1) Sort out 1 word vs. 2 word commands and error out all non-defined one-word commands
-2) All one_word commands => 1_word function
+DONE: 1) Sort out 1 word vs. 2 word commands and error out all non-defined one-word commands
 
 Word commands:
 3) use lists to identify words as verbs; (adjectives and prepositions later; nouns never?)
 4) if sentence does not start with a verb => please start with a verb
-
 
 Adjectives:
 5) Every noun as an obj_name, full_name, root_name
@@ -249,6 +247,12 @@ Preposistions
 10) If no prep => verb_noun function
 11) If prep: Identify direct object and => prep_sentence function
 NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
+
+Structure:
+12) Create Interpreter module
+13) main Interpreter function
+14) All one_word commands => 1_word function
+15) functions for each case
 
 
 TBD: Integrate advice from Franco!
