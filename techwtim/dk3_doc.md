@@ -238,12 +238,12 @@ DONE: 4) if sentence does not start with a verb => please start with a verb
 
 Adjectives:
 IDEA: Every noun as an obj_name, full_name, root_name
-DONE: 5) add adjective to all items, doors, and containers
-TBD: 5.5) add full_name for all items, doors, and containers
+TBD: 5) add adjective to all items, doors, and containers => Extend to view_only
+TBD: 5.5) add full_name for all items, doors, and containers => Extend to view_only
 TBD: 5.7) Update to print full_name
-TBD: 5.9) Enable 3 word sentences
+TBD: 5.9) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
 TBD: 6) On input, enable use of full_name by converting adjectives + noun => obj_name
-6.5) add root name for all items, doors, and containers
+6.5) add root name for all items, doors, and containers => Extend to view_only
 7) Enable use of root nouns? With error code if multiple same root in scope?
 
 Preposistions
