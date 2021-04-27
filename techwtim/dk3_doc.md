@@ -22,10 +22,10 @@
 #		and multi inheritance from inherited classes... is just right out!
 # DONE: So => make 'takable' a local attribute of container
 
-# Idea: Rooms are really just conneectd containers...
-# DONE: Link travel to doors or to rooms? For now deciding on rooms
-# DONE: Troubleshooting movement
-# DONE: Implemnt doors in rooms
+Idea: Rooms are really just conneectd containers...
+DONE: Link travel to doors or to rooms? For now deciding on rooms
+DONE: Troubleshooting movement
+DONE: Implemnt doors in rooms
 
 DONE: Implement While True input loop
 DONE: Fix input conversion
@@ -233,12 +233,17 @@ Fini 1-word commands
 DONE: 1) Sort out 1 word vs. 2 word commands and error out all non-defined one-word commands
 
 Word commands:
-3) use lists to identify words as verbs; (adjectives and prepositions later; nouns never?)
-4) if sentence does not start with a verb => please start with a verb
+DONE: 3) use lists to identify words as verbs; (adjectives and prepositions later; nouns never?)
+DONE: 4) if sentence does not start with a verb => please start with a verb
 
 Adjectives:
-5) Every noun as an obj_name, full_name, root_name
-6) Convert adjectives + noun => obj_name
+IDEA: Every noun as an obj_name, full_name, root_name
+DONE: 5) add adjective to all items, doors, and containers
+TBD: 5.5) add full_name for all items, doors, and containers
+TBD: 5.7) Update to print full_name
+TBD: 5.9) Enable 3 word sentences
+TBD: 6) On input, enable use of full_name by converting adjectives + noun => obj_name
+6.5) add root name for all items, doors, and containers
 7) Enable use of root nouns? With error code if multiple same root in scope?
 
 Preposistions
@@ -253,6 +258,7 @@ Structure:
 13) main Interpreter function
 14) All one_word commands => 1_word function
 15) functions for each case
+16) Re-org exception cases to reduce all the subtractions?
 
 
 TBD: Integrate advice from Franco!

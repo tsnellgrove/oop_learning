@@ -297,32 +297,32 @@ rusty_letters = Writing('rusty_letters', 'Abandon Hope All Ye Who Even Thank Abo
 dwarven_runes = Writing('dwarven_runes', "Goblin Wallopper", None, 'sword')
 
 rusty_key = Item('rusty_key', 'The key is rusty', None, True)
-sword = Item('sword','The sword is shiny.', dwarven_runes, True)
+shiny_sword = Item('shiny_sword','The sword is shiny.', dwarven_runes, True)
 brass_key = Item('brass_key', 'The key is brass', None, True)
-potion = Item('potion', 'The cork-stopperd glass vial contains a bubbly green potion', None, True)
+bubbly_potion = Item('bubbly_potion', 'The cork-stopperd glass vial contains a bubbly green potion', None, True)
 
-chest = Container('chest', 'An old wooden chest', None,
-				False, False, brass_key, False, [potion])
+wooden_chest = Container('wooden_chest', 'An old wooden chest', None,
+				False, False, brass_key, False, [bubbly_potion])
 # giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
 
-gate = Door('gate', 'The front gate is massive and imposing', rusty_letters,
+front_gate = Door('front_gate', 'The front gate is massive and imposing', rusty_letters,
 				False, False, rusty_key)
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
 entrance = Room('entrance',
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
-		None, [dark_castle], [gate], {'north' : 'main_hall'}, {'north' : gate})
+		None, [dark_castle], [front_gate], {'north' : 'main_hall'}, {'north' : front_gate})
 main_hall = Room('main_hall',
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
-		None, [], [sword, gate, brass_key, chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : gate})
+		None, [], [shiny_sword, front_gate, brass_key, wooden_chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : front_gate})
 
 # next room definitions after room definitions to avoid undefined variables
 entrance.valid_paths['north'] = main_hall
 main_hall.valid_paths['south'] = entrance
 
 # writton on deffinitions after variable assignments to avoid undefined variables
-rusty_letters.written_on = gate
-dwarven_runes.written_on = sword
+rusty_letters.written_on = front_gate
+dwarven_runes.written_on = shiny_sword
 
 # stateful dictionary of persistent values
 stateful_dict = {
@@ -342,6 +342,7 @@ stateful_dict = {
 #interpreter vocab
 one_word_only_lst = ['score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
 articles_lst = ['a', 'an', 'the']
+verbs_lst = ['examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock']
 abreviations_dict = {
 		'n' : 'north',
 		's' : 'south',
@@ -432,6 +433,10 @@ def interpreter(stateful_dict, user_input):
 				buffer(stateful_dict, "HOW DID WE GET HERE???")
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				return 
+		if word1 not in verbs_lst:
+				buffer(stateful_dict, "Please start your sentence with a verb!")
+				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				return
 		if word1 == 'go':
 				getattr(room_obj, word1)(word2, stateful_dict)
 		else:
