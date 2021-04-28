@@ -17,10 +17,10 @@
 # Note: I think I'm doing something wrong... 
 #		inventory management with objects is not as elegant as I was expecting
 
-# DONE: Too many calsses already... think about consolidation
-# Decision: Inheritance is complicated, Multi-Inheritance is more complicated, 
-#		and multi inheritance from inherited classes... is just right out!
-# DONE: So => make 'takable' a local attribute of container
+DONE: Too many calsses already... think about consolidation
+Decision: Inheritance is complicated, Multi-Inheritance is more complicated, 
+	and multi inheritance from inherited classes... is just right out!
+DONE: So => make 'takable' a local attribute of container
 
 Idea: Rooms are really just conneectd containers...
 DONE: Link travel to doors or to rooms? For now deciding on rooms
@@ -238,8 +238,8 @@ DONE: 4) if sentence does not start with a verb => please start with a verb
 
 Adjectives:
 IDEA: Every noun as an obj_name, full_name, root_name
-TBD: 5) add adjective to all items, doors, and containers => Extend to view_only
-TBD: 5.5) add full_name for all items, doors, and containers => Extend to view_only
+DONE: 5) add adjective to all items, doors, and containers => Extend to view_only
+DONE: 5.5) add full_name for all items, doors, and containers => Extend to view_only
 TBD: 5.7) Update to print full_name
 TBD: 5.9) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
 TBD: 6) On input, enable use of full_name by converting adjectives + noun => obj_name
