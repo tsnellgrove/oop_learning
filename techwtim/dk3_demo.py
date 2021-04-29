@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 27, 2021
+# date: Apr 29, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -38,7 +38,7 @@ def str_to_class(str):
 def objlst_to_strlst(obj_lst):
 		str_lst = []
 		for obj in obj_lst:
-				str_lst.append(obj.name)
+				str_lst.append(obj.full_name)
 		return str_lst
 
 def scope_check(obj, stateful_dict):
@@ -56,10 +56,10 @@ def scope_check(obj, stateful_dict):
 
 def container_desc(cont_obj, stateful_dict):
 		if len(cont_obj.contains) == 0:
-				buffer(stateful_dict, "The " + cont_obj.name + " is empty.")
+				buffer(stateful_dict, "The " + cont_obj.full_name + " is empty.")
 		else:
 				cont_str_lst = objlst_to_strlst(cont_obj.contains)
-				output = "The " + cont_obj.name + " contains: "  + ', '.join(cont_str_lst)
+				output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
 				buffer(stateful_dict, output)
 
 def inventory(stateful_dict):
@@ -69,7 +69,7 @@ def inventory(stateful_dict):
 		if len(hand_obj_lst) == 0:
 				hand_str = "nothing"
 		else:
-				hand_str = "the " + stateful_dict['hand'][0].name
+				hand_str = "the " + stateful_dict['hand'][0].full_name
 		buffer(stateful_dict, "In your hand you are holding " + hand_str)
 
 		if len(backpack_str_lst) == 0:
@@ -111,16 +111,17 @@ def end(stateful_dict):
 class ViewOnly(object):
 		def __init__(self, name, full_name, desc, writing):
 				self.name = name
+				self.full_name = full_name
 				self.desc = desc
 				self.writing = writing
 
 		def examine(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				else:
 						buffer(stateful_dict, self.desc)
 						if self.writing is not None:
-								output = "On the " + self.name + " you see: " + self.writing.name
+								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
 
 class Writing(ViewOnly):
@@ -130,7 +131,7 @@ class Writing(ViewOnly):
 
 		def read(self, stateful_dict):
 				if scope_check(self.written_on, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see any " + self.name + " here.")
+						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
 				else:
 						buffer(stateful_dict, self.desc)
 
@@ -160,7 +161,7 @@ class Room(ViewOnly):
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
 						if not door_open:
-								buffer(stateful_dict, "The " +  door_obj.name + " is closed.")
+								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
 								next_room_obj = self.valid_paths[direction]
 								stateful_dict['room'] = next_room_obj
@@ -177,9 +178,9 @@ class Item(ViewOnly):
 				backpack_lst = stateful_dict['backpack']
 				room_obj_lst = room_obj.room_stuff
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.takeable == False:
-						buffer(stateful_dict, "You can't take the " + self.name)
+						buffer(stateful_dict, "You can't take the " + self.full_name)
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
 								stateful_dict['backpack'].append(hand_lst[0])
@@ -202,9 +203,9 @@ class Item(ViewOnly):
 				hand_lst = stateful_dict['hand']
 				room_obj = stateful_dict['room']
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self not in hand_lst:
-						output = "You're not holding the " + self.name + " in your hand."
+						output = "You're not holding the " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
 				else:
 						hand_lst.remove(self)
@@ -223,18 +224,18 @@ class Door(ViewOnly):
 				if scope_check(self, stateful_dict) == False:
 						pass
 				elif self.open_state == False:
-						buffer(stateful_dict, "The " + self.name + " is closed.")
+						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				else:
-						buffer(stateful_dict, "The " + self.name + " is open.")
+						buffer(stateful_dict, "The " + self.full_name + " is open.")
 						if hasattr(self, 'contains'):
 								container_desc(self, stateful_dict)
 
 		def unlock(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.unlock_state == True:
-						buffer(stateful_dict, "The " + self.name + " is already unlocked.")
+						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
 				elif self.key not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the key.")
 				else:
@@ -243,11 +244,11 @@ class Door(ViewOnly):
 
 		def open(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.open_state == True:
-						buffer(stateful_dict, "The " + self.name + " is already open.")
+						buffer(stateful_dict, "The " + self.full_name + " is already open.")
 				elif self.unlock_state == False:
-						buffer(stateful_dict, "The " + self.name + " is locked.")
+						buffer(stateful_dict, "The " + self.full_name + " is locked.")
 				else:
 						self.open_state = True
 						buffer(stateful_dict, "Openned")
@@ -256,9 +257,9 @@ class Door(ViewOnly):
 
 		def close(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.open_state == False:
-						buffer(stateful_dict, "The " + self.name + " is already closed.")
+						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
 				else:
 						self.open_state = False
 						buffer(stateful_dict, "Closed")
@@ -266,13 +267,13 @@ class Door(ViewOnly):
 		def lock(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.name + " here.")
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.open_state == True:
 						buffer(stateful_dict, "You can't lock something that's open.")						
 				elif self.key not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the key.")
 				elif self.unlock_state == False:
-						buffer(stateful_dict, "The " + self.name + " is already locked.")
+						buffer(stateful_dict, "The " + self.full_name + " is already locked.")
 				else:
 						buffer(stateful_dict, "Locked")
 						self.unlock_state = False

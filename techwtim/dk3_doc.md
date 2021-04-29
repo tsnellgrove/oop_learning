@@ -7,15 +7,15 @@
 # Create Container as child to door [DONE]
 # Create take & drop methods for Item [DONE]
 # Create unlock method for Door & Container [DONE]
-# Create open method for Door [DONE]
-# Create a Room child class of view_only... focus on inventory only - not movement [DONE]
-# Exercise inventory management using Room.room_objects and hand and take and drop [IN-PROC]
-	# Update Room examine, take, and drop [DONE]
-	# DONE: Test implementation
-	#DONE: add takability to the 'take item' method
-# DONE: More tutorials before this gets out of hand!
-# Note: I think I'm doing something wrong... 
-#		inventory management with objects is not as elegant as I was expecting
+Create open method for Door [DONE]
+Create a Room child class of view_only... focus on inventory only - not movement [DONE]
+Exercise inventory management using Room.room_objects and hand and take and drop [IN-PROC]
+	Update Room examine, take, and drop [DONE]
+	DONE: Test implementation
+	DONE: add takability to the 'take item' method
+DONE: More tutorials before this gets out of hand!
+Note: I think I'm doing something wrong... 
+	inventory management with objects is not as elegant as I was expecting
 
 DONE: Too many calsses already... think about consolidation
 Decision: Inheritance is complicated, Multi-Inheritance is more complicated, 
@@ -240,9 +240,8 @@ Adjectives:
 IDEA: Every noun as an obj_name, full_name, root_name
 DONE: 5) add adjective to all items, doors, and containers => Extend to view_only
 DONE: 5.5) add full_name for all items, doors, and containers => Extend to view_only
-TBD: 5.7) Update to print full_name
-TBD: 5.9) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
-TBD: 6) On input, enable use of full_name by converting adjectives + noun => obj_name
+DONE: 5.7) Update to buffer full_name
+TBD: 6) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
 6.5) add root name for all items, doors, and containers => Extend to view_only
 7) Enable use of root nouns? With error code if multiple same root in scope?
 
