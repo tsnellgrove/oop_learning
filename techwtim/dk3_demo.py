@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 29, 2021
+# date: Apr 30, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -438,6 +438,11 @@ def interpreter(stateful_dict, user_input):
 				buffer(stateful_dict, "Please start your sentence with a verb!")
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				return
+		if len(user_input_lst) == 3:
+				word3 = user_input_lst[2].lower()
+				adj_noun = word2 + "_" + word3
+				word2 = adj_noun
+
 		if word1 == 'go':
 				getattr(room_obj, word1)(word2, stateful_dict)
 		else:
