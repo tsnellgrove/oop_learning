@@ -238,14 +238,18 @@ DONE: 4) if sentence does not start with a verb => please start with a verb
 
 Adjectives:
 IDEA: Every noun as an obj_name, full_name, root_name
-DONE: 5) add adjective to all items, doors, and containers => Extend to view_only
-DONE: 5.5) add full_name for all items, doors, and containers => Extend to view_only
-DONE: 5.7) Update to buffer full_name
-DONE: 6) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
-6.5) add root name for all items, doors, and containers => Extend to view_only
-7) Enable use of root nouns? With error code if multiple same root in scope?
-7.5) Error code could be "I see more than one root_name. Please use the object's full name" (moves - 1)
-7.7) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
+	DONE: 5) add adjective to all items, doors, and containers => Extend to view_only
+	DONE: 5.5) add full_name for all items, doors, and containers => Extend to view_only
+	DONE: 5.7) Update to buffer full_name
+	DONE: 6) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
+	DONE: 6.5) add root name for all items, doors, and containers => Extend to view_only
+
+IDEA: Enable use of root nouns? With error code if multiple same root in scope?
+	6.6) for 2 word commands, test to see if word2 is a known obj_name - if not, test for root_word
+	6.7) Create function that returns # of instances of root_word in scope and obj_name of last intance
+	6.8) if returned value = 1 then word2 = obj_name
+	7.5) If value > 1 Error code could be "I see more than one root_name. Please use the object's full name" (moves - 1)
+	7.6) if value < 1 then "I don't see a word2 here"
 
 Preposistions
 8) use lists to identify words as prepositions 
@@ -254,12 +258,14 @@ Preposistions
 11) If prep: Identify direct object and => prep_sentence function
 NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
 
+12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
+
 Structure:
-12) Create Interpreter module
-13) main Interpreter function
-14) All one_word commands => 1_word function
-15) functions for each case
-16) Re-org exception cases to reduce all the subtractions?
+A) Create Interpreter module
+B) main Interpreter function
+C) All one_word commands => 1_word function
+D) functions for each case
+E) Re-org exception cases to reduce all the subtractions?
 
 
 TBD: Integrate advice from Franco!
