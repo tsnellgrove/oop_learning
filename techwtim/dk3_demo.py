@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: Apr 30, 2021
+# date: May 1, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -109,9 +109,10 @@ def end(stateful_dict):
 
 # classes
 class ViewOnly(object):
-		def __init__(self, name, full_name, desc, writing):
+		def __init__(self, name, full_name, root_name, desc, writing):
 				self.name = name
 				self.full_name = full_name
+				self.root_name = root_name
 				self.desc = desc
 				self.writing = writing
 
@@ -125,8 +126,8 @@ class ViewOnly(object):
 								buffer(stateful_dict, output)
 
 class Writing(ViewOnly):
-		def __init__(self, name, full_name, desc, writing, written_on):
-				super().__init__(name, full_name, desc, writing)
+		def __init__(self, name, full_name, root_name, desc, writing, written_on):
+				super().__init__(name, full_name, root_name, desc, writing)
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
@@ -136,8 +137,8 @@ class Writing(ViewOnly):
 						buffer(stateful_dict, self.desc)
 
 class Room(ViewOnly):
-		def __init__(self, name, full_name, desc, writing, features, room_stuff, valid_paths, door_paths):
-				super().__init__(name, full_name, desc, writing)
+		def __init__(self, name, full_name, root_name, desc, writing, features, room_stuff, valid_paths, door_paths):
+				super().__init__(name, full_name, root_name, desc, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
 				self.room_stuff = room_stuff # list of stuff in room
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
@@ -168,8 +169,8 @@ class Room(ViewOnly):
 								next_room_obj.examine(stateful_dict)
 
 class Item(ViewOnly):
-		def __init__(self, name, full_name, desc, writing, takeable):
-				super().__init__(name, full_name, desc, writing)
+		def __init__(self, name, full_name, root_name, desc, writing, takeable):
+				super().__init__(name, full_name, root_name, desc, writing)
 				self.takeable = takeable
 
 		def take(self, stateful_dict):
@@ -213,8 +214,8 @@ class Item(ViewOnly):
 						buffer(stateful_dict, "Dropped")
 
 class Door(ViewOnly):
-		def __init__(self, name, full_name, desc, writing, open_state, unlock_state, key):
-				super().__init__(name, full_name, desc, writing)
+		def __init__(self, name, full_name, root_name, desc, writing, open_state, unlock_state, key):
+				super().__init__(name, full_name, root_name, desc, writing)
 				self.open_state = open_state
 				self.unlock_state = unlock_state
 				self.key = key
@@ -279,41 +280,41 @@ class Door(ViewOnly):
 						self.unlock_state = False
 
 class Container(Door):
-		def __init__(self, name, full_name, desc, writing, open_state, unlock_state, key, takeable, contains):
-				super().__init__(name, full_name, desc, writing, open_state, unlock_state, key)
+		def __init__(self, name, full_name, root_name, desc, writing, open_state, unlock_state, key, takeable, contains):
+				super().__init__(name, full_name, root_name, desc, writing, open_state, unlock_state, key)
 				self.takeable = takeable # can the container be taken?
 				self.contains = contains # list of items in the container
 
 
 # object instantiation
-dark_castle = ViewOnly('dark_castle', "dark castle", 'The evil Dark Castle looms above you', None)
-backpack = ViewOnly('backpack', "backpack", "Your trusty, well-worn leather backpack", None)
-burt = ViewOnly('burt', 'burt', "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
-fist = ViewOnly('fist', 'fist', "That is indeed your very own fist", None)
-conscience = ViewOnly('conscience', 'conscience', "A tad murky Burt - what would your dear old Nana say?", None)
-help = ViewOnly('help', 'help', "Detailed help text for new players [to be written]", None)
-credits = ViewOnly('credits', 'credits', "Standard credits from dkv2 + my 4 playtesters!", None)
+dark_castle = ViewOnly('dark_castle', "dark castle", "castle", 'The evil Dark Castle looms above you', None)
+backpack = ViewOnly('backpack', "backpack", "backpack", "Your trusty, well-worn leather backpack", None)
+burt = ViewOnly('burt', 'burt', "burt", "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
+fist = ViewOnly('fist', 'fist', "fist", "That is indeed your very own fist", None)
+conscience = ViewOnly('conscience', 'conscience', "conscience", "A tad murky Burt - what would your dear old Nana say?", None)
+help = ViewOnly('help', 'help', "help", "Detailed help text for new players [to be written]", None)
+credits = ViewOnly('credits', 'credits', "credits", "Standard credits from dkv2 + my 4 playtesters!", None)
 
-rusty_letters = Writing('rusty_letters', 'rusty letters', 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
-dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "Goblin Wallopper", None, 'sword')
+rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
+dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", "Goblin Wallopper", None, 'sword')
 
-rusty_key = Item('rusty_key', 'rusty key', 'The key is rusty', None, True)
-shiny_sword = Item('shiny_sword', 'shiny sword', 'The sword is shiny.', dwarven_runes, True)
-brass_key = Item('brass_key', 'brass key', 'The key is brass', None, True)
-bubbly_potion = Item('bubbly_potion', 'bubbly potion', 'The cork-stopperd glass vial contains a bubbly green potion', None, True)
+rusty_key = Item('rusty_key', 'rusty key', "key", 'The key is rusty', None, True)
+shiny_sword = Item('shiny_sword', 'shiny sword', "sword", 'The sword is shiny.', dwarven_runes, True)
+brass_key = Item('brass_key', 'brass key', "key", 'The key is brass', None, True)
+bubbly_potion = Item('bubbly_potion', 'bubbly potion', "potion", 'The cork-stopperd glass vial contains a bubbly green potion', None, True)
 
-wooden_chest = Container('wooden_chest', 'wooden chest', 'An old wooden chest', None,
+wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'An old wooden chest', None,
 				False, False, brass_key, False, [bubbly_potion])
 # giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
 
-front_gate = Door('front_gate', 'front gate', 'The front gate is massive and imposing', rusty_letters,
+front_gate = Door('front_gate', 'front gate', "gate", 'The front gate is massive and imposing', rusty_letters,
 				False, False, rusty_key)
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
-entrance = Room('entrance', 'entrance',
+entrance = Room('entrance', 'entrance', "entrance", 
 		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
 		None, [dark_castle], [front_gate], {'north' : 'main_hall'}, {'north' : front_gate})
-main_hall = Room('main_hall', 'main hall',
+main_hall = Room('main_hall', 'main hall', "hall", 
 		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
 		None, [], [shiny_sword, front_gate, brass_key, wooden_chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : front_gate})
 
@@ -417,31 +418,48 @@ def interpreter(stateful_dict, user_input):
 								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 2
 								end(stateful_dict)
 						return
+						
+				# convert one-word commands that are implicit two-word commands 
 				elif word1 in one_word_convert_dict:
 						user_input_lst.append(word1)
 						user_input_lst[0] = one_word_convert_dict[word1]
 						word1 = user_input_lst[0]
+
+				# if not a known true or convertable one-word command, must be an error
 				else:
 						buffer(stateful_dict, "I don't understand what you're trying to say?")
 						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						return 
 
-		# two-word commands
+		# multi-word commands
 		if len(user_input_lst) > 1:
 				word1 = user_input_lst[0].lower()
 				word2 = user_input_lst[1].lower()
 		else:
+
+				# commnd len ! > 1 should already be errored out
 				buffer(stateful_dict, "HOW DID WE GET HERE???")
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
-				return 
+				return
+
+		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
 				buffer(stateful_dict, "Please start your sentence with a verb!")
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				return
+	
+		# convert verb-adj-noun command into verb-obj_name
 		if len(user_input_lst) == 3:
 				word3 = user_input_lst[2].lower()
 				adj_noun = word2 + "_" + word3
 				word2 = adj_noun
+
+		# error out commands longer than two words
+		if len(user_input_lst) > 2:
+				buffer(stateful_dict, "You're going to have to state that more simply - Burt's a man of few words!")
+				return 
+
+		# check to see if the word2 is a root_name; convert to obj_name if valid
 
 		if word1 == 'go':
 				getattr(room_obj, word1)(word2, stateful_dict)

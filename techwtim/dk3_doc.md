@@ -244,6 +244,7 @@ DONE: 5.7) Update to buffer full_name
 DONE: 6) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
 6.5) add root name for all items, doors, and containers => Extend to view_only
 7) Enable use of root nouns? With error code if multiple same root in scope?
+7.5) Error code could be "I see more than one root_name. Please use the object's full name" (moves - 1)
 
 Preposistions
 8) use lists to identify words as prepositions 
