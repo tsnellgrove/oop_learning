@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 1, 2021
+# date: May 2, 2021
 # description: a zork-like text adventure game written in object-oriented python
 
 
@@ -53,6 +53,26 @@ def scope_check(obj, stateful_dict):
 						+ universal_lst + features_lst + open_cont_obj_lst)
 		scope_lst.append(room_obj)
 		return obj in scope_lst
+
+def root_word_count(stateful_dict, word2):
+		room_obj = stateful_dict['room']
+		hand_lst = stateful_dict['hand']
+		backpack_lst = stateful_dict['backpack']
+		universal_lst = stateful_dict['universal']
+		room_obj_lst = room_obj.room_stuff
+		features_lst = room_obj.features
+		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
+		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+						+ universal_lst + features_lst + open_cont_obj_lst)
+		scope_lst.append(room_obj)
+
+		root_count = 0
+		obj_name = ""
+		for obj in scope_lst:
+				if obj.root_name == word2:
+						root_count += 1
+						obj_name = obj.name # could simplify by just returning obj
+		return root_count, obj_name
 
 def container_desc(cont_obj, stateful_dict):
 		if len(cont_obj.contains) == 0:
@@ -448,34 +468,63 @@ def interpreter(stateful_dict, user_input):
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				return
 	
-		# convert verb-adj-noun command into verb-obj_name
+		# convert 3-word verb-adj-noun command into verb-obj_name
 		if len(user_input_lst) == 3:
 				word3 = user_input_lst[2].lower()
-				adj_noun = word2 + "_" + word3
-				word2 = adj_noun
+				user_input_lst[1] = word2 + "_" + word3
+				word2 = user_input_lst[1]
+				del user_input_lst[2]
 
 		# error out commands longer than two words
 		if len(user_input_lst) > 2:
-				buffer(stateful_dict, "You're going to have to state that more simply - Burt's a man of few words!")
+				buffer(stateful_dict, "Can you state that more simply? Burt's a man of few words!")
 				return 
+
+		# handle 2-word commands
+		if word1 == 'go':
+				getattr(room_obj, word1)(word2, stateful_dict)
+				return # newly added
+		
+		# check to see if word2 is a known obj_name
+		try:
+				word2_obj = str_to_class(word2)
+		except:
+				root_count, obj_name = root_word_count(stateful_dict, word2)
+				if root_count < 1:
+						buffer(stateful_dict, "I don't see a " + word2 + " here.")
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						return
+				elif root_count > 1:
+						output = "I see more than one " + word2 + ". Please use the full name."
+						buffer(stateful_dict, output)
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						return
+				else:
+						word2_obj = str_to_class(obj_name)
 
 		# check to see if the word2 is a root_name; convert to obj_name if valid
 
-		if word1 == 'go':
-				getattr(room_obj, word1)(word2, stateful_dict)
-		else:
-				try:
-						word2_obj = str_to_class(word2)
-						try:
-								getattr(word2_obj, word1)(stateful_dict)
-						except:
-								output = "You can't " + word1 + " with the " + word2 + "."
-								buffer(stateful_dict, output)
-								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
-				except:
-						output = "There's no " + word2 + " here."
-						buffer(stateful_dict, output)
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+		# attempt to proces 2-word command
+		try:
+				getattr(word2_obj, word1)(stateful_dict)
+		except:
+				buffer(stateful_dict, "You can't " + word1 + " with the " + word2 + ".")
+				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+
+
+##		else:
+##				try:
+##						word2_obj = str_to_class(word2)
+##						try:
+##								getattr(word2_obj, word1)(stateful_dict)
+##						except:
+##								output = "You can't " + word1 + " with the " + word2 + "."
+##								buffer(stateful_dict, output)
+##								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+##				except:
+##						output = "There's no " + word2 + " here."
+##						buffer(stateful_dict, output)
+##						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 
 
 # test

@@ -242,14 +242,16 @@ IDEA: Every noun as an obj_name, full_name, root_name
 	DONE: 5.5) add full_name for all items, doors, and containers => Extend to view_only
 	DONE: 5.7) Update to buffer full_name
 	DONE: 6) Handle special cases of 3 words by converting adj + noun (word2 & 3) => obj_name and handle as 2-word case
-	DONE: 6.5) add root name for all items, doors, and containers => Extend to view_only
 
 IDEA: Enable use of root nouns? With error code if multiple same root in scope?
-	6.6) for 2 word commands, test to see if word2 is a known obj_name - if not, test for root_word
-	6.7) Create function that returns # of instances of root_word in scope and obj_name of last intance
-	6.8) if returned value = 1 then word2 = obj_name
-	7.5) If value > 1 Error code could be "I see more than one root_name. Please use the object's full name" (moves - 1)
-	7.6) if value < 1 then "I don't see a word2 here"
+	DONE: 6.5) add root name for all items, doors, and containers => Extend to view_only
+	DONE: 6.55) Restructure Interpreter 2-word processing for clarity
+	DONE: 6.6) for 2 word commands, test to see if word2 is a known obj_name - if not, test for root_word
+	DONE: 6.7) Create function that returns # of instances of root_word in scope and obj_name of last intance
+	DONE: 6.8) if returned value = 1 then word2 = obj_name
+	DONE: 7.5) If value > 1 Error code could be "I see more than one root_name. Please use the object's full name" (moves - 1)
+	DONE: 7.6) if value < 1 then "I don't see a word2 here"
+	TBD: Solve for special case of read / writing (is not currently in scope list)
 
 Preposistions
 8) use lists to identify words as prepositions 
