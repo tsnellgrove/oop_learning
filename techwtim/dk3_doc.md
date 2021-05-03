@@ -251,7 +251,11 @@ IDEA: Enable use of root nouns? With error code if multiple same root in scope?
 	DONE: 6.8) if returned value = 1 then word2 = obj_name
 	DONE: 7.5) If value > 1 Error code could be "I see more than one root_name. Please use the object's full name" (moves - 1)
 	DONE: 7.6) if value < 1 then "I don't see a word2 here"
-	TBD: Solve for special case of read / writing (is not currently in scope list)
+	DONE: Solve for special case of read / writing (is not currently in scope list)
+
+Introduce modules
+- Helper functions
+- Interpreter (with a main to call functions)
 
 Preposistions
 8) use lists to identify words as prepositions 

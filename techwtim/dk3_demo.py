@@ -71,7 +71,11 @@ def root_word_count(stateful_dict, word2):
 		for obj in scope_lst:
 				if obj.root_name == word2:
 						root_count += 1
-						obj_name = obj.name # could simplify by just returning obj
+						obj_name = obj.name
+				if obj.writing is not None:
+						if obj.writing.root_name == word2:
+								root_count += 1
+								obj_name = obj.writing.name
 		return root_count, obj_name
 
 def container_desc(cont_obj, stateful_dict):
