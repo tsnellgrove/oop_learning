@@ -1,7 +1,8 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 2, 2021
-# description: a zork-like text adventure game written in object-oriented python
+# date: May 5, 2021
+# description: main routine for a zork-like text adventure game
+# goals vs. dc2: oop, modular, db integration, improved interpreter
 
 
 # import statements
@@ -11,6 +12,10 @@ from dc3_helper import objlst_to_strlst
 from dc3_helper import scope_check
 ## from dc3_helper import open_cont_scan
 from dc3_helper import root_word_count
+from dc3_helper import buffer
+from dc3_helper import container_desc
+from dc3_helper import inventory
+from dc3_helper import end
 
 # NOT IN USE
 ## def set_difference(a,b):
@@ -21,10 +26,10 @@ from dc3_helper import root_word_count
 
 
 # helper functions
-def buffer(stateful_dict, output_str):
-		out_buff = stateful_dict['out_buff']
-		out_buff = out_buff + output_str + "\n"
-		stateful_dict['out_buff'] = out_buff
+## def buffer(stateful_dict, output_str):
+##		out_buff = stateful_dict['out_buff']
+##		out_buff = out_buff + output_str + "\n"
+##		stateful_dict['out_buff'] = out_buff
 
 ## def open_cont_scan(stateful_dict, room_obj_lst):
 ##		open_cont_obj_lst = []
@@ -81,35 +86,34 @@ def str_to_class(str):
 ##								obj_name = obj.writing.name
 ##		return root_count, obj_name
 
-def container_desc(cont_obj, stateful_dict):
-		if len(cont_obj.contains) == 0:
-				buffer(stateful_dict, "The " + cont_obj.full_name + " is empty.")
-		else:
-				cont_str_lst = objlst_to_strlst(cont_obj.contains)
-				output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
-				buffer(stateful_dict, output)
+## def container_desc(cont_obj, stateful_dict):
+##		if len(cont_obj.contains) == 0:
+##				buffer(stateful_dict, "The " + cont_obj.full_name + " is empty.")
+##		else:
+##				cont_str_lst = objlst_to_strlst(cont_obj.contains)
+##				output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
+##				buffer(stateful_dict, output)
 
-def inventory(stateful_dict):
-		hand_obj_lst = stateful_dict['hand']
-		backpack_str_lst = objlst_to_strlst(stateful_dict['backpack'])
+## def inventory(stateful_dict):
+##		hand_obj_lst = stateful_dict['hand']
+##		backpack_str_lst = objlst_to_strlst(stateful_dict['backpack'])
 
-		if len(hand_obj_lst) == 0:
-				hand_str = "nothing"
-		else:
-				hand_str = "the " + stateful_dict['hand'][0].full_name
-		buffer(stateful_dict, "In your hand you are holding " + hand_str)
+##		if len(hand_obj_lst) == 0:
+##				hand_str = "nothing"
+##		else:
+##				hand_str = "the " + stateful_dict['hand'][0].full_name
+##		buffer(stateful_dict, "In your hand you are holding " + hand_str)
 
-		if len(backpack_str_lst) == 0:
-				backpack_str = "nothing"
-		else:
-				backpack_str = ', '.join(backpack_str_lst)
-		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
+##		if len(backpack_str_lst) == 0:
+##				backpack_str = "nothing"
+##		else:
+##				backpack_str = ', '.join(backpack_str_lst)
+##		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
-def end(stateful_dict):
-
-		score = stateful_dict['current_score']
-		moves = stateful_dict['move_counter']
-		game_ending = stateful_dict['game_ending']
+## def end(stateful_dict):
+##		score = stateful_dict['current_score']
+##		moves = stateful_dict['move_counter']
+##		game_ending = stateful_dict['game_ending']
 
 #		if score < 0:
 #				title_score = -10
@@ -119,19 +123,19 @@ def end(stateful_dict):
 #				title_score = math.ceil(score / 10) * 10
 #		title = static_dict['titles_dict'][title_score]
 
-		if game_ending == 'death':
-				buffer(stateful_dict, "You have died.")
-		elif game_ending == 'quit':
-				buffer(stateful_dict, "You have quit.")
-		elif game_ending == 'won':
-				buffer(stateful_dict, "You have won!")
-		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
+##		if game_ending == 'death':
+##				buffer(stateful_dict, "You have died.")
+##		elif game_ending == 'quit':
+##				buffer(stateful_dict, "You have quit.")
+##		elif game_ending == 'won':
+##				buffer(stateful_dict, "You have won!")
+##		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
 #    print_score(state_dict, static_dict)
 #		buffer("Your title is: " + title)
-		if game_ending == 'won':
-				buffer(stateful_dict, credits.examine(stateful_dict))
-		stateful_dict['end_of_game'] = True
-		return
+##		if game_ending == 'won':
+##				buffer(stateful_dict, credits.examine(stateful_dict))
+##		stateful_dict['end_of_game'] = True
+##		return
 
 
 # classes

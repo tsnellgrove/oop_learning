@@ -253,11 +253,12 @@ IDEA: Enable use of root nouns? With error code if multiple same root in scope?
 	DONE: 7.6) if value < 1 then "I don't see a word2 here"
 	DONE: Solve for special case of read / writing (is not currently in scope list)
 
-Introduce modules
-- Helper functions
-- Interpreter (with a main to call functions)
+IDEA: Introduce modules
+	IN-PROC: Helper functions
+	TBD: Interpreter (with a main to call functions)
 
 Preposistions
+7.7) Restructure interpreter to call functions
 8) use lists to identify words as prepositions 
 9) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
 10) If no prep => verb_noun function
@@ -265,8 +266,10 @@ Preposistions
 NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
 
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
+13) Need a better place to call end... ideally part of a loop independent of main module??
 
 Structure:
+A-1) Create Helper module
 A) Create Interpreter module
 B) main Interpreter function
 C) All one_word commands => 1_word function
