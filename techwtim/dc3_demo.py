@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 5, 2021
+# date: May 6, 2021
 # description: main routine for a zork-like text adventure game
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
@@ -16,6 +16,7 @@ from dc3_helper import buffer
 from dc3_helper import container_desc
 from dc3_helper import inventory
 from dc3_helper import end
+## from dc3_helper import str_to_class
 
 # NOT IN USE
 ## def set_difference(a,b):

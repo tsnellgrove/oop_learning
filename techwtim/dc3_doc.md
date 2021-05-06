@@ -254,7 +254,7 @@ IDEA: Enable use of root nouns? With error code if multiple same root in scope?
 	DONE: Solve for special case of read / writing (is not currently in scope list)
 
 IDEA: Introduce modules
-	IN-PROC: Helper functions
+	DONE: Helper functions
 	TBD: Interpreter (with a main to call functions)
 
 Preposistions

@@ -1,9 +1,10 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 5, 2021
+# date: May 6, 2021
 # description: helper function module for a zork-like text adventure game
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
+## import sys
 
 ### NOT IN USE ###
 def set_difference(a,b):
@@ -127,3 +128,6 @@ def inventory(stateful_dict):
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
 
+### Not working ###
+## def str_to_class(str):
+##		return getattr(sys.modules[__name__], str)
