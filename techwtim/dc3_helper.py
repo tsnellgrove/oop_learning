@@ -1,6 +1,6 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 6, 2021
+# date: May 7, 2021
 # description: helper function module for a zork-like text adventure game
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
@@ -58,33 +58,6 @@ def container_desc(cont_obj, stateful_dict):
 				output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
 				buffer(stateful_dict, output)
 
-def end(stateful_dict):
-		score = stateful_dict['current_score']
-		moves = stateful_dict['move_counter']
-		game_ending = stateful_dict['game_ending']
-
-#		if score < 0:
-#				title_score = -10
-#		elif score == 0:
-#				title_score = 0
-#		else:
-#				title_score = math.ceil(score / 10) * 10
-#		title = static_dict['titles_dict'][title_score]
-
-		if game_ending == 'death':
-				buffer(stateful_dict, "You have died.")
-		elif game_ending == 'quit':
-				buffer(stateful_dict, "You have quit.")
-		elif game_ending == 'won':
-				buffer(stateful_dict, "You have won!")
-		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
-#    print_score(state_dict, static_dict)
-#		buffer("Your title is: " + title)
-		if game_ending == 'won':
-				buffer(stateful_dict, credits.examine(stateful_dict))
-		stateful_dict['end_of_game'] = True
-		return
-
 
 ### move to interpreter module in the future ###
 def root_word_count(stateful_dict, word2):
@@ -126,6 +99,33 @@ def inventory(stateful_dict):
 		else:
 				backpack_str = ', '.join(backpack_str_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
+
+def end(stateful_dict):
+		score = stateful_dict['current_score']
+		moves = stateful_dict['move_counter']
+		game_ending = stateful_dict['game_ending']
+
+#		if score < 0:
+#				title_score = -10
+#		elif score == 0:
+#				title_score = 0
+#		else:
+#				title_score = math.ceil(score / 10) * 10
+#		title = static_dict['titles_dict'][title_score]
+
+		if game_ending == 'death':
+				buffer(stateful_dict, "You have died.")
+		elif game_ending == 'quit':
+				buffer(stateful_dict, "You have quit.")
+		elif game_ending == 'won':
+				buffer(stateful_dict, "You have won!")
+		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
+#    print_score(state_dict, static_dict)
+#		buffer("Your title is: " + title)
+		if game_ending == 'won':
+				buffer(stateful_dict, credits.examine(stateful_dict))
+		stateful_dict['end_of_game'] = True
+		return
 
 
 ### Not working ###
