@@ -32,6 +32,9 @@ class ViewOnly(object):
 				self.desc = desc
 				self.writing = writing
 
+		def __str__(self): # DOESN'T WORK
+				return '{self.name}'.format(self=self)
+
 		def examine(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
@@ -208,7 +211,7 @@ backpack = ViewOnly('backpack', "backpack", "backpack", "Your trusty, well-worn 
 burt = ViewOnly('burt', 'burt', "burt", "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
 fist = ViewOnly('fist', 'fist', "fist", "That is indeed your very own fist", None)
 conscience = ViewOnly('conscience', 'conscience', "conscience", "A tad murky Burt - what would your dear old Nana say?", None)
-help = ViewOnly('help', 'help', "help", "Detailed help text for new players [to be written]", None)
+#help = ViewOnly('help', 'help', "help", "Detailed help text for new players [to be written]", None)
 credits = ViewOnly('credits', 'credits', "credits", "Standard credits from dkv2 + my 4 playtesters!", None)
 
 rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
@@ -246,7 +249,7 @@ dwarven_runes.written_on = shiny_sword
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, fist, conscience, help, credits],
+		'universal' : [backpack, burt, fist, conscience, credits],
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 

@@ -37,7 +37,9 @@ one_word_convert_dict = {
 }
 
 descript_dict = {
-		'introduction' : "This is the introduction [to be written]"
+		'introduction' : "This is the introduction [to be written]",
+		"help" : "Detailed help text for new players [to be written]",
+		"entrance" : "Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate"
 }
 
 
@@ -53,6 +55,7 @@ def root_word_count(stateful_dict, word2):
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
 						+ universal_lst + features_lst + open_cont_obj_lst)
 		scope_lst.append(room_obj)
+##		print(scope_lst)
 
 		root_count = 0
 		obj_name = ""
@@ -143,9 +146,11 @@ def interpreter(stateful_dict, user_input):
 				if word1 in one_word_only_lst:
 						if word1 == 'xyzzy42':
 								buffer(stateful_dict, descript_dict["introduction"])
-								help.examine(stateful_dict)
+								buffer(stateful_dict, descript_dict["help"])
+								buffer(stateful_dict, descript_dict["entrance"])
+##								help.examine(stateful_dict)
 								buffer(stateful_dict, "")
-								entrance.examine(stateful_dict)
+###								entrance.examine(stateful_dict)
 						elif word1 == 'score':
 								buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
 						elif word1 == 'version':
@@ -208,7 +213,8 @@ def interpreter(stateful_dict, user_input):
 		
 		# check to see if word2 is a known obj_name
 		try:
-				word2_obj = str_to_class(word2)
+##				word2_obj = str_to_class(word2)
+				word2_obj = getattr(sys.modules[__name__], word2)
 		except:
 				# check to see if the word2 is a root_name; convert to obj_name if valid
 				root_count, obj_name = root_word_count(stateful_dict, word2)
@@ -222,7 +228,8 @@ def interpreter(stateful_dict, user_input):
 						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						return
 				else:
-						word2_obj = str_to_class(obj_name)
+##						word2_obj = str_to_class(obj_name)
+						word2_obj = getattr(sys.modules[__name__], obj_name)
 
 		# attempt to proces 2-word command
 		try:
