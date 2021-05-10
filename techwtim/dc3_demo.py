@@ -205,8 +205,11 @@ class Container(Door):
 				self.contains = contains # list of items in the container
 
 
+import dc3_config
+
+
 # object instantiation
-dark_castle = ViewOnly('dark_castle', "dark castle", "castle", 'The evil Dark Castle looms above you', None)
+## dark_castle = ViewOnly('dark_castle', "dark castle", "castle", 'The evil Dark Castle looms above you', None)
 backpack = ViewOnly('backpack', "backpack", "backpack", "Your trusty, well-worn leather backpack", None)
 burt = ViewOnly('burt', 'burt', "burt", "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
 fist = ViewOnly('fist', 'fist', "fist", "That is indeed your very own fist", None)

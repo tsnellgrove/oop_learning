@@ -5,6 +5,7 @@
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
 ## import sys
+import dc3_config
 
 ### NOT IN USE ###
 def set_difference(a,b):

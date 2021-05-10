@@ -10,6 +10,7 @@ from dc3_helper import buffer
 from dc3_helper import open_cont_scan
 from dc3_helper import objlst_to_strlst
 ##from dc3_demo import str_to_class
+import dc3_config
 
 
 #interpreter vocab
