@@ -256,6 +256,8 @@ IDEA: Enable use of root nouns? With error code if multiple same root in scope?
 IDEA: Introduce modules
 	DONE: Helper functions
 	IN-PROC: Research config modules
+IDEA: Change approach: class definitions, object instantiation, and helper functions are modules - Interpreter calls them
+	TBD: Undo Interpreter module approach
 	TBD: Create config moduel to instantiate object variables
 	TBD: IN-PROC: Interpreter (with a main to call functions)
 
