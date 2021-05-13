@@ -5,6 +5,9 @@
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
 
+### NOTE: MODULE NOT IN USE; NOT BEING CALLED ###
+
+
 # import statements
 from dc3_helper import buffer
 from dc3_helper import open_cont_scan
