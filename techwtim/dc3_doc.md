@@ -259,7 +259,7 @@ IDEA: Introduce modules
 IDEA: Change approach: class definitions, object instantiation, and helper functions are modules - Interpreter calls them
 	DONE: Undo Interpreter module approach
 	DONE: Classes module
-	TBD: Create config moduel to instantiate object variables
+	DONE: Create config moduel to instantiate object variables
 	TBD: IN-PROC: Interpreter (with a main to call functions)
 
 Preposistions
