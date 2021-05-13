@@ -8,6 +8,7 @@
 # import
 from dc3_helper import *
 
+
 # classes
 class ViewOnly(object):
 		def __init__(self, name, full_name, root_name, desc, writing):

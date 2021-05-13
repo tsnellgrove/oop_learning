@@ -1,11 +1,12 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 7, 2021
+# date: May 13, 2021
 # description: helper function module for a zork-like text adventure game
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
-## import sys
-import dc3_config
+# import statements
+## import dc3_config
+
 
 ### NOT IN USE ###
 def set_difference(a,b):
@@ -60,7 +61,7 @@ def container_desc(cont_obj, stateful_dict):
 				buffer(stateful_dict, output)
 
 
-### move to interpreter module in the future ###
+### interpreter centric ###
 def root_word_count(stateful_dict, word2):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']

@@ -1,28 +1,19 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 7, 2021
+# date: May 13, 2021
 # description: main routine for a zork-like text adventure game
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
 
 # import statements
-import cmd
+## import cmd   # not in use
 import sys
-from dc3_helper import objlst_to_strlst
-from dc3_helper import scope_check
-from dc3_helper import root_word_count # called by interp?
-from dc3_helper import buffer
-from dc3_helper import container_desc
-from dc3_helper import inventory # called by interp?
-from dc3_helper import end # called by interp?
-## from dc3_interp import interpreter
-## import dc3_config
+from dc3_helper import *
 from dc3_classes import *
-## import dc3_config
 from dc3_init import *
 
 
-# helper functions
+# local helper functions
 def str_to_class(str):
 		return getattr(sys.modules[__name__], str)
 
@@ -66,9 +57,12 @@ one_word_convert_dict = {
 		'west' : 'go'
 }
 
+
+# description dict
 descript_dict = {
 		'introduction' : "This is the introduction [to be written]"
 }
+
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
@@ -199,7 +193,7 @@ def interpreter(stateful_dict, user_input):
 # chest.unlock(stateful_dict)
 
 
-# main loop
+# main routine
 start_of_game = True
 while stateful_dict['end_of_game'] == False:
 		stateful_dict['out_buff'] = "" # resets buffer
