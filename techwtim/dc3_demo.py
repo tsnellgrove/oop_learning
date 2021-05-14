@@ -63,13 +63,8 @@ descript_dict = {
 		'introduction' : "This is the introduction [to be written]"
 }
 
-
-# interpreter function
-def interpreter(stateful_dict, user_input):
-		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
-		room_obj = stateful_dict['room']
-
-		#convert user_input string to list of words
+# convert user_input str to lst, lower, convert abreviations, remove articles
+def input_cleanup(user_input):
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split() # convert user input string into word list
@@ -86,7 +81,34 @@ def interpreter(stateful_dict, user_input):
 		# strip out articles
 		for article in articles_lst:
 				user_input_lst = [word for word in user_input_lst if word != article]
- 
+
+		return user_input_lst
+
+# interpreter function
+def interpreter(stateful_dict, user_input):
+		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
+		room_obj = stateful_dict['room']
+
+		#convert user_input string to list of words
+##		lst = []
+##		lst.append(user_input)
+##		user_input_lst = lst[0].split() # convert user input string into word list
+
+		# convert all words to lower case and substitute abreviations
+##		n = 0 
+##		for word in user_input_lst:
+##				word = word.lower()	
+##				if word in abreviations_dict:
+##						word = abreviations_dict[word]
+##				user_input_lst[n] = word
+##				n += 1
+
+		# strip out articles
+##		for article in articles_lst:
+##				user_input_lst = [word for word in user_input_lst if word != article]
+
+		user_input_lst = input_cleanup(user_input)
+
  		# no input or the only input is articles
 		if len(user_input_lst) < 1: 
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
