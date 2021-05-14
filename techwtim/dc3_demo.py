@@ -68,6 +68,8 @@ descript_dict = {
 def interpreter(stateful_dict, user_input):
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
 		room_obj = stateful_dict['room']
+
+		#convert user_input string to list of words
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split() # convert user input string into word list
@@ -128,8 +130,8 @@ def interpreter(stateful_dict, user_input):
 
 		# multi-word commands
 		if len(user_input_lst) > 1:
-				word1 = user_input_lst[0].lower()
-				word2 = user_input_lst[1].lower()
+				word1 = user_input_lst[0]
+				word2 = user_input_lst[1]
 		else:
 
 				# commnd len ! > 1 should already be errored out
@@ -145,7 +147,7 @@ def interpreter(stateful_dict, user_input):
 	
 		# convert 3-word verb-adj-noun command into verb-obj_name
 		if len(user_input_lst) == 3:
-				word3 = user_input_lst[2].lower()
+				word3 = user_input_lst[2]
 				user_input_lst[1] = word2 + "_" + word3
 				word2 = user_input_lst[1]
 				del user_input_lst[2]
