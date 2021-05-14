@@ -263,7 +263,7 @@ IDEA: Change approach: class definitions, object instantiation, and helper funct
 	DONE: Clean up modules
 
 Preposistions
-7.7) Restructure interpreter to call functions
+INPROC: 7.7) Restructure interpreter to call functions - TESTING NEEDED
 7.9) Create module for most of interpreter functions
 8) use lists to identify words as prepositions 
 9) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
