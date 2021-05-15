@@ -263,25 +263,30 @@ IDEA: Change approach: class definitions, object instantiation, and helper funct
 	DONE: Clean up modules
 
 Preposistions
-INPROC: 7.7) Restructure interpreter to call functions - TESTING NEEDED
-7.9) Create module for most of interpreter functions
-8) use lists to identify words as prepositions 
-9) if multiple nouns, verbs, articles, or preps in a row => I don't undderstand that setence error
-10) If no prep => verb_noun function
-11) If prep: Identify direct object and => prep_sentence function
+DONE: 7.7) Restructure interpreter to call functions
+	7.8) create put method for container
+8) in interpreter use lists to identify words as prepositions  ("put")
+	8.1) if "in" no in user_input_lst => "I don't see the word 'in' in that sentence"
+	8.2) if 2 words between "put" and "in" (i.e. the noun) => convert to obj = adj_noun
+	8.3) if 1 word between  "put" and "in" (i.e. the noun) check for object name, run root_word conversion if needed
+	8.4) if 2 words after "in" (i.e. the direct object) => convert to obj = adj_noun
+	8.5) if 1 word after "in" (i.e. the direct object) check for object name, run root_word conversion if needed
+	8.55) if direct object is a container error out => "you can't put a container in a container"
+	8.6) try calling put method of container; error out on except
+1.5) Create module for most of interpreter functions
 NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls
 
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
 13) Need a better place to call end... ideally part of a loop independent of main module??
+14) maybe need a function to reduce move count on error?
 
 Structure:
 A-1) Create Helper module
-A) Create Interpreter module
-B) main Interpreter function
-C) All one_word commands => 1_word function
-D) functions for each case
-E) Re-org exception cases to reduce all the subtractions?
-
+A-2) Create Class module
+A-3) Object Instantiation module
+B) Refine main Interpreter function
+C) Sort out prepositions
+D) Create interpreter function module
 
 TBD: Integrate advice from Franco!
 	TBD: I think it’s fine to have a big string in your class.  I think it’s also fine to have a separate dictionary or file or db or whatever for big static strings and just put the key into your class.  Or put each object in its own module so you can define a constant nearby but not in the class
@@ -296,10 +301,6 @@ IDEA: descriptions in separate descript_dict to be loaded from static text (isol
 	TBD: Resolve use of descript_dict
 	IDEA: static_dict ??
 
-
-
-TBD: Interpreter review!!!
-TBD: Put command
 TBD: Implement formal flask code vs. app separation
 
 TBD: How to handle a container in a container?
