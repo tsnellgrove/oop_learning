@@ -264,14 +264,14 @@ IDEA: Change approach: class definitions, object instantiation, and helper funct
 
 Preposistions
 DONE: 7.7) Restructure interpreter to call functions
-	7.8) create put method for container
-8) in interpreter use lists to identify words as prepositions  ("put")
-	8.1) if "in" no in user_input_lst => "I don't see the word 'in' in that sentence"
+DONE: 7.8) create put method for container
+IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
+	8.05) Consider converting adj-handling section into function and calling twice for prep special case
+	8.1) if "in" not in user_input_lst => "I don't see the word 'in' in that sentence"
 	8.2) if 2 words between "put" and "in" (i.e. the noun) => convert to obj = adj_noun
 	8.3) if 1 word between  "put" and "in" (i.e. the noun) check for object name, run root_word conversion if needed
 	8.4) if 2 words after "in" (i.e. the direct object) => convert to obj = adj_noun
 	8.5) if 1 word after "in" (i.e. the direct object) check for object name, run root_word conversion if needed
-	8.55) if direct object is a container error out => "you can't put a container in a container"
 	8.6) try calling put method of container; error out on except
 1.5) Create module for most of interpreter functions
 NOTE: All room-based validation happens in the method - the Interpreter just converts English to method calls

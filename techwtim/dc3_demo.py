@@ -57,8 +57,10 @@ one_word_convert_dict = {
 		'east' : 'go',
 		'west' : 'go'
 }
-verbs_lst = ['examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock']
-
+verbs_lst = ['examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
+prep_dict = {
+		'put' : 'in'
+}
 
 # description dict
 descript_dict = {
@@ -149,7 +151,12 @@ def interpreter(stateful_dict, user_input):
 
 		# there must be at least 2 words in user_input_lst
 		word2 = user_input_lst[1]
-	
+
+		# handle special case 2-word commands
+		if word1 == 'go':
+				getattr(room_obj, word1)(word2, stateful_dict)
+				return
+
 		# convert 3-word verb-adj-noun commands into verb-obj_name commands
 		if len(user_input_lst) == 3:
 				word3 = user_input_lst[2]
@@ -163,10 +170,10 @@ def interpreter(stateful_dict, user_input):
 				buffer(stateful_dict, output)
 				return 
 
-		# special case 2-word commands
-		if word1 == 'go':
-				getattr(room_obj, word1)(word2, stateful_dict)
-				return # newly added
+		# process special case 2-word commands
+##		if word1 == 'go':
+##				getattr(room_obj, word1)(word2, stateful_dict)
+##				return
 		
 		# check to see if word2 is a known obj_name
 		try:
@@ -186,7 +193,7 @@ def interpreter(stateful_dict, user_input):
 				else:
 						word2_obj = str_to_class(obj_name)
 
-		# attempt to proces 2-word command
+		# attempt to proces general 2-word commands
 		try:
 				getattr(word2_obj, word1)(stateful_dict)
 		except:
