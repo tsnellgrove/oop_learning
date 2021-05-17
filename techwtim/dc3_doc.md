@@ -266,7 +266,7 @@ Preposistions
 DONE: 7.7) Restructure interpreter to call functions
 DONE: 7.8) create put method for container
 IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
-	8.05) Consider converting adj-handling section into function and calling twice for prep special case
+	IN-PROC: 8.05) Consider converting adj-handling section into function and calling twice for prep special case
 	8.1) if "in" not in user_input_lst => "I don't see the word 'in' in that sentence"
 	8.2) if 2 words between "put" and "in" (i.e. the noun) => convert to obj = adj_noun
 	8.3) if 1 word between  "put" and "in" (i.e. the noun) check for object name, run root_word conversion if needed
