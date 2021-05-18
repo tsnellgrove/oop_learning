@@ -124,7 +124,7 @@ def noun_handling(stateful_dict, user_input_lst):
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				buffer(stateful_dict, output)
 				exit_state = True
-				return exit_state, user_input_lst, word2_obj
+				return exit_state, user_input_lst, word2, word2_obj
 		
 		# check to see if word2 is a known obj_name
 		try:
@@ -136,13 +136,13 @@ def noun_handling(stateful_dict, user_input_lst):
 						buffer(stateful_dict, "I don't see a " + word2 + " here.")
 						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						exit_state = True
-						return exit_state, user_input_lst, word2_obj
+						return exit_state, user_input_lst, word2, word2_obj
 				elif root_count > 1:
 						output = "I see more than one " + word2 + ". Please use the full name."
 						buffer(stateful_dict, output)
 						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						exit_state = True
-						return exit_state, user_input_lst, word2_obj
+						return exit_state, user_input_lst, word2, word2_obj
 				else:
 						word2_obj = str_to_class(obj_name)
 
@@ -200,7 +200,7 @@ def interpreter(stateful_dict, user_input):
 				return
 		else:
 				exit_state, user_input_lst, word2, word2_obj = noun_handling(stateful_dict, user_input_lst)
-				if not exit_state:
+				if exit_state:
 						return
 
 		# convert 3-word verb-adj-noun commands into verb-obj_name commands
