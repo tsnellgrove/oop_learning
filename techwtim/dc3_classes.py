@@ -190,7 +190,7 @@ class Container(Door):
 				self.takeable = takeable # can the container be taken?
 				self.contains = contains # list of items in the container
 
-		def put(self, stateful_dict, obj):
+		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
