@@ -205,21 +205,27 @@ def interpreter(stateful_dict, user_input):
 						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						return
 				else:
-						input_len = len(user_input_lst)
-						in_position = user_input.index('in')
+##						input_len = len(user_input_lst)
+						print(user_input_lst)
+						in_position = user_input_lst.index('in')
+						print(in_position)
 ##						v_n_len = input_len - in_position - 1
 ##						p_p_len = input_len - v_n_len
 ##						split_lst = [v_n_len, p_p_len]
 ##						input_lst = iter(user_input_lst)
 ##						sublst_lst = [list(islice(input_lst, i))
 ##								for i in split_lst]
-						v_n_lst = islice(user_input_lst, 0, in_position - 1)
-						p_p_lst = islice(user_input_lst, in_position, None)
-##						print(v_n_lst)
-##						print(p_p_lst)
+						v_n_lst = list(islice(user_input_lst, in_position))
+						p_p_lst = list(islice(user_input_lst, in_position, None))
+						print(v_n_lst)
+						print(p_p_lst)
 						exit_state, v_n_lst2, noun, noun_obj = noun_handling(stateful_dict, v_n_lst)
 						exit_state, p_p_lst2, dirobj, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
 						print(word1, noun, dirobj)
+						try:
+								getattr(dirobj_obj, word1)(noun, stateful_dict)
+						except:
+								print("that doesn't work")
 		else:
 				exit_state, user_input_lst, word2, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
