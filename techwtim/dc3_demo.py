@@ -8,6 +8,7 @@
 # import statements
 ## import cmd   # not in use
 import sys
+from itertools import islice
 from dc3_helper import *
 from dc3_classes import *
 from dc3_init import *
@@ -58,8 +59,8 @@ one_word_convert_dict = {
 		'west' : 'go'
 }
 verbs_lst = ['examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
-prep_dict = {
-		'put' : 'in'
+prep_lst = {
+		'in'
 }
 
 # description dict
@@ -198,6 +199,24 @@ def interpreter(stateful_dict, user_input):
 		if word1 == 'go':
 				getattr(room_obj, word1)(word2, stateful_dict)
 				return
+		elif word1 == 'put':
+				if 'in' not in user_input_lst:
+						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						return
+				else:
+						input_len = len(user_input_lst)
+						in_position = user_input.index('in')
+						v_n_len = input_len - in_position - 1
+						p_p_len = input_len - v_n_len
+						split_lst = [v_n_len, p_p_len]
+						input_lst = iter(user_input_lst)
+						sublst_lst = [list(islice(input_lst, i))
+								for i in split_lst]
+						v_n_lst = sublst_lst[0]
+						p_p_lst = sublst_lst[1]
+						print(v_n_lst)
+						print(p_p_lst)
 		else:
 				exit_state, user_input_lst, word2, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
