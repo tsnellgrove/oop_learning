@@ -201,6 +201,8 @@ class Container(Door):
 				elif hasattr(obj, 'contains'):
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
-						buffer(stateful_dict, "Done")
+						hand_lst.remove(self)
 						self.contains.append(obj)
+						buffer(stateful_dict, "Done")
+						
 
