@@ -268,11 +268,12 @@ DONE: 7.8) create put method for container
 IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 	DONE: 8.05) Convert noun_handling section into function
 	DONE: Create a special handling case for word1 == "put"
-	TBD: Troubleshooting - carefully map out class to getattr in working cases
-	8.1) if "in" not in user_input_lst => "I don't see the word 'in' in that sentence"
-	8.2) send input list between "put" and "in" to noun handling
-	8.3) send input list from "in" to "end" to noun handling
-	8.6) try calling put method of container; error out on except
+	DONE: 8.1) if "in" not in user_input_lst => "I don't see the word 'in' in that sentence"
+	DONE: 8.2) send input list between "put" and "in" to noun handling
+	DONE: 8.3) send input list from "in" to "end" to noun handling
+	DONE: 8.6) try calling put method of container; error out on except
+	DONE: Troubleshooting - carefully map out class to getattr in working cases
+	TBD: detailed testing
 1.5) Create module for most helper interpreter functions
 NOTE: All room-based validation happens in the method - the Interpreter just enforces language roles and converts English to method calls
 
