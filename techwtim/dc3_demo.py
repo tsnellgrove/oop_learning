@@ -23,7 +23,7 @@ def str_to_class(str):
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, fist, conscience, credits],
+		'universal' : [backpack, burt, fist, conscience, credits, help],
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 
@@ -206,9 +206,9 @@ def interpreter(stateful_dict, user_input):
 						return
 				else:
 ##						input_len = len(user_input_lst)
-						print(user_input_lst)
+###						print(user_input_lst)
 						in_position = user_input_lst.index('in')
-						print(in_position)
+###						print(in_position)
 ##						v_n_len = input_len - in_position - 1
 ##						p_p_len = input_len - v_n_len
 ##						split_lst = [v_n_len, p_p_len]
@@ -217,16 +217,17 @@ def interpreter(stateful_dict, user_input):
 ##								for i in split_lst]
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-						print(v_n_lst)
-						print(p_p_lst)
+###						print(v_n_lst)
+###						print(p_p_lst)
 						exit_state, v_n_lst2, noun, noun_obj = noun_handling(stateful_dict, v_n_lst)
 						exit_state, p_p_lst2, dirobj, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
-						print(word1, noun, dirobj)
+###						print(word1, noun, dirobj)
 						if exit_state:
 								return
 						else:
 								try:
-										getattr(dirobj_obj, word1)(noun, stateful_dict)
+										getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+###										dirobj_obj.put(noun_obj, stateful_dict)
 								except:
 										buffer(stateful_dict, "That doesn't work.")
 										stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
@@ -249,6 +250,7 @@ def interpreter(stateful_dict, user_input):
 # rusty_key.take(stateful_dict)
 # sword.examine(stateful_dict)
 # chest.unlock(stateful_dict)
+# wooden_chest.put(shiny_sword, stateful_dict)
 
 
 # main routine
