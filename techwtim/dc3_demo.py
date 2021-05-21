@@ -209,15 +209,18 @@ def interpreter(stateful_dict, user_input):
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
 						exit_state, v_n_lst2, noun, noun_obj = noun_handling(stateful_dict, v_n_lst)
+						if exit_state:
+								return
 						exit_state, p_p_lst2, dirobj, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
 						if exit_state:
 								return
-						else:
-								try:
-										getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
-								except:
-										buffer(stateful_dict, "That doesn't work.")
-										stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+##						else:
+##						getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+						try:
+								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+						except:
+								buffer(stateful_dict, "That doesn't work.")
+								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						return 
 		else:
 				exit_state, user_input_lst, word2, word2_obj = noun_handling(stateful_dict, user_input_lst)

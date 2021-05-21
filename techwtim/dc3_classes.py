@@ -194,6 +194,8 @@ class Container(Door):
 				hand_lst = stateful_dict['hand']
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
+				elif scope_check(obj, stateful_dict) == False:
+						buffer(stateful_dict, "You can't see a " + obj.full_name + " here.")
 				elif obj in hand_lst == False:
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 				elif self.open_state == False:

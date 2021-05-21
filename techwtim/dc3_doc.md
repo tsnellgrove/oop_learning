@@ -273,7 +273,7 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 	DONE: 8.3) send input list from "in" to "end" to noun handling
 	DONE: 8.6) try calling put method of container; error out on except
 	DONE: Troubleshooting - carefully map out class to getattr in working cases
-	TBD: detailed testing
+	TBD: detailed testing - still haven't figured out why trying to put object not in hand doesn't trigger class error??
 1.5) Create module for most helper interpreter functions
 NOTE: All room-based validation happens in the method - the Interpreter just enforces language roles and converts English to method calls
 
