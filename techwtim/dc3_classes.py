@@ -115,6 +115,7 @@ class Item(ViewOnly):
 						buffer(stateful_dict, output)
 				else:
 						hand_lst.remove(self)
+						stateful_dict['hand'] = hand_lst
 						room_obj.room_stuff.append(self)
 						buffer(stateful_dict, "Dropped")
 
@@ -192,18 +193,28 @@ class Container(Door):
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
+				if len(hand_lst) > 0:
+						hand_str = hand_lst[0].name
+				print(hand_lst)
+				print(self, obj)
+				print(hand_str)
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif scope_check(obj, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + obj.full_name + " here.")
-				elif obj in hand_lst == False:
+				elif len(hand_lst) == 0:
+						buffer(stateful_dict, "Your hand is empty")
+				elif obj != hand_str:
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
+##				elif obj in hand_lst == False:
+##						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				elif hasattr(obj, 'contains'):
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
 						hand_lst.remove(obj)
+						stateful_dict['hand'] = hand_lst
 						self.contains.append(obj)
 						buffer(stateful_dict, "Done")
 						

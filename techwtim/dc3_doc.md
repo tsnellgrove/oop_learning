@@ -275,6 +275,7 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 	DONE: Troubleshooting - carefully map out class to getattr in working cases
 	TBD: detailed testing - still haven't figured out why trying to put object not in hand doesn't trigger class error??
 		TBD: maybe issue is use of hand_lst.remove instead of stateful_dict['hand'] ??
+		TBD: Still don't understand problem... put not currently working
 1.5) Create module for most helper interpreter functions
 NOTE: All room-based validation happens in the method - the Interpreter just enforces language roles and converts English to method calls
 
