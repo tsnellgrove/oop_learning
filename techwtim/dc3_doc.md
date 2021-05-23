@@ -263,6 +263,7 @@ IDEA: Change approach: class definitions, object instantiation, and helper funct
 	DONE: Clean up modules
 
 Preposistions
+NOTE: All room-based validation happens in the method - the Interpreter just enforces language roles and converts English to method calls
 DONE: 7.7) Restructure interpreter to call functions
 DONE: 7.8) create put method for container
 IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
@@ -273,11 +274,11 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 	DONE: 8.3) send input list from "in" to "end" to noun handling
 	DONE: 8.6) try calling put method of container; error out on except
 	DONE: Troubleshooting - carefully map out class to getattr in working cases
-	TBD: detailed testing - still haven't figured out why trying to put object not in hand doesn't trigger class error??
-		TBD: maybe issue is use of hand_lst.remove instead of stateful_dict['hand'] ??
-		TBD: Still don't understand problem... put not currently working
+	DONE: detailed testing - still haven't figured out why trying to put object not in hand doesn't trigger class error??
+		DONE: maybe issue is use of hand_lst.remove instead of stateful_dict['hand'] ??
+		DONE: Still don't understand problem... put not currently working
+		DONE: All that trouble over in hand_lst == False vs. not in hand_lst !!
 1.5) Create module for most helper interpreter functions
-NOTE: All room-based validation happens in the method - the Interpreter just enforces language roles and converts English to method calls
 
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
 13) Need a better place to call end... ideally part of a loop independent of main module??

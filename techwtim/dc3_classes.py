@@ -193,21 +193,26 @@ class Container(Door):
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
-				if len(hand_lst) > 0:
-						hand_str = hand_lst[0].name
-				print(hand_lst)
-				print(self, obj)
-				print(hand_str)
+##				if len(hand_lst) > 0:
+##						hand_str = str(hand_lst[0].name)
+##						hand_obj = hand_lst[0]
+##						print(hand_str)
+##						print(type(hand_str))
+##						print(hand_obj)
+##						print(type(hand_obj))
+##				print(type(obj))
+##				print(hand_lst)
+##				print(self, obj)
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif scope_check(obj, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + obj.full_name + " here.")
 				elif len(hand_lst) == 0:
 						buffer(stateful_dict, "Your hand is empty")
-				elif obj != hand_str:
+###				elif obj != hand_obj:
+###						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
+				elif obj not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
-##				elif obj in hand_lst == False:
-##						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				elif hasattr(obj, 'contains'):
