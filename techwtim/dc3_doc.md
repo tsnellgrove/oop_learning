@@ -278,7 +278,8 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 		DONE: maybe issue is use of hand_lst.remove instead of stateful_dict['hand'] ??
 		DONE: Still don't understand problem... put not currently working
 		DONE: All that trouble over in hand_lst == False vs. not in hand_lst !!
-1.5) Create module for most helper interpreter functions
+	TBD: Clean up intpreter (noun handling returns too much, word2 declaration only for go, etc)
+	TBD: 1.5) Create module for most helper interpreter functions
 
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
 13) Need a better place to call end... ideally part of a loop independent of main module??
