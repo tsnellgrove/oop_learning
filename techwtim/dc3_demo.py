@@ -147,8 +147,7 @@ def noun_handling(stateful_dict, user_input_lst):
 				else:
 						word2_obj = str_to_class(obj_name)
 
-		return exit_state, user_input_lst, word2, word2_obj
-
+		return exit_state, word2_obj
 
 # interpreter function
 def interpreter(stateful_dict, user_input):
@@ -192,11 +191,9 @@ def interpreter(stateful_dict, user_input):
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				return
 
-		# there must be at least 2 words in user_input_lst
-		word2 = user_input_lst[1]
-
 		# handle 2-word commands (special cases first else general case)
 		if word1 == 'go':
+				word2 = user_input_lst[1]
 				getattr(room_obj, word1)(word2, stateful_dict)
 				return
 		elif word1 == 'put':
@@ -208,10 +205,10 @@ def interpreter(stateful_dict, user_input):
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-						exit_state, v_n_lst2, noun, noun_obj = noun_handling(stateful_dict, v_n_lst)
+						exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
 						if exit_state:
 								return
-						exit_state, p_p_lst2, dirobj, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
+						exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
 						if exit_state:
 								return
 						try:
@@ -221,7 +218,7 @@ def interpreter(stateful_dict, user_input):
 								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 						return 
 		else:
-				exit_state, user_input_lst, word2, word2_obj = noun_handling(stateful_dict, user_input_lst)
+				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
 						return
 				try:

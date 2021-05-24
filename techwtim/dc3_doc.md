@@ -228,6 +228,14 @@ DONE: 0.7) convert to true flask vs. app structure (but don't worry about passin
 	DONE: add github remote
 	DONE: email Franco to ask about pythonic approach to storing objects with multi-line string attributes; maybe store as JSON and import?
 
+Structure Big Picture:
+A-1) Create Helper module
+A-2) Create Class module
+A-3) Object Instantiation module
+B) Refine main Interpreter function
+C) Sort out prepositions
+D) Create interpreter function module
+
 *** Interpreter Adjectives & Preposistions ***
 Fini 1-word commands
 DONE: 1) Sort out 1 word vs. 2 word commands and error out all non-defined one-word commands
@@ -278,20 +286,16 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 		DONE: maybe issue is use of hand_lst.remove instead of stateful_dict['hand'] ??
 		DONE: Still don't understand problem... put not currently working
 		DONE: All that trouble over in hand_lst == False vs. not in hand_lst !!
-	TBD: Clean up intpreter (noun handling returns too much, word2 declaration only for go, etc)
-	TBD: 1.5) Create module for most helper interpreter functions
+	DONE: Clean up intpreter
+		DONE: noun handling returns too much
+		DONE: word2 declaration only for go
+	TBD: Create module for most interpreter functions
 
+11) error on take of something you already have in hand
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
 13) Need a better place to call end... ideally part of a loop independent of main module??
 14) maybe need a function to reduce move count on error?
 
-Structure:
-A-1) Create Helper module
-A-2) Create Class module
-A-3) Object Instantiation module
-B) Refine main Interpreter function
-C) Sort out prepositions
-D) Create interpreter function module
 
 TBD: Integrate advice from Franco!
 	TBD: I think it’s fine to have a big string in your class.  I think it’s also fine to have a separate dictionary or file or db or whatever for big static strings and just put the key into your class.  Or put each object in its own module so you can define a constant nearby but not in the class
