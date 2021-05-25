@@ -12,6 +12,7 @@ from itertools import islice
 from dc3_helper import *
 from dc3_classes import *
 from dc3_init import *
+from dc3_interp_helper import *
 
 
 # local helper functions
@@ -34,79 +35,8 @@ stateful_dict = {
 		'game_ending' : ""
 		}
 
-#interpreter function vocab
-articles_lst = ['a', 'an', 'the']
-abreviations_dict = {
-		'n' : 'north',
-		's' : 'south',
-		'e' : 'east',
-		'w' : 'west',
-		'i' : 'inventory',
-		'l' : 'look',
-		'get' : 'take',
-		'x' : 'examine',
-		'q' : 'quit'
-}
 
-#interpreter local vocab
-one_word_only_lst = ['score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
-one_word_convert_dict = {
-		'help' : 'examine',
-		'credits' : 'examine',
-		'north' : 'go',
-		'south' : 'go',
-		'east' : 'go',
-		'west' : 'go'
-}
-verbs_lst = ['examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
-prep_lst = {
-		'in'
-}
-
-# description dict
-descript_dict = {
-		'introduction' : "This is the introduction [to be written]"
-}
-
-# convert user_input str to lst, lower, convert abreviations, remove articles
-def input_cleanup(user_input):
-		# first, convert user input string into word list
-		lst = []
-		lst.append(user_input)
-		user_input_lst = lst[0].split()
-		# next, convert all words to lower case and substitute abreviations
-		n = 0 
-		for word in user_input_lst:
-				word = word.lower()	
-				if word in abreviations_dict:
-						word = abreviations_dict[word]
-				user_input_lst[n] = word
-				n += 1
-		# finally, strip out articles
-		for article in articles_lst:
-				user_input_lst = [word for word in user_input_lst if word != article]
-		return user_input_lst
-
-def true_one_word(stateful_dict, word1, room_obj):
-		if word1 == 'xyzzy42':
-				buffer(stateful_dict, descript_dict["introduction"])
-				help.examine(stateful_dict)
-				buffer(stateful_dict, "")
-				entrance.examine(stateful_dict)
-		elif word1 == 'score':
-				buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
-		elif word1 == 'version':
-				buffer(stateful_dict, stateful_dict['version'])
-		elif word1 == 'inventory':
-				inventory(stateful_dict)
-		elif word1 == 'look':
-				room_obj.examine(stateful_dict)
-		elif word1 == 'quit':
-				stateful_dict['game_ending'] = "quit"
-				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 2
-				end(stateful_dict)
-		return
-
+# local functions
 def noun_handling(stateful_dict, user_input_lst):
 		exit_state = False
 		word2_obj = rusty_key
@@ -149,7 +79,7 @@ def noun_handling(stateful_dict, user_input_lst):
 
 		return exit_state, word2_obj
 
-# interpreter function
+# interpreter
 def interpreter(stateful_dict, user_input):
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
 		room_obj = stateful_dict['room']

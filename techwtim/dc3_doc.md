@@ -289,7 +289,9 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 	DONE: Clean up intpreter
 		DONE: noun handling returns too much
 		DONE: word2 declaration only for go
-	TBD: Create module for most interpreter functions
+	IN-PRIC: Create module for most interpreter functions
+		DONE: create interp_helper module
+		TBD: Test noun_handler in interp_helper
 
 11) error on take of something you already have in hand
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"

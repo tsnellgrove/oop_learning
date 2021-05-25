@@ -62,45 +62,9 @@ def container_desc(cont_obj, stateful_dict):
 
 
 ### interpreter centric ###
-def root_word_count(stateful_dict, word2):
-		room_obj = stateful_dict['room']
-		hand_lst = stateful_dict['hand']
-		backpack_lst = stateful_dict['backpack']
-		universal_lst = stateful_dict['universal']
-		room_obj_lst = room_obj.room_stuff
-		features_lst = room_obj.features
-		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
-		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
-						+ universal_lst + features_lst + open_cont_obj_lst)
-		scope_lst.append(room_obj)
 
-		root_count = 0
-		obj_name = ""
-		for obj in scope_lst:
-				if obj.root_name == word2:
-						root_count += 1
-						obj_name = obj.name
-				if obj.writing is not None:
-						if obj.writing.root_name == word2:
-								root_count += 1
-								obj_name = obj.writing.name
-		return root_count, obj_name
 
-def inventory(stateful_dict):
-		hand_obj_lst = stateful_dict['hand']
-		backpack_str_lst = objlst_to_strlst(stateful_dict['backpack'])
-
-		if len(hand_obj_lst) == 0:
-				hand_str = "nothing"
-		else:
-				hand_str = "the " + stateful_dict['hand'][0].full_name
-		buffer(stateful_dict, "In your hand you are holding " + hand_str)
-
-		if len(backpack_str_lst) == 0:
-				backpack_str = "nothing"
-		else:
-				backpack_str = ', '.join(backpack_str_lst)
-		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
+### end routine ###
 
 def end(stateful_dict):
 		score = stateful_dict['current_score']
