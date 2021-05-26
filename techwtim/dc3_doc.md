@@ -297,6 +297,7 @@ DONE: How to handle a container in a container?
 	REJECTED: Only closed containers allowed in containers?
 	DONE: You can't open a container in a container?
 
+10) Learn what import sys does!
 11) error on take of something you already have in hand
 11.5) maybe need a function to reduce move count on error?
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
