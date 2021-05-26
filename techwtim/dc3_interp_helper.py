@@ -5,6 +5,7 @@
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
 ### imports ###
+import sys
 from dc3_helper import *
 from dc3_classes import *
 from dc3_init import *
@@ -46,6 +47,9 @@ descript_dict = {
 
 
 ### interpreter-specific helper functions ###
+def str_to_class(str):
+		return getattr(sys.modules[__name__], str)
+
 def root_word_count(stateful_dict, word2):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
@@ -125,4 +129,44 @@ def true_one_word(stateful_dict, word1, room_obj):
 				end(stateful_dict)
 		return
 
+def noun_handling(stateful_dict, user_input_lst):
+		exit_state = False
+		word2_obj = rusty_key
+		word2 = user_input_lst[1]
+
+		# convert 3-word verb-adj-noun commands into verb-obj_name commands
+		if len(user_input_lst) == 3:
+				word3 = user_input_lst[2]
+				user_input_lst[1] = word2 + "_" + word3
+				word2 = user_input_lst[1]
+				del user_input_lst[2]
+
+		# error out commands that are still longer than two words
+		if len(user_input_lst) > 2:
+				output = "Can you state that more simply? Burt's a man of few words!"
+				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				buffer(stateful_dict, output)
+				exit_state = True
+				return exit_state, word2_obj
+		
+		# check to see if word2 is a known obj_name
+		try:
+				word2_obj = str_to_class(word2)
+		except:
+				# check to see if the word2 is a root_name; convert to obj_name if valid
+				root_count, obj_name = root_word_count(stateful_dict, word2)
+				if root_count < 1:
+						buffer(stateful_dict, "I don't see a " + word2 + " here.")
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						exit_state = True
+						return exit_state, word2_obj
+				elif root_count > 1:
+						output = "I see more than one " + word2 + ". Please use the full name."
+						buffer(stateful_dict, output)
+						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						exit_state = True
+						return exit_state, word2_obj
+				else:
+						word2_obj = str_to_class(obj_name)
+		return exit_state, word2_obj
 

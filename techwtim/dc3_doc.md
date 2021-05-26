@@ -289,14 +289,19 @@ IN-PROC: 8) in interpreter use lists to identify words as prepositions  ("put")
 	DONE: Clean up intpreter
 		DONE: noun handling returns too much
 		DONE: word2 declaration only for go
-	IN-PRIC: Create module for most interpreter functions
+	DONE: Create module for most interpreter functions
 		DONE: create interp_helper module
-		TBD: Test noun_handler in interp_helper
+		DONE: Test noun_handler in interp_helper - this worked!!
+
+DONE: How to handle a container in a container?
+	REJECTED: Only closed containers allowed in containers?
+	DONE: You can't open a container in a container?
 
 11) error on take of something you already have in hand
+11.5) maybe need a function to reduce move count on error?
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
 13) Need a better place to call end... ideally part of a loop independent of main module??
-14) maybe need a function to reduce move count on error?
+TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door open method)
 
 
 TBD: Integrate advice from Franco!
@@ -312,13 +317,8 @@ IDEA: descriptions in separate descript_dict to be loaded from static text (isol
 	TBD: Resolve use of descript_dict
 	IDEA: static_dict ??
 
+
 TBD: Implement formal flask code vs. app separation
-
-TBD: How to handle a container in a container?
-	IDEA: Only closed containers allowed in containers?
-	IDEA: You can't open a container in a container?
-TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door open method)
-
 TBD: Put client-server structure in place early!!
 
 
@@ -336,7 +336,6 @@ TBD: Can (should) I make the program work without external triggers... can the o
 
 
 Some Day Maybe
-TBD: Implment container.put(item) ???
 TBD: Is the Item class worth having???
 TBD: room.room_stuf => room.room_obj_lst ??
 
