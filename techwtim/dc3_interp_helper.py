@@ -92,7 +92,7 @@ def inventory(stateful_dict):
 		else:
 				backpack_str = ', '.join(backpack_str_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
-	
+
 # convert user_input str to lst, lower, convert abreviations, remove articles
 def input_cleanup(user_input):
 		# first, convert user input string into word list
@@ -119,16 +119,17 @@ def true_one_word(stateful_dict, word1, room_obj):
 				buffer(stateful_dict, "")
 				entrance.examine(stateful_dict)
 		elif word1 == 'score':
-				buffer(stateful_dict, "Your score is " + str(stateful_dict['score']))
+				print_score(stateful_dict)
 		elif word1 == 'version':
-				buffer(stateful_dict, stateful_dict['version'])
+				buffer(stateful_dict, static_dict['version'])
 		elif word1 == 'inventory':
 				inventory(stateful_dict)
 		elif word1 == 'look':
 				room_obj.examine(stateful_dict)
 		elif word1 == 'quit':
 				stateful_dict['game_ending'] = "quit"
-				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 2
+				move_dec(stateful_dict)
+				move_dec(stateful_dict)
 				end(stateful_dict)
 		return
 

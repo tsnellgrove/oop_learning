@@ -8,6 +8,13 @@
 ## import dc3_config
 
 
+### static variables ###
+static_dict = {
+		'version' : '3.01',
+		'max_score' : 75
+}
+
+
 ### NOT IN USE ###
 def set_difference(a,b):
     return list(set(a)-set(b))
@@ -60,6 +67,10 @@ def container_desc(cont_obj, stateful_dict):
 				output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
 				buffer(stateful_dict, output)
 
+def print_score(stateful_dict):
+		output1 = ("Your score is " + str(stateful_dict['current_score']))
+		output2 = (" out of " + str(static_dict['max_score']))
+		buffer(stateful_dict, output1 + output2)
 
 ### interpreter centric ###
 
@@ -86,7 +97,7 @@ def end(stateful_dict):
 		elif game_ending == 'won':
 				buffer(stateful_dict, "You have won!")
 		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
-#    print_score(state_dict, static_dict)
+		print_score(stateful_dict)
 #		buffer("Your title is: " + title)
 		if game_ending == 'won':
 				buffer(stateful_dict, credits.examine(stateful_dict))

@@ -27,7 +27,6 @@ stateful_dict = {
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 
-		'version' : '3.01',
 		'end_of_game' : False,
 		'current_score' : 0,
 		'move_counter' : 0,
