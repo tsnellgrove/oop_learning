@@ -50,6 +50,9 @@ descript_dict = {
 def str_to_class(str):
 		return getattr(sys.modules[__name__], str)
 
+def move_dec(stateful_dict):
+		stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+
 def root_word_count(stateful_dict, word2):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
@@ -144,8 +147,8 @@ def noun_handling(stateful_dict, user_input_lst):
 		# error out commands that are still longer than two words
 		if len(user_input_lst) > 2:
 				output = "Can you state that more simply? Burt's a man of few words!"
-				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 				buffer(stateful_dict, output)
+				move_dec(stateful_dict)
 				exit_state = True
 				return exit_state, word2_obj
 		
@@ -157,13 +160,13 @@ def noun_handling(stateful_dict, user_input_lst):
 				root_count, obj_name = root_word_count(stateful_dict, word2)
 				if root_count < 1:
 						buffer(stateful_dict, "I don't see a " + word2 + " here.")
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						move_dec(stateful_dict)
 						exit_state = True
 						return exit_state, word2_obj
 				elif root_count > 1:
 						output = "I see more than one " + word2 + ". Please use the full name."
 						buffer(stateful_dict, output)
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						move_dec(stateful_dict)
 						exit_state = True
 						return exit_state, word2_obj
 				else:

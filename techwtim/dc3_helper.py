@@ -94,6 +94,3 @@ def end(stateful_dict):
 		return
 
 
-### Not working ###
-## def str_to_class(str):
-##		return getattr(sys.modules[__name__], str)

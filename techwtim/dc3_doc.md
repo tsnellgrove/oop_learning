@@ -297,12 +297,13 @@ DONE: How to handle a container in a container?
 	REJECTED: Only closed containers allowed in containers?
 	DONE: You can't open a container in a container?
 
-10) Learn what import sys does!
-11) error on take of something you already have in hand
-11.5) maybe need a function to reduce move count on error?
+DONE: 10) Learn what import sys does! (well, I read about it at least)
+DONE: 11) error on take of something you already have in hand
+DONE: 11.5) maybe need a function to reduce move count on error?
+11.7) Need a better place to call end... ideally part of a loop independent of main module??
+11.8): Consider moving 'if hasattr(contains) code to container class?? (e.g. Door open method)
 12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
-13) Need a better place to call end... ideally part of a loop independent of main module??
-TBD: Consider moving 'if hasattr(contains) code to container class?? (e.g. Door open method)
+
 
 
 TBD: Integrate advice from Franco!

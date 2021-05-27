@@ -85,6 +85,8 @@ class Item(ViewOnly):
 				room_obj_lst = room_obj.room_stuff
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
+				elif self in hand_lst:
+						buffer(stateful_dict, "You're already holding the " + self.full_name)
 				elif self.takeable == False:
 						buffer(stateful_dict, "You can't take the " + self.full_name)
 				else:

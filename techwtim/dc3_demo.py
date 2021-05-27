@@ -47,7 +47,7 @@ def interpreter(stateful_dict, user_input):
  		
 		if len(user_input_lst) < 1: # no input or the only input is articles
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
-				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				move_dec(stateful_dict)
 				return
 
 		# user_input_lst must have at least one word in it
@@ -68,16 +68,16 @@ def interpreter(stateful_dict, user_input):
 		elif len(user_input_lst) == 1:
 				if word1 in verbs_lst:
 						buffer(stateful_dict, word1 + " what?")
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						move_dec(stateful_dict)
 				else:
 						buffer(stateful_dict, "I don't understand what you're trying to say?")
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						move_dec(stateful_dict)
 				return 
 
 		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
 				buffer(stateful_dict, "Please start your sentence with a verb!")
-				stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+				move_dec(stateful_dict)
 				return
 
 		# handle 2-word commands (special cases first else general case)
@@ -88,7 +88,7 @@ def interpreter(stateful_dict, user_input):
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
 						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						move_dec(stateful_dict)
 						return
 				else:
 						in_position = user_input_lst.index('in')
@@ -104,7 +104,7 @@ def interpreter(stateful_dict, user_input):
 								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
 						except:
 								buffer(stateful_dict, "That doesn't work.")
-								stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+								move_dec(stateful_dict)
 						return 
 		else:
 				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
@@ -113,8 +113,8 @@ def interpreter(stateful_dict, user_input):
 				try:
 						getattr(word2_obj, word1)(stateful_dict)
 				except:
-						buffer(stateful_dict, "You can't " + word1 + " with the " + word2 + ".")
-						stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
+						move_dec(stateful_dict)
 
 
 # test
@@ -123,6 +123,7 @@ def interpreter(stateful_dict, user_input):
 # sword.examine(stateful_dict)
 # chest.unlock(stateful_dict)
 # wooden_chest.put(shiny_sword, stateful_dict)
+# rusty_key.take(stateful_dict)
 
 
 # main routine
