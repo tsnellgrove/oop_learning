@@ -303,10 +303,12 @@ DONE: 11.5) maybe need a function to reduce move count on error?
 DONE: 11.7) Need a better place to call end... ideally part of a loop independent of main module??
 	- No: end as a function called during end condition is fine
 DONE: Created static_dict and added it to helper() module
-11.8): Consider moving 'if hasattr(contains) code to container class?? (e.g. Door examine & open methods)
-12) Help subsystem "help abreviations", "help verbs", "help syntax", "help one-word-commands"
-
-
+DONE: 11.8): Consider moving 'if hasattr(contains) code to container class?? (e.g. Door examine & open methods)
+TBD: 12) Help subsystem: 
+		IDEA: The one-word command "help" gives you a list of 2-word help commands: 
+			TBD: "help abreviations", "help verbs", "help syntax", "help one-word-commands", "help preposistions"
+			TBD: Implement 1-word command
+			TBD: Implement as 2-word special case call to help function
 
 TBD: Integrate advice from Franco!
 	TBD: I think it’s fine to have a big string in your class.  I think it’s also fine to have a separate dictionary or file or db or whatever for big static strings and just put the key into your class.  Or put each object in its own module so you can define a constant nearby but not in the class

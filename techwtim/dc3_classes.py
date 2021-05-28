@@ -136,8 +136,6 @@ class Door(ViewOnly):
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				else:
 						buffer(stateful_dict, "The " + self.full_name + " is open.")
-##						if hasattr(self, 'contains'):
-##								container_desc(self, stateful_dict)
 
 		def unlock(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -161,8 +159,6 @@ class Door(ViewOnly):
 				else:
 						self.open_state = True
 						buffer(stateful_dict, "Openned")
-##						if hasattr(self, 'contains'):
-##								container_desc(self, stateful_dict)
 
 		def close(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
