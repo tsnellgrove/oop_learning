@@ -28,8 +28,6 @@ abreviations_dict = {
 #interpreter local vocab
 one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
 one_word_convert_dict = {
-##		'help' : 'examine',
-##		'credits' : 'examine',
 		'north' : 'go',
 		'south' : 'go',
 		'east' : 'go',
@@ -117,8 +115,6 @@ def input_cleanup(user_input):
 def true_one_word(stateful_dict, word1, room_obj):
 		if word1 == 'xyzzy42':
 				buffer(stateful_dict, descript_dict["introduction"])
-##				help.examine(stateful_dict)
-##				buffer(stateful_dict, "")
 				entrance.examine(stateful_dict)
 		elif word1 == 'score':
 				print_score(stateful_dict)

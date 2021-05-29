@@ -15,8 +15,6 @@ backpack = ViewOnly('backpack', "backpack", "backpack", "Your trusty, well-worn 
 burt = ViewOnly('burt', 'burt', "burt", "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
 fist = ViewOnly('fist', 'fist', "fist", "That is indeed your very own fist", None)
 conscience = ViewOnly('conscience', 'conscience', "conscience", "A tad murky Burt - what would your dear old Nana say?", None)
-## help = ViewOnly('help', 'help', "help", "Detailed help text for new players [to be written]", None)
-## credits = ViewOnly('credits', 'credits', "credits", "Standard credits from dkv2 + my 4 playtesters!", None)
 
 rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
 dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", "Goblin Wallopper", None, 'sword')
