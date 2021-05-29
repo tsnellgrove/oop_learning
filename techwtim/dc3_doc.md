@@ -331,6 +331,12 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 - Figure out best implementation for scoring
 
 
+### Creature Class ###
+
+
+### Switch Classes (button & lever) ###
+
+
 TBD: Integrate advice from Franco!
 	TBD: I think it’s fine to have a big string in your class.  I think it’s also fine to have a separate dictionary or file or db or whatever for big static strings and just put the key into your class.  Or put each object in its own module so you can define a constant nearby but not in the class
 	TBD: Use more modules; I would definitely move object instantiation out of the module where the classes are defined.
