@@ -37,7 +37,7 @@ def open_cont_scan(stateful_dict, room_obj_lst):
 ### Called by Other Modules ###
 def buffer(stateful_dict, output_str):
 		out_buff = stateful_dict['out_buff']
-		out_buff = out_buff + output_str + "\n"
+		out_buff = out_buff + "\n" + output_str + "\n"
 		stateful_dict['out_buff'] = out_buff
 
 def objlst_to_strlst(obj_lst):

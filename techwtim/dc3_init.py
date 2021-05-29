@@ -15,8 +15,8 @@ backpack = ViewOnly('backpack', "backpack", "backpack", "Your trusty, well-worn 
 burt = ViewOnly('burt', 'burt', "burt", "Yep, that's you Burt. A bit mangy and odd but undeniably lovable", None)
 fist = ViewOnly('fist', 'fist', "fist", "That is indeed your very own fist", None)
 conscience = ViewOnly('conscience', 'conscience', "conscience", "A tad murky Burt - what would your dear old Nana say?", None)
-help = ViewOnly('help', 'help', "help", "Detailed help text for new players [to be written]", None)
-credits = ViewOnly('credits', 'credits', "credits", "Standard credits from dkv2 + my 4 playtesters!", None)
+## help = ViewOnly('help', 'help', "help", "Detailed help text for new players [to be written]", None)
+## credits = ViewOnly('credits', 'credits', "credits", "Standard credits from dkv2 + my 4 playtesters!", None)
 
 rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'Abandon Hope All Ye Who Even Thank About It', None, 'gate')
 dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", "Goblin Wallopper", None, 'sword')
@@ -35,10 +35,10 @@ front_gate = Door('front_gate', 'front gate', "gate", 'The front gate is massive
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
 entrance = Room('entrance', 'entrance', "entrance", 
-		'Entrance\nYou stand before the daunting gate of Dark Castle. In front of you is the gate',
+		'*** Entrance ***\n\nYou stand before the daunting gate of Dark Castle. In front of you is the gate.',
 		None, [dark_castle], [front_gate], {'north' : 'main_hall'}, {'north' : front_gate})
 main_hall = Room('main_hall', 'main hall', "hall", 
-		'Main Hall\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
+		'*** Main Hall ***\n\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',
 		None, [], [shiny_sword, front_gate, brass_key, wooden_chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : front_gate})
 
 # next room definitions after room definitions to avoid undefined variables

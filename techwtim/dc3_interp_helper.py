@@ -26,23 +26,25 @@ abreviations_dict = {
 }
 
 #interpreter local vocab
-one_word_only_lst = ['score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
+one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
 one_word_convert_dict = {
-		'help' : 'examine',
-		'credits' : 'examine',
+##		'help' : 'examine',
+##		'credits' : 'examine',
 		'north' : 'go',
 		'south' : 'go',
 		'east' : 'go',
 		'west' : 'go'
 }
-verbs_lst = ['examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
+verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
 prep_lst = {
 		'in'
 }
 
 # description dict
 descript_dict = {
-		'introduction' : "This is the introduction [to be written]"
+		'introduction' : "Greetings brave adventurer!\n\nYou are Burt-the-Boneheaded, the only adventurer brave - or foolish - enough to enter the Dark Castle in search of treasure.\n\nType 'help' for help.",
+		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abreviations', 'prepositions'.",
+		'credits' : "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, Milo, Gideon, Franco, Karl, Andy, Ken and Alec for advice and playtesting!!"
 }
 
 
@@ -115,13 +117,17 @@ def input_cleanup(user_input):
 def true_one_word(stateful_dict, word1, room_obj):
 		if word1 == 'xyzzy42':
 				buffer(stateful_dict, descript_dict["introduction"])
-				help.examine(stateful_dict)
-				buffer(stateful_dict, "")
+##				help.examine(stateful_dict)
+##				buffer(stateful_dict, "")
 				entrance.examine(stateful_dict)
 		elif word1 == 'score':
 				print_score(stateful_dict)
 		elif word1 == 'version':
 				buffer(stateful_dict, static_dict['version'])
+		elif word1 == 'help':
+				buffer(stateful_dict, descript_dict['help'])
+		elif word1 == 'credits':
+				buffer(stateful_dict, descript_dict['credits'])
 		elif word1 == 'inventory':
 				inventory(stateful_dict)
 		elif word1 == 'look':
