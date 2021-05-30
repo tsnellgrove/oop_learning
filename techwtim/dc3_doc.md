@@ -308,9 +308,9 @@ IN-PROC: 12) Help subsystem:
 		IDEA: The one-word command "help" gives you a list of 2-word help commands: 
 		IDEA: "basics", help abreviations", "help verbs", "help one-word-commands", "help preposistions"
 		DONE: Implement 1-word command
-		TBD: Implement as 2-word special case call to help function
+		IN-PROC: Implement as 2-word special case call to help function
 
-	
+
 To Do Next:
 
 ### Data Strustures ###

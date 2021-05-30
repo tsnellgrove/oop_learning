@@ -33,7 +33,7 @@ front_gate = Door('front_gate', 'front gate', "gate", 'The front gate is massive
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
 entrance = Room('entrance', 'entrance', "entrance", 
-		'*** Entrance ***\n\nYou stand before the daunting gate of Dark Castle. In front of you is the gate.',
+		'*** Entrance ***\n\nYou stand before the daunting front gate of Dark Castle. In front of you is the front gate.',
 		None, [dark_castle], [front_gate], {'north' : 'main_hall'}, {'north' : front_gate})
 main_hall = Room('main_hall', 'main hall', "hall", 
 		'*** Main Hall ***\n\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.',

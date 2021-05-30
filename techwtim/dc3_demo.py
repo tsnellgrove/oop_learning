@@ -23,7 +23,7 @@ from dc3_interp_helper import *
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, fist, conscience, credits, help],
+		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,
 		'out_buff' : "",
 		'score' : 0, 
@@ -84,6 +84,9 @@ def interpreter(stateful_dict, user_input):
 				word2 = user_input_lst[1]
 				getattr(room_obj, word1)(word2, stateful_dict)
 				return
+		elif word1 == 'help':
+				word2 = user_input_lst[1]
+				help(stateful_dict, word2)
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
 						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
