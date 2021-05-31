@@ -313,6 +313,7 @@ IN-PROC: 12) Help subsystem:
 		DONE: 'verbs' and 'one-word-commands' options written & tested
 		TBD: abreviations, prepositions, adjectives, articles 
 TBD: move stateful_dict['universal'] to static_dict['universal'] ???
+TBD: Centralize all descriptions into a description_dict declared in a dedicated module
 
 
 To Do Next:

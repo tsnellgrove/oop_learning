@@ -34,7 +34,7 @@ one_word_convert_dict = {
 }
 
 
-### description dict (maybe move to dedicated module?) ###
+### description dict ###
 descript_dict = {
 		'introduction' : "Greetings brave adventurer!\n\nYou are Burt-the-Boneheaded, the only adventurer brave - or foolish - enough to enter the Dark Castle in search of treasure.\n\nType 'help' for help.",
 		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abreviations', 'adjectives', prepositions', 'articles'.",
