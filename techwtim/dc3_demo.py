@@ -1,8 +1,8 @@
 # program: dark castle v3
 # name: Tom Snellgrove
-# date: May 29, 2021
+# date: May 31, 2021
 # description: main routine for a zork-like text adventure game
-# goals vs. dc2: oop, modular, db integration, improved interpreter
+# goals vs. dc2: oop, modular, db integration, improved interpreter, more puzzles!
 
 
 # import statements
@@ -15,11 +15,7 @@ from dc3_init import *
 from dc3_interp_helper import *
 
 
-# local helper functions
-
-
-
-# stateful dictionary of persistent values
+### stateful dictionary of persistent values ###
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
@@ -32,9 +28,6 @@ stateful_dict = {
 		'move_counter' : 0,
 		'game_ending' : ""
 		}
-
-
-# local functions
 
 
 # interpreter

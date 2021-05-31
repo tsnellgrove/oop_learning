@@ -11,8 +11,10 @@ from dc3_classes import *
 from dc3_init import *
 
 
-### interpreter function vocab ###
+### interpreter function language variables ###
 articles_lst = ['a', 'an', 'the']
+one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
+verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
 abreviations_dict = {
 		'n' : 'north',
 		's' : 'south',
@@ -24,24 +26,18 @@ abreviations_dict = {
 		'x' : 'examine',
 		'q' : 'quit'
 }
-
-#interpreter local vocab
-one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
 one_word_convert_dict = {
 		'north' : 'go',
 		'south' : 'go',
 		'east' : 'go',
 		'west' : 'go'
 }
-verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
-prep_lst = {
-		'in'
-}
 
-# description dict
+
+### description dict (maybe move to dedicated module?) ###
 descript_dict = {
 		'introduction' : "Greetings brave adventurer!\n\nYou are Burt-the-Boneheaded, the only adventurer brave - or foolish - enough to enter the Dark Castle in search of treasure.\n\nType 'help' for help.",
-		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abreviations', 'prepositions'.",
+		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abreviations', 'adjectives', prepositions', 'articles'.",
 		'credits' : "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, Milo, Gideon, Franco, Karl, Andy, Ken and Alec for advice and playtesting!!",
 		'help_basics' : "You can 'take' one object into your hand at a time. Your other hand is holding your light source. If you are already holding an item when you take something, the first item you were holding goes into your backpack. You can view what you're carying using 'inventory'. Type 'quit' to quit.  Start multi-word commands with a verb."
 }
@@ -97,6 +93,13 @@ def inventory(stateful_dict):
 def help(stateful_dict, option):
 		if option == 'basics':
 				buffer(stateful_dict, descript_dict['help_basics'])
+		elif option == 'verbs':
+				buffer(stateful_dict, "Available verbs include: " + ', '.join(verbs_lst))
+		elif option == 'one-word-commands':
+				user_one_word_lst = one_word_only_lst
+				user_one_word_lst.pop()
+				output = "Available one word commands include: " + ', '.join(user_one_word_lst)
+				buffer(stateful_dict, output)
 		else:
 				buffer(stateful_dict, descript_dict['help'])
 
