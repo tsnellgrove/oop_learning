@@ -98,8 +98,19 @@ def help(stateful_dict, option):
 		elif option == 'one-word-commands':
 				user_one_word_lst = one_word_only_lst
 				user_one_word_lst.pop()
-				output = "Available one word commands include: " + ', '.join(user_one_word_lst)
+				output = ("Available one word commands include: "
+								+ ', '.join(user_one_word_lst))
 				buffer(stateful_dict, output)
+		elif option == 'articles':
+				output = ("The following articles are supported but not required: "
+								+ ', '.join(articles_lst))
+				buffer(stateful_dict, output)
+		elif option == 'adjectives':
+					output = "Nearly all nouns have an adjective (e.g. 'rusty key'). " //
+									+ "The interpreter recognizes adjectives but only requires them if " //
+									+ "other similar nouns are in the room. So 'take rusty key' and " //
+									+ "'take key' are equivalent unless there is another key in the room."
+					buffer(stateful_dict, output)
 		else:
 				buffer(stateful_dict, descript_dict['help'])
 
