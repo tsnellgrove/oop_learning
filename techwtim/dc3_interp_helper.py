@@ -39,7 +39,8 @@ descript_dict = {
 		'introduction' : "Greetings brave adventurer!\n\nYou are Burt-the-Boneheaded, the only adventurer brave - or foolish - enough to enter the Dark Castle in search of treasure.\n\nType 'help' for help.",
 		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abreviations', 'adjectives', prepositions', 'articles'.",
 		'credits' : "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, Milo, Gideon, Franco, Karl, Andy, Ken and Alec for advice and playtesting!!",
-		'help_basics' : "You can 'take' one object into your hand at a time. Your other hand is holding your light source. If you are already holding an item when you take something, the first item you were holding goes into your backpack. You can view what you're carying using 'inventory'. Type 'quit' to quit.  Start multi-word commands with a verb."
+		'help_basics' : "You can 'take' one object into your hand at a time. Your other hand is holding your light source. If you are already holding an item when you take something, the first item you were holding goes into your backpack. You can view what you're carying using 'inventory'. Type 'quit' to quit.  Start multi-word commands with a verb.",
+		'help_adjectives' : "Nearly all nouns have an adjective (e.g. 'rusty key'). The interpreter recognizes adjectives but only requires them if other similar nouns are in the room. So 'take rusty key' and 'take key' are equivalent unless there is another key in the room."
 }
 
 
@@ -106,11 +107,7 @@ def help(stateful_dict, option):
 								+ ', '.join(articles_lst))
 				buffer(stateful_dict, output)
 		elif option == 'adjectives':
-					output = "Nearly all nouns have an adjective (e.g. 'rusty key'). " //
-									+ "The interpreter recognizes adjectives but only requires them if " //
-									+ "other similar nouns are in the room. So 'take rusty key' and " //
-									+ "'take key' are equivalent unless there is another key in the room."
-					buffer(stateful_dict, output)
+					buffer(stateful_dict, descript_dict['help_adjectives'])
 		else:
 				buffer(stateful_dict, descript_dict['help'])
 
