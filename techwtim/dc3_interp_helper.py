@@ -15,7 +15,7 @@ from dc3_init import *
 articles_lst = ['a', 'an', 'the']
 one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
 verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
-abreviations_dict = {
+abbreviations_dict = {
 		'n' : 'north',
 		's' : 'south',
 		'e' : 'east',
@@ -37,10 +37,11 @@ one_word_convert_dict = {
 ### description dict ###
 descript_dict = {
 		'introduction' : "Greetings brave adventurer!\n\nYou are Burt-the-Boneheaded, the only adventurer brave - or foolish - enough to enter the Dark Castle in search of treasure.\n\nType 'help' for help.",
-		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abreviations', 'adjectives', prepositions', 'articles'.",
+		'help' : "Help syntax = 'help <option>'. Help options = 'basics', 'one-word-commands', 'verbs', 'abbreviations', 'adjectives', prepositions', 'articles'.",
 		'credits' : "Written and programmed by Tom. Thanks to Toby, Joshua, JoyEllen, Milo, Gideon, Franco, Karl, Andy, Ken and Alec for advice and playtesting!!",
 		'help_basics' : "You can 'take' one object into your hand at a time. Your other hand is holding your light source. If you are already holding an item when you take something, the first item you were holding goes into your backpack. You can view what you're carying using 'inventory'. Type 'quit' to quit.  Start multi-word commands with a verb.",
-		'help_adjectives' : "Nearly all nouns have an adjective (e.g. 'rusty key'). The interpreter recognizes adjectives but only requires them if other similar nouns are in the room. So 'take rusty key' and 'take key' are equivalent unless there is another key in the room."
+		'help_adjectives' : "Nearly all nouns have an adjective (e.g. 'rusty key'). The interpreter recognizes adjectives but only requires them if other similar nouns are in the room. So 'take rusty key' and 'take key' are equivalent unless there is another key in the room.",
+		'help_prepositions' : "The only available preposition is 'in' and it is only used with the verb 'put'. This allows you to put items in containers. Example: 'put the rusty key in the wooden chest'"
 }
 
 
@@ -108,21 +109,29 @@ def help(stateful_dict, option):
 				buffer(stateful_dict, output)
 		elif option == 'adjectives':
 					buffer(stateful_dict, descript_dict['help_adjectives'])
+		elif  option == 'abbreviations':
+				pre_out = "Available abbreviations include: "
+				for key in abbreviations_dict:
+						pre_out = pre_out + key + " = " + abbreviations_dict[key] + ", "
+				output = pre_out[:-2]
+				buffer(stateful_dict, output)
+		elif option == 'prepositions':
+					buffer(stateful_dict, descript_dict['help_prepositions'])
 		else:
 				buffer(stateful_dict, descript_dict['help'])
 
-# convert user_input str to lst, lower, convert abreviations, remove articles
+# convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
 		# first, convert user input string into word list
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
-		# next, convert all words to lower case and substitute abreviations
+		# next, convert all words to lower case and substitute abbreviations
 		n = 0 
 		for word in user_input_lst:
 				word = word.lower()	
-				if word in abreviations_dict:
-						word = abreviations_dict[word]
+				if word in abbreviations_dict:
+						word = abbreviations_dict[word]
 				user_input_lst[n] = word
 				n += 1
 		# finally, strip out articles

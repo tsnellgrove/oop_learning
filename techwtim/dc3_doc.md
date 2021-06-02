@@ -304,14 +304,15 @@ DONE: 11.7) Need a better place to call end... ideally part of a loop independen
 	- No: end as a function called during end condition is fine
 DONE: Created static_dict and added it to helper() module
 DONE: 11.8): Consider moving 'if hasattr(contains) code to container class?? (e.g. Door examine & open methods)
-IN-PROC: 12) Help subsystem: 
+DONE: 12) Help subsystem: 
 		IDEA: The one-word command "help" gives you a list of 2-word help commands: 
 		IDEA: "basics", help abreviations", "help verbs", "help one-word-commands", "help preposistions", adjectives, articles
 		DONE: Implement 1-word command
 		DONE: Implement as 2-word special case call to help function
 		DONE: help() function created; 'basics' option written & tested
 		DONE: 'verbs' and 'one-word-commands' options written & tested
-		TBD: abreviations, prepositions, adjectives, articles 
+		DONE: articles & adjectives
+		DONE: abreviations, prepositions 
 TBD: move stateful_dict['universal'] to static_dict['universal'] ???
 TBD: Centralize all descriptions into a description_dict declared in a dedicated module
 
