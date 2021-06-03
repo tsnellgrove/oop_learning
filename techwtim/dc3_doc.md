@@ -317,6 +317,7 @@ IN-PROC: move stateful_dict['universal'] to static_dict['universal'] ???
 	IDEA: This will be harder than I thought - because I am not passing static_dict everywhere
 	IDEA: Either I need to start packing variables or I need to stuff everything in stateful_dict???
 TBD: Centralize all descriptions into a description_dict declared in a dedicated module
+TBD: Need to dis-entangle modules better
 
 
 To Do Next:
