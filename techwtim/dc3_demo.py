@@ -29,6 +29,13 @@ stateful_dict = {
 		'game_ending' : ""
 		}
 
+### static variables ###
+## static_dict = {
+##		'version' : '3.01',
+##		'max_score' : 75,
+##		'universal' : [backpack, burt, fist, conscience]
+##}
+
 
 # interpreter
 def interpreter(stateful_dict, user_input):
