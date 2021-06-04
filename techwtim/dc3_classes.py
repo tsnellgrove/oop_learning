@@ -6,6 +6,7 @@
 
 
 # import
+from dc3_static_init import *
 from dc3_helper import *
 
 

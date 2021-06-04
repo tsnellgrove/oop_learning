@@ -317,7 +317,10 @@ IN-PROC: move stateful_dict['universal'] to static_dict['universal'] ???
 	IDEA: This will be harder than I thought - because I am not passing static_dict everywhere
 	IDEA: Either I need to start packing variables or I need to stuff everything in stateful_dict???
 	IDEA: how about a module that declares static_dict and is called by all other modules?
+	NOTE: Right idea but still needs to be sorted out... it's turtles all the way down
+	NOTE: static_dict[] holds objects... so static_init() depends on init() which depends on classes() which depends on helper() which depends on static_init() !!!!
 	TBD: create dc3_static_init
+		TBD: can I resolve the helper() dependency?
 TBD: Centralize all descriptions into a description_dict declared in a dedicated module
 TBD: Need to dis-entangle modules better
 

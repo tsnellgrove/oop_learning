@@ -5,15 +5,16 @@
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
 ### imports ###
+from dc3_static_init import *
 ## from dc3_classes import *
 ## from dc3_init import *
 
 ### static variables ###
-static_dict = {
-		'version' : '3.01',
-		'max_score' : 75
+### static_dict = {
+###		'version' : '3.01',
+###		'max_score' : 75
 ##		'universal' : [backpack, burt, fist, conscience]
-}
+###}
 
 
 ### NOT IN USE ###
@@ -51,7 +52,7 @@ def scope_check(obj, stateful_dict):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
-		universal_lst = stateful_dict['universal']
+		universal_lst = static_dict['universal']
 		room_obj_lst = room_obj.room_stuff
 		features_lst = room_obj.features
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
