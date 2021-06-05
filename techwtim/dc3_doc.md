@@ -1,4 +1,6 @@
-dark castle 3 demo to-dos
+To Do List - Dark Castle 3.01
+June 5, 2021
+
 
 NEXT: Tom Example
 inheritance
@@ -324,10 +326,14 @@ IN-PROC: move stateful_dict['universal'] to static_dict['universal'] ???
 		NOTE: The fundamental rule here is that any global variable that holds objects will need to be in stateful_dict 
 	DONE: create dc3_static_init
 	DONE: clean up universal[] mess and move it back to stateful_dict
-	TBD: clean up comments
-	TBD: Move descriptions_dict to static_init
+	DONE: clean up comments
+	DONE: Move descriptions_dict to static_init
 TBD: Centralize all descriptions into a description_dict declared in a dedicated module
-TBD: Need to dis-entangle modules better
+TBD: At this point declare v3.10 done (update version, clean up files, truncate to-do)
+TBD: 3.20 to be all about DB integration and main / interpreter separation
+
+
+
 
 
 To Do Next:
@@ -371,10 +377,12 @@ TBD: Can (should) I make the program work without external triggers... can the o
 	Perhaps the key is to make creatures behave as state machines... 
 	each has conditions under which they will guard, attack, gift, etc..
 	Also room 'events' with conditionals?
-
+	IDEA: avoid external triggers - create classes / state-machines
+		Examples: conditional_cutscenes (moat, ending), antagonistic_guard (goblin), hungry_guard (hedgehog1), trader (hedgehog2)[introduce "give" verb, dispenser (throne), lever, button
+TBD: How should modules be inter-related (presumably minimally)
 
 Some Day Maybe
 TBD: Is the Item class worth having???
 TBD: room.room_stuf => room.room_obj_lst ??
-
+TBD: Need to dis-entangle modules better
 

@@ -1,8 +1,8 @@
-# program: dark castle v3
+# program: dark castle v3.01
 # name: Tom Snellgrove
-# date: May 13, 2021
-# description: helper function module for a zork-like text adventure game
-# goals vs. dc2: oop, modular, db integration, improved interpreter
+# date: June 5, 2021
+# description: helper function module
+
 
 ### imports ###
 from dc3_static_init import *
