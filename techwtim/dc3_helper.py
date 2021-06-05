@@ -52,7 +52,7 @@ def scope_check(obj, stateful_dict):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
-		universal_lst = static_dict['universal']
+		universal_lst = stateful_dict['universal']
 		room_obj_lst = room_obj.room_stuff
 		features_lst = room_obj.features
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)

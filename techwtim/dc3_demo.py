@@ -9,9 +9,9 @@
 ## import cmd   # not in use
 import sys
 from itertools import islice
+from dc3_static_init import *
 from dc3_classes import *
 from dc3_init import *
-from dc3_static_init import *
 from dc3_helper import *
 from dc3_interp_helper import *
 
