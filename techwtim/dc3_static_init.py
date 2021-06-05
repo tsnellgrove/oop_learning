@@ -5,14 +5,12 @@
 # goals vs. dc2: oop, modular, db integration, improved interpreter
 
 
-### imports ###
-### from dc3_classes import *
-### from dc3_init import *
-
 ### static variables ###
+### these variable values never change ###
+### also, these variable values cannot be objects ###
+### (because static_init => helper => classes => init) ###
 static_dict = {
 		'version' : '3.01',
 		'max_score' : 75,
-###		'universal' : [backpack, burt, fist, conscience]
 }
 

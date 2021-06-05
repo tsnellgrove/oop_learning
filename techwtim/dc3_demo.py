@@ -16,7 +16,8 @@ from dc3_helper import *
 from dc3_interp_helper import *
 
 
-### stateful dictionary of persistent values ###
+### dictionary of variables passed to all functions ###
+### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
@@ -29,13 +30,6 @@ stateful_dict = {
 		'move_counter' : 0,
 		'game_ending' : ""
 		}
-
-### static variables ###
-## static_dict = {
-##		'version' : '3.01',
-##		'max_score' : 75,
-##		'universal' : [backpack, burt, fist, conscience]
-##}
 
 
 # interpreter

@@ -6,15 +6,6 @@
 
 ### imports ###
 from dc3_static_init import *
-## from dc3_classes import *
-## from dc3_init import *
-
-### static variables ###
-### static_dict = {
-###		'version' : '3.01',
-###		'max_score' : 75
-##		'universal' : [backpack, burt, fist, conscience]
-###}
 
 
 ### NOT IN USE ###
