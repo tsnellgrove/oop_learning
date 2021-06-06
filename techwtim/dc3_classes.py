@@ -18,14 +18,15 @@ class ViewOnly(object):
 				self.desc = desc
 				self.writing = writing
 
-		def __str__(self): # DOESN'T WORK
-				return '{self.name}'.format(self=self)
+###		def __str__(self): # DOESN'T WORK
+###				return '{self.name}'.format(self=self)
 
 		def examine(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				else:
-						buffer(stateful_dict, self.desc)
+##						buffer(stateful_dict, self.desc)
+						buffer(stateful_dict, descript_dict[self.name])
 						if self.writing is not None:
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
@@ -39,7 +40,8 @@ class Writing(ViewOnly):
 				if scope_check(self.written_on, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
 				else:
-						buffer(stateful_dict, self.desc)
+##						buffer(stateful_dict, self.desc)
+						buffer(stateful_dict, descript_dict[self.name])
 
 class Room(ViewOnly):
 		def __init__(self, name, full_name, root_name, desc, writing, features, room_stuff, valid_paths, door_paths):

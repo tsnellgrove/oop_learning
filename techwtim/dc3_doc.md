@@ -1,6 +1,9 @@
-To Do List - Dark Castle 3.01
-June 5, 2021
+To Do List - Dark Castle v3
+June 6, 2021
 
+##########################
+### VERSION 3.01 START ###
+##########################
 
 NEXT: Tom Example
 inheritance
@@ -116,6 +119,15 @@ DONE: "Bufferize" interpreter
 DONE: Added open containers to read scope 
 DONE: Functionalize container scan, perhaps look in room first
 
+##############################
+### VERSION 3.01 COPMPLETE ###
+##############################
+
+
+
+##########################
+### VERSION 3.10 START ###
+##########################
 
 At this point, STOP(!!!), and start researching how others have implemented OOP text adventures
 	DONE: Watch this non-oop text adventure tutorial: https://youtu.be/miuHrP2O7Jw
@@ -328,8 +340,23 @@ IN-PROC: move stateful_dict['universal'] to static_dict['universal'] ???
 	DONE: clean up universal[] mess and move it back to stateful_dict
 	DONE: clean up comments
 	DONE: Move descriptions_dict to static_init
-TBD: Centralize all descriptions into a description_dict declared in a dedicated module
+IN-PROC: Centralize all descriptions into a description_dict declared in a dedicated module
+	DONE: copy descriptions to static_init() descript_dict
+	DONE: change description source from self.desc to description_dict
+	TBD: clean up comments in classes()
+	TBD: eliminate self.desc attribute in classes() and init()
 TBD: At this point declare v3.10 done (update version, clean up files, truncate to-do)
+
+#############################
+### VERSION 3.10 COMPLETE ### 
+#############################
+
+
+
+##########################
+### VERSION 3.20 START ###
+##########################
+
 TBD: 3.20 to be all about DB integration and main / interpreter separation
 
 
