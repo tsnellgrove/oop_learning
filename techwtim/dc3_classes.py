@@ -11,11 +11,10 @@ from dc3_helper import *
 
 # classes
 class ViewOnly(object):
-		def __init__(self, name, full_name, root_name, desc, writing):
+		def __init__(self, name, full_name, root_name, writing):
 				self.name = name
 				self.full_name = full_name
 				self.root_name = root_name
-				self.desc = desc
 				self.writing = writing
 
 ###		def __str__(self): # DOESN'T WORK
@@ -25,27 +24,25 @@ class ViewOnly(object):
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				else:
-##						buffer(stateful_dict, self.desc)
 						buffer(stateful_dict, descript_dict[self.name])
 						if self.writing is not None:
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
 
 class Writing(ViewOnly):
-		def __init__(self, name, full_name, root_name, desc, writing, written_on):
-				super().__init__(name, full_name, root_name, desc, writing)
+		def __init__(self, name, full_name, root_name, writing, written_on):
+				super().__init__(name, full_name, root_name, writing)
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
 				if scope_check(self.written_on, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
 				else:
-##						buffer(stateful_dict, self.desc)
 						buffer(stateful_dict, descript_dict[self.name])
 
 class Room(ViewOnly):
-		def __init__(self, name, full_name, root_name, desc, writing, features, room_stuff, valid_paths, door_paths):
-				super().__init__(name, full_name, root_name, desc, writing)
+		def __init__(self, name, full_name, root_name, writing, features, room_stuff, valid_paths, door_paths):
+				super().__init__(name, full_name, root_name, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
 				self.room_stuff = room_stuff # list of stuff in room
 				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
@@ -76,8 +73,8 @@ class Room(ViewOnly):
 								next_room_obj.examine(stateful_dict)
 
 class Item(ViewOnly):
-		def __init__(self, name, full_name, root_name, desc, writing, takeable):
-				super().__init__(name, full_name, root_name, desc, writing)
+		def __init__(self, name, full_name, root_name, writing, takeable):
+				super().__init__(name, full_name, root_name, writing)
 				self.takeable = takeable
 
 		def take(self, stateful_dict):
@@ -124,8 +121,8 @@ class Item(ViewOnly):
 						buffer(stateful_dict, "Dropped")
 
 class Door(ViewOnly):
-		def __init__(self, name, full_name, root_name, desc, writing, open_state, unlock_state, key):
-				super().__init__(name, full_name, root_name, desc, writing)
+		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key):
+				super().__init__(name, full_name, root_name, writing)
 				self.open_state = open_state
 				self.unlock_state = unlock_state
 				self.key = key
@@ -186,8 +183,8 @@ class Door(ViewOnly):
 						self.unlock_state = False
 
 class Container(Door):
-		def __init__(self, name, full_name, root_name, desc, writing, open_state, unlock_state, key, takeable, contains):
-				super().__init__(name, full_name, root_name, desc, writing, open_state, unlock_state, key)
+		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key, takeable, contains):
+				super().__init__(name, full_name, root_name, writing, open_state, unlock_state, key)
 				self.takeable = takeable # can the container be taken?
 				self.contains = contains # list of items in the container
 

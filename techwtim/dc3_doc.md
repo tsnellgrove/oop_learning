@@ -340,12 +340,13 @@ IN-PROC: move stateful_dict['universal'] to static_dict['universal'] ???
 	DONE: clean up universal[] mess and move it back to stateful_dict
 	DONE: clean up comments
 	DONE: Move descriptions_dict to static_init
-IN-PROC: Centralize all descriptions into a description_dict declared in a dedicated module
+DONE: Centralize all descriptions into a description_dict declared in a dedicated module
 	DONE: copy descriptions to static_init() descript_dict
 	DONE: change description source from self.desc to description_dict
-	TBD: clean up comments in classes()
-	TBD: eliminate self.desc attribute in classes() and init()
+	DONE: clean up comments in classes()
+	DONE: eliminate self.desc attribute in classes() and init()
 TBD: At this point declare v3.10 done (update version, clean up files, truncate to-do)
+	
 
 #############################
 ### VERSION 3.10 COMPLETE ### 
