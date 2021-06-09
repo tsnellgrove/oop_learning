@@ -18,6 +18,20 @@ from dc3_helper import *
 from dc3_interp_helper import *
 
 
+### sqlalchemy code ###
+from sqlalchemy import create_engine
+engine = create_engine('sqlite:///:memory:')
+from sqlalchemy.orm import sessionmaker
+session = sessionmaker(bind=engine)
+session = session()
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
+#from sqlalchemy import Column, Integer, Numberic, String
+
+#class Cookie(Base):
+
+
+
 ### dictionary of variables passed to all functions ###
 ### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {

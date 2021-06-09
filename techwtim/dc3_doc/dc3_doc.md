@@ -9,8 +9,8 @@ June 8, 2021
 
 TBD: 3.20 to be all about DB integration and main / interpreter separation
 
-
-
+IN-PROC: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
+	TBD: Create practice file
 
 
 To Do Next:
