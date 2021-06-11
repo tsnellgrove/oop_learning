@@ -21,4 +21,42 @@ class Cookie(Base):
 		quantity = Column(Integer())
 		unit_cost = Column(Numeric(12, 2))
 
+Base.metadata.create_all(engine)
+
+
+# insert
+cc_cookie = Cookie(cookie_name='cocolate chip', cookie_recipie_url='http://some.aweso.me/cookie/choc_chip.html',
+cookie_sku='CC01', quantity=12, unit_cost=0.50)
+
+# adding to session
+session.add(cc_cookie)
+session.commit()
+
+# accessing attributes
+print(cc_cookie.cookie_id)
+
+# bulk inserts
+# powerful and 'light' but less 'complete'
+c1 = Cookie(cookie_name='peanut butter', cookie_recipie_url='http://some.aweso.me/cookie/peanut.html',
+cookie_sku='PB01', quantity=24, unit_cost=0.25)
+
+c2 = Cookie(cookie_name='oatmeal raisin', cookie_recipie_url='http://some.okay.me/cookie/raisin.html',
+cookie_sku='EWW01', quantity=100, unit_cost=1.00)
+
+session.bulk_save_objects([c1,c2])
+session.commit() #not attached to session
+
+# queries
+
+# all the cookies!
+cookies = session.query(Cookie).all()
+print(cookies)
+
+# all the cookies! - iterator
+for cookie in session.query(Cookie):
+		print(cookie)
+
+# particular attributes
+print(session.query(Cookie.cookie_name, Cookie.quantity).first())
+
 
