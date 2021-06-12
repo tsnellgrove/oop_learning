@@ -9,12 +9,12 @@ session = sessionmaker(bind=engine)
 session = session()
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
-from sqlalchemy import Column, Integer, Numberic, String
+from sqlalchemy import Column, Integer, Numeric, String
 
 class Cookie(Base):
 		__tablename__ = 'cookies'
 		
-		cookie_id = Column(integer, primary_key=True)
+		cookie_id = Column(Integer, primary_key=True)
 		cookie_name = Column(String(50), index=True)
 		cookie_recipie_url = Column(String(256))
 		cookie_sku = Column(String(55))
@@ -43,9 +43,11 @@ cookie_sku='PB01', quantity=24, unit_cost=0.25)
 c2 = Cookie(cookie_name='oatmeal raisin', cookie_recipie_url='http://some.okay.me/cookie/raisin.html',
 cookie_sku='EWW01', quantity=100, unit_cost=1.00)
 
-session.bulk_save_objects([c1,c2])
-session.commit() #not attached to session
-
+# session.bulk_save_objects([c1,c2]) # couldn't get working
+session.add(c1)
+session.commit()
+session.add(c2)
+session.commit()
 # queries
 
 # all the cookies!
@@ -58,5 +60,32 @@ for cookie in session.query(Cookie):
 
 # particular attributes
 print(session.query(Cookie.cookie_name, Cookie.quantity).first())
+
+# order by
+for cookie in session.query(Cookie).order_by(Cookie.quantity):
+		print('{:3} - {}'.format(cookie.quantity, cookie.cookie_name))
+
+# decending
+from sqlalchemy import desc
+for cookie in session.query(Cookie).order_by(desc(Cookie.quantity)):
+		print('{:3} - {}'.format(cookie.quantity, cookie.cookie_name))
+
+# limiting
+query = session.query(Cookie).order_by(Cookie.quantity).limit(2)
+print([result.cookie_name for result in query])
+
+# database functions
+from sqlalchemy import func
+inv_count = session.query(func.sum(Cookie.quantity)).scalar()
+print(inv_count)
+
+# database functions count
+rec_count = session.query(func.count(Cookie.cookie_name)).first()
+print(rec_count)
+
+# labeling
+rec_count = session.query(func.count(Cookie.cookie_name).label('inventory_count')).first()
+print(rec_count.keys())
+print(rec_count.inventory_count)
 
 
