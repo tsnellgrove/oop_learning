@@ -25,7 +25,7 @@ Base.metadata.create_all(engine)
 
 
 # insert
-cc_cookie = Cookie(cookie_name='cocolate chip', cookie_recipie_url='http://some.aweso.me/cookie/choc_chip.html',
+cc_cookie = Cookie(cookie_name='chocolate chip', cookie_recipie_url='http://some.aweso.me/cookie/choc_chip.html',
 cookie_sku='CC01', quantity=12, unit_cost=0.50)
 
 # adding to session
@@ -87,5 +87,30 @@ print(rec_count)
 rec_count = session.query(func.count(Cookie.cookie_name).label('inventory_count')).first()
 print(rec_count.keys())
 print(rec_count.inventory_count)
+
+# filter_by (implicit - don't use')
+record = session.query(Cookie).filter_by(cookie_name='chocolate chip').first()
+print(record)
+
+# filter (explicit - use this)
+record = session.query(Cookie).filter(Cookie.cookie_name == 'chocolate chip').first()
+print(record)
+
+# clauseelements
+query = session.query(Cookie).filter(Cookie.cookie_name.like('%chocolate%'))
+for record in query:
+		print(record.cookie_name)
+
+# lots of cluaseelements - useful cases include in_([list]) , contains('string') , like('string')
+
+# operators
+from sqlalchemy import cast
+query = session.query(Cookie.cookie_name, cast((Cookie.quantity * Cookie.unit_cost), Numeric(12,2)).label('inv_cost'))
+for result in query:
+		print('{} - {}'.format(result.cookie_name, result.inv_cost))
+
+# simple query of my own
+record = session.query(Cookie).filter(Cookie.cookie_name == 'peanut butter').first()
+print(record.cookie_sku)
 
 
