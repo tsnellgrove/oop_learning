@@ -113,4 +113,34 @@ for result in query:
 record = session.query(Cookie).filter(Cookie.cookie_name == 'peanut butter').first()
 print(record.cookie_sku)
 
+from sqlalchemy import and_, or_, not_
+query = session.query(Cookie).filter(
+		or_(
+				Cookie.quantity.between(15, 50), Cookie.cookie_name.contains('chip')
+		)
+)
+for result in query:
+		print(result.cookie_name)
+
+# updating cookies
+query = session.query(Cookie)
+cc_cookie = query.filter(Cookie.cookie_name == "chocolate chip").first()
+
+cc_cookie.quantity = cc_cookie.quantity + 120
+
+session.commit()
+print(cc_cookie.quantity)
+
+
+# deleting cookies
+query = session.query(Cookie)
+query = query.filter(Cookie.cookie_name == "peanut butter")
+
+dcc_cookie = query.one()
+session.delete(dcc_cookie)
+session.commit()
+
+dcc_cookie = query.first()
+print(dcc_cookie)
+
 
