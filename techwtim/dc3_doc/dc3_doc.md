@@ -11,7 +11,13 @@ TBD: 3.20 to be all about DB integration and main / interpreter separation
 
 IN-PROC: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
 	DONE: Create practice file
-	TBD: Watch video
+	DONE: Watch video
+IN-PROC: So what data do I need to save between sessions?
+	DONE: stateful_dict, Door open & lock states, room contents, container contents
+	IN-PROC: How to load and unload data between moves? where to store it? Need to outline plan
+		IDEA: Get started by saving stateful_dict to as JSON to a DB and dumping and loading it each turn
+		IDEA: Then maybe programaticaly dump and load stateful object data to a dict? Then save dict as JSON in DB?
+		IDEA: Now I'm passing stateful_dict between main and interpreter... but goal is to pass only session ID (end_of_game and out_buff too?)
 
 
 To Do Next:

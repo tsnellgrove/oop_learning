@@ -143,4 +143,11 @@ session.commit()
 dcc_cookie = query.first()
 print(dcc_cookie)
 
+# relationships
 
+# imports
+from datetime import datetime
+from sqlalchemy import	DateTime, ForeignKey, Boolean
+from sqlalchemy import relationship, backref
+
+# discussion of table relationships starting around min 38
