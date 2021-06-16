@@ -20,18 +20,18 @@ from dc3_interp_helper import *
 
 ### dictionary of variables passed to all functions ###
 ### any object variable that is passed to helper() must be in this dict ###
-stateful_dict = {
-		'hand' : [], 
-		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, fist, conscience],
-		'room' : entrance,
-		'out_buff' : "",
-		'score' : 0, 
-		'end_of_game' : False,
-		'current_score' : 0,
-		'move_counter' : 0,
-		'game_ending' : ""
-		}
+## stateful_dict = {
+##		'hand' : [], 
+##		'backpack' : [rusty_key],
+##		'universal' : [backpack, burt, fist, conscience],
+##		'room' : entrance,
+##		'out_buff' : "",
+##		'score' : 0, 
+##		'end_of_game' : False,
+##		'current_score' : 0,
+##		'move_counter' : 0,
+##		'game_ending' : ""
+##		}
 
 
 # interpreter
@@ -125,17 +125,44 @@ def interpreter(stateful_dict, user_input):
 # rusty_key.take(stateful_dict)
 
 
+# interpreter
+def wrapper(user_input):
+
+		### dictionary of variables passed to all functions ###
+		### any object variable that is passed to helper() must be in this dict ###
+		stateful_dict = {
+				'hand' : [], 
+				'backpack' : [rusty_key],
+				'universal' : [backpack, burt, fist, conscience],
+				'room' : entrance,
+				'out_buff' : "",
+				'score' : 0, 
+				'end_of_game' : False,
+				'current_score' : 0,
+				'move_counter' : 0,
+				'game_ending' : ""
+		}
+
+		interpreter(stateful_dict, user_input)
+
+		return stateful_dict['end_of_game'], stateful_dict['out_buff']
+
+
 # main routine
 start_of_game = True
-while stateful_dict['end_of_game'] == False:
-		stateful_dict['out_buff'] = "" # resets buffer
+end_of_game = False
+## while stateful_dict['end_of_game'] == False:
+while end_of_game == False:
+##		stateful_dict['out_buff'] = "" # resets buffer
 		if start_of_game:
 				user_input = "xyzzy42" # the magic word!!
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-		interpreter(stateful_dict, user_input)
-		print(stateful_dict['out_buff'])
+		end_or_game, output = wrapper(user_input)
+##		interpreter(stateful_dict, user_input)
+		print(output)
+##		print(stateful_dict['out_buff'])
 print("THANKS FOR PLAYING!!")
 
 

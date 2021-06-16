@@ -14,10 +14,21 @@ IN-PROC: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
 	DONE: Watch video
 IN-PROC: So what data do I need to save between sessions?
 	DONE: stateful_dict, Door open & lock states, room contents, container contents
-	IN-PROC: How to load and unload data between moves? where to store it? Need to outline plan
+	THINKING: How to load and unload data between moves? where to store it? Need to outline plan
 		IDEA: Get started by saving stateful_dict to as JSON to a DB and dumping and loading it each turn
 		IDEA: Then maybe programaticaly dump and load stateful object data to a dict? Then save dict as JSON in DB?
 		IDEA: Now I'm passing stateful_dict between main and interpreter... but goal is to pass only session ID (end_of_game and out_buff too?)
+		IDEA: So how does this actuall work... what is the order?
+		IN-PROC: First step is to isolate stateful_dict to the server side...
+			IDEA: main should only send user_input and input should only return out_buff and end_of_game
+			IDEA: But interpreter has a *lot* of returns... 
+			DONE: Maybe the answer is to create a "wrapper" function that calls interpreter?
+				IDEA: This works... but now, of course, stateful_dict is always reset to starting values...
+		DONE: Once they are isolated, I need to decide where to initiate stateful_dict - perhaps in wrapper?
+		TBD: Before returning values, Interpreter must save stateful_dict to DB
+		TBD: Before running code, must load the value of stateful_dict from DB
+		
+		
 
 
 To Do Next:
