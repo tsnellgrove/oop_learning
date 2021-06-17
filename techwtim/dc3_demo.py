@@ -128,23 +128,25 @@ def interpreter(stateful_dict, user_input):
 # interpreter
 def wrapper(user_input):
 
-		### dictionary of variables passed to all functions ###
-		### any object variable that is passed to helper() must be in this dict ###
-		stateful_dict = {
-				'hand' : [], 
-				'backpack' : [rusty_key],
-				'universal' : [backpack, burt, fist, conscience],
-				'room' : entrance,
-				'out_buff' : "",
-				'score' : 0, 
-				'end_of_game' : False,
-				'current_score' : 0,
-				'move_counter' : 0,
-				'game_ending' : ""
-		}
-
-		interpreter(stateful_dict, user_input)
-
+		if user_input == "xyzzy42":		
+				### dictionary of variables passed to all functions ###
+				### any object variable that is passed to helper() must be in this dict ###
+				stateful_dict = {
+						'hand' : [], 
+						'backpack' : [rusty_key],
+						'universal' : [backpack, burt, fist, conscience],
+						'room' : entrance,
+						'out_buff' : "",
+						'score' : 0, 
+						'end_of_game' : False,
+						'current_score' : 0,
+						'move_counter' : 0,
+						'game_ending' : ""
+				}
+				buffer(stateful_dict, descript_dict["introduction"])
+				entrance.examine(stateful_dict)
+		else:
+				interpreter(stateful_dict, user_input)
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 

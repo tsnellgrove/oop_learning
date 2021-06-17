@@ -129,10 +129,10 @@ def input_cleanup(user_input):
 		return user_input_lst
 
 def true_one_word(stateful_dict, word1, room_obj):
-		if word1 == 'xyzzy42':
-				buffer(stateful_dict, descript_dict["introduction"])
-				entrance.examine(stateful_dict)
-		elif word1 == 'score':
+##		if word1 == 'xyzzy42':
+##				buffer(stateful_dict, descript_dict["introduction"])
+##				entrance.examine(stateful_dict)
+		if word1 == 'score':
 				print_score(stateful_dict)
 		elif word1 == 'version':
 				buffer(stateful_dict, static_dict['version'])
