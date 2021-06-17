@@ -4,8 +4,12 @@
 # description: db initialization module
 
 import sqlalchemy
-
 print(sqlalchemy.__version__)
+# Updated sqlalchemy to version 1.1.2 to gain JSON support
+# Got to command line using launch_stash.py from iPad directory
+# then followed manual update directions found here:
+# https://forum.omz-software.com/topic/2642/updating-sqlalchemy-from-0-9-7-to-1-1
+# updated directions to from 1.0.11 => 1.1.2 as 1.0.11 still gave JSON error
 
 from sqlalchemy import create_engine, Integer, Column, Sequence, JSON
 from sqlalchemy.orm import sessionmaker
