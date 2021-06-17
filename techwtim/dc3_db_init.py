@@ -3,6 +3,10 @@
 # date: June 16, 2021
 # description: db initialization module
 
+import sqlalchemy
+
+print(sqlalchemy.__version__)
+
 from sqlalchemy import create_engine, Integer, Column, Sequence, JSON
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
