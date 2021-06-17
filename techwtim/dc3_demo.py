@@ -16,6 +16,7 @@ from dc3_classes import *
 from dc3_init import *
 from dc3_helper import *
 from dc3_interp_helper import *
+from dc3_db_init import *
 
 
 ### dictionary of variables passed to all functions ###
@@ -128,7 +129,8 @@ def interpreter(stateful_dict, user_input):
 # interpreter
 def wrapper(user_input):
 
-		if user_input == "xyzzy42":		
+		if user_input == "xyzzy42":
+				dc3_db_init()
 				### dictionary of variables passed to all functions ###
 				### any object variable that is passed to helper() must be in this dict ###
 				stateful_dict = {
