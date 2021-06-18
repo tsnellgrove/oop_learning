@@ -5,6 +5,11 @@
 
 import sqlalchemy
 print(sqlalchemy.__version__)
+
+import sqlite3
+print(sqlite3.sqlite_version_info)
+
+
 # Updated sqlalchemy to version 1.1.2 to gain JSON support
 # Got to command line using launch_stash.py from iPad directory
 # then followed manual update directions found here:
