@@ -25,10 +25,13 @@ IN-PROC: So what data do I need to save between sessions?
 			DONE: Maybe the answer is to create a "wrapper" function that calls interpreter?
 				IDEA: This works... but now, of course, stateful_dict is always reset to starting values...
 		DONE: Once they are isolated, I need to decide where to initiate stateful_dict - perhaps in wrapper?	
-		IN-PROC: instantiate sqlalchemy DB
+		DONE: instantiate sqlalchemy DB
 				DONE: Queue huge sdk issues due to ancient version of sqlalchemy...
 				DONE: Have upgraded to version 1.1.2 using Stash but still getting issues in sqlite compiler
-				TBD: Think I might have to upgrade to 1.4.x to get JSON support for sqlalchemy.dialect.sqlite
+				DONE: Think I might have to upgrade to 1.4.x to get JSON support for sqlalchemy.dialect.sqlite (installed 1.4.18)
+				DONE: now requires install of importlib_metadata (installed via 'pip install')
+				DONE: now I need to 'pip install typing_extensions'
+				NOTE: APPEARS TO WORK!!!
 		TBD: Before returning values, Interpreter must save stateful_dict to DB
 		TBD: Before running code, must load the value of stateful_dict from DB
 		
