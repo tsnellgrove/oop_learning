@@ -25,7 +25,7 @@ def db_init():
 		EntityBase = declarative_base()
 
 
-		class Item(EntityBase):
+		class Itemdb(EntityBase):
 				__tablename__ = "items"
 				id = Column(Integer, Sequence("item_id_seq"), primary_key=True, nullable=False)
 				information = Column(JSON, nullable=True)
@@ -41,5 +41,7 @@ def db_init():
 		EntityBase.metadata.create_all(engine)
 
 # Declare a new row
-		first_item = Item()
+##		first_item = Itemdb()
+		stateful_db = Itemdb()
 ##first_item.information = dict(a=1, b="foo", c=[1, 1, 2, 3, 5, 8, 13])
+		return stateful_db, session

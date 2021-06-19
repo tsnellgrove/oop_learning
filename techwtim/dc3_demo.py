@@ -130,7 +130,7 @@ def interpreter(stateful_dict, user_input):
 def wrapper(user_input):
 
 		if user_input == "xyzzy42":
-				db_init()
+				stateful_db, session = db_init()
 				### dictionary of variables passed to all functions ###
 				### any object variable that is passed to helper() must be in this dict ###
 				stateful_dict = {
@@ -148,7 +148,12 @@ def wrapper(user_input):
 				buffer(stateful_dict, descript_dict["introduction"])
 				entrance.examine(stateful_dict)
 		else:
+				stateful_dict = stateful_db.information
 				interpreter(stateful_dict, user_input)
+
+		stateful_db.information = stateful_dict
+		session.add(stateful_db)
+		session.commit()
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 
@@ -163,7 +168,7 @@ while end_of_game == False:
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-		end_or_game, output = wrapper(user_input)
+		end_of_game, output = wrapper(user_input)
 ##		interpreter(stateful_dict, user_input)
 		print(output)
 ##		print(stateful_dict['out_buff'])
