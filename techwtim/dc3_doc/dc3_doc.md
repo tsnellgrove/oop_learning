@@ -34,8 +34,9 @@ IN-PROC: So what data do I need to save between sessions?
 				NOTE: APPEARS TO WORK!!!
 IDEA:
 	IN-PROC: I need to learn a lot more about how this works; Things I need to learn:
-		IN-PROC: More in general about how DBs are used (Tech with Tim Flask 7 & 8)
-		TBD: JSON or Pickle serialization
+		DONE: More in general about how DBs are used (Tech with Tim Flask 7 & 8)
+		TBD: JSON or Pickle serialization? Investigate Marshmallow!! (YouTube video)
+		TBD: Or maybe just class_to_string as needed before export??
 		TBD: How do I setup a DB that continues to persist independent of an app running??
 TBD: Back to coding
 		TBD: Before returning values, Interpreter must save stateful_dict to DB
