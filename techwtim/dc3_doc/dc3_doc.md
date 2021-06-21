@@ -95,3 +95,43 @@ TBD: Is the Item class worth having???
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Need to dis-entangle modules better
 
+
+### New Puzzle Ideas ###
+- Can sharpen and clean sword in mouse hole - maybe only way to get past goblin
+
+5.x Additional rooms
+	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
+	5th room
+		mouse hole - to exercise existing capabilities (e.g. "food" that can be eaten)
+		copper key opens cabinet which holds potion
+		find a use for 'close' verb; maybe potion refill
+		possibly create 'return' verb to put things back (or maybe 'swap')
+		potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
+		enter mouse hole
+		maybe fight mouse?
+		silver key in mouse trap; need to swap with copper key
+		find a use for close command?
+		would be fun to use every verb ;-D
+		maybe a guard mouse that only lets you past if you're wearing the hedgehog_broach
+		Indiana Jones reference for mouse trap and ball chasing you out ;-D
+		make hedgehog_broach wearable
+		link puzzle to total number of moves? Or to score?
+		repeat option like 'again' / 'g' in Zork (JE request)
+	Possibly add a room 6 with time travel??
+		find a use for the word "griffonage" (illegible handwriting)
+		Opportunity to include princess in game - perhaps have Willie give her the hedgehog_broach to time travel
+		Depict future (opportunity but challenges) by painting to portrait
+		Also get key from time travel - put in container and then refind 100 years later
+		loose brick in dark_alcove - "appears not to have been disturbed for 100 years"
+		guard with key_detector in main hall
+		trade keys with princess? give her the hedgehog broach? maybe during dance in throne room
+		dungeon down stairs from throne room
+		in throne room 3 paintings of past and 1 blank space for future
+		key to open dungeon?
+		keys same colors as ready player 1
+
+5.x Future Ideas:
+	fun idea - small creature - like a mouse - as an item
+	more directions
+	landscape / path changes
+	create 'win' test routine with checksum
