@@ -18,10 +18,10 @@ class PetSchema(Schema):
 		pet_name = fields.String()
 		is_a_cat = fields.Boolean()
 
-class PersonSchema(PetSchema):
+class PersonSchema(Schema):
 		name = fields.String()
 		age = fields.Integer()
-
+		pet = fields.Nested(PetSchema)
 
 # post load transform with marshmallow creates instance of Class
 		@post_load
@@ -31,6 +31,7 @@ class PersonSchema(PetSchema):
 # getting data via input dictionary
 pet_data = {}
 input_data = {}
+person_data = {}
 
 pet_data['pet_name'] = input('What is your pet name? ')
 pet_data['is_a_cat'] = input('Is it True that your pet is a cat? ')
@@ -38,10 +39,16 @@ pet_data['is_a_cat'] = input('Is it True that your pet is a cat? ')
 input_data['name'] = input('What is your name? ')
 input_data['age'] = input('What is your age? ')
 
+print(pet_data)
 schema_pet = PetSchema()
 pet1 = schema_pet.load(pet_data)
+print(pet1)
+
+person_data = [input_data, pet_data]
+print(person_data)
+
 schema_person = PersonSchema()
-person3 = schema_person.load(pet1, input_data)
+person3 = schema_person.load(person_data)
 
 
 
