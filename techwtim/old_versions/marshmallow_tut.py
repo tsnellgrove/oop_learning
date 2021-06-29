@@ -21,7 +21,9 @@ class PetSchema(Schema):
 class PersonSchema(Schema):
 		name = fields.String()
 		age = fields.Integer()
+###		include_fk = True
 		pet = fields.Nested(PetSchema)
+
 
 # post load transform with marshmallow creates instance of Class
 		@post_load
@@ -44,13 +46,13 @@ schema_pet = PetSchema()
 pet1 = schema_pet.load(pet_data)
 print(pet1)
 
-person_data = [input_data, pet_data]
+person_data = [input_data, pet1]
 print(person_data)
 
-schema_person = PersonSchema()
+schema_person = PersonSchema(many=True)
 person3 = schema_person.load(person_data)
 
-
+### UserSchema().dump(users, many=True) [from marshmallow site]
 
 # load input data into complex object schema
 ## schema = PersonSchema()
