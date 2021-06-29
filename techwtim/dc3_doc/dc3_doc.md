@@ -42,6 +42,9 @@ IDEA:
 			IN-PROC: Test multi-level objects with Pet class attribute for Person; focus on Nested format for troubleshooting
 		TBD: Or maybe just class_to_string as needed before export??
 		TBD: How do I setup a DB that continues to persist independent of an app running??
+TBD: Sort out object model - objects should not need to know about things outside of them
+	IDEA: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
+	IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
 TBD: Back to coding
 		TBD: Before returning values, Interpreter must save stateful_dict to DB
 		TBD: Before running code, must load the value of stateful_dict from DB
