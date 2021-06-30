@@ -49,6 +49,7 @@ TBD: Sort out object model - objects should not need to know about things outsid
 TBD: Back to coding
 		TBD: Before returning values, Interpreter must save stateful_dict to DB
 		TBD: Before running code, must load the value of stateful_dict from DB
+IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
 		
 		
 
