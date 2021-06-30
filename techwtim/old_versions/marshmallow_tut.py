@@ -14,12 +14,13 @@ class Pet:
 				return f'it is { self.is_a_cat } that { self.pet_name } is a cat'
 
 class Person:
-		def __init__(self, name, age):
+		def __init__(self, name, age, pet):
 				self.name = name
 				self.age = age
+				self.pet = pet
 
 		def __repr__(self):
-				return f'{ self.name } is { self.age} years old.'
+				return f'{ self.name } is { self.age} years old and has a pet named { self.pet }.'
 
 # marshmallow schema
 class PetSchema(Schema):
@@ -38,9 +39,9 @@ class PersonSchema(Schema):
 		pet = fields.Nested(PetSchema)
 
 # post load transform with marshmallow creates instance of Class
-		@post_load
-		def create_person(self, data, **kwargs):
-				return Person(**data)
+####		@post_load
+####		def create_person(self, data, **kwargs):
+####				return Person(**data)
 
 # getting data via input dictionary
 pet_data = {}
@@ -64,7 +65,7 @@ schema_pet = PetSchema()
 pet1 = schema_pet.load(pet_data)
 print(pet1)
 
-person_data = [input_data, pet_data]
+person_data = [input_data, {'pet' : pet_data}]
 print(person_data)
 
 schema_person = PersonSchema(many=True)
@@ -90,15 +91,15 @@ person3 = schema_person.load(person_data)
 # case3: serialization print1
 ## print(person2)
 
-#### print(person3)
+print(person3)
 
 # case3: serialization
 ## result2 = schema.dump(person2)
 
-#### result3 = schema_person.dump(person3)
+result3 = schema_person.dump(person3)
 
 # case3: serialization print of dictionary (input data has been validated)
 ##print(result2)
 
-#### print(result3)
+print(result3)
 
