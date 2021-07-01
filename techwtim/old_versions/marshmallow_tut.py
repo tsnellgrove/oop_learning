@@ -39,9 +39,9 @@ class PersonSchema(Schema):
 		pet = fields.Nested(PetSchema)
 
 # post load transform with marshmallow creates instance of Class
-####		@post_load
-####		def create_person(self, data, **kwargs):
-####				return Person(**data)
+		@post_load
+		def create_person(self, data, **kwargs):
+				return Person(**data)
 
 # getting data via input dictionary
 pet_data = {}
@@ -71,7 +71,9 @@ print(person_data)
 schema_person = PersonSchema(many=True)
 person3 = schema_person.load(person_data)
 
-## UserSchema().dump(users, many=True) [from marshmallow site]
+## UserSchema().dump(users, many=True) # from marshmallow site
+## book = BookSchema(unknown=INCLUDE).load(data ) # stackoverflow example
+
 
 # load input data into complex object schema
 ## schema = PersonSchema()
