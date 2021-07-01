@@ -32,24 +32,35 @@ IN-PROC: So what data do I need to save between sessions?
 				DONE: now requires install of importlib_metadata (installed via 'pip install')
 				DONE: now I need to 'pip install typing_extensions'
 				NOTE: APPEARS TO WORK!!!
-IDEA:
-	IN-PROC: I need to learn a lot more about how this works; Things I need to learn:
+
+TOPIC: serialization
+	DONE: I need to learn a lot more about how this works; Things I need to learn:
 		DONE: More in general about how DBs are used (Tech with Tim Flask 7 & 8)
 		IN-PROC: JSON or Pickle serialization? Investigate Marshmallow!! (YouTube video)
 			DONE: watched marshmallow video: https://youtu.be/Gl-5m1_eVjI
 			IDEA: Very helpful way to serialize / de-serialize.. from complex to dict...
 			IDEA: but how do I handle complex objects that *hold* complex objects???
 			DONE: Test multi-level objects with Pet class attribute for Person; focus on Nested format for troubleshooting
-			TBD: Can serialize and de-serialize but not to a nested object???
-		TBD: Or maybe just class_to_string as needed before export??
+			DONE: Can serialize and de-serialize but not to a nested object???
+			DONE: Got it working by removing schema def many=True !
+			TBD: rationalize tutorial code
+
+NEXT:
+	TBD: temporarily re-integrate main & interpreter
+	TBD: fix object hierarchy
+		TBD: Sort out object model - objects should not need to know about things outside of them
+			IDEA: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
+			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
+	TBD: introduce print options for classes
+	TBD: introduce serialization and de-serialization
+		TBD: start from serialized state for stateful_dict and stateful classes
+			TBD: Or maybe just class_to_string as needed before export for stateful_dict??
+	TBD: isolate main & interpreter using txt file loads
+	TBD: now start working with sqlalchemy again in place of txt files
 		TBD: How do I setup a DB that continues to persist independent of an app running??
-TBD: Sort out object model - objects should not need to know about things outside of them
-	IDEA: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
-	IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
-TBD: Back to coding
 		TBD: Before returning values, Interpreter must save stateful_dict to DB
 		TBD: Before running code, must load the value of stateful_dict from DB
-IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
+		IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
 		
 		
 
