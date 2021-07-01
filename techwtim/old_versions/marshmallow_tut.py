@@ -20,7 +20,7 @@ class Person:
 				self.pet = pet
 
 		def __repr__(self):
-				return f'{ self.name } is { self.age} years old and has a pet named { self.pet }.'
+				return f'{ self.name } is { self.age} years old and has a pet named { self.pet.pet_name }. {self.pet}'
 
 # marshmallow schema
 class PetSchema(Schema):
@@ -67,9 +67,13 @@ print(pet1)
 
 person_data = [input_data, {'pet' : pet_data}]
 print(person_data)
+person_data2 = {'name': 'Tom', 'age': 50, 'pet': {'pet_name': 'Kit', 'is_a_cat': True}}
+print(person_data2)
 
-schema_person = PersonSchema(many=True)
-person3 = schema_person.load(person_data)
+schema_person = PersonSchema()
+### schema_person = PersonSchema(many=True, unknown=INCLUDE)
+### person3 = schema_person.load(person_data)
+person3 = schema_person.load(person_data2)
 
 ## UserSchema().dump(users, many=True) # from marshmallow site
 ## book = BookSchema(unknown=INCLUDE).load(data ) # stackoverflow example
