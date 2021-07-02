@@ -1,10 +1,14 @@
 # program: marshmallow_tut in support of dark castle v3.20
 # name: Tom Snellgrove
-# date: June 22, 2021
-# description: learn how to use marshmallow for custom object serialization
+# date: July 2, 2021
+# description: learn how to use marshmallow for custom object serialization and de-serialization
 
+
+# imports
 from marshmallow import Schema, fields, post_load
 
+
+# classes
 class Pet:
 		def __init__(self, pet_name, is_a_cat):
 				self.pet_name = pet_name
@@ -22,7 +26,8 @@ class Person:
 		def __repr__(self):
 				return f'{ self.name } is { self.age} years old and has a pet named { self.pet.pet_name }. {self.pet}'
 
-# marshmallow schema
+
+# marshmallow schemas
 class PetSchema(Schema):
 		pet_name = fields.String()
 		is_a_cat = fields.Boolean()
@@ -35,7 +40,6 @@ class PetSchema(Schema):
 class PersonSchema(Schema):
 		name = fields.String()
 		age = fields.Integer()
-###		include_fk = True
 		pet = fields.Nested(PetSchema)
 
 # post load transform with marshmallow creates instance of Class
@@ -43,69 +47,60 @@ class PersonSchema(Schema):
 		def create_person(self, data, **kwargs):
 				return Person(**data)
 
-# getting data via input dictionary
+
+# Initial serialized data
 pet_data = {}
-input_data = {}
 person_data = {}
 
 ## pet_data['pet_name'] = input('What is your pet name? ')
 ## pet_data['is_a_cat'] = input('Is it True that your pet is a cat? ')
 
-## input_data['name'] = input('What is your name? ')
-## input_data['age'] = input('What is your age? ')
+pet_data['pet_name'] = "Lunabelle"
+pet_data['is_a_cat'] = False
 
-pet_data['pet_name'] = "Kit"
-pet_data['is_a_cat'] = True
+person_data = {'name': 'Tom', 'age': 50, 'pet': {'pet_name': 'Kit', 'is_a_cat': True}}
 
-input_data['name'] = "Tom"
-input_data['age'] = 50
 
-print(pet_data)
+# loads & dumps
+
+# pet load / de-serialize, uses post_load decorator to convert into complex object
 schema_pet = PetSchema()
 pet1 = schema_pet.load(pet_data)
-print(pet1)
 
-person_data = [input_data, {'pet' : pet_data}]
-print(person_data)
-person_data2 = {'name': 'Tom', 'age': 50, 'pet': {'pet_name': 'Kit', 'is_a_cat': True}}
-print(person_data2)
+# pet dump / serialize from complex object to simple dictionary
+result_pet = schema_pet.dump(pet1)
 
+# person load de-serializes nested data and, uses post_load decorator to convert into complex object
 schema_person = PersonSchema()
-### schema_person = PersonSchema(many=True, unknown=INCLUDE)
-### person3 = schema_person.load(person_data)
-person3 = schema_person.load(person_data2)
+person1 = schema_person.load(person_data)
 
-## UserSchema().dump(users, many=True) # from marshmallow site
-## book = BookSchema(unknown=INCLUDE).load(data ) # stackoverflow example
+# dump serializes complex object into a nested dictionary
+result_person = schema_person.dump(person1)
 
 
-# load input data into complex object schema
-## schema = PersonSchema()
-# case2: de-serialization load - can validate data in process
-#result = schema.load(input_data)
-## person2 = schema.load(input_data)
+# for each data set print initial serialized data, then de-serialized object, then serialized dict
 
-# case1: simple object instantiation
-# person = Person(name=input_data['name'], age=input_data['age'])
+print(pet_data)
+print(pet1)
+print(pet1.pet_name)
+print(pet1.is_a_cat)
+print(result_pet)
 
-# print simple instantiation
-# print(person)
+print()
 
-# de-serialization print
-# print(result)
+print(person_data)
+print(person1)
+print(person1.name)
+print(person1.age)
+print(person1.pet.pet_name)
+print(person1.pet.is_a_cat)
+print(result_person)
 
-# case3: serialization print1
-## print(person2)
+print()
 
-print(person3)
+pet2 = person1.pet
+print(pet2)
+person1.pet = pet1
+print(person1.pet)
 
-# case3: serialization
-## result2 = schema.dump(person2)
-
-result3 = schema_person.dump(person3)
-
-# case3: serialization print of dictionary (input data has been validated)
-##print(result2)
-
-print(result3)
 

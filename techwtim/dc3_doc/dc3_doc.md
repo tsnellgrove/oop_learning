@@ -1,5 +1,5 @@
 To Do List - Dark Castle v3
-June 8, 2021
+July 2, 2021
 
 
 
@@ -7,7 +7,7 @@ June 8, 2021
 ### VERSION 3.20 START ###
 ##########################
 
-TBD: 3.20 to be all about DB integration and main / interpreter separation
+TBD: 3.20 to be all about serialization, DB integration, and main / interpreter separation
 
 IN-PROC: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
 	DONE: Create practice file
@@ -36,14 +36,14 @@ IN-PROC: So what data do I need to save between sessions?
 TOPIC: serialization
 	DONE: I need to learn a lot more about how this works; Things I need to learn:
 		DONE: More in general about how DBs are used (Tech with Tim Flask 7 & 8)
-		IN-PROC: JSON or Pickle serialization? Investigate Marshmallow!! (YouTube video)
+		DONE: JSON or Pickle serialization? Investigate Marshmallow!! (YouTube video)
 			DONE: watched marshmallow video: https://youtu.be/Gl-5m1_eVjI
 			IDEA: Very helpful way to serialize / de-serialize.. from complex to dict...
 			IDEA: but how do I handle complex objects that *hold* complex objects???
 			DONE: Test multi-level objects with Pet class attribute for Person; focus on Nested format for troubleshooting
 			DONE: Can serialize and de-serialize but not to a nested object???
 			DONE: Got it working by removing schema def many=True !
-			TBD: rationalize tutorial code
+			DONE: rationalize tutorial code
 
 NEXT:
 	TBD: temporarily re-integrate main & interpreter

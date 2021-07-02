@@ -49,9 +49,9 @@ print(json_data)
 app_data = json.loads(json_data)
 print(app_data)
 
-schema = AppSchema(many=True)
+schema = AppSchema()
 ### app = schema.load(app_data)
-app = schema.load(app_data, unknown=INCLUDE)
+app = schema.load(app_data)
 
 
 print(app.data.person.fname)
