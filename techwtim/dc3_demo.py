@@ -1,6 +1,6 @@
-# program: dark castle v3.10
+# program: dark castle v3.11
 # name: Tom Snellgrove
-# date: June 8, 2021
+# date: July 3, 2021
 # description: main and interpreter modules for a zork-like text adventure game
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								db integration, avoid external triggers, 
@@ -161,18 +161,14 @@ def wrapper(stateful_dict, user_input):
 # main routine
 start_of_game = True
 end_of_game = False
-## while stateful_dict['end_of_game'] == False:
 while end_of_game == False:
-##		stateful_dict['out_buff'] = "" # resets buffer
 		if start_of_game:
 				user_input = "xyzzy42" # the magic word!!
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
 		end_of_game, output = wrapper(stateful_dict, user_input)
-##		interpreter(stateful_dict, user_input)
 		print(output)
-##		print(stateful_dict['out_buff'])
 print("THANKS FOR PLAYING!!")
 
 
