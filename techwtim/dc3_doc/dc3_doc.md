@@ -46,7 +46,8 @@ TOPIC: serialization
 			DONE: rationalize tutorial code
 
 NEXT:
-	TBD: temporarily re-integrate main & interpreter
+	DONE: temporarily re-integrate main & interpreter
+	TBD: clean up main
 	TBD: fix object hierarchy
 		TBD: Sort out object model - objects should not need to know about things outside of them
 			IDEA: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
