@@ -39,7 +39,7 @@ def objlst_to_strlst(obj_lst):
 				str_lst.append(obj.full_name)
 		return str_lst
 
-def scope_check(obj, stateful_dict):
+def scope_list(obj, stateful_dict):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
@@ -50,19 +50,34 @@ def scope_check(obj, stateful_dict):
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
 						+ universal_lst + features_lst + open_cont_obj_lst)
 		scope_lst.append(room_obj)
+		return scope_lst
+
+def scope_check(obj, stateful_dict):
+#		room_obj = stateful_dict['room']
+#		hand_lst = stateful_dict['hand']
+#		backpack_lst = stateful_dict['backpack']
+#		universal_lst = stateful_dict['universal']
+#		room_obj_lst = room_obj.room_stuff
+#		features_lst = room_obj.features
+#		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
+#		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+#						+ universal_lst + features_lst + open_cont_obj_lst)
+#		scope_lst.append(room_obj)
+		scope_lst = scope_list(obj, stateful_dict)
 		return obj in scope_lst
 
 def writing_check(writing, stateful_dict):
-		room_obj = stateful_dict['room']
-		hand_lst = stateful_dict['hand']
-		backpack_lst = stateful_dict['backpack']
-		universal_lst = stateful_dict['universal']
-		room_obj_lst = room_obj.room_stuff
-		features_lst = room_obj.features
-		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
-		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
-						+ universal_lst + features_lst + open_cont_obj_lst)
-		scope_lst.append(room_obj)
+#		room_obj = stateful_dict['room']
+#		hand_lst = stateful_dict['hand']
+#		backpack_lst = stateful_dict['backpack']
+#		universal_lst = stateful_dict['universal']
+#		room_obj_lst = room_obj.room_stuff
+#		features_lst = room_obj.features
+#		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
+#		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+#						+ universal_lst + features_lst + open_cont_obj_lst)
+#		scope_lst.append(room_obj)
+		scope_lst = scope_list(writing, stateful_dict)
 		writing_found = False
 		for obj in scope_lst:
 				if obj.writing == writing:

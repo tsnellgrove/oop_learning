@@ -57,7 +57,8 @@ NEXT:
 					DONE: Clean up writing changes
 					DONE: Make Writing the parent class of View_Only
 					DONE: Clean up writing class & init changes
-					TBD: create obj_scope helper routine to be used by both scope_check and writing_check
+					DONE: create obj_scope helper routine to be used by both scope_check and writing_check
+					TBD: clean up helper routine
 			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
 	TBD: introduce serialization and de-serialization
 		TBD: start from serialized state for stateful_dict and stateful classes
