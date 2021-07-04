@@ -35,7 +35,8 @@ class Writing(ViewOnly):
 				self.written_on = written_on
 
 		def read(self, stateful_dict):
-				if scope_check(self.written_on, stateful_dict) == False:
+###				if scope_check(self.written_on, stateful_dict) == False:
+				if writing_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
 				else:
 						buffer(stateful_dict, descript_dict[self.name])

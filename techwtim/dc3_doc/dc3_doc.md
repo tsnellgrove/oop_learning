@@ -49,9 +49,12 @@ NEXT:
 	DONE: temporarily re-integrate main & interpreter
 	DONE: clean up main
 	DONE: introduce print options for classes
-	TBD: fix object hierarchy
+	IN-PROC: fix object hierarchy
 		TBD: Sort out object model - objects should not need to know about things outside of them
-			IDEA: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
+			IN-PROC: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
+					DONE: Created writing_check() to search for writing on objects in scope
+					TBD: Elim use of written on
+					TBD: create obj_scope helper routine to be used by both scope_check and writing_check
 			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
 	TBD: introduce serialization and de-serialization
 		TBD: start from serialized state for stateful_dict and stateful classes
