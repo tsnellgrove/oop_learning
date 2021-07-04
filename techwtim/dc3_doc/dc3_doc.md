@@ -66,10 +66,13 @@ Clean Up Code:
 				DONE: Comment out valid_paths attribute
 				DONE: Clean-up commented code
 
-TBD: introduce serialization and de-serialization
+IN-PROC: introduce serialization and de-serialization
 	IDEA: start from serialized state for stateful_dict and stateful classes
 	IDEA: Or maybe just class_to_string as needed before export for stateful_dict??
-	TBD: Test serializing to JSON in marshmallow_tut
+	IN-PROC: Test serializing to JSON in marshmallow_tut
+		DONE: import json
+		DONE: convert pet_data back and forth to json
+		TBD: convert person_data back and forth to json
 	TBD: Start by serializing to JSON and printing stateful_dict
 	TBD: Serialize to JSON and print class objects
 	TBD: serialize to JSON and save stateful_dict to text file 

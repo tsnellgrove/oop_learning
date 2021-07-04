@@ -6,6 +6,7 @@
 
 # imports
 from marshmallow import Schema, fields, post_load
+import json
 
 
 # classes
@@ -49,26 +50,32 @@ class PersonSchema(Schema):
 
 
 # Initial serialized data
-pet_data = {}
+pet_data_dict = {}
 person_data = {}
 
 ## pet_data['pet_name'] = input('What is your pet name? ')
 ## pet_data['is_a_cat'] = input('Is it True that your pet is a cat? ')
 
-pet_data['pet_name'] = "Lunabelle"
-pet_data['is_a_cat'] = False
+pet_data_dict['pet_name'] = "Lunabelle"
+pet_data_dict['is_a_cat'] = False
 
 person_data = {'name': 'Tom', 'age': 50, 'pet': {'pet_name': 'Kit', 'is_a_cat': True}}
 
 
 # loads & dumps
 
+# convert dict to json
+pet_data_json = json.dumps( pet_data_dict )
+
 # pet load / de-serialize, uses post_load decorator to convert into complex object
 schema_pet = PetSchema()
-pet1 = schema_pet.load(pet_data)
+pet1 = schema_pet.loads(pet_data_json)
 
 # pet dump / serialize from complex object to simple dictionary
-result_pet = schema_pet.dump(pet1)
+result_pet_json = schema_pet.dumps(pet1)
+
+# convert json to dict
+result_pet_dict = json.loads(result_pet_json)
 
 # person load de-serializes nested data and, uses post_load decorator to convert into complex object
 schema_person = PersonSchema()
@@ -80,11 +87,13 @@ result_person = schema_person.dump(person1)
 
 # for each data set print initial serialized data, then de-serialized object, then serialized dict
 
-print(pet_data)
+print(pet_data_dict)
+print(pet_data_json)
 print(pet1)
 print(pet1.pet_name)
 print(pet1.is_a_cat)
-print(result_pet)
+print(result_pet_json)
+print(result_pet_dict)
 
 print()
 
