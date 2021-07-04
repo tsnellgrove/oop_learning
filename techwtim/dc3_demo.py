@@ -124,6 +124,7 @@ def interpreter(stateful_dict, user_input):
 # chest.unlock(stateful_dict)
 # wooden_chest.put(shiny_sword, stateful_dict)
 # rusty_key.take(stateful_dict)
+# print(shiny_sword)
 
 
 # interpreter

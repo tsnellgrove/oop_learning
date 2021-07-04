@@ -48,11 +48,11 @@ TOPIC: serialization
 NEXT:
 	DONE: temporarily re-integrate main & interpreter
 	DONE: clean up main
+	DONE: introduce print options for classes
 	TBD: fix object hierarchy
 		TBD: Sort out object model - objects should not need to know about things outside of them
 			IDEA: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
 			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
-	TBD: introduce print options for classes
 	TBD: introduce serialization and de-serialization
 		TBD: start from serialized state for stateful_dict and stateful classes
 			TBD: Or maybe just class_to_string as needed before export for stateful_dict??
