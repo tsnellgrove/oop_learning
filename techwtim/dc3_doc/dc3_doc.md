@@ -62,7 +62,7 @@ NEXT:
 			IN-PROC: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
 				DONE: decided to implement room connections as a 'path' sub-dict in stateful_dict (no need for actual object)
 				DONE: implemented path sub-dict
-				TBD: Clean-up commented code
+				DONE: Clean-up commented code
 				TBD: Comment out valid_paths attribute
 				TBD: Clean-up commented code
 	TBD: introduce serialization and de-serialization
