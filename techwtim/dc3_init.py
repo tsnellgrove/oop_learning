@@ -15,9 +15,6 @@ burt = ViewOnly('burt', 'burt', "burt", None)
 fist = ViewOnly('fist', 'fist', "fist", None)
 conscience = ViewOnly('conscience', 'conscience', "conscience", None)
 
-### rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", None, 'gate')
-### dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", None, 'sword')
-
 rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", None)
 dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", None)
 
@@ -41,9 +38,5 @@ main_hall = Room('main_hall', 'main hall', "hall", None, [],
 # next room definitions after room definitions to avoid undefined variables
 entrance.valid_paths['north'] = main_hall
 main_hall.valid_paths['south'] = entrance
-
-# writton on deffinitions after variable assignments to avoid undefined variables
-### rusty_letters.written_on = front_gate
-### dwarven_runes.written_on = shiny_sword
 
 

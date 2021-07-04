@@ -53,8 +53,8 @@ NEXT:
 		TBD: Sort out object model - objects should not need to know about things outside of them
 			IN-PROC: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
 					DONE: Created writing_check() to search for writing on objects in scope
-					Done: Elim use of written on
-					TBD: Clean up writing changes
+					DONE: Elim use of written on
+					DONE: Clean up writing changes
 					TBD: Make Writing the parent class of View_Only
 					TBD: create obj_scope helper routine to be used by both scope_check and writing_check
 			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?

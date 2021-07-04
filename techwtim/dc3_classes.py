@@ -31,12 +31,9 @@ class ViewOnly(object):
 
 class Writing(ViewOnly):
 		def __init__(self, name, full_name, root_name, writing):
-###		def __init__(self, name, full_name, root_name, writing, written_on):
 				super().__init__(name, full_name, root_name, writing)
-###				self.written_on = written_on
 
 		def read(self, stateful_dict):
-###				if scope_check(self.written_on, stateful_dict) == False:
 				if writing_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
 				else:
