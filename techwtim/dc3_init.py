@@ -30,9 +30,12 @@ wooden_chest = Container('wooden_chest', 'wooden chest', "chest", None,
 front_gate = Door('front_gate', 'front gate', "gate", rusty_letters, False, False, rusty_key)
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
+## entrance = Room('entrance', 'entrance', "entrance", None, [dark_castle],
+##				[front_gate], {'north' : 'main_hall'}, {'north' : front_gate})
 entrance = Room('entrance', 'entrance', "entrance", None, [dark_castle],
-				[front_gate], {'north' : 'main_hall'}, {'north' : front_gate})
+				[front_gate], {'north' : front_gate})
+## main_hall = Room('main_hall', 'main hall', "hall", None, [],
+## 				[shiny_sword, front_gate, brass_key, wooden_chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : front_gate})
 main_hall = Room('main_hall', 'main hall', "hall", None, [],
-				[shiny_sword, front_gate, brass_key, wooden_chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : front_gate})
-
+				[shiny_sword, front_gate, brass_key, wooden_chest], {'south' : front_gate})
 

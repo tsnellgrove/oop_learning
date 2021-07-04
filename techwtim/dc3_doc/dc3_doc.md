@@ -63,7 +63,7 @@ NEXT:
 				DONE: decided to implement room connections as a 'path' sub-dict in stateful_dict (no need for actual object)
 				DONE: implemented path sub-dict
 				DONE: Clean-up commented code
-				TBD: Comment out valid_paths attribute
+				DONE: Comment out valid_paths attribute
 				TBD: Clean-up commented code
 	TBD: introduce serialization and de-serialization
 		TBD: start from serialized state for stateful_dict and stateful classes
