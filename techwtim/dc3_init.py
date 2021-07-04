@@ -9,14 +9,17 @@ from dc3_classes import *
 
 
 # object instantiation
+rusty_letters = Writing('rusty_letters', 'rusty letters', "letters")
+dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes")
+
 dark_castle = ViewOnly('dark_castle', "dark castle", "castle", None)
 backpack = ViewOnly('backpack', "backpack", "backpack", None)
 burt = ViewOnly('burt', 'burt', "burt", None)
 fist = ViewOnly('fist', 'fist', "fist", None)
 conscience = ViewOnly('conscience', 'conscience', "conscience", None)
 
-rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", None)
-dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", None)
+### rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", None)
+### dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", None)
 
 rusty_key = Item('rusty_key', 'rusty key', "key", None, True)
 shiny_sword = Item('shiny_sword', 'shiny sword', "sword", dwarven_runes, True)
