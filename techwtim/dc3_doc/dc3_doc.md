@@ -51,15 +51,20 @@ NEXT:
 	DONE: introduce print options for classes
 	IN-PROC: fix object hierarchy
 		TBD: Sort out object model - objects should not need to know about things outside of them
-			IN-PROC: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
-					DONE: Created writing_check() to search for writing on objects in scope
-					DONE: Elim use of written on
-					DONE: Clean up writing changes
-					DONE: Make Writing the parent class of View_Only
-					DONE: Clean up writing class & init changes
-					DONE: create obj_scope helper routine to be used by both scope_check and writing_check
-					TBD: clean up helper routine
-			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
+			DONE: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
+				DONE: Created writing_check() to search for writing on objects in scope
+				DONE: Elim use of written on
+				DONE: Clean up writing changes
+				DONE: Make Writing the parent class of View_Only
+				DONE: Clean up writing class & init changes
+				DONE: create obj_scope helper routine to be used by both scope_check and writing_check
+				DONE: clean up helper routine
+			IN-PROC: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
+				DONE: decided to implement room connections as a 'path' sub-dict in stateful_dict (no need for actual object)
+				DONE: implemented path sub-dict
+				TBD: Clean-up commented code
+				TBD: Comment out valid_paths attribute
+				TBD: Clean-up commented code
 	TBD: introduce serialization and de-serialization
 		TBD: start from serialized state for stateful_dict and stateful classes
 			TBD: Or maybe just class_to_string as needed before export for stateful_dict??

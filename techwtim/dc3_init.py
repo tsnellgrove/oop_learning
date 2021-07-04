@@ -36,7 +36,7 @@ main_hall = Room('main_hall', 'main hall', "hall", None, [],
 				[shiny_sword, front_gate, brass_key, wooden_chest], {'south' : 'entrance', 'north' : 'antichamber'}, {'south' : front_gate})
 
 # next room definitions after room definitions to avoid undefined variables
-entrance.valid_paths['north'] = main_hall
-main_hall.valid_paths['south'] = entrance
+## entrance.valid_paths['north'] = main_hall
+## main_hall.valid_paths['south'] = entrance
 
 
