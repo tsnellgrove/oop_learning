@@ -30,9 +30,10 @@ class ViewOnly(object):
 				return f'Object { self.name } is of class { type(self).__name__ } '
 
 class Writing(ViewOnly):
-		def __init__(self, name, full_name, root_name, writing, written_on):
+		def __init__(self, name, full_name, root_name, writing):
+###		def __init__(self, name, full_name, root_name, writing, written_on):
 				super().__init__(name, full_name, root_name, writing)
-				self.written_on = written_on
+###				self.written_on = written_on
 
 		def read(self, stateful_dict):
 ###				if scope_check(self.written_on, stateful_dict) == False:
