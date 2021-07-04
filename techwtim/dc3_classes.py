@@ -41,11 +41,9 @@ class ViewOnly(Writing):
 
 class Room(ViewOnly):
 		def __init__(self, name, full_name, root_name, writing, features, room_stuff, door_paths):
-##		def __init__(self, name, full_name, root_name, writing, features, room_stuff, valid_paths, door_paths):
 				super().__init__(name, full_name, root_name, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
 				self.room_stuff = room_stuff # list of stuff in room
-##				self.valid_paths = valid_paths # dictionary of {direction1 : room1, direction2 : room2}
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
 			
 		def examine(self, stateful_dict):

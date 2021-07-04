@@ -45,12 +45,12 @@ TOPIC: serialization
 			DONE: Got it working by removing schema def many=True !
 			DONE: rationalize tutorial code
 
-NEXT:
+Clean Up Code:
 	DONE: temporarily re-integrate main & interpreter
-	DONE: clean up main
+		DONE: clean up main
 	DONE: introduce print options for classes
-	IN-PROC: fix object hierarchy
-		TBD: Sort out object model - objects should not need to know about things outside of them
+	Done: fix object hierarchy
+		DONE: Sort out object model - objects should not need to know about things outside of them
 			DONE: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
 				DONE: Created writing_check() to search for writing on objects in scope
 				DONE: Elim use of written on
@@ -59,21 +59,35 @@ NEXT:
 				DONE: Clean up writing class & init changes
 				DONE: create obj_scope helper routine to be used by both scope_check and writing_check
 				DONE: clean up helper routine
-			IN-PROC: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
+			DONE: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
 				DONE: decided to implement room connections as a 'path' sub-dict in stateful_dict (no need for actual object)
 				DONE: implemented path sub-dict
 				DONE: Clean-up commented code
 				DONE: Comment out valid_paths attribute
-				TBD: Clean-up commented code
-	TBD: introduce serialization and de-serialization
-		TBD: start from serialized state for stateful_dict and stateful classes
-			TBD: Or maybe just class_to_string as needed before export for stateful_dict??
-	TBD: isolate main & interpreter using txt file loads
-	TBD: now start working with sqlalchemy again in place of txt files
-		TBD: How do I setup a DB that continues to persist independent of an app running??
-		TBD: Before returning values, Interpreter must save stateful_dict to DB
-		TBD: Before running code, must load the value of stateful_dict from DB
-		IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
+				DONE: Clean-up commented code
+
+TBD: introduce serialization and de-serialization
+	IDEA: start from serialized state for stateful_dict and stateful classes
+	IDEA: Or maybe just class_to_string as needed before export for stateful_dict??
+	TBD: Test serializing to JSON in marshmallow_tut
+	TBD: Start by serializing to JSON and printing stateful_dict
+	TBD: Serialize to JSON and print class objects
+	TBD: serialize to JSON and save stateful_dict to text file 
+	TBD: serialize to JSON and save class objects to text file
+	TBD: Import stateful_dict from JSON
+	TBD: Import class objects from JSON
+	TBD: On start, import stateful_dict from default_stateful text file; on following runs save and load from save_stateful text file
+	TBD: On start, import class objects from default_obj text file; on following runs save and load from save_obj text file
+
+TBD: isolate main & interpreter using txt file loads
+	TBD: stop passing stateful_dict
+	TBD: move main to d3_main.py
+
+TBD: now start working with sqlalchemy again in place of txt files
+	TBD: How do I setup a DB that continues to persist independent of an app running??
+	TBD: Before returning values, Interpreter must save stateful_dict to DB
+	TBD: Before running code, must load the value of stateful_dict from DB
+	IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
 		
 		
 
