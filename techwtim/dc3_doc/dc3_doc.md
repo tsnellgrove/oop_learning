@@ -56,7 +56,7 @@ NEXT:
 					DONE: Elim use of written on
 					DONE: Clean up writing changes
 					DONE: Make Writing the parent class of View_Only
-					TBD: Clean up writing class & init changes (recommit on error)
+					DONE: Clean up writing class & init changes
 					TBD: create obj_scope helper routine to be used by both scope_check and writing_check
 			IDEA: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
 	TBD: introduce serialization and de-serialization

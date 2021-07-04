@@ -18,9 +18,6 @@ burt = ViewOnly('burt', 'burt', "burt", None)
 fist = ViewOnly('fist', 'fist', "fist", None)
 conscience = ViewOnly('conscience', 'conscience', "conscience", None)
 
-### rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", None)
-### dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", None)
-
 rusty_key = Item('rusty_key', 'rusty key', "key", None, True)
 shiny_sword = Item('shiny_sword', 'shiny sword', "sword", dwarven_runes, True)
 brass_key = Item('brass_key', 'brass key', "key", None, True)

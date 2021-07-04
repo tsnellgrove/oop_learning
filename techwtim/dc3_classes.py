@@ -39,43 +39,6 @@ class ViewOnly(Writing):
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
 
-
-
-
-
-###############
-
-#class ViewOnly(object):
-#		def __init__(self, name, full_name, root_name, writing):
-#				self.name = name
-#				self.full_name = full_name
-#				self.root_name = root_name
-#				self.writing = writing
-
-#		def examine(self, stateful_dict):
-#				if scope_check(self, stateful_dict) == False:
-#						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
-#				else:
-#						buffer(stateful_dict, descript_dict[self.name])
-#						if self.writing is not None:
-#								output = "On the " + self.full_name + " you see: " + self.writing.full_name
-#								buffer(stateful_dict, output)
-
-#		def __repr__(self):
-#				return f'Object { self.name } is of class { type(self).__name__ } '
-
-#class Writing(ViewOnly):
-#		def __init__(self, name, full_name, root_name, writing):
-#				super().__init__(name, full_name, root_name, writing)
-
-#		def read(self, stateful_dict):
-#				if writing_check(self, stateful_dict) == False:
-#						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
-#				else:
-#						buffer(stateful_dict, descript_dict[self.name])
-
-###################
-
 class Room(ViewOnly):
 		def __init__(self, name, full_name, root_name, writing, features, room_stuff, valid_paths, door_paths):
 				super().__init__(name, full_name, root_name, writing)
