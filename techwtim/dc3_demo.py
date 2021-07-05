@@ -17,6 +17,7 @@ from dc3_init import *
 from dc3_helper import *
 from dc3_interp_helper import *
 from dc3_db_init import db_init
+from dc3_mm import *
 
 
 ### dictionary of variables passed to all functions ###
@@ -151,6 +152,8 @@ def wrapper(stateful_dict, user_input):
 ###						'move_counter' : 0,
 ###						'game_ending' : ""
 ###				}
+
+##				mm_serialize(stateful_dict)
 				buffer(stateful_dict, descript_dict["introduction"])
 				entrance.examine(stateful_dict)
 		else:
