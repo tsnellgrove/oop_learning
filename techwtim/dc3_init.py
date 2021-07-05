@@ -31,7 +31,7 @@ front_gate = Door('front_gate', 'front gate', "gate", rusty_letters, False, Fals
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 
 entrance = Room('entrance', 'entrance', "entrance", None, [dark_castle],
-				[], [front_gate], {'north' : front_gate})
+				[], [front_gate], [], {'north' : front_gate})
 main_hall = Room('main_hall', 'main hall', "hall", None, [],
-				[shiny_sword, brass_key, wooden_chest], [front_gate], {'south' : front_gate})
+				[shiny_sword, brass_key], [front_gate], [wooden_chest], {'south' : front_gate})
 

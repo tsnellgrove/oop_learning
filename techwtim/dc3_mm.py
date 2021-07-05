@@ -42,6 +42,17 @@ class DoorSchema(Schema):
 		unlock_state = fields.Boolean()
 		key = fields.Nested(ItemSchema)
 
+class ContainerSchema(Schema):
+		name = fields.String()
+		full_name = fields.String()
+		root_name = fields.String()
+		writing = fields.Nested(WritingSchema)
+		open_state = fields.Boolean()
+		unlock_state = fields.Boolean()
+		key = fields.Nested(ItemSchema)
+		takable = fields.Boolean()
+		contains = fields.List(fields.Nested(ItemSchema))
+
 class RoomSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
@@ -49,8 +60,9 @@ class RoomSchema(Schema):
 		writing = fields.Nested(WritingSchema)
 		takable = fields.Boolean()
 		features = fields.List(fields.Nested(ViewOnlySchema))	
-		room_items = fields.List(fields.Nested(ItemSchema)) # temp wrong
+		room_items = fields.List(fields.Nested(ItemSchema))
 		room_doors = fields.List(fields.Nested(DoorSchema))
+		room_containers = fields.List(fields.Nested(ContainerSchema))
 		door_paths = fields.Dict(keys=fields.String(), values=fields.Nested(DoorSchema))
 
 class PathSchema(Schema):
