@@ -79,7 +79,8 @@ IN-PROC: introduce serialization and de-serialization
 			DONE: Clean up code comments
 		IN-PROC: add 'doors' and 'containers' attributes to Room class (and "look" code) to sort out polymorphism issues
 				DONE: Convert room_stuff -> room_items
-				TBD: Add rooom_doors and room_containers
+				DONE: Add rooom_doors
+				TBD: Add room_containers
 				TBD: Test and update as needed to address room_stuff change
 				TBD: Update dc3_mm room schema
 				TBD: Add dc3_mm container schema

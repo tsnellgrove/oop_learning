@@ -40,16 +40,17 @@ class ViewOnly(Writing):
 								buffer(stateful_dict, output)
 
 class Room(ViewOnly):
-		def __init__(self, name, full_name, root_name, writing, features, room_items, door_paths):
+		def __init__(self, name, full_name, root_name, writing, features, room_items, room_doors, door_paths):
 				super().__init__(name, full_name, root_name, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
-				self.room_items = room_items # list of stuff in room
+				self.room_items = room_items # list of item objs in room
+				self.room_doors = room_doors # list of door objs in room
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self:
-						room_str_lst = objlst_to_strlst(self.room_items)
+						room_str_lst = objlst_to_strlst(self.room_items) + objlst_to_strlst(self.room_doors)
 						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
 				for obj in self.room_items:
