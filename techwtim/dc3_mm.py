@@ -52,10 +52,13 @@ class RoomSchema(Schema):
 		room_stuff = fields.List(fields.Nested(ItemSchema)) # temp wrong
 		door_paths = fields.Dict(keys=fields.String(), values=fields.Nested(DoorSchema))
 
+class PathSchema(Schema):
+		direction = fields.Nested(RoomSchema)
+
 class StatefulSchema(Schema):
 		hand = fields.Nested(ItemSchema)
 		backpack = fields.Nested(ItemSchema)
-		universal = fields.List(fields.Nested(ItemSchema))
+		universal = fields.List(fields.Nested(ViewOnlySchema))
 		room = fields.Nested(RoomSchema)
 		out_buff = fields.String()
 		score = fields.Integer()
@@ -63,7 +66,9 @@ class StatefulSchema(Schema):
 		current_score = fields.Integer()
 		move_counter = fields.Integer()
 		game_ending = fields.String()
-		paths = fields.String() # temp wrong
+		paths = fields.Dict(keys=fields.String(), values=fields.Dict(keys=fields.String(), values=fields.Nested(RoomSchema)))
+##		paths = fields.Dict(keys=fields.Nested(RoomSchema), values=fields.Nested(PathSchema))
+##		paths = fields.Dict(keys=fields.String(), values=fields.Nested(PathSchema)) # wrong
 
 def mm_serialize(stateful_dict):
 		print(stateful_dict)

@@ -34,8 +34,10 @@ stateful_dict = {
 		'move_counter' : 0,
 		'game_ending' : "",
 		'paths' : {
-				entrance : {'north' : main_hall},
-				main_hall : {'south' : entrance}
+##				entrance : {'north' : main_hall},
+##				main_hall : {'south' : entrance}
+				'entrance' : {'north' : main_hall},
+				'main_hall' : {'south' : entrance}
 				}
 		}
 

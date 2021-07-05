@@ -74,6 +74,11 @@ IN-PROC: introduce serialization and de-serialization
 		DONE: convert pet_data back and forth to json
 		DONE: convert person_data back and forth to json
 	IN-PROC: Start by serializing to JSON and printing stateful_dict
+		IN-PROC: Sort out path dict in stateful_dict
+			DONE: made all path keys String() to sort out mm Dict requirements
+			TBD: Clean up code comments
+		TBD: add 'doors' and 'containers' attributes to Room class (and "look" code) to sort out polymorphism issues
+		TBD: after dumping dict to json, looad the json back to dict and compare to original
 	TBD: Serialize to JSON and print class objects
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file
