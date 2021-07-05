@@ -78,7 +78,7 @@ IN-PROC: introduce serialization and de-serialization
 			DONE: made all path keys String() to sort out mm Dict requirements
 			DONE: Clean up code comments
 		IN-PROC: add 'doors' and 'containers' attributes to Room class (and "look" code) to sort out polymorphism issues
-				TBD: Convert room_stuff -> room_items
+				DONE: Convert room_stuff -> room_items
 				TBD: Add rooom_doors and room_containers
 				TBD: Test and update as needed to address room_stuff change
 				TBD: Update dc3_mm room schema

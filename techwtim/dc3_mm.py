@@ -49,7 +49,7 @@ class RoomSchema(Schema):
 		writing = fields.Nested(WritingSchema)
 		takable = fields.Boolean()
 		features = fields.List(fields.Nested(ViewOnlySchema))	
-		room_stuff = fields.List(fields.Nested(ItemSchema)) # temp wrong
+		room_items = fields.List(fields.Nested(ItemSchema)) # temp wrong
 		door_paths = fields.Dict(keys=fields.String(), values=fields.Nested(DoorSchema))
 
 class PathSchema(Schema):
