@@ -153,7 +153,7 @@ def wrapper(stateful_dict, user_input):
 ###						'game_ending' : ""
 ###				}
 
-##				mm_serialize(stateful_dict)
+				mm_serialize(stateful_dict)
 				buffer(stateful_dict, descript_dict["introduction"])
 				entrance.examine(stateful_dict)
 		else:

@@ -20,6 +20,12 @@ class WritingSchema(Schema):
 		full_name = fields.String()
 		root_name = fields.String()
 
+class ViewOnlySchema(Schema):
+		name = fields.String()
+		full_name = fields.String()
+		root_name = fields.String()
+		writing = fields.Nested(WritingSchema)
+
 class ItemSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
@@ -27,29 +33,44 @@ class ItemSchema(Schema):
 		writing = fields.Nested(WritingSchema)
 		takable = fields.Boolean()
 
+class DoorSchema(Schema):
+		name = fields.String()
+		full_name = fields.String()
+		root_name = fields.String()
+		writing = fields.Nested(WritingSchema)
+		open_state = fields.Boolean()
+		unlock_state = fields.Boolean()
+		key = fields.Nested(ItemSchema)
+
+class RoomSchema(Schema):
+		name = fields.String()
+		full_name = fields.String()
+		root_name = fields.String()
+		writing = fields.Nested(WritingSchema)
+		takable = fields.Boolean()
+		features = fields.List(fields.Nested(ViewOnlySchema))	
+		room_stuff = fields.List(fields.Nested(ItemSchema)) # temp wrong
+		door_paths = fields.Dict(keys=fields.String(), values=fields.Nested(DoorSchema))
+
+class StatefulSchema(Schema):
+		hand = fields.Nested(ItemSchema)
+		backpack = fields.Nested(ItemSchema)
+		universal = fields.List(fields.Nested(ItemSchema))
+		room = fields.Nested(RoomSchema)
+		out_buff = fields.String()
+		score = fields.Integer()
+		end_of_game = fields.Boolean()
+		current_score = fields.Integer()
+		move_counter = fields.Integer()
+		game_ending = fields.String()
+		paths = fields.String() # temp wrong
+
 def mm_serialize(stateful_dict):
 		print(stateful_dict)
-		stateful_json = json.dumps(stateful_dict)
+		print()
+##		stateful_json = json.dumps(stateful_dict)
+		schema_stateful = StatefulSchema()
+		stateful_json = schema_stateful.dumps(stateful_dict)
 		print(stateful_json)
 
-### mm_tut schema template
 
-# marshmallow schemas
-class PetSchema(Schema):
-		pet_name = fields.String()
-		is_a_cat = fields.Boolean()
-
-# post load transform with marshmallow creates instance of Class
-		@post_load
-		def create_pet(self, data, **kwargs):
-				return Pet(**data)
-
-class PersonSchema(Schema):
-		name = fields.String()
-		age = fields.Integer()
-		pet = fields.Nested(PetSchema)
-
-# post load transform with marshmallow creates instance of Class
-		@post_load
-		def create_person(self, data, **kwargs):
-				return Person(**data)
