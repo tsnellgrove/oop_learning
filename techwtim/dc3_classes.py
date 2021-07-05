@@ -55,7 +55,6 @@ class Room(ViewOnly):
 						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
 				for obj in self.room_containers:
-##						if hasattr(obj, 'contains') and obj.open_state == True:
 						if obj.open_state == True:
 								container_desc(obj, stateful_dict)
 
@@ -101,10 +100,6 @@ class Item(ViewOnly):
 								room_obj.room_items.remove(self)
 						else:
 								for obj in room_obj.room_containers: # eles remove item from the container it's in
-##								for obj in room_obj_lst: # eles remove item from the container it's in
-##										if hasattr(obj, 'contains') \
-##														and len(obj.contains) > 0 \
-##														and obj.open_state == True:
 										if len(obj.contains) > 0 and obj.open_state == True:
 												if self in obj.contains:
 														obj.contains.remove(self)

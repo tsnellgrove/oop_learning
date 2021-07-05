@@ -18,13 +18,8 @@ def change_desc(self, new_desc):
 
 ### Only Used by Helper Functions ###
 def open_cont_scan(stateful_dict, room_containers):
-## def open_cont_scan(stateful_dict, room_obj_lst):
 		open_cont_obj_lst = []
-##		for obj in room_obj_lst:
 		for obj in room_containers:
-##				if hasattr(obj, 'contains') \
-##								and len(obj.contains) > 0 \
-##								and obj.open_state == True:
 				if len(obj.contains) > 0 and obj.open_state == True:
 						open_cont_obj_lst = open_cont_obj_lst + obj.contains
 		return open_cont_obj_lst
@@ -36,7 +31,6 @@ def scope_list(obj, stateful_dict):
 		universal_lst = stateful_dict['universal']
 		room_obj_lst = room_obj.room_items + room_obj.room_doors + room_obj.room_containers
 		features_lst = room_obj.features
-##		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj_lst)
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj.room_containers)
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
 						+ universal_lst + features_lst + open_cont_obj_lst)

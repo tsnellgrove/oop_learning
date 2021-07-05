@@ -84,9 +84,13 @@ class StatefulSchema(Schema):
 def mm_serialize(stateful_dict):
 		print(stateful_dict)
 		print()
+
 ##		stateful_json = json.dumps(stateful_dict)
 		schema_stateful = StatefulSchema()
 		stateful_json = schema_stateful.dumps(stateful_dict)
 		print(stateful_json)
+		print()
 
+###		result_dict = schema_stateful.loads(stateful_json)
+###		print(result_dict)
 
