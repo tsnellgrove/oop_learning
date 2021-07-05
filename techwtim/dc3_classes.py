@@ -58,7 +58,6 @@ class Room(ViewOnly):
 
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
-##				if direction not in stateful_dict['paths'][room_obj]:
 				if direction not in stateful_dict['paths'][room_obj.name]:
 						buffer(stateful_dict, "You can't go that way.")
 				elif direction in self.door_paths:
@@ -68,7 +67,6 @@ class Room(ViewOnly):
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
 								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
-##								next_room_obj = stateful_dict['paths'][room_obj][direction]
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 

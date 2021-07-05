@@ -67,8 +67,6 @@ class StatefulSchema(Schema):
 		move_counter = fields.Integer()
 		game_ending = fields.String()
 		paths = fields.Dict(keys=fields.String(), values=fields.Dict(keys=fields.String(), values=fields.Nested(RoomSchema)))
-##		paths = fields.Dict(keys=fields.Nested(RoomSchema), values=fields.Nested(PathSchema))
-##		paths = fields.Dict(keys=fields.String(), values=fields.Nested(PathSchema)) # wrong
 
 def mm_serialize(stateful_dict):
 		print(stateful_dict)
