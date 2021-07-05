@@ -77,7 +77,13 @@ IN-PROC: introduce serialization and de-serialization
 		DONE: Sort out path dict in stateful_dict
 			DONE: made all path keys String() to sort out mm Dict requirements
 			DONE: Clean up code comments
-		TBD: add 'doors' and 'containers' attributes to Room class (and "look" code) to sort out polymorphism issues
+		IN-PROC: add 'doors' and 'containers' attributes to Room class (and "look" code) to sort out polymorphism issues
+				TBD: Convert room_stuff -> room_items
+				TBD: Add rooom_doors and room_containers
+				TBD: Test and update as needed to address room_stuff change
+				TBD: Update dc3_mm room schema
+				TBD: Add dc3_mm container schema
+				TBD: Test dc3_mm json conversion
 		TBD: after dumping dict to json, looad the json back to dict and compare to original
 	TBD: Serialize to JSON and print class objects
 	TBD: serialize to JSON and save stateful_dict to text file 

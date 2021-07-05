@@ -183,7 +183,7 @@ class Door(ViewOnly):
 class Container(Door):
 		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key, takeable, contains):
 				super().__init__(name, full_name, root_name, writing, open_state, unlock_state, key)
-				self.takeable = takeable # can the container be taken?
+				self.takeable = takeable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
 				self.contains = contains # list of items in the container
 
 		def examine(self, stateful_dict):
