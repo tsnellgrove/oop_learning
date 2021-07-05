@@ -51,7 +51,7 @@ class PersonSchema(Schema):
 
 # Initial serialized data
 pet_data_dict = {}
-person_data = {}
+person_data_dict = {}
 
 ## pet_data['pet_name'] = input('What is your pet name? ')
 ## pet_data['is_a_cat'] = input('Is it True that your pet is a cat? ')
@@ -59,10 +59,12 @@ person_data = {}
 pet_data_dict['pet_name'] = "Lunabelle"
 pet_data_dict['is_a_cat'] = False
 
-person_data = {'name': 'Tom', 'age': 50, 'pet': {'pet_name': 'Kit', 'is_a_cat': True}}
+person_data_dict = {'name': 'Tom', 'age': 50, 'pet': {'pet_name': 'Kit', 'is_a_cat': True}}
 
 
-# loads & dumps
+# loads, dumps, and json conversion
+
+### pet_data ###
 
 # convert dict to json
 pet_data_json = json.dumps( pet_data_dict )
@@ -77,12 +79,21 @@ result_pet_json = schema_pet.dumps(pet1)
 # convert json to dict
 result_pet_dict = json.loads(result_pet_json)
 
+
+### person_data ###
+
+# convert dict to json
+person_data_json = json.dumps( person_data_dict )
+
 # person load de-serializes nested data and, uses post_load decorator to convert into complex object
 schema_person = PersonSchema()
-person1 = schema_person.load(person_data)
+person1 = schema_person.loads(person_data_json)
 
 # dump serializes complex object into a nested dictionary
-result_person = schema_person.dump(person1)
+result_person_json = schema_person.dumps(person1)
+
+# convert json to dict
+result_person_dict = json.loads(result_person_json)
 
 
 # for each data set print initial serialized data, then de-serialized object, then serialized dict
@@ -97,13 +108,15 @@ print(result_pet_dict)
 
 print()
 
-print(person_data)
+print(person_data_dict)
+print(person_data_json)
 print(person1)
 print(person1.name)
 print(person1.age)
 print(person1.pet.pet_name)
 print(person1.pet.is_a_cat)
-print(result_person)
+print(result_person_json)
+print(result_person_dict)
 
 print()
 
