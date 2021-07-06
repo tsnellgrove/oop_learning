@@ -154,6 +154,7 @@ def wrapper(stateful_dict, user_input):
 ###				}
 
 				mm_serialize(stateful_dict)
+				print_obj()
 				buffer(stateful_dict, descript_dict["introduction"])
 				entrance.examine(stateful_dict)
 		else:

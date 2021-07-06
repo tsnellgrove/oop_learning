@@ -73,7 +73,7 @@ IN-PROC: introduce serialization and de-serialization
 		DONE: import json
 		DONE: convert pet_data back and forth to json
 		DONE: convert person_data back and forth to json
-	IN-PROC: Start by serializing to JSON and printing stateful_dict
+	DONE: Start by serializing to JSON and printing stateful_dict
 		DONE: Sort out path dict in stateful_dict
 			DONE: made all path keys String() to sort out mm Dict requirements
 			DONE: Clean up code comments
@@ -86,12 +86,13 @@ IN-PROC: introduce serialization and de-serialization
 				DONE: Update dc3_mm room schema
 				DONE: Add dc3_mm container schema
 				DONE: Test dc3_mm json conversion
-		IN-PROC: after dumping dict to json, looad the json back to dict and compare to original
+		DONE: after dumping dict to json, looad the json back to dict and compare to original
 			DONE: Initial troubleshooting; add allow_none=True for writing
 			DONE: Add post_loads
 			DONE: Sort out takeable for Item and Container (changed to takable)
-			TBD: Detailed before & after compare
-	TBD: Serialize to JSON and print class objects
+			DONE: Detailed before & after compare
+				NOTE: identical by manual inspection but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
+	IN-PROC: Serialize to JSON and print class objects
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file
 	TBD: Import stateful_dict from JSON

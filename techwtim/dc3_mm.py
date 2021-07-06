@@ -107,6 +107,7 @@ class StatefulSchema(Schema):
 
 def mm_serialize(stateful_dict):
 		print(stateful_dict)
+		test_dict = stateful_dict
 		print()
 
 ##		stateful_json = json.dumps(stateful_dict)
@@ -117,4 +118,27 @@ def mm_serialize(stateful_dict):
 
 		result_dict = schema_stateful.loads(stateful_json)
 		print(result_dict)
+		print()
+
+		print(stateful_dict == result_dict)
+		print(stateful_dict == test_dict)
+		print()
+		
+def print_obj():
+		schema_dict = {
+				writing_obj_lst : WritingSchema(), 
+				viewonly_obj_lst : ViewOnlySchema(), 
+				item_obj_lst : ItemSchema(),
+				container_obj_lst : ContainerSchema(), 
+				door_obj_lst : DoorSchema(), 
+				room_obj_lst : RoomSchema()
+		}
+		
+		for lst in obj_lst_lst:
+				schema = schema_dict[lst]
+				for obj in lst:
+						print(obj)
+						print(schema.dumps(obj))
+	
+	
 

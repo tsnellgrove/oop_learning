@@ -35,3 +35,12 @@ entrance = Room('entrance', 'entrance', "entrance", None, [dark_castle],
 main_hall = Room('main_hall', 'main hall', "hall", None, [],
 				[shiny_sword, brass_key], [front_gate], [wooden_chest], {'south' : front_gate})
 
+
+writing_obj_lst = [rusty_letters, dwarven_runes]
+viewonly_obj_lst = [dark_castle, backpack, burt, fist, conscience]
+item_obj_lst = [rusty_key, shiny_sword, brass_key, bubbly_potion]
+container_obj_lst = [wooden_chest]
+door_obj_lst = [front_gate]
+room_obj_lst = [entrance, main_hall]
+obj_lst_lst = [writing_obj_lst, viewonly_obj_lst, item_obj_lst, container_obj_lst, door_obj_lst, room_obj_lst]
+
