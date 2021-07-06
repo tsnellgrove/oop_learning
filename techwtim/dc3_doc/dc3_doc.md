@@ -87,6 +87,10 @@ IN-PROC: introduce serialization and de-serialization
 				DONE: Add dc3_mm container schema
 				DONE: Test dc3_mm json conversion
 		IN-PROC: after dumping dict to json, looad the json back to dict and compare to original
+			DONE: Initial troubleshooting; add allow_none=True for writing
+			DONE: Add post_loads
+			DONE: Sort out takeable for Item and Container (changed to takable)
+			TBD: Detailed before & after compare
 	TBD: Serialize to JSON and print class objects
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file

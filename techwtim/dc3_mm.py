@@ -19,45 +19,65 @@ class WritingSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
 		root_name = fields.String()
+		
+		@post_load
+		def create_writing(self, data, **kwargs):
+				return Writing(**data)
 
 class ViewOnlySchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
 		root_name = fields.String()
-		writing = fields.Nested(WritingSchema)
+		writing = fields.Nested(WritingSchema, allow_none=True)
+
+		@post_load
+		def create_viewonly(self, data, **kwargs):
+				return ViewOnly(**data)
 
 class ItemSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
 		root_name = fields.String()
-		writing = fields.Nested(WritingSchema)
+		writing = fields.Nested(WritingSchema, allow_none=True)
 		takable = fields.Boolean()
+
+		@post_load
+		def create_item(self, data, **kwargs):
+				return Item(**data)
 
 class DoorSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
 		root_name = fields.String()
-		writing = fields.Nested(WritingSchema)
+		writing = fields.Nested(WritingSchema, allow_none=True)
 		open_state = fields.Boolean()
 		unlock_state = fields.Boolean()
 		key = fields.Nested(ItemSchema)
+
+		@post_load
+		def create_door(self, data, **kwargs):
+				return Door(**data)
 
 class ContainerSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
 		root_name = fields.String()
-		writing = fields.Nested(WritingSchema)
+		writing = fields.Nested(WritingSchema, allow_none=True)
 		open_state = fields.Boolean()
 		unlock_state = fields.Boolean()
 		key = fields.Nested(ItemSchema)
 		takable = fields.Boolean()
 		contains = fields.List(fields.Nested(ItemSchema))
 
+		@post_load
+		def create_container(self, data, **kwargs):
+				return Container(**data)
+
 class RoomSchema(Schema):
 		name = fields.String()
 		full_name = fields.String()
 		root_name = fields.String()
-		writing = fields.Nested(WritingSchema)
+		writing = fields.Nested(WritingSchema, allow_none=True)
 		takable = fields.Boolean()
 		features = fields.List(fields.Nested(ViewOnlySchema))	
 		room_items = fields.List(fields.Nested(ItemSchema))
@@ -65,12 +85,16 @@ class RoomSchema(Schema):
 		room_containers = fields.List(fields.Nested(ContainerSchema))
 		door_paths = fields.Dict(keys=fields.String(), values=fields.Nested(DoorSchema))
 
-class PathSchema(Schema):
-		direction = fields.Nested(RoomSchema)
+		@post_load
+		def create_room(self, data, **kwargs):
+				return Room(**data)
+
+## class PathSchema(Schema):
+##		direction = fields.Nested(RoomSchema)
 
 class StatefulSchema(Schema):
-		hand = fields.Nested(ItemSchema)
-		backpack = fields.Nested(ItemSchema)
+		hand = fields.List(fields.Nested(ItemSchema))
+		backpack = fields.List(fields.Nested(ItemSchema))
 		universal = fields.List(fields.Nested(ViewOnlySchema))
 		room = fields.Nested(RoomSchema)
 		out_buff = fields.String()
@@ -91,6 +115,6 @@ def mm_serialize(stateful_dict):
 		print(stateful_json)
 		print()
 
-###		result_dict = schema_stateful.loads(stateful_json)
-###		print(result_dict)
+		result_dict = schema_stateful.loads(stateful_json)
+		print(result_dict)
 

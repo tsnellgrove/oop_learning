@@ -73,9 +73,9 @@ class Room(ViewOnly):
 								next_room_obj.examine(stateful_dict)
 
 class Item(ViewOnly):
-		def __init__(self, name, full_name, root_name, writing, takeable):
+		def __init__(self, name, full_name, root_name, writing, takable):
 				super().__init__(name, full_name, root_name, writing)
-				self.takeable = takeable
+				self.takable = takable
 
 		def take(self, stateful_dict):
 				room_obj = stateful_dict['room']
@@ -86,7 +86,7 @@ class Item(ViewOnly):
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self in hand_lst:
 						buffer(stateful_dict, "You're already holding the " + self.full_name)
-				elif self.takeable == False:
+				elif self.takable == False:
 						buffer(stateful_dict, "You can't take the " + self.full_name)
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
@@ -181,9 +181,9 @@ class Door(ViewOnly):
 						self.unlock_state = False
 
 class Container(Door):
-		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key, takeable, contains):
+		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key, takable, contains):
 				super().__init__(name, full_name, root_name, writing, open_state, unlock_state, key)
-				self.takeable = takeable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
+				self.takable = takable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
 				self.contains = contains # list of items in the container
 
 		def examine(self, stateful_dict):
