@@ -125,20 +125,23 @@ def mm_serialize(stateful_dict):
 		print()
 		
 def print_obj():
-		schema_dict = {
-				writing_obj_lst : WritingSchema(), 
-				viewonly_obj_lst : ViewOnlySchema(), 
-				item_obj_lst : ItemSchema(),
-				container_obj_lst : ContainerSchema(), 
-				door_obj_lst : DoorSchema(), 
-				room_obj_lst : RoomSchema()
-		}
-		
+		json_dict = {}
+		schema_lst = [WritingSchema(), ViewOnlySchema(), ItemSchema(), ContainerSchema(), DoorSchema(), RoomSchema()]
+		count = 0
 		for lst in obj_lst_lst:
-				schema = schema_dict[lst]
+				schema = schema_lst[count]
+				count += 1
 				for obj in lst:
+						key = obj.name
 						print(obj)
-						print(schema.dumps(obj))
-	
+						json_obj = schema.dumps(obj)
+						print(json_obj)
+						value = json_obj
+						json_dict[key] = value
+						result_dict = schema.loads(json_obj)
+						print(result_dict)
+						print (obj == result_dict)
+						print()
+		print(json_dict)
 	
 

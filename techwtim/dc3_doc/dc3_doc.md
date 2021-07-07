@@ -93,6 +93,9 @@ IN-PROC: introduce serialization and de-serialization
 			DONE: Detailed before & after compare
 				NOTE: identical by manual inspection but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
 	IN-PROC: Serialize to JSON and print class objects
+		NOTE: identical by manual inspections but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
+		DONE: Saved JSON to dict
+		TBD: Change to saving to lists so that list of lists can dump and load using correct schema ??
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file
 	TBD: Import stateful_dict from JSON
