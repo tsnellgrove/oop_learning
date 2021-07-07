@@ -95,9 +95,13 @@ IN-PROC: introduce serialization and de-serialization
 	IN-PROC: Serialize to JSON and print class objects
 		NOTE: identical by manual inspections but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
 		DONE: Saved JSON to dict
-		TBD: Change to saving to lists so that list of lists can dump and load using correct schema ??
+		IDEA: How it should work:
+			1) If start_of_game == True: load stateful_dict from default_stateful_json.txt
+			2) Else: load stateful_dict from save_stateful_json.txt
+			3) At end of wrapper(): Write stateful_dict to save_stateful_json.txt (in overwrite mode)
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file
+	TBD: Change to saving to lists so that list of lists can dump and load using correct schema ??
 	TBD: Import stateful_dict from JSON
 	TBD: Import class objects from JSON
 	TBD: On start, import stateful_dict from default_stateful text file; on following runs save and load from save_stateful text file
