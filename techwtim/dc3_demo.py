@@ -155,12 +155,8 @@ def wrapper(stateful_dict, user_input):
 
 ##				mm_serialize(stateful_dict)
 ##				print_obj()
-				print(stateful_dict)
 				stateful_dict = mm_stateful_serialize()
 				buffer(stateful_dict, descript_dict["introduction"])
-				print(stateful_dict) # prints first because not buffer
-				print(stateful_dict['room'])
-##				print(entrance)
 				entrance.examine(stateful_dict)
 		else:
 ###				stateful_dict = stateful_db.information

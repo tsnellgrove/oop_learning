@@ -99,7 +99,7 @@ IN-PROC: introduce serialization and de-serialization
 			1) If start_of_game == True: load stateful_dict from dc3_default_stateful_json.txt
 				DONE: Initial coding
 				DONE: troubleshootin of obj id == vs. 'is' compare issues
-				TBD: clean-up of troubleshooting comments
+				DONE: clean-up of troubleshooting comments
 			2) Else: load stateful_dict from save_stateful_json.txt
 			3) At end of wrapper(): Write stateful_dict to save_stateful_json.txt (in overwrite mode)
 	TBD: serialize to JSON and save stateful_dict to text file 
