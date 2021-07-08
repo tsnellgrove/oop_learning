@@ -96,7 +96,7 @@ IN-PROC: introduce serialization and de-serialization
 		NOTE: identical by manual inspections but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
 		DONE: Saved JSON to dict
 		IDEA: How it should work:
-			1) If start_of_game == True: load stateful_dict from default_stateful_json.txt
+			1) If start_of_game == True: load stateful_dict from dc3_default_stateful_json.txt
 			2) Else: load stateful_dict from save_stateful_json.txt
 			3) At end of wrapper(): Write stateful_dict to save_stateful_json.txt (in overwrite mode)
 	TBD: serialize to JSON and save stateful_dict to text file 
