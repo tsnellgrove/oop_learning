@@ -144,4 +144,9 @@ def print_obj():
 						print()
 		print(json_dict)
 	
-
+def mm_stateful_serialize():
+		with open('dc3_default_stateful_json.txt') as f:
+				data = f.read()
+		schema_stateful = StatefulSchema()
+		stateful_dict = schema_stateful.loads(data)
+		return  stateful_dict

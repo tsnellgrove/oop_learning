@@ -153,9 +153,14 @@ def wrapper(stateful_dict, user_input):
 ###						'game_ending' : ""
 ###				}
 
-				mm_serialize(stateful_dict)
-				print_obj()
+##				mm_serialize(stateful_dict)
+##				print_obj()
+				print(stateful_dict)
+				stateful_dict = mm_stateful_serialize()
 				buffer(stateful_dict, descript_dict["introduction"])
+				print(stateful_dict) # prints first because not buffer
+				print(stateful_dict['room'])
+##				print(entrance)
 				entrance.examine(stateful_dict)
 		else:
 ###				stateful_dict = stateful_db.information
@@ -164,6 +169,7 @@ def wrapper(stateful_dict, user_input):
 ###		stateful_db.information = stateful_dict
 ###		session.add(stateful_db)
 ###		session.commit()
+		
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 
