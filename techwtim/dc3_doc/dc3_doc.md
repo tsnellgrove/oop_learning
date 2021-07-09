@@ -108,6 +108,9 @@ IN-PROC: introduce serialization and de-serialization
 			TBD: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
 				IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
 				IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
+				IDEA: Find a way to list all objects for troubleshooting
+				IDEA: Try using child shema's in Marshmallow
+				IDEA: If nothing works for marshmallow, try pickle
 			TBD: clean up code comments
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file
