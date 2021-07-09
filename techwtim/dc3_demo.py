@@ -22,22 +22,22 @@ from dc3_mm import *
 
 ### dictionary of variables passed to all functions ###
 ### any object variable that is passed to helper() must be in this dict ###
-stateful_dict = {
-		'hand' : [], 
-		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, fist, conscience],
-		'room' : entrance,
-		'out_buff' : "",
-		'score' : 0, 
-		'end_of_game' : False,
-		'current_score' : 0,
-		'move_counter' : 0,
-		'game_ending' : "",
-		'paths' : {
-				'entrance' : {'north' : main_hall},
-				'main_hall' : {'south' : entrance}
-				}
-		}
+##stateful_dict = {
+##		'hand' : [], 
+##		'backpack' : [rusty_key],
+##		'universal' : [backpack, burt, fist, conscience],
+##		'room' : entrance,
+##		'out_buff' : "",
+##		'score' : 0, 
+##		'end_of_game' : False,
+##		'current_score' : 0,
+##		'move_counter' : 0,
+##		'game_ending' : "",
+##		'paths' : {
+##				'entrance' : {'north' : main_hall},
+##				'main_hall' : {'south' : entrance}
+##				}
+##		}
 
 
 # interpreter
@@ -133,9 +133,9 @@ def interpreter(stateful_dict, user_input):
 
 
 # interpreter
-def wrapper(stateful_dict, user_input):
+def wrapper(user_input):
 
-		stateful_dict['out_buff'] = "" # resets buffer
+
 		if user_input == "xyzzy42":
 ###				stateful_db, session = db_init()
 				### dictionary of variables passed to all functions ###
@@ -155,17 +155,27 @@ def wrapper(stateful_dict, user_input):
 
 ##				mm_serialize(stateful_dict)
 ##				print_obj()
-				stateful_dict = mm_stateful_serialize()
+				stateful_dict = mm_stateful_default_load()
 				buffer(stateful_dict, descript_dict["introduction"])
+###				print(front_gate)
+###				print(front_gate.open_state)
 				entrance.examine(stateful_dict)
 		else:
+				stateful_dict = mm_stateful_save_load()
 ###				stateful_dict = stateful_db.information
+				stateful_dict['out_buff'] = "" # resets buffer
+###				print(front_gate)
+###				print(front_gate.open_state)
 				interpreter(stateful_dict, user_input)
 
 ###		stateful_db.information = stateful_dict
 ###		session.add(stateful_db)
 ###		session.commit()
-		
+		print(front_gate)
+		print(front_gate.open_state)
+		print(stateful_dict['room'].room_doors)
+		print(stateful_dict['room'].room_doors[0].open_state)
+		mm_stateful_save(stateful_dict)
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 
@@ -178,7 +188,7 @@ while end_of_game == False:
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-		end_of_game, output = wrapper(stateful_dict, user_input)
+		end_of_game, output = wrapper(user_input)
 		print(output)
 print("THANKS FOR PLAYING!!")
 

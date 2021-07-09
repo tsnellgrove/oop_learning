@@ -95,13 +95,20 @@ IN-PROC: introduce serialization and de-serialization
 	IN-PROC: Serialize to JSON and print class objects
 		NOTE: identical by manual inspections but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
 		DONE: Saved JSON to dict
-		IDEA: How it should work:
+		IDEA: How reading & writing serialized json stateful_dict to file should work:
 			1) If start_of_game == True: load stateful_dict from dc3_default_stateful_json.txt
 				DONE: Initial coding
 				DONE: troubleshootin of obj id == vs. 'is' compare issues
 				DONE: clean-up of troubleshooting comments
 			2) Else: load stateful_dict from save_stateful_json.txt
+				DONE: Initial coding
 			3) At end of wrapper(): Write stateful_dict to save_stateful_json.txt (in overwrite mode)
+				DONE: Initial coding
+			DONE: Sent email inquiry to Franco to see if I'm taking the right general appraoch to persisting objects
+			TBD: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
+				IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
+				IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
+			TBD: clean up code comments
 	TBD: serialize to JSON and save stateful_dict to text file 
 	TBD: serialize to JSON and save class objects to text file
 	TBD: Change to saving to lists so that list of lists can dump and load using correct schema ??

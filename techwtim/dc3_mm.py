@@ -89,8 +89,8 @@ class RoomSchema(Schema):
 		def create_room(self, data, **kwargs):
 				return Room(**data)
 
-## class PathSchema(Schema):
-##		direction = fields.Nested(RoomSchema)
+### class PathSchema(Schema):
+###		direction = fields.Nested(RoomSchema)
 
 class StatefulSchema(Schema):
 		hand = fields.List(fields.Nested(ItemSchema))
@@ -144,8 +144,21 @@ def print_obj():
 						print()
 		print(json_dict)
 	
-def mm_stateful_serialize():
+def mm_stateful_default_load():
 		with open('dc3_default_stateful_json.txt') as f:
+				data = f.read()
+		schema_stateful = StatefulSchema()
+		stateful_dict = schema_stateful.loads(data)
+		return  stateful_dict
+
+def mm_stateful_save(stateful_dict):
+		schema_stateful = StatefulSchema()
+		stateful_json = schema_stateful.dumps(stateful_dict)
+		with open('dc3_save_stateful_json.txt', 'w') as outfile:
+				outfile.write(stateful_json)
+
+def mm_stateful_save_load():
+		with open('dc3_save_stateful_json.txt') as f:
 				data = f.read()
 		schema_stateful = StatefulSchema()
 		stateful_dict = schema_stateful.loads(data)
