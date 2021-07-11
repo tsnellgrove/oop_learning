@@ -18,7 +18,7 @@ from dc3_helper import *
 from dc3_interp_helper import *
 from dc3_db_init import db_init
 from dc3_mm import *
-
+import gc
 
 ### dictionary of variables passed to all functions ###
 ### any object variable that is passed to helper() must be in this dict ###
@@ -171,10 +171,19 @@ def wrapper(user_input):
 ###		stateful_db.information = stateful_dict
 ###		session.add(stateful_db)
 ###		session.commit()
+
+
+		### troubleshooting code ###
 		print(front_gate)
 		print(front_gate.open_state)
 		print(stateful_dict['room'].room_doors)
 		print(stateful_dict['room'].room_doors[0].open_state)
+		for obj in gc.get_objects():
+				if isinstance(obj, Door):
+						print(obj, obj.open_state, id(obj))
+		### troubleshooting code ###
+
+
 		mm_stateful_save(stateful_dict)
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 

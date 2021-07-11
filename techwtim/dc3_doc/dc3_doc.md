@@ -1,17 +1,13 @@
 To Do List - Dark Castle v3
-July 2, 2021
-
+July 11, 2021
 
 
 ##########################
 ### VERSION 3.20 START ###
 ##########################
 
-TBD: 3.20 to be all about serialization, DB integration, and main / interpreter separation
+NOTE: 3.20 to be all about serialization and main / interpreter separation
 
-IN-PROC: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
-	DONE: Create practice file
-	DONE: Watch video
 IN-PROC: So what data do I need to save between sessions?
 	DONE: stateful_dict, Door open & lock states, room contents, container contents
 	THINKING: How to load and unload data between moves? where to store it? Need to outline plan
@@ -25,13 +21,6 @@ IN-PROC: So what data do I need to save between sessions?
 			DONE: Maybe the answer is to create a "wrapper" function that calls interpreter?
 				IDEA: This works... but now, of course, stateful_dict is always reset to starting values...
 		DONE: Once they are isolated, I need to decide where to initiate stateful_dict - perhaps in wrapper?	
-		DONE: instantiate sqlalchemy DB
-				DONE: Queue huge sdk issues due to ancient version of sqlalchemy...
-				DONE: Have upgraded to version 1.1.2 using Stash but still getting issues in sqlite compiler
-				DONE: Think I might have to upgrade to 1.4.x to get JSON support for sqlalchemy.dialect.sqlite (installed 1.4.18)
-				DONE: now requires install of importlib_metadata (installed via 'pip install')
-				DONE: now I need to 'pip install typing_extensions'
-				NOTE: APPEARS TO WORK!!!
 
 TOPIC: serialization
 	DONE: I need to learn a lot more about how this works; Things I need to learn:
@@ -66,7 +55,7 @@ Clean Up Code:
 				DONE: Comment out valid_paths attribute
 				DONE: Clean-up commented code
 
-IN-PROC: introduce serialization and de-serialization
+DONE: introduce serialization and de-serialization
 	IDEA: start from serialized state for stateful_dict and stateful classes
 	IDEA: Or maybe just class_to_string as needed before export for stateful_dict??
 	DONE: Test serializing to JSON in marshmallow_tut
@@ -104,25 +93,47 @@ IN-PROC: introduce serialization and de-serialization
 				DONE: Initial coding
 			3) At end of wrapper(): Write stateful_dict to save_stateful_json.txt (in overwrite mode)
 				DONE: Initial coding
-			DONE: Sent email inquiry to Franco to see if I'm taking the right general appraoch to persisting objects
-			TBD: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
-				IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
-				IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
-				IDEA: Find a way to list all objects for troubleshooting
-				IDEA: Try using child shema's in Marshmallow
-				IDEA: If nothing works for marshmallow, try pickle
-			TBD: clean up code comments
-	TBD: serialize to JSON and save stateful_dict to text file 
+			
+ISSUE: I am creating many duplicate objects during de-serialization	
+	DONE: Sent email inquiry to Franco to see if I'm taking the right general appraoch to persisting objects - he's not familiar with issue
+		IN-PROC: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
+			IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
+			IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
+			DONE: Find a way to list all objects for troubleshooting
+			TBD: Try using child schema's in Marshmallow to reduce the count of duplicate objects?
+			TBD: If nothing works for marshmallow, try pickle
+		TBD: clean up code comments
+
+TBD: Once stateful_dict is solved, extend txt file saves to object instantiation
 	TBD: serialize to JSON and save class objects to text file
 	TBD: Change to saving to lists so that list of lists can dump and load using correct schema ??
-	TBD: Import stateful_dict from JSON
 	TBD: Import class objects from JSON
-	TBD: On start, import stateful_dict from default_stateful text file; on following runs save and load from save_stateful text file
 	TBD: On start, import class objects from default_obj text file; on following runs save and load from save_obj text file
 
 TBD: isolate main & interpreter using txt file loads
 	TBD: stop passing stateful_dict
 	TBD: move main to d3_main.py
+
+
+
+
+##########################
+### VERSION 3.30 START ###
+##########################
+
+NOTE: 3.30 to be all about DB integration
+
+DONE: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
+	DONE: Create practice file
+	DONE: Watch video
+
+DONE: instantiate sqlalchemy DB
+	DONE: Queue huge sdk issues due to ancient version of sqlalchemy...
+	DONE: Have upgraded to version 1.1.2 using Stash but still getting issues in sqlite compiler
+	DONE: Think I might have to upgrade to 1.4.x to get JSON support for sqlalchemy.dialect.sqlite (installed 1.4.18)
+	DONE: now requires install of importlib_metadata (installed via 'pip install')
+	DONE: now I need to 'pip install typing_extensions'
+	NOTE: APPEARS TO WORK!!!
 
 TBD: now start working with sqlalchemy again in place of txt files
 	TBD: How do I setup a DB that continues to persist independent of an app running??
