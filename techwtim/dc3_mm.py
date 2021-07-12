@@ -14,6 +14,18 @@ from dc3_helper import *
 from dc3_interp_helper import *
 
 
+# demo
+class UserSchema(Schema):
+    name = fields.String()
+    email = fields.Email()
+    created_at = fields.DateTime()
+
+
+class BlogSchema(Schema):
+    title = fields.String()
+    author = fields.Nested(UserSchema)
+
+
 # mm schemas
 class WritingSchema(Schema):
 		name = fields.String()
@@ -24,21 +36,26 @@ class WritingSchema(Schema):
 		def create_writing(self, data, **kwargs):
 				return Writing(**data)
 
+## class ViewOnlySchema(Schema):
+##		name = fields.String()
+##		full_name = fields.String()
+##		root_name = fields.String()
+##		writing = fields.Nested(WritingSchema, allow_none=True)
+
 class ViewOnlySchema(Schema):
-		name = fields.String()
-		full_name = fields.String()
-		root_name = fields.String()
-		writing = fields.Nested(WritingSchema, allow_none=True)
+		name_info = fields.Nested(WritingSchema)
+		writing = fields.String(allow_none=True)
 
 		@post_load
 		def create_viewonly(self, data, **kwargs):
 				return ViewOnly(**data)
 
 class ItemSchema(Schema):
-		name = fields.String()
-		full_name = fields.String()
-		root_name = fields.String()
-		writing = fields.Nested(WritingSchema, allow_none=True)
+##		name = fields.String()
+##		full_name = fields.String()
+##		root_name = fields.String()
+##		writing = fields.Nested(WritingSchema, allow_none=True)
+		view_only = fields.Nested(ViewOnlySchema)
 		takable = fields.Boolean()
 
 		@post_load

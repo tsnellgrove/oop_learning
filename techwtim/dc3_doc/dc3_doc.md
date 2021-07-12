@@ -100,7 +100,8 @@ ISSUE: I am creating many duplicate objects during de-serialization
 			IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
 			IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
 			DONE: Find a way to list all objects for troubleshooting
-			TBD: Try using child schema's in Marshmallow to reduce the count of duplicate objects?
+			IN-PROC: Try using child schema's in Marshmallow to reduce the count of duplicate objects?
+				NOTE: Getting errors due to Nested "base" value (??); How to solve?
 			TBD: If nothing works for marshmallow, try pickle
 		TBD: clean up code comments
 
