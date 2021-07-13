@@ -15,15 +15,15 @@ from dc3_interp_helper import *
 
 
 # demo
-class UserSchema(Schema):
-    name = fields.String()
-    email = fields.Email()
-    created_at = fields.DateTime()
+## class UserSchema(Schema):
+##    name = fields.String()
+##    email = fields.Email()
+##    created_at = fields.DateTime()
 
 
-class BlogSchema(Schema):
-    title = fields.String()
-    author = fields.Nested(UserSchema)
+## class BlogSchema(Schema):
+##		title = fields.String()
+##		author = fields.Nested(UserSchema)
 
 
 # mm schemas
@@ -36,26 +36,26 @@ class WritingSchema(Schema):
 		def create_writing(self, data, **kwargs):
 				return Writing(**data)
 
-## class ViewOnlySchema(Schema):
-##		name = fields.String()
-##		full_name = fields.String()
-##		root_name = fields.String()
-##		writing = fields.Nested(WritingSchema, allow_none=True)
-
 class ViewOnlySchema(Schema):
-		name_info = fields.Nested(WritingSchema)
-		writing = fields.String(allow_none=True)
+		name = fields.String()
+		full_name = fields.String()
+		root_name = fields.String()
+		writing = fields.Nested(WritingSchema, allow_none=True)
+
+## class ViewOnlySchema(Schema):
+##		name_info = fields.Nested(WritingSchema)
+##		writing = fields.String(allow_none=True)
 
 		@post_load
 		def create_viewonly(self, data, **kwargs):
 				return ViewOnly(**data)
 
 class ItemSchema(Schema):
-##		name = fields.String()
-##		full_name = fields.String()
-##		root_name = fields.String()
-##		writing = fields.Nested(WritingSchema, allow_none=True)
-		view_only = fields.Nested(ViewOnlySchema)
+		name = fields.String()
+		full_name = fields.String()
+		root_name = fields.String()
+		writing = fields.Nested(WritingSchema, allow_none=True)
+##		view_only = fields.Nested(ViewOnlySchema)
 		takable = fields.Boolean()
 
 		@post_load
@@ -84,7 +84,7 @@ class ContainerSchema(Schema):
 		unlock_state = fields.Boolean()
 		key = fields.Nested(ItemSchema)
 		takable = fields.Boolean()
-		contains = fields.List(fields.Nested(ItemSchema))
+		contains = fields.List(fields.Nested(ItemSchema), allow_none=True)
 
 		@post_load
 		def create_container(self, data, **kwargs):
@@ -95,11 +95,11 @@ class RoomSchema(Schema):
 		full_name = fields.String()
 		root_name = fields.String()
 		writing = fields.Nested(WritingSchema, allow_none=True)
-		takable = fields.Boolean()
-		features = fields.List(fields.Nested(ViewOnlySchema))	
-		room_items = fields.List(fields.Nested(ItemSchema))
-		room_doors = fields.List(fields.Nested(DoorSchema))
-		room_containers = fields.List(fields.Nested(ContainerSchema))
+##		takable = fields.Boolean()
+		features = fields.List(fields.Nested(ViewOnlySchema), allow_none=True)
+		room_items = fields.List(fields.Nested(ItemSchema), allow_none=True)
+		room_doors = fields.List(fields.Nested(DoorSchema), allow_none=True)
+		room_containers = fields.List(fields.Nested(ContainerSchema), allow_none=True)
 		door_paths = fields.Dict(keys=fields.String(), values=fields.Nested(DoorSchema))
 
 		@post_load
