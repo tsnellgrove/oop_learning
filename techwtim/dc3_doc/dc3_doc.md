@@ -104,8 +104,9 @@ ISSUE: I am creating many duplicate objects during de-serialization
 				NOTE: Getting errors due to Nested "base" value (??); How to solve?
 			DONE: Return to pre-serialization case and test object counts
 				NOTE: Only 1 feront_gate
-			TBD: Esatblish mini example to illustrate problem
-			TBD: Ask Stack Exchange
+			DONE: Create stackoverflow ID
+			IN-PROC: Write up problem for stackoverflow post
+			TBD: Post problem on stackoverflow
 			TBD: If nothing works for marshmallow, try pickle
 		TBD: clean up code comments
 
