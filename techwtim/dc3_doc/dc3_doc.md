@@ -105,7 +105,7 @@ ISSUE: I am creating many duplicate objects during de-serialization
 			DONE: Return to pre-serialization case and test object counts
 				NOTE: Only 1 feront_gate
 			DONE: Create stackoverflow ID
-			IN-PROC: Create an mwe (minimal workable example)
+			DONE: Create an mwe (minimal workable example)
 			IN-PROC: Write up problem for stackoverflow post
 			TBD: Post problem on stackoverflow
 			TBD: If nothing works for marshmallow, try pickle
