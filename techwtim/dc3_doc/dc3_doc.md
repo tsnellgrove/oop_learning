@@ -106,7 +106,7 @@ ISSUE: I am creating many duplicate objects during de-serialization
 				NOTE: Only 1 feront_gate
 			DONE: Create stackoverflow ID
 			DONE: Create an mwe (minimal workable example)
-			IN-PROC: Write up problem for stackoverflow post
+			DONE: Write up problem for stackoverflow post
 			TBD: Post problem on stackoverflow
 			TBD: If nothing works for marshmallow, try pickle
 		TBD: clean up code comments

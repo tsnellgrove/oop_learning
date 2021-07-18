@@ -1,2 +1,2 @@
-{"desc": "An imposing iron front gate", "open_state": false, "name": "front_gate"}
-{"desc": "You are at the castle entrance.", "name": "entrance", "room_doors": [{"desc": "An imposing iron front gate", "open_state": false, "name": "front_gate"}]}
+{"name": "front_gate", "desc": "An imposing iron front gate", "open_state": false}
+{"room_doors": [{"name": "front_gate", "desc": "An imposing iron front gate", "open_state": false}], "name": "entrance", "desc": "You are at the castle entrance."}
