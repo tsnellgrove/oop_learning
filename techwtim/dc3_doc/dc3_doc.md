@@ -108,6 +108,7 @@ ISSUE: I am creating many duplicate objects during de-serialization
 			DONE: Create an mwe (minimal workable example)
 			DONE: Write up problem for stackoverflow post
 			DONE: Post problem on stackoverflow
+			DONE: Added pickle to question tags
 			TBD: Responde to posts as needed to get answers
 			TBD: If nothing works for marshmallow, try pickle
 		TBD: clean up code comments
