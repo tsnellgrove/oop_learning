@@ -96,7 +96,7 @@ DONE: introduce serialization and de-serialization
 			
 ISSUE: I am creating many duplicate objects during de-serialization	
 	DONE: Sent email inquiry to Franco to see if I'm taking the right general appraoch to persisting objects - he's not familiar with issue
-		IN-PROC: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
+		DONE: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
 			IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
 			IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
 			DONE: Find a way to list all objects for troubleshooting
@@ -112,9 +112,10 @@ ISSUE: I am creating many duplicate objects during de-serialization
 			DONE: Edited post for output clarity. Read up on reputation (short answer is that I don't have enough to offer a bounty)
 			DONE: A bit more research and tuned my post. If no answers soon then I need to go earn some rep and offer a bounty
 			DONE: Appears that Pickle will meet my needs - but still no anwsers to my question :(
-			TBD: Respond to posts as needed to get answers
-			TBD: If nothing works for marshmallow, try pickle
-		TBD: clean up code comments
+			N/A: Respond to posts as needed to get answers (no one ever answered)
+			DONE: If nothing works for marshmallow, try pickle - sure enough, pickle worked
+	DONE: Detailed answer:
+		https://stackoverflow.com/questions/68439591/marshmallow-creating-duplicate-python-custom-objects-on-de-serialization/68510952#68510952
 
 TBD: Once stateful_dict is solved, extend txt file saves to object instantiation
 	TBD: serialize to JSON and save class objects to text file
