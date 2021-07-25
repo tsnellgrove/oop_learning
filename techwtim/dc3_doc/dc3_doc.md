@@ -117,6 +117,20 @@ ISSUE: I am creating many duplicate objects during de-serialization
 	DONE: Detailed answer:
 		https://stackoverflow.com/questions/68439591/marshmallow-creating-duplicate-python-custom-objects-on-de-serialization/68510952#68510952
 
+IN-PROC: implement pickle for stateful text files
+	DONE: comment marshmallow refs and move stateful_dict to init
+	TBD: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
+	IDEA: Approach to Serializing with pickle
+		TBD: 1) Have dc3_init put all objects & stateful_dict in obj_lst and write obj_lst to default_obj_pickle file; comment out dc3_init import
+		TBD: 2) On First Run: load default_obj_pickle; 
+		TBD: 2.1) On First Run: Pass list to module to declare obj from list; call same module from interp_helper (?)
+		TBD: 3) On finish, call routine to save obj_lst to save_obj_pickle file
+		TBD: 4) On Subsequent runs: load save_obj_pickle
+		TBD: 4.1) On Subsequent runs: Pass list to module to declare obj from list; call same module from interp_helper (?)
+		
+
+
+
 TBD: Once stateful_dict is solved, extend txt file saves to object instantiation
 	TBD: serialize to JSON and save class objects to text file
 	TBD: Change to saving to lists so that list of lists can dump and load using correct schema ??

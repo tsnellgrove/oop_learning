@@ -16,29 +16,30 @@ from dc3_classes import *
 from dc3_init import *
 from dc3_helper import *
 from dc3_interp_helper import *
-from dc3_db_init import db_init
-from dc3_mm import *
+#### from dc3_db_init import db_init
+### from dc3_mm import *
 import gc
 
 ## dictionary of variables passed to all functions ##
+## MOVED TO INIT ##
 ## any object variable that is passed to helper() must be in this dict ##
 ## must be commented out to enable serialized version ##
-stateful_dict = {
-		'hand' : [], 
-		'backpack' : [rusty_key],
-		'universal' : [backpack, burt, fist, conscience],
-		'room' : entrance,
-		'out_buff' : "",
-		'score' : 0,
-		'end_of_game' : False,
-		'current_score' : 0,
-		'move_counter' : 0,
-		'game_ending' : "",
-		'paths' : {
-				'entrance' : {'north' : main_hall},
-				'main_hall' : {'south' : entrance}
-				}
-		}
+#stateful_dict = {
+#		'hand' : [], 
+#		'backpack' : [rusty_key],
+#		'universal' : [backpack, burt, fist, conscience],
+#		'room' : entrance,
+#		'out_buff' : "",
+#		'score' : 0,
+#		'end_of_game' : False,
+#		'current_score' : 0,
+#		'move_counter' : 0,
+#		'game_ending' : "",
+#		'paths' : {
+#				'entrance' : {'north' : main_hall},
+#				'main_hall' : {'south' : entrance}
+#				}
+#		}
 
 
 # interpreter
