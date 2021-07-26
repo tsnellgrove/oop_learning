@@ -119,7 +119,10 @@ ISSUE: I am creating many duplicate objects during de-serialization
 
 IN-PROC: implement pickle for stateful text files
 	DONE: comment marshmallow refs and move stateful_dict to init
-	TBD: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
+	IN-PROC: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
+		DONE: Move code around to prepare for separate merged module for interpreter and interp_helper
+		TBD: clean up old code comments!!!
+		TBD: Move merged_interp to dedicated module separate from wrapper and main
 	IDEA: Approach to Serializing with pickle
 		TBD: 1) Have dc3_init put all objects & stateful_dict in obj_lst and write obj_lst to default_obj_pickle file; comment out dc3_init import
 		TBD: 2) On First Run: load default_obj_pickle; 

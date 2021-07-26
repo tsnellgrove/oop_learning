@@ -18,7 +18,7 @@ from dc3_helper import *
 from dc3_interp_helper import *
 #### from dc3_db_init import db_init
 ### from dc3_mm import *
-import gc
+import gc # only used for troubleshooting
 
 ## dictionary of variables passed to all functions ##
 ## MOVED TO INIT ##
@@ -140,21 +140,23 @@ def wrapper(user_input, stateful_dict):
 
 ### def wrapper(user_input):
 		if user_input == "xyzzy42":
+				pass
 
 ####				stateful_db, session = db_init()
 
 ###				stateful_dict = mm_stateful_default_load()
 
-				buffer(stateful_dict, descript_dict["introduction"])
-				entrance.examine(stateful_dict)
+##				buffer(stateful_dict, descript_dict["introduction"])
+##				entrance.examine(stateful_dict)
 		else:
+				pass
 
 ####				stateful_dict = stateful_db.information
 
 ###				stateful_dict = mm_stateful_save_load()
 
-				stateful_dict['out_buff'] = "" # resets buffer
-				interpreter(stateful_dict, user_input)
+		stateful_dict['out_buff'] = "" # resets buffer
+		interpreter(stateful_dict, user_input)
 
 ####		stateful_db.information = stateful_dict
 ####		session.add(stateful_db)

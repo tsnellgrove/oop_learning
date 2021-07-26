@@ -9,12 +9,33 @@
 ### also, these variable values cannot be objects ###
 ### (because static_init => helper => classes => init) ###
 
+### interpreter function language variables ###
+articles_lst = ['a', 'an', 'the']
+one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
+verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
+abbreviations_dict = {
+		'n' : 'north',
+		's' : 'south',
+		'e' : 'east',
+		'w' : 'west',
+		'i' : 'inventory',
+		'l' : 'look',
+		'get' : 'take',
+		'x' : 'examine',
+		'q' : 'quit'
+}
+one_word_convert_dict = {
+		'north' : 'go',
+		'south' : 'go',
+		'east' : 'go',
+		'west' : 'go'
+}
+
 ### static dictionary ###
 static_dict = {
 		'version' : '3.10',
 		'max_score' : 75,
 }
-
 
 ### description dict ###
 descript_dict = {

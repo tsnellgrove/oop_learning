@@ -12,26 +12,26 @@ from dc3_init import *
 
 
 ### interpreter function language variables ###
-articles_lst = ['a', 'an', 'the']
-one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
-verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
-abbreviations_dict = {
-		'n' : 'north',
-		's' : 'south',
-		'e' : 'east',
-		'w' : 'west',
-		'i' : 'inventory',
-		'l' : 'look',
-		'get' : 'take',
-		'x' : 'examine',
-		'q' : 'quit'
-}
-one_word_convert_dict = {
-		'north' : 'go',
-		'south' : 'go',
-		'east' : 'go',
-		'west' : 'go'
-}
+# articles_lst = ['a', 'an', 'the']
+# one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
+# verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put']
+# abbreviations_dict = {
+#		'n' : 'north',
+#		's' : 'south',
+#		'e' : 'east',
+#		'w' : 'west',
+#		'i' : 'inventory',
+#		'l' : 'look',
+#		'get' : 'take',
+#		'x' : 'examine',
+#		'q' : 'quit'
+#}
+#one_word_convert_dict = {
+#		'north' : 'go',
+#		'south' : 'go',
+#		'east' : 'go',
+#		'west' : 'go'
+#}
 
 
 ### interpreter-specific helper functions ###
@@ -134,6 +134,9 @@ def true_one_word(stateful_dict, word1, room_obj):
 ##				entrance.examine(stateful_dict)
 		if word1 == 'score':
 				print_score(stateful_dict)
+		elif word1 == 'xyzzy42':
+				buffer(stateful_dict, descript_dict["introduction"])
+				entrance.examine(stateful_dict)
 		elif word1 == 'version':
 				buffer(stateful_dict, static_dict['version'])
 		elif word1 == 'help':
