@@ -121,7 +121,8 @@ IN-PROC: implement pickle for stateful text files
 	DONE: comment marshmallow refs and move stateful_dict to init
 	IN-PROC: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
 		DONE: Move code around to prepare for separate merged module for interpreter and interp_helper
-		TBD: clean up old code comments!!!
+		DONE: clean up old code comments!!!
+		TBD: merge interp_helper and interpreter
 		TBD: Move merged_interp to dedicated module separate from wrapper and main
 	IDEA: Approach to Serializing with pickle
 		TBD: 1) Have dc3_init put all objects & stateful_dict in obj_lst and write obj_lst to default_obj_pickle file; comment out dc3_init import

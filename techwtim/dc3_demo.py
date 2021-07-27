@@ -1,6 +1,6 @@
 # program: dark castle v3.11
 # name: Tom Snellgrove
-# date: July 3, 2021
+# date: July 27, 2021
 # description: main and interpreter modules for a zork-like text adventure game
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								db integration, avoid external triggers, 
@@ -8,7 +8,6 @@
 
 
 # import statements
-## import cmd   # not in use
 import sys
 from itertools import islice
 from dc3_static_init import *
@@ -16,36 +15,14 @@ from dc3_classes import *
 from dc3_init import *
 from dc3_helper import *
 from dc3_interp_helper import *
-#### from dc3_db_init import db_init
-### from dc3_mm import *
 import gc # only used for troubleshooting
-
-## dictionary of variables passed to all functions ##
-## MOVED TO INIT ##
-## any object variable that is passed to helper() must be in this dict ##
-## must be commented out to enable serialized version ##
-#stateful_dict = {
-#		'hand' : [], 
-#		'backpack' : [rusty_key],
-#		'universal' : [backpack, burt, fist, conscience],
-#		'room' : entrance,
-#		'out_buff' : "",
-#		'score' : 0,
-#		'end_of_game' : False,
-#		'current_score' : 0,
-#		'move_counter' : 0,
-#		'game_ending' : "",
-#		'paths' : {
-#				'entrance' : {'north' : main_hall},
-#				'main_hall' : {'south' : entrance}
-#				}
-#		}
 
 
 # interpreter
 def interpreter(stateful_dict, user_input):
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
 		room_obj = stateful_dict['room']
+		stateful_dict['out_buff'] = "" # resets buffer
 
 		user_input_lst = input_cleanup(user_input)
  		
@@ -128,41 +105,17 @@ def interpreter(stateful_dict, user_input):
 # rusty_letters.read(stateful_dict)
 # print("TEST: " + stateful_dict['room'].desc)
 # rusty_key.take(stateful_dict)
-# sword.examine(stateful_dict)
-# chest.unlock(stateful_dict)
-# wooden_chest.put(shiny_sword, stateful_dict)
-# rusty_key.take(stateful_dict)
-# print(shiny_sword)
 
 
-# interpreter
+# wrapper code - sets up game state and calls interpreter
 def wrapper(user_input, stateful_dict):
+## def wrapper(user_input): # version without stateful_dict
 
-### def wrapper(user_input):
 		if user_input == "xyzzy42":
 				pass
-
-####				stateful_db, session = db_init()
-
-###				stateful_dict = mm_stateful_default_load()
-
-##				buffer(stateful_dict, descript_dict["introduction"])
-##				entrance.examine(stateful_dict)
 		else:
 				pass
-
-####				stateful_dict = stateful_db.information
-
-###				stateful_dict = mm_stateful_save_load()
-
-		stateful_dict['out_buff'] = "" # resets buffer
 		interpreter(stateful_dict, user_input)
-
-####		stateful_db.information = stateful_dict
-####		session.add(stateful_db)
-####		session.commit()
-
-###		mm_stateful_save(stateful_dict)
 
 		### troubleshooting code ###
 		print(front_gate)

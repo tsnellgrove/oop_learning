@@ -45,3 +45,29 @@ def db_init():
 		stateful_db = Itemdb()
 ##first_item.information = dict(a=1, b="foo", c=[1, 1, 2, 3, 5, 8, 13])
 		return stateful_db, session
+		
+		
+### wrapper db_init calls pre-pickle ###
+
+# wrapper code - sets up game state and calls interpreter
+def wrapper_demo(user_input, stateful_dict):
+
+### def wrapper(user_input):
+		if user_input == "xyzzy42":
+				pass
+
+####				stateful_db, session = db_init()
+
+		else:
+				pass
+
+####				stateful_dict = stateful_db.information
+
+
+		interpreter(stateful_dict, user_input)
+
+####		stateful_db.information = stateful_dict
+####		session.add(stateful_db)
+####		session.commit()
+
+		return stateful_dict['end_of_game'], stateful_dict['out_buff']

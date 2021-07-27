@@ -25,10 +25,6 @@ class Writing(object):
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
 
-###		for serialization comparison
-###		def __eq__(self, other):
-###				return self.name == other.name
-
 class ViewOnly(Writing):
 		def __init__(self, name, full_name, root_name, writing):
 				super().__init__(name, full_name, root_name)

@@ -74,11 +74,11 @@ def print_score(stateful_dict):
 		output2 = (" out of " + str(static_dict['max_score']))
 		buffer(stateful_dict, output1 + output2)
 
-### interpreter centric ###
+def move_dec(stateful_dict): # was originally in interp_helper
+		stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 
 
 ### end routine ###
-
 def end(stateful_dict):
 		score = stateful_dict['current_score']
 		moves = stateful_dict['move_counter']
