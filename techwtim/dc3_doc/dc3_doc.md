@@ -122,16 +122,16 @@ IN-PROC: implement pickle for stateful text files
 	IN-PROC: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
 		DONE: Move code around to prepare for separate merged module for interpreter and interp_helper
 		DONE: clean up old code comments!!!
-		TBD: merge interp_helper and interpreter
-		TBD: Move merged_interp to dedicated module separate from wrapper and main
+		DONE: merge interp_helper and interpreter
 	IDEA: Approach to Serializing with pickle
-		TBD: 1) Have dc3_init put all objects & stateful_dict in obj_lst and write obj_lst to default_obj_pickle file; comment out dc3_init import
-		TBD: 2) On First Run: load default_obj_pickle; 
-		TBD: 2.1) On First Run: Pass list to module to declare obj from list; call same module from interp_helper (?)
+		DONE: 1) Have dc3_init put all objects & stateful_dict in obj_lst and write obj_lst to default_obj_pickle file
+		DONE: 2) On First Run: load default_obj_pickle; 
+		???: 2.1) On First Run: Pass list to module to declare obj from list; call same module from interp_helper (?)
 		TBD: 3) On finish, call routine to save obj_lst to save_obj_pickle file
 		TBD: 4) On Subsequent runs: load save_obj_pickle
-		TBD: 4.1) On Subsequent runs: Pass list to module to declare obj from list; call same module from interp_helper (?)
-		
+		???: 4.1) On Subsequent runs: Pass list to module to declare obj from list; call same module from interp_helper (?)
+		TBD: comment out dc3_init import, comment out stateful_dict passing; Test!!!
+		TBD: Possibly move wrapper contents to interpreter - not getting a lot of value from wrapper()
 
 
 

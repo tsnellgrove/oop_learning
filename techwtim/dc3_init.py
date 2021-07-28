@@ -5,6 +5,7 @@
 
 
 # import statements
+import pickle
 from dc3_classes import *
 
 
@@ -54,5 +55,8 @@ stateful_dict = {
 				}
 		}
 
+master_obj_lst = [rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict]
 
+with open('default_obj_pickle', 'wb') as f:
+		pickle.dump(master_obj_lst, f)
 
