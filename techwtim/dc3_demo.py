@@ -9,10 +9,11 @@
 
 # import statements
 import sys
+import pickle
 from itertools import islice
 from dc3_static_init import *
 from dc3_classes import *
-from dc3_init import *
+# from dc3_init import *
 from dc3_helper import *
 ## from dc3_interp_helper import *
 import gc # only used for troubleshooting
@@ -265,16 +266,22 @@ def interpreter(stateful_dict, user_input):
 
 
 # wrapper code - sets up game state and calls interpreter
-def wrapper(user_input, stateful_dict):
-## def wrapper(user_input): # version without stateful_dict
+## def wrapper(user_input, stateful_dict):
+def wrapper(user_input): # version without stateful_dict
 
+		master_obj_lst = []
 		if user_input == "xyzzy42":
-				test_obj_lst = []
 				with open('default_obj_pickle', 'rb') as f:
-						test_obj_lst = pickle.load(f)
-				print(test_obj_lst)
+						master_obj_lst = pickle.load(f)
+				print(master_obj_lst)
 		else:
-				pass
+				with open('save_obj_pickle', 'rb') as f:
+						master_obj_lst = pickle.load(f)
+
+		
+		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
+		print(rusty_letters)
+
 		interpreter(stateful_dict, user_input)
 
 		### troubleshooting code ###
@@ -286,6 +293,9 @@ def wrapper(user_input, stateful_dict):
 				if isinstance(obj, Door):
 						print(obj, obj.open_state, id(obj))
 		### troubleshooting code ###
+
+		with open('save_obj_pickle', 'wb') as f:
+				pickle.dump(master_obj_lst, f)
 
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
@@ -299,8 +309,8 @@ while end_of_game == False:
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-###		end_of_game, output = wrapper(user_input)
-		end_of_game, output = wrapper(user_input, stateful_dict)
+		end_of_game, output = wrapper(user_input)
+##		end_of_game, output = wrapper(user_input, stateful_dict)
 		print(output)
 print("THANKS FOR PLAYING!!")
 
