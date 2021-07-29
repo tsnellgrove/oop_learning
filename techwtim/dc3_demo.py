@@ -17,7 +17,7 @@ from dc3_classes import *
 from dc3_helper import *
 ## from dc3_interp_helper import *
 import gc # only used for troubleshooting
-
+from dc3_obj_init import obj_init
 
 
 ### interpreter-specific helper functions ###
@@ -277,9 +277,10 @@ def wrapper(user_input): # version without stateful_dict
 		else:
 				with open('save_obj_pickle', 'rb') as f:
 						master_obj_lst = pickle.load(f)
-
 		
-		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
+		obj_init(master_obj_lst)
+		
+#		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
 		print(rusty_letters)
 
 		interpreter(stateful_dict, user_input)
