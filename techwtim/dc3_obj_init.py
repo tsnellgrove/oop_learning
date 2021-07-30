@@ -4,9 +4,10 @@
 # description: object instantiation module
 
 # import statements
-## import pickle
+import pickle
 from dc3_classes import *
 
-def obj_init(master_obj_lst):
-		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
-		print(rusty_letters)
+with open('default_obj_pickle', 'rb') as f:
+		master_obj_lst = pickle.load(f)
+
+rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
