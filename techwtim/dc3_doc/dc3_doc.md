@@ -128,8 +128,9 @@ IN-PROC: implement pickle for stateful text files
 		DONE: 2) On First Run: load default_obj_pickle; 
 		DONE: 3) On finish, call routine to save obj_lst to save_obj_pickle file
 		DONE: 4) On Subsequent runs: load save_obj_pickle
-		TBD: As feared, obj variable declaration is a challenge... for now, just merge wrapper & interp and do it ugly
-		TBD: comment out dc3_init import, comment out stateful_dict passing; Test!!!
+		DONE: As feared, obj variable declaration is a challenge... for now, just merge wrapper & interp and do it ugly
+		DONE: comment out dc3_init import, comment out stateful_dict passing; Test!!!
+		TBD: Still struggling with globalizing object variables... maybe make first pass a special case?? real interpreter always loads save?
 		TBD: main and interpreter in separate modules
 		TBD: Sort out a cleaner method for obj variable declaration
 

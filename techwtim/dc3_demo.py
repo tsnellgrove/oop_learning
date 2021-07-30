@@ -180,17 +180,22 @@ def noun_handling(stateful_dict, user_input_lst):
 def interpreter(user_input):
 ##def interpreter(stateful_dict, user_input):
 
-
-		master_obj_lst = []
 		if user_input == "xyzzy42":
-				with open('default_obj_pickle', 'rb') as f:
-						master_obj_lst = pickle.load(f)
-##				print(master_obj_lst)
+				import dc3_obj_init
 		else:
-				with open('save_obj_pickle', 'rb') as f:
-						master_obj_lst = pickle.load(f)
+				import dc3_obj_init2
 
-		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
+
+#		master_obj_lst = []
+#		if user_input == "xyzzy42":
+#				with open('default_obj_pickle', 'rb') as f:
+#						master_obj_lst = pickle.load(f)
+##				print(master_obj_lst)
+#		else:
+#				with open('save_obj_pickle', 'rb') as f:
+#						master_obj_lst = pickle.load(f)
+
+#		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
 
 
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
