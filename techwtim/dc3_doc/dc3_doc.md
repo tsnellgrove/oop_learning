@@ -130,10 +130,12 @@ IN-PROC: implement pickle for stateful text files
 		DONE: 4) On Subsequent runs: load save_obj_pickle
 		DONE: As feared, obj variable declaration is a challenge... for now, just merge wrapper & interp and do it ugly
 		DONE: comment out dc3_init import, comment out stateful_dict passing; Test!!!
-		TBD: Still struggling with globalizing object variables... maybe make first pass a special case?? real interpreter always loads save?
+		IN-PROC: Still struggling with globalizing object variables... maybe make first pass a special case?? real interpreter always loads save?
 			IDEA: Maybe 'if... else...' in main... 
 			IDEA: call startup.py module if first pass - which loads defaul, buffers opening, and saves save file... else call interpreter
 			IDEA: interpreter assumes load from save pickle and calls config module from module imports
+			DONE: created startup() for initial load and then called updated object values from pickle save
+			TBD: troubleshoot "none itterable" error on "i" or "n"
 		TBD: main and interpreter in separate modules
 		TBD: Sort out a cleaner method for obj variable declaration
 

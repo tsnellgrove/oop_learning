@@ -15,6 +15,8 @@ from dc3_static_init import *
 from dc3_classes import *
 # from dc3_init import *
 from dc3_helper import *
+from dc3_startup import startup
+from  dc3_obj_init2 import *
 ## from dc3_interp_helper import *
 import gc # only used for troubleshooting
 ## from dc3_obj_init import obj_init
@@ -112,9 +114,9 @@ def input_cleanup(user_input):
 		return user_input_lst
 
 def true_one_word(stateful_dict, word1, room_obj):
-		if word1 == 'xyzzy42':
-				buffer(stateful_dict, descript_dict["introduction"])
-				entrance.examine(stateful_dict)
+##		if word1 == 'xyzzy42':
+##				buffer(stateful_dict, descript_dict["introduction"])
+##				entrance.examine(stateful_dict)
 		if word1 == 'score':
 				print_score(stateful_dict)
 		elif word1 == 'version':
@@ -180,10 +182,10 @@ def noun_handling(stateful_dict, user_input_lst):
 def interpreter(user_input):
 ##def interpreter(stateful_dict, user_input):
 
-		if user_input == "xyzzy42":
-				import dc3_obj_init
-		else:
-				import dc3_obj_init2
+#		if user_input == "xyzzy42":
+#				import dc3_obj_init
+#		else:
+#				import dc3_obj_init2
 
 
 #		master_obj_lst = []
@@ -332,11 +334,12 @@ start_of_game = True
 end_of_game = False
 while end_of_game == False:
 		if start_of_game:
-				user_input = "xyzzy42" # the magic word!!
+##				user_input = "xyzzy42" # the magic word!!
+				output = startup()
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-		end_of_game, output = interpreter(user_input)
+				end_of_game, output = interpreter(user_input)
 ##		end_of_game, output = wrapper(user_input)
 ##		end_of_game, output = wrapper(user_input, stateful_dict)
 		print(output)
