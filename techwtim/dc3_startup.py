@@ -9,7 +9,7 @@ from dc3_helper import *
 from dc3_static_init import *
 from dc3_classes import *
 
-def startup():
+def start_up():
 		with open('default_obj_pickle', 'rb') as f:
 				master_obj_lst = pickle.load(f)
 

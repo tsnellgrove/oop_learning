@@ -6,7 +6,8 @@ import sys
 #from dc3_classes import *
 # from dc3_init import *
 #from dc3_helper import *
-from dc3_startup import startup
+###from dc3_startup import startup
+from dc3_startup import start_up
 #from  dc3_obj_init2 import *
 ## from dc3_interp_helper import *
 #import gc # only used for troubleshooting
@@ -19,7 +20,7 @@ end_of_game = False
 while end_of_game == False:
 		if start_of_game:
 ##				user_input = "xyzzy42" # the magic word!!
-				output = startup()
+				output = start_up()
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
