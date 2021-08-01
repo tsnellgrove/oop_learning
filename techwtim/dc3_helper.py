@@ -39,9 +39,15 @@ def scope_list(obj, stateful_dict):
 
 ### Called by Other Modules ###
 def buffer(stateful_dict, output_str):
+
+##		print(stateful_dict['out_buff'])
+
 		out_buff = stateful_dict['out_buff']
 		out_buff = out_buff + "\n" + output_str + "\n"
 		stateful_dict['out_buff'] = out_buff
+
+##		print(stateful_dict['out_buff'])
+
 
 def objlst_to_strlst(obj_lst):
 		str_lst = []

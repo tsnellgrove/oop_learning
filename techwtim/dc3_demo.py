@@ -97,6 +97,9 @@ def help(stateful_dict, option):
 # convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
 		# first, convert user input string into word list
+
+##		buffer(stateful_dict, "start of input_cleanup")
+
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
@@ -199,13 +202,23 @@ def interpreter(user_input):
 
 #		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
 
+##		print("start of interpreter()")
 
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
+##		print(stateful_dict['move_counter'])
 		room_obj = stateful_dict['room']
+##		print(stateful_dict['room'])
 		stateful_dict['out_buff'] = "" # resets buffer
+##		print("made it pat out_buff reset")
+
+##		buffer(stateful_dict, "buffer issue?")
+
+##		buffer(stateful_dict, "start of interpreter() past buffer reset; pre- input_cleanup")
 
 		user_input_lst = input_cleanup(user_input)
- 		
+
+##		buffer(stateful_dict, "got past input_cleanup()")
+ 		 		
 		if len(user_input_lst) < 1: # no input or the only input is articles
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
 				move_dec(stateful_dict)
