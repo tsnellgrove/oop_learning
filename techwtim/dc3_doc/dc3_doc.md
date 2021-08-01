@@ -119,7 +119,7 @@ ISSUE: I am creating many duplicate objects during de-serialization
 
 IN-PROC: implement pickle for stateful text files
 	DONE: comment marshmallow refs and move stateful_dict to init
-	IN-PROC: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
+	DONE: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
 		DONE: Move code around to prepare for separate merged module for interpreter and interp_helper
 		DONE: clean up old code comments!!!
 		DONE: merge interp_helper and interpreter
@@ -135,8 +135,8 @@ IN-PROC: implement pickle for stateful text files
 			IDEA: call startup.py module if first pass - which loads defaul, buffers opening, and saves save file... else call interpreter
 			IDEA: interpreter assumes load from save pickle and calls config module from module imports
 			DONE: created startup() for initial load and then called updated object values from pickle save
-			TBD: troubleshoot "none itterable" error on "i" or "n"
-		TBD: main and interpreter in separate modules
+			DONE: main and interpreter in separate modules
+			IN-PROC: troubleshoot "none itterable" error on "i" or "n"
 		TBD: Sort out a cleaner method for obj variable declaration
 
 

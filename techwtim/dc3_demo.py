@@ -343,20 +343,20 @@ def wrapper(user_input): # version without stateful_dict
 
 
 # main routine
-start_of_game = True
-end_of_game = False
-while end_of_game == False:
-		if start_of_game:
+#start_of_game = True
+#end_of_game = False
+#while end_of_game == False:
+#		if start_of_game:
 ##				user_input = "xyzzy42" # the magic word!!
-				output = startup()
-				start_of_game = False
-		else:
-				user_input = input('Type your command: ')
-				end_of_game, output = interpreter(user_input)
+##				output = startup()
+#				start_of_game = False
+#		else:
+#				user_input = input('Type your command: ')
+#				end_of_game, output = interpreter(user_input)
 ##		end_of_game, output = wrapper(user_input)
 ##		end_of_game, output = wrapper(user_input, stateful_dict)
-		print(output)
-print("THANKS FOR PLAYING!!")
+#$		print(output)
+#print("THANKS FOR PLAYING!!")
 
 
 # entrance.examine()
