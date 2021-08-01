@@ -15,7 +15,7 @@ from dc3_static_init import *
 from dc3_classes import *
 # from dc3_init import *
 from dc3_helper import *
-from dc3_startup import startup
+#from dc3_startup import startup
 from  dc3_obj_init2 import *
 ## from dc3_interp_helper import *
 import gc # only used for troubleshooting
