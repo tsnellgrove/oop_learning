@@ -183,46 +183,16 @@ def noun_handling(stateful_dict, user_input_lst):
 
 # interpreter
 def interpreter(user_input):
-##def interpreter(stateful_dict, user_input):
-
-#		if user_input == "xyzzy42":
-#				import dc3_obj_init
-#		else:
-#				import dc3_obj_init2
-
-
-#		master_obj_lst = []
-#		if user_input == "xyzzy42":
-#				with open('default_obj_pickle', 'rb') as f:
-#						master_obj_lst = pickle.load(f)
-##				print(master_obj_lst)
-#		else:
-#				with open('save_obj_pickle', 'rb') as f:
-#						master_obj_lst = pickle.load(f)
-
-#		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
-
-##		print("start of interpreter()")
-
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
-##		print(stateful_dict['move_counter'])
 		room_obj = stateful_dict['room']
-##		print(stateful_dict['room'])
 		stateful_dict['out_buff'] = "" # resets buffer
-##		print("made it pat out_buff reset")
-
-##		buffer(stateful_dict, "buffer issue?")
-
-##		buffer(stateful_dict, "start of interpreter() past buffer reset; pre- input_cleanup")
 
 		user_input_lst = input_cleanup(user_input)
-
-##		buffer(stateful_dict, "got past input_cleanup()")
- 		 		
+ 
 		if len(user_input_lst) < 1: # no input or the only input is articles
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
 				move_dec(stateful_dict)
-				return
+				return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 		# user_input_lst must have at least one word in it
 		word1 = user_input_lst[0]
@@ -230,7 +200,7 @@ def interpreter(user_input):
 		# handle true one-word commands
 		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
 				true_one_word(stateful_dict, word1, room_obj)
-				return
+				return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 		# convert one-word commands that are implicit two-word commands 
 		elif len(user_input_lst) == 1 and word1 in one_word_convert_dict:
@@ -246,19 +216,19 @@ def interpreter(user_input):
 				else:
 						buffer(stateful_dict, "I don't understand what you're trying to say?")
 						move_dec(stateful_dict)
-				return 
+				return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
 				buffer(stateful_dict, "Please start your sentence with a verb!")
 				move_dec(stateful_dict)
-				return
+				return stateful_dict['end_of_game'], stateful_dict['out_buff']
 
 		# handle 2-word commands (special cases first else general case)
 		if word1 == 'go':
 				word2 = user_input_lst[1]
 				getattr(room_obj, word1)(word2, stateful_dict)
-				return
+				return stateful_dict['end_of_game'], stateful_dict['out_buff']
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
 				help(stateful_dict, word2)
@@ -266,33 +236,32 @@ def interpreter(user_input):
 				if 'in' not in user_input_lst:
 						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
 						move_dec(stateful_dict)
-						return
+						return stateful_dict['end_of_game'], stateful_dict['out_buff']
 				else:
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
 						exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
 						if exit_state:
-								return
+								return stateful_dict['end_of_game'], stateful_dict['out_buff']
 						exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
 						if exit_state:
-								return
+								return stateful_dict['end_of_game'], stateful_dict['out_buff']
 						try:
 								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
 						except:
 								buffer(stateful_dict, "That doesn't work.")
 								move_dec(stateful_dict)
-						return 
+						return stateful_dict['end_of_game'], stateful_dict['out_buff']
 		else:
 				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
-						return
+						return stateful_dict['end_of_game'], stateful_dict['out_buff']
 				try:
 						getattr(word2_obj, word1)(stateful_dict)
 				except:
 						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
 						move_dec(stateful_dict)
-
 
 		with open('save_obj_pickle', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
