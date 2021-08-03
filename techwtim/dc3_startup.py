@@ -16,7 +16,7 @@ def start_me_up():
 		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
 
 		buffer(stateful_dict, descript_dict["introduction"])
-		entrance.examine(stateful_dict)
+		entrance.examine(stateful_dict) # can eventually replace with just desc ref?
 
 #		print(stateful_dict)
 

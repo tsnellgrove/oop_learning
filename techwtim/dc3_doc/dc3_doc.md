@@ -138,8 +138,9 @@ IN-PROC: implement pickle for stateful text files
 			DONE: main and interpreter in separate modules
 			DONE: troubleshoot "none itterable" error on "i" or "n"
 			NOTE: turns out I wasn't returning values on many of the interpreter returns
-		TBD: Amazingly, clode is running - but really shouldn't be - I am frequently NOT saving state on return
-			TBD: Need to institute some sort of wrapper() function in interpreter module that will call interpreter and ensure state saves
+		IN-PROC: Amazingly, clode is running - but really shouldn't be - I am frequently NOT saving state on return
+			DONE: Need to institute some sort of wrapper() function in interpreter module that will call interpreter and ensure state saves
+			TBD: Now save_obj_pickle is not getting over-written in start_me_up() - need to sort that out
 		TBD: Comments clean up!!
 		TBD: Sort out a cleaner method for obj variable declaration
 

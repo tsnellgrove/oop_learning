@@ -9,7 +9,8 @@
 # import statements
 import sys
 from dc3_startup import start_me_up
-from dc3_demo import interpreter
+#from dc3_demo import interpreter
+from dc3_demo import wrapper
 
 # main routine
 start_of_game = True
@@ -21,6 +22,7 @@ while end_of_game == False:
 				start_of_game = False
 		else:
 				user_input = input('Type your command: ')
-				end_of_game, output = interpreter(user_input)
+#				end_of_game, output = interpreter(user_input)
+				end_of_game, output = wrapper(user_input)
 		print(output)
 print("THANKS FOR PLAYING!!")
