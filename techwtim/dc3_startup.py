@@ -18,7 +18,7 @@ def start_me_up():
 		buffer(stateful_dict, descript_dict["introduction"])
 		entrance.examine(stateful_dict) # can eventually replace with just desc ref?
 
-#		print(stateful_dict)
+##		print(stateful_dict['hand'])
 
 		with open('save_obj_pickle', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
