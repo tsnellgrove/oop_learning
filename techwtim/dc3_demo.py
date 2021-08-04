@@ -305,7 +305,7 @@ def wrapper(user_input): # version without stateful_dict
 						print(obj, obj.open_state, id(obj))
 		### troubleshooting code ###
 
-		with open('save_obj_pickle', 'wb') as f:
+		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
 
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']

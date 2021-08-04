@@ -20,7 +20,13 @@ def start_me_up():
 
 ##		print(stateful_dict['hand'])
 
-		with open('save_obj_pickle', 'wb') as f:
+#		with open('save_obj_pickle', 'wb') as f:
+#				pickle.dump(master_obj_lst, f)
+
+		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
+
+
 		return stateful_dict['out_buff']
+
 
