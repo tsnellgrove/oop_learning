@@ -10,19 +10,27 @@
 import sys
 from dc3_startup import start_me_up
 #from dc3_demo import interpreter
-from dc3_demo import wrapper
+
+## from dc3_demo import wrapper
 
 # main routine
-start_of_game = True
+## start_of_game = True
 end_of_game = False
-output = ""
+## output = ""
+
+start_me_up()
+## output = start_me_up() # new code
+## print(output) # new code
+
+from dc3_demo import wrapper # new code
+
 while end_of_game == False:
-		if start_of_game:
-				output = start_me_up()
-				start_of_game = False
-		else:
-				user_input = input('Type your command: ')
+##		if start_of_game:
+##				output = start_me_up()
+##				start_of_game = False
+##		else:
+		user_input = input('Type your command: ')
 #				end_of_game, output = interpreter(user_input)
-				end_of_game, output = wrapper(user_input)
+		end_of_game, output = wrapper(user_input)
 		print(output)
 print("THANKS FOR PLAYING!!")

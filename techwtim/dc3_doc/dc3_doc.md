@@ -138,14 +138,15 @@ IN-PROC: implement pickle for stateful text files
 			DONE: main and interpreter in separate modules
 			DONE: troubleshoot "none itterable" error on "i" or "n"
 			NOTE: turns out I wasn't returning values on many of the interpreter returns
-		IN-PROC: Amazingly, clode is running - but really shouldn't be - I am frequently NOT saving state on return
+		DONE: Amazingly, clode is running - but really shouldn't be - I am frequently NOT saving state on return
 			DONE: Need to institute some sort of wrapper() function in interpreter module that will call interpreter and ensure state saves
 			DONE: Now save_obj_pickle is not getting over-written in start_me_up() - need to sort that out
 			IN-PROC: Turns out I'm not writing pickle_obj_save for some reason... need to give directory??
 			IDEA: I get it now... not a directory problem
 			IDEA: for some reason (probably because I import wrapper in main) obj_init2 is getting called before start_me_up()
 			IDEA: This means that we are reading the OLD values of save_obj_pickle before we over-write them with defaults in start_me_up()
-			TBD: How to fix???
+			DONE: How to fix???
+			DONE: Got it working - just moved the import of obj_init2 to *after* start_me_up() !!
 		TBD: Comments clean up!!
 		TBD: Sort out a cleaner method for obj variable declaration
 

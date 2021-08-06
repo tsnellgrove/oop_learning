@@ -43,6 +43,7 @@ def start_me_up():
 
 		print("Just after startup write") # troubleshooting
 
-		return stateful_dict['out_buff']
+##		return stateful_dict['out_buff']
 
+		print(stateful_dict['out_buff'])
 
