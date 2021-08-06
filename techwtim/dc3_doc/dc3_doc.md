@@ -147,7 +147,8 @@ IN-PROC: implement pickle for stateful text files
 			IDEA: This means that we are reading the OLD values of save_obj_pickle before we over-write them with defaults in start_me_up()
 			DONE: How to fix???
 			DONE: Got it working - just moved the import of obj_init2 to *after* start_me_up() !!
-		TBD: Comments clean up!!
+			DONE: Comment troubleshooting prints
+			TBD: Comments clean up!!
 		TBD: Sort out a cleaner method for obj variable declaration
 
 

@@ -17,10 +17,10 @@ rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rus
 
 ## print(stateful_dict)
 
-print("This is dc3_obj_init2")
+## print("This is dc3_obj_init2")
 
 # Get the current working directory - troubleshooting
-cwd = os.getcwd()
+## cwd = os.getcwd()
 
 # Print the current working directory - troubleshooting
-print("Current working directory: {0}".format(cwd))
+## print("Current working directory: {0}".format(cwd))

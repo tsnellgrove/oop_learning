@@ -296,13 +296,13 @@ def wrapper(user_input): # version without stateful_dict
 		interpreter(user_input)
 
 		### troubleshooting code ###
-		print(front_gate)
-		print(front_gate.open_state)
-		print(stateful_dict['room'].room_doors)
-		print(stateful_dict['room'].room_doors[0].open_state)
-		for obj in gc.get_objects():
-				if isinstance(obj, Door):
-						print(obj, obj.open_state, id(obj))
+##		print(front_gate)
+##		print(front_gate.open_state)
+##		print(stateful_dict['room'].room_doors)
+##		print(stateful_dict['room'].room_doors[0].open_state)
+##		for obj in gc.get_objects():
+##				if isinstance(obj, Door):
+##						print(obj, obj.open_state, id(obj))
 		### troubleshooting code ###
 
 		with open('save_obj_pickle2', 'wb') as f:

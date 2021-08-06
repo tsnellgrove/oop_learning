@@ -25,25 +25,27 @@ def start_me_up():
 		buffer(stateful_dict, descript_dict["introduction"])
 		entrance.examine(stateful_dict) # can eventually replace with just desc ref?
 
+		print(stateful_dict['out_buff'])
+
 ##		print(stateful_dict['hand'])
 
 #		with open('save_obj_pickle', 'wb') as f:
 #				pickle.dump(master_obj_lst, f)
 
-		print("Just before startup write") # troubleshooting
+##		print("Just before startup write") # troubleshooting
 
 		# Get the current working directory - troubleshooting
 		cwd = os.getcwd()
 
 		# Print the current working directory - troubleshooting
-		print("Current working directory: {0}".format(cwd))
+##		print("Current working directory: {0}".format(cwd))
 
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
 
-		print("Just after startup write") # troubleshooting
+##		print("Just after startup write") # troubleshooting
 
 ##		return stateful_dict['out_buff']
 
-		print(stateful_dict['out_buff'])
+
 
