@@ -1,6 +1,6 @@
-# program: dark castle v3.11
+# program: dark castle v3.20
 # name: Tom Snellgrove
-# date: July 27, 2021
+# date: Aug 6, 2021
 # description: main and interpreter modules for a zork-like text adventure game
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								db integration, avoid external triggers, 
@@ -13,13 +13,8 @@ import pickle
 from itertools import islice
 from dc3_static_init import *
 from dc3_classes import *
-# from dc3_init import *
 from dc3_helper import *
-#from dc3_startup import startup
 from  dc3_obj_init2 import *
-## from dc3_interp_helper import *
-import gc # only used for troubleshooting
-## from dc3_obj_init import obj_init
 
 
 ### interpreter-specific helper functions ###
@@ -97,9 +92,6 @@ def help(stateful_dict, option):
 # convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
 		# first, convert user input string into word list
-
-##		buffer(stateful_dict, "start of input_cleanup")
-
 		lst = []
 		lst.append(user_input)
 		user_input_lst = lst[0].split()
@@ -117,9 +109,6 @@ def input_cleanup(user_input):
 		return user_input_lst
 
 def true_one_word(stateful_dict, word1, room_obj):
-##		if word1 == 'xyzzy42':
-##				buffer(stateful_dict, descript_dict["introduction"])
-##				entrance.examine(stateful_dict)
 		if word1 == 'score':
 				print_score(stateful_dict)
 		elif word1 == 'version':
@@ -192,7 +181,7 @@ def interpreter(user_input):
 		if len(user_input_lst) < 1: # no input or the only input is articles
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
 				move_dec(stateful_dict)
-				return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+				return
 
 		# user_input_lst must have at least one word in it
 		word1 = user_input_lst[0]
@@ -200,7 +189,7 @@ def interpreter(user_input):
 		# handle true one-word commands
 		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
 				true_one_word(stateful_dict, word1, room_obj)
-				return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+				return
 
 		# convert one-word commands that are implicit two-word commands 
 		elif len(user_input_lst) == 1 and word1 in one_word_convert_dict:
@@ -216,19 +205,19 @@ def interpreter(user_input):
 				else:
 						buffer(stateful_dict, "I don't understand what you're trying to say?")
 						move_dec(stateful_dict)
-				return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+				return
 
 		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
 				buffer(stateful_dict, "Please start your sentence with a verb!")
 				move_dec(stateful_dict)
-				return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+				return
 
 		# handle 2-word commands (special cases first else general case)
 		if word1 == 'go':
 				word2 = user_input_lst[1]
 				getattr(room_obj, word1)(word2, stateful_dict)
-				return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+				return
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
 				help(stateful_dict, word2)
@@ -236,136 +225,39 @@ def interpreter(user_input):
 				if 'in' not in user_input_lst:
 						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
 						move_dec(stateful_dict)
-						return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+						return
 				else:
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
 						exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
 						if exit_state:
-								return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+								return
 						exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
 						if exit_state:
-								return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+								return
 						try:
 								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
 						except:
 								buffer(stateful_dict, "That doesn't work.")
 								move_dec(stateful_dict)
-						return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+						return
 		else:
 				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
-						return #stateful_dict['end_of_game'], stateful_dict['out_buff']
+						return
 				try:
 						getattr(word2_obj, word1)(stateful_dict)
 				except:
 						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
 						move_dec(stateful_dict)
-
-##		with open('save_obj_pickle', 'wb') as f:
-##				pickle.dump(master_obj_lst, f)
-
-		return #stateful_dict['end_of_game'], stateful_dict['out_buff']
-
-### test ###
-# rusty_letters.read(stateful_dict)
-# print("TEST: " + stateful_dict['room'].desc)
-# rusty_key.take(stateful_dict)
+		return
 
 
-# wrapper code - sets up game state and calls interpreter
-## def wrapper(user_input, stateful_dict):
+# wrapper code - calls interpreter and saves game state
 def wrapper(user_input): # version without stateful_dict
-
-#		master_obj_lst = []
-#		if user_input == "xyzzy42":
-#				with open('default_obj_pickle', 'rb') as f:
-#						master_obj_lst = pickle.load(f)
-##				print(master_obj_lst)
-#		else:
-#				with open('save_obj_pickle', 'rb') as f:
-#						master_obj_lst = pickle.load(f)
-		
-#		rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict = master_obj_lst
-
-##		print(rusty_letters)
-##		obj_init(master_obj_lst)
-
-#		interpreter(stateful_dict, user_input)
 		interpreter(user_input)
-
-		### troubleshooting code ###
-##		print(front_gate)
-##		print(front_gate.open_state)
-##		print(stateful_dict['room'].room_doors)
-##		print(stateful_dict['room'].room_doors[0].open_state)
-##		for obj in gc.get_objects():
-##				if isinstance(obj, Door):
-##						print(obj, obj.open_state, id(obj))
-		### troubleshooting code ###
-
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
-
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
-
-
-# main routine
-#start_of_game = True
-#end_of_game = False
-#while end_of_game == False:
-#		if start_of_game:
-##				user_input = "xyzzy42" # the magic word!!
-##				output = startup()
-#				start_of_game = False
-#		else:
-#				user_input = input('Type your command: ')
-#				end_of_game, output = interpreter(user_input)
-##		end_of_game, output = wrapper(user_input)
-##		end_of_game, output = wrapper(user_input, stateful_dict)
-#$		print(output)
-#print("THANKS FOR PLAYING!!")
-
-
-# entrance.examine()
-# print(entrance.valid_paths)
-# entrance.go('south')
-# entrance.go('north')
-
-# entrance.examine()
-# dark_castle.examine()
-# gate.examine()
-# gate.read_writing()
-# sword.examine()
-# sword.take()
-# print(hand)
-# sword.take()
-# sword.drop()
-# gate.open()
-# gate.unlock()
-# rusty_key.examine()
-# rusty_key.take()
-# print(hand)
-# gate.unlock()
-# gate.open()
-# gate.open()
-# print(eval(room).room_stuff)
-
-# sword = Item('sword','The sword is shiny.', True, 5)
-# sword.examine()
-# sword.change_desc('The sword is rusty.')
-# sword.examine()
-# print(sword.takeable)
-# print(sword.weight)
-# sword.add_writing('dwarven runes', 'Goblin Wallaper')
-# sword.examine()
-# sword.read_writing()
-# gate = Door('front gate', 'The front gate is daunting', False, False)
-# gate.examine()
-# gate.change_desc('The front gate is HUGE!')
-# gate.examine()
-# gate.read_writing()
-# gate.add_writing('rusty letters', "Abandon Hope All Ye Who Even Thank About It")
-# gate.read_writing()
 

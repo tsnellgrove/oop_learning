@@ -1,13 +1,13 @@
-# program: dark castle v3.10
+# program: dark castle v3.20
 # name: Tom Snellgrove
-# date: June 8, 2021
+# date: Aug 6, 2021
 # description: static dictionary initialization function module
 
 
 ### this module declares static variables ###
 ### these variable values never change ###
 ### also, these variable values cannot be objects ###
-### (because static_init => helper => classes => init) ###
+### (because static_init => helper => classes => obj_init2) ###
 
 ### interpreter function language variables ###
 articles_lst = ['a', 'an', 'the']

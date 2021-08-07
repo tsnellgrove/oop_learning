@@ -1,5 +1,5 @@
 To Do List - Dark Castle v3
-July 11, 2021
+Aug 6, 2021
 
 
 ##########################
@@ -117,7 +117,7 @@ ISSUE: I am creating many duplicate objects during de-serialization
 	DONE: Detailed answer:
 		https://stackoverflow.com/questions/68439591/marshmallow-creating-duplicate-python-custom-objects-on-de-serialization/68510952#68510952
 
-IN-PROC: implement pickle for stateful text files
+DONE: implement pickle for stateful text files
 	DONE: comment marshmallow refs and move stateful_dict to init
 	DONE: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
 		DONE: Move code around to prepare for separate merged module for interpreter and interp_helper
@@ -148,8 +148,8 @@ IN-PROC: implement pickle for stateful text files
 			DONE: How to fix???
 			DONE: Got it working - just moved the import of obj_init2 to *after* start_me_up() !!
 			DONE: Comment troubleshooting prints
-			TBD: Comments clean up!!
-		TBD: Sort out a cleaner method for obj variable declaration
+			DONE: Comments clean up!!
+	DONE: v3.20 complete!!
 
 
 ##########################
@@ -269,3 +269,53 @@ TBD: Need to dis-entangle modules better
 	more directions
 	landscape / path changes
 	create 'win' test routine with checksum
+
+
+*** Demo Object Commands ***
+
+# entrance.examine()
+# print(entrance.valid_paths)
+# entrance.go('south')
+# entrance.go('north')
+
+# entrance.examine()
+# dark_castle.examine()
+# gate.examine()
+# gate.read_writing()
+# sword.examine()
+# sword.take()
+# print(hand)
+# sword.take()
+# sword.drop()
+# gate.open()
+# gate.unlock()
+# rusty_key.examine()
+# rusty_key.take()
+# print(hand)
+# gate.unlock()
+# gate.open()
+# gate.open()
+# print(eval(room).room_stuff)
+
+# sword = Item('sword','The sword is shiny.', True, 5)
+# sword.examine()
+# sword.change_desc('The sword is rusty.')
+# sword.examine()
+# print(sword.takeable)
+# print(sword.weight)
+# sword.add_writing('dwarven runes', 'Goblin Wallaper')
+# sword.examine()
+# sword.read_writing()
+# gate = Door('front gate', 'The front gate is daunting', False, False)
+# gate.examine()
+# gate.change_desc('The front gate is HUGE!')
+# gate.examine()
+# gate.read_writing()
+# gate.add_writing('rusty letters', "Abandon Hope All Ye Who Even Thank About It")
+# gate.read_writing()
+
+
+### test ###
+# rusty_letters.read(stateful_dict)
+# print("TEST: " + stateful_dict['room'].desc)
+# rusty_key.take(stateful_dict)
