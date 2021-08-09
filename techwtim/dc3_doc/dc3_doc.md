@@ -156,7 +156,31 @@ DONE: implement pickle for stateful text files
 ### VERSION 3.30 START ###
 ##########################
 
-NOTE: 3.30 to be all about DB integration
+NOTE: 3.30 to be all about levers, buttons, and portcullis
+
+TBD: for all objects create descript_key field (?)
+TBD: Create classes and objects
+	TBD: create torn_note and messy_handwriting
+	TBD: create random number code and attach to messy_handwriting
+	TBD: iron_portcullis = Class Door (locked but no key)
+	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
+		TBD: Create method pull()
+			TBD: set lever value based on up or down (start down; down = 0)
+	TBD: Create class ButtonToggleIfVal and object red_button
+		TBD: Create method push()
+			TBD: on push check value; if value then toggle state else nothing; descript text for success and fail
+
+
+
+
+
+
+
+##########################
+### VERSION 3.DB START ###
+##########################
+
+NOTE: 3.DB to be all about DB integration
 
 DONE: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
 	DONE: Create practice file
