@@ -8,6 +8,7 @@ Aug 6, 2021
 NOTE: 3.30 to be all about levers, buttons, and portcullis
 
 DONE: for all objects create descript_key field
+TBD: figure out why Worky Copy isn't showing old git commits
 TBD: Create classes and objects
 	TBD: create torn_note and messy_handwriting
 	TBD: create random number code and attach to messy_handwriting
