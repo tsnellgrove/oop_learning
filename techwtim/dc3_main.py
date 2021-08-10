@@ -8,6 +8,7 @@
 
 # import statements
 import sys
+import dc3_init
 from dc3_startup import start_me_up
 
 # main

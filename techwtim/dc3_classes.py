@@ -11,37 +11,40 @@ from dc3_helper import *
 
 # classes
 class Writing(object):
-		def __init__(self, name, full_name, root_name):
+		def __init__(self, name, full_name, root_name, descript_key):
 				self.name = name
 				self.full_name = full_name
 				self.root_name = root_name
+				self.descript_key = descript_key
 
 		def read(self, stateful_dict):
 				if writing_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
 				else:
-						buffer(stateful_dict, descript_dict[self.name])
+##						buffer(stateful_dict, descript_dict[self.name])
+						buffer(stateful_dict, descript_dict[self.descript_key])
 
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
 
 class ViewOnly(Writing):
-		def __init__(self, name, full_name, root_name, writing):
-				super().__init__(name, full_name, root_name)
+		def __init__(self, name, full_name, root_name, descript_key, writing):
+				super().__init__(name, full_name, root_name, descript_key)
 				self.writing = writing
 
 		def examine(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				else:
-						buffer(stateful_dict, descript_dict[self.name])
+##						buffer(stateful_dict, descript_dict[self.name])
+						buffer(stateful_dict, descript_dict[self.descript_key])
 						if self.writing is not None:
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
 
 class Room(ViewOnly):
-		def __init__(self, name, full_name, root_name, writing, features, room_items, room_doors, room_containers, door_paths):
-				super().__init__(name, full_name, root_name, writing)
+		def __init__(self, name, full_name, root_name, descript_key, writing, features, room_items, room_doors, room_containers, door_paths):
+				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
 				self.room_items = room_items # list of item objs in room
 				self.room_doors = room_doors # list of door objs in room
@@ -73,8 +76,8 @@ class Room(ViewOnly):
 								next_room_obj.examine(stateful_dict)
 
 class Item(ViewOnly):
-		def __init__(self, name, full_name, root_name, writing, takable):
-				super().__init__(name, full_name, root_name, writing)
+		def __init__(self, name, full_name, root_name, descript_key, writing, takable):
+				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.takable = takable
 
 		def take(self, stateful_dict):
@@ -119,8 +122,8 @@ class Item(ViewOnly):
 						buffer(stateful_dict, "Dropped")
 
 class Door(ViewOnly):
-		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key):
-				super().__init__(name, full_name, root_name, writing)
+		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key):
+				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.open_state = open_state
 				self.unlock_state = unlock_state
 				self.key = key
@@ -181,8 +184,8 @@ class Door(ViewOnly):
 						self.unlock_state = False
 
 class Container(Door):
-		def __init__(self, name, full_name, root_name, writing, open_state, unlock_state, key, takable, contains):
-				super().__init__(name, full_name, root_name, writing, open_state, unlock_state, key)
+		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key, takable, contains):
+				super().__init__(name, full_name, root_name, descript_key, writing, open_state, unlock_state, key)
 				self.takable = takable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
 				self.contains = contains # list of items in the container
 

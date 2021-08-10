@@ -359,3 +359,155 @@ TBD: At this point declare v3.10 done (update version, clean up files, truncate 
 #############################
 
 
+##########################
+### VERSION 3.20 START ###
+##########################
+
+NOTE: 3.20 to be all about serialization and main / interpreter separation
+
+IN-PROC: So what data do I need to save between sessions?
+	DONE: stateful_dict, Door open & lock states, room contents, container contents
+	THINKING: How to load and unload data between moves? where to store it? Need to outline plan
+		IDEA: Get started by saving stateful_dict to as JSON to a DB and dumping and loading it each turn
+		IDEA: Then maybe programaticaly dump and load stateful object data to a dict? Then save dict as JSON in DB?
+		IDEA: Now I'm passing stateful_dict between main and interpreter... but goal is to pass only session ID (end_of_game and out_buff too?)
+		IDEA: So how does this actuall work... what is the order?
+		IN-PROC: First step is to isolate stateful_dict to the server side...
+			IDEA: main should only send user_input and input should only return out_buff and end_of_game
+			IDEA: But interpreter has a *lot* of returns... 
+			DONE: Maybe the answer is to create a "wrapper" function that calls interpreter?
+				IDEA: This works... but now, of course, stateful_dict is always reset to starting values...
+		DONE: Once they are isolated, I need to decide where to initiate stateful_dict - perhaps in wrapper?	
+
+TOPIC: serialization
+	DONE: I need to learn a lot more about how this works; Things I need to learn:
+		DONE: More in general about how DBs are used (Tech with Tim Flask 7 & 8)
+		DONE: JSON or Pickle serialization? Investigate Marshmallow!! (YouTube video)
+			DONE: watched marshmallow video: https://youtu.be/Gl-5m1_eVjI
+			IDEA: Very helpful way to serialize / de-serialize.. from complex to dict...
+			IDEA: but how do I handle complex objects that *hold* complex objects???
+			DONE: Test multi-level objects with Pet class attribute for Person; focus on Nested format for troubleshooting
+			DONE: Can serialize and de-serialize but not to a nested object???
+			DONE: Got it working by removing schema def many=True !
+			DONE: rationalize tutorial code
+
+Clean Up Code:
+	DONE: temporarily re-integrate main & interpreter
+		DONE: clean up main
+	DONE: introduce print options for classes
+	Done: fix object hierarchy
+		DONE: Sort out object model - objects should not need to know about things outside of them
+			DONE: So writing shouldn't need 'written-on' - just search through objects for matching item (like containers)
+				DONE: Created writing_check() to search for writing on objects in scope
+				DONE: Elim use of written on
+				DONE: Clean up writing changes
+				DONE: Make Writing the parent class of View_Only
+				DONE: Clean up writing class & init changes
+				DONE: create obj_scope helper routine to be used by both scope_check and writing_check
+				DONE: clean up helper routine
+			DONE: And rooms shouldn't know what they're connected to... perhaps a Map class to hold room connections?
+				DONE: decided to implement room connections as a 'path' sub-dict in stateful_dict (no need for actual object)
+				DONE: implemented path sub-dict
+				DONE: Clean-up commented code
+				DONE: Comment out valid_paths attribute
+				DONE: Clean-up commented code
+
+DONE: introduce serialization and de-serialization
+	IDEA: start from serialized state for stateful_dict and stateful classes
+	IDEA: Or maybe just class_to_string as needed before export for stateful_dict??
+	DONE: Test serializing to JSON in marshmallow_tut
+		DONE: import json
+		DONE: convert pet_data back and forth to json
+		DONE: convert person_data back and forth to json
+	DONE: Start by serializing to JSON and printing stateful_dict
+		DONE: Sort out path dict in stateful_dict
+			DONE: made all path keys String() to sort out mm Dict requirements
+			DONE: Clean up code comments
+		DONE: add 'doors' and 'containers' attributes to Room class (and "look" code) to sort out polymorphism issues
+				DONE: Convert room_stuff -> room_items
+				DONE: Add rooom_doors
+				DONE: Add room_containers
+				DONE: Clean up code comments
+				DONE: Test and update as needed to address room_stuff change
+				DONE: Update dc3_mm room schema
+				DONE: Add dc3_mm container schema
+				DONE: Test dc3_mm json conversion
+		DONE: after dumping dict to json, looad the json back to dict and compare to original
+			DONE: Initial troubleshooting; add allow_none=True for writing
+			DONE: Add post_loads
+			DONE: Sort out takeable for Item and Container (changed to takable)
+			DONE: Detailed before & after compare
+				NOTE: identical by manual inspection but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
+	IN-PROC: Serialize to JSON and print class objects
+		NOTE: identical by manual inspections but not identical by programatic comparision (i.e. stateful_dict == result_dict => False)
+		DONE: Saved JSON to dict
+		IDEA: How reading & writing serialized json stateful_dict to file should work:
+			1) If start_of_game == True: load stateful_dict from dc3_default_stateful_json.txt
+				DONE: Initial coding
+				DONE: troubleshootin of obj id == vs. 'is' compare issues
+				DONE: clean-up of troubleshooting comments
+			2) Else: load stateful_dict from save_stateful_json.txt
+				DONE: Initial coding
+			3) At end of wrapper(): Write stateful_dict to save_stateful_json.txt (in overwrite mode)
+				DONE: Initial coding
+			
+ISSUE: I am creating many duplicate objects during de-serialization	
+	DONE: Sent email inquiry to Franco to see if I'm taking the right general appraoch to persisting objects - he's not familiar with issue
+		DONE: Troubleshoot duplicate object issue (i.e. gate reports as both open and closed)
+			IDEA: I can solve the stateful_dict problem by storing only string values and converting to objects after de-serializing (loading)
+			IDEA: but when I go to persist the objects themselves I think I will create many more duplicates during de-serialization :(
+			DONE: Find a way to list all objects for troubleshooting
+			IN-PROC: Try using child schema's in Marshmallow to reduce the count of duplicate objects?
+				NOTE: Getting errors due to Nested "base" value (??); How to solve?
+			DONE: Return to pre-serialization case and test object counts
+				NOTE: Only 1 feront_gate
+			DONE: Create stackoverflow ID
+			DONE: Create an mwe (minimal workable example)
+			DONE: Write up problem for stackoverflow post
+			DONE: Post problem on stackoverflow
+			DONE: Added pickle to question tags
+			DONE: Edited post for output clarity. Read up on reputation (short answer is that I don't have enough to offer a bounty)
+			DONE: A bit more research and tuned my post. If no answers soon then I need to go earn some rep and offer a bounty
+			DONE: Appears that Pickle will meet my needs - but still no anwsers to my question :(
+			N/A: Respond to posts as needed to get answers (no one ever answered)
+			DONE: If nothing works for marshmallow, try pickle - sure enough, pickle worked
+	DONE: Detailed answer:
+		https://stackoverflow.com/questions/68439591/marshmallow-creating-duplicate-python-custom-objects-on-de-serialization/68510952#68510952
+
+DONE: implement pickle for stateful text files
+	DONE: comment marshmallow refs and move stateful_dict to init
+	DONE: Work out the details of interp_helper declaration calls... maybe re-org interp?? Merge helper files??
+		DONE: Move code around to prepare for separate merged module for interpreter and interp_helper
+		DONE: clean up old code comments!!!
+		DONE: merge interp_helper and interpreter
+	IDEA: Approach to Serializing with pickle
+		DONE: 1) Have dc3_init put all objects & stateful_dict in obj_lst and write obj_lst to default_obj_pickle file
+		DONE: 2) On First Run: load default_obj_pickle; 
+		DONE: 3) On finish, call routine to save obj_lst to save_obj_pickle file
+		DONE: 4) On Subsequent runs: load save_obj_pickle
+		DONE: As feared, obj variable declaration is a challenge... for now, just merge wrapper & interp and do it ugly
+		DONE: comment out dc3_init import, comment out stateful_dict passing; Test!!!
+		DONE: Still struggling with globalizing object variables... maybe make first pass a special case?? real interpreter always loads save?
+			IDEA: Maybe 'if... else...' in main... 
+			IDEA: call startup.py module if first pass - which loads defaul, buffers opening, and saves save file... else call interpreter
+			IDEA: interpreter assumes load from save pickle and calls config module from module imports
+			DONE: created startup() for initial load and then called updated object values from pickle save
+			DONE: main and interpreter in separate modules
+			DONE: troubleshoot "none itterable" error on "i" or "n"
+			NOTE: turns out I wasn't returning values on many of the interpreter returns
+		DONE: Amazingly, clode is running - but really shouldn't be - I am frequently NOT saving state on return
+			DONE: Need to institute some sort of wrapper() function in interpreter module that will call interpreter and ensure state saves
+			DONE: Now save_obj_pickle is not getting over-written in start_me_up() - need to sort that out
+			IN-PROC: Turns out I'm not writing pickle_obj_save for some reason... need to give directory??
+			IDEA: I get it now... not a directory problem
+			IDEA: for some reason (probably because I import wrapper in main) obj_init2 is getting called before start_me_up()
+			IDEA: This means that we are reading the OLD values of save_obj_pickle before we over-write them with defaults in start_me_up()
+			DONE: How to fix???
+			DONE: Got it working - just moved the import of obj_init2 to *after* start_me_up() !!
+			DONE: Comment troubleshooting prints
+			DONE: Comments clean up!!
+	DONE: v3.20 complete!!
+
+#############################
+### VERSION 3.20 COMPLETE ### 
+#############################
