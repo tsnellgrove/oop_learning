@@ -8,10 +8,13 @@ Aug 6, 2021
 NOTE: 3.30 to be all about levers, buttons, and portcullis
 
 DONE: for all objects create descript_key field
-TBD: figure out why Worky Copy isn't showing old git commits
-TBD: Create classes and objects
-	TBD: create torn_note and messy_handwriting
+IN-PROC: Create classes and objects
+	DONE: create antechamber, torn_note, and messy_handwriting
+	TBD: Clean up non-door 'go' method
+	TBD: Create protcullis, alcove, and control panel
 	TBD: create random number code and attach to messy_handwriting
+TBD: Change room objects back to polymorphism (??)
+TBD: figure out why Working Copy isn't showing old git commits
 	TBD: iron_portcullis = Class Door (locked but no key)
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
 		TBD: Create method pull()
@@ -21,7 +24,13 @@ TBD: Create classes and objects
 			TBD: on push check value; if value then toggle state else nothing; descript text for success and fail
 
 
-
+*** How to Add Objects ***
+1) If needed, create Class and methods in dc3_classes
+2) Add object in dc3_init
+3) Add object description in dc3_static_init
+4) Add object to master_obj_lst in dc3_init
+5) Add object to master_obj_lst in dc3_startup
+6) Add object to master_obj_lst in dc3_obj_init2
 
 
 ##########################

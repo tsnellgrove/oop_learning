@@ -12,6 +12,7 @@ from dc3_classes import *
 # object instantiation
 rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'rusty_letters')
 dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", 'dwarven_runes')
+messy_handwriting = Writing('messy_handwriting', 'messy handwriting', 'handwriting', 'messy_handwriting')
 
 dark_castle = ViewOnly('dark_castle', "dark castle", "castle", 'dark_castle', None)
 backpack = ViewOnly('backpack', "backpack", "backpack", 'backpack', None)
@@ -23,6 +24,7 @@ rusty_key = Item('rusty_key', 'rusty key', "key", 'rusty_key', None, True)
 shiny_sword = Item('shiny_sword', 'shiny sword', "sword", 'shiny_sword', dwarven_runes, True)
 brass_key = Item('brass_key', 'brass key', "key", 'brass_key', None, True)
 bubbly_potion = Item('bubbly_potion', 'bubbly potion', "potion", 'bubbly_potion', None, True)
+torn_note = Item('torn_note', 'torn note', 'note', 'torn_note', messy_handwriting, True)
 
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
 				False, False, brass_key, False, [bubbly_potion])
@@ -35,6 +37,8 @@ entrance = Room('entrance', 'entrance', "entrance", 'entrance', None, [dark_cast
 				[], [front_gate], [], {'north' : front_gate})
 main_hall = Room('main_hall', 'main hall', "hall", 'main_hall', None, [],
 				[shiny_sword, brass_key], [front_gate], [wooden_chest], {'south' : front_gate})
+antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [],
+				[torn_note], [], [], {})
 
 ## dictionary of variables passed to all functions ##
 ## any object variable that is passed to helper() must be in this dict ##
@@ -51,11 +55,13 @@ stateful_dict = {
 		'game_ending' : "",
 		'paths' : {
 				'entrance' : {'north' : main_hall},
-				'main_hall' : {'south' : entrance}
+				'main_hall' : {'south' : entrance},
+				'main_hall' : {'north' : antechamber},
+				'antechamber' : {'south' : main_hall}
 				}
 		}
 
-master_obj_lst = [rusty_letters, dwarven_runes, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, wooden_chest, front_gate, entrance, main_hall, stateful_dict]
+master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, entrance, main_hall, antechamber, stateful_dict]
 
 with open('default_obj_pickle', 'wb') as f:
 		pickle.dump(master_obj_lst, f)

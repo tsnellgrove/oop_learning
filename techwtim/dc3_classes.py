@@ -74,6 +74,10 @@ class Room(ViewOnly):
 								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
+				else:
+						next_room_obj = stateful_dict['paths'][room_obj.name][direction]
+						stateful_dict['room'] = next_room_obj
+						next_room_obj.examine(stateful_dict)
 
 class Item(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable):
