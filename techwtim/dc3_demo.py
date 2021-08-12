@@ -209,7 +209,7 @@ def interpreter(user_input):
 
 		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
-				buffer(stateful_dict, "Please start your sentence with a verb!")
+				buffer(stateful_dict, "Please start your sentence with a known verb!")
 				move_dec(stateful_dict)
 				return
 

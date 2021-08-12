@@ -5,17 +5,23 @@ Aug 6, 2021
 ### VERSION 3.30 START ###
 ##########################
 
-NOTE: 3.30 to be all about levers, buttons, and portcullis
+Version 3.30 Goals:
+	Create antechamber room and contents
+	Start of game assignment for torn note code
+	New classes for levers and button
+	Update first 3 rooms with full desciptions and view-only objects
+	Add 4th room and contents
+	(no creatures, state machines, or conditional events)
 
 DONE: for all objects create descript_key field
 IN-PROC: Create classes and objects
 	DONE: create antechamber, torn_note, and messy_handwriting
-	TBD: Clean up non-door 'go' method
-	TBD: Create protcullis, alcove, and control panel
+	DONE: Create protcullis, alcove, and control panel
+		DONE: iron_portcullis = Class Door (locked but no key)
 	TBD: create random number code and attach to messy_handwriting
+	TBD: Go back and update descriptions and view-only objects from DCv2
 TBD: Change room objects back to polymorphism (??)
 TBD: figure out why Working Copy isn't showing old git commits
-	TBD: iron_portcullis = Class Door (locked but no key)
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
 		TBD: Create method pull()
 			TBD: set lever value based on up or down (start down; down = 0)
@@ -23,6 +29,8 @@ TBD: figure out why Working Copy isn't showing old git commits
 		TBD: Create method push()
 			TBD: on push check value; if value then toggle state else nothing; descript text for success and fail
 
+*** Someday Maybe ***
+TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 
 *** How to Add Objects ***
 1) If needed, create Class and methods in dc3_classes
@@ -62,7 +70,7 @@ TBD: now start working with sqlalchemy again in place of txt files
 
 To Do Next:
 
-### Data Strustures ###
+### Data Structures ###
 IDEA: descriptions in separate descript_dict to be loaded from static text (isolate data & code) ???								
 	TBD: Resolve use of descript_dict
 	IDEA: static_dict ??
@@ -96,7 +104,11 @@ TBD: Integrate advice from Franco!
 	TBD: Try argument unpacking ( https://www.geeksforgeeks.org/packing-and-unpacking-arguments-in-python/ )
 
 Expert Questions:
-TBD: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
+DONE: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
+	IDEA: Objects only aware of what is "inside" of them. Examples:
+		1) A room knows about the door on its north wall but not the room beyond the door.
+		2) An item knows what is written on it but the "writing" knows nothing about the object it is written on
+		3) A container knows its contents but items know nothing about the container they are in
 TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
 	Perhaps the key is to make creatures behave as state machines... 
 	each has conditions under which they will guard, attack, gift, etc..

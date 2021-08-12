@@ -55,6 +55,8 @@ descript_dict = {
 		'burt' : "Yep, that's you Burt. A bit mangy and odd but undeniably lovable",
 		'fist' : "That is indeed your very own fist", 
 		'conscience' : "A tad murky Burt - what would your dear old Nana say?",
+		'alcove' : "A small indentation in the west wall near the iron_portcullis. It is just deep enough to hold one control panel and one goblin.",
+		'control_panel' : "The control_panel contains three levers: a left lever, a middle lever, and a right lever. The control panel also contains a Big-Red-Button. There are no directions posted as to what the controls are for or how to use them (a clear ISO lapse is ever you've seen one Burt).",
 		
 		### writing objects ###
 		'rusty_letters' : "'Abandon Hope All Ye Who Even Thank About It'",
@@ -73,10 +75,11 @@ descript_dict = {
 		
 		### door objects ###
 		'front_gate' : "The front gate is massive and imposing.",
+		'iron_portcullis' : "Beyond the iron_portcullis you can dimly make out the next room. The iron_portcullis is closed.",
 		
 		### room objects ###
 		'entrance' : "*** Entrance ***\n\nYou stand before the daunting front gate of Dark Castle. In front of you is the front gate.",
 		'main_hall' : "*** Main Hall ***\n\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.",
-		'antechamber' :"*** Antechamber ***\n\nYou are standing in a what feels more like a wide, tall-ceilinged corridor than a room. Apparently this is the room-before-the-room, the pre-room before the really, really grand room that comes after it. If so, the next room must be quite something because back in it's day this spot was clearly impressive. Alas, like all of the castle it has fallen on dark times and now feels more sinister than grand. The east and west walls are bare stone. To the south is an open passageway leading to the main_hall and to the north there is an iron_portcullis that guards the path to the grand chamber beyond. Near the iron_portcullis on the west wall there is a small alcove. It appears to have a control_panel with some levers and a big red button on it but you can't see it very well due to the dim light. The whole north end of the room is cloaked in shadows that make you uneasy."
+		'antechamber' :"*** Antechamber ***\n\nYou are standing in a what feels more like a wide, tall-ceilinged corridor than a room. Apparently this is the room-before-the-room, the pre-room before the really, really grand room that comes after it. If so, the next room must be quite something because back in it's day this spot was clearly impressive. Alas, like all of the castle it has fallen on dark times and now feels more sinister than grand. The east and west walls are bare stone. To the south is an open passageway leading to the main_hall and to the north there is an iron portcullis that guards the path to the grand chamber beyond. Near the ironportcullis on the west wall there is a small alcove. It appears to have a control panel with some levers and a big red button on it but you can't see it very well due to the dim light. The whole north end of the room is cloaked in shadows that make you uneasy."
 }
 
