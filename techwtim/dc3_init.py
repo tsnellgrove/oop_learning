@@ -6,7 +6,9 @@
 
 # import statements
 import pickle
+from dc3_helper import *
 from dc3_classes import *
+from dc3_static_init import *
 
 
 # object instantiation
@@ -58,15 +60,31 @@ stateful_dict = {
 		'game_ending' : "",
 		'paths' : {
 				'entrance' : {'north' : main_hall},
-				'main_hall' : {'south' : entrance},
-				'main_hall' : {'north' : antechamber},
-				'antechamber' : {'south' : main_hall},
-				'antechamber' : {'north' : entrance} # temp place holder for throne_room
+				'main_hall' : {'south' : entrance, 'north' : antechamber},
+#				'main_hall' : {'north' : antechamber},
+				'antechamber' : {'south' : main_hall, 'north' : entrance},
+#				'antechamber' : {'north' : entrance} # temp place holder for throne_room
 				}
 		}
+
+print(stateful_dict['paths'])
+
+buffer(stateful_dict, descript_dict["introduction"]) # replace with simple print() ?
+entrance.examine(stateful_dict) # can eventually replace with just desc ref?
+print(stateful_dict['out_buff'])
 
 master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
 
 with open('default_obj_pickle', 'wb') as f:
 		pickle.dump(master_obj_lst, f)
 
+#with open('save_obj_pickle2', 'wb') as f:
+#		pickle.dump(master_obj_lst, f)
+
+
+### Random Secret Code ###
+#portcullis_code = random.randint(0, 7)
+#switch_dict['big_red_button']['success_value'] = portcullis_code
+#port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
+#descript_updates_dict['messy_handwriting-read'] = port_code_txt
+#output = static_dict['global_dict']['output']

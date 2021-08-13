@@ -13,15 +13,19 @@ Version 3.30 Goals:
 	Add 4th room and contents
 	(no creatures, state machines, or conditional events)
 
+DONE: figure out why Working Copy isn't showing old git commits (had to upgrade to Pro)
 DONE: for all objects create descript_key field
-IN-PROC: Create classes and objects
+DOEN: Create base classes and objects
 	DONE: create antechamber, torn_note, and messy_handwriting
 	DONE: Create protcullis, alcove, and control panel
 		DONE: iron_portcullis = Class Door (locked but no key)
-	TBD: create random number code and attach to messy_handwriting
-	TBD: Go back and update descriptions and view-only objects from DCv2
+TBD: Fix paths dictionary - can't have multiple identical keys
+TBD: Eliminate start_me_up
+TBD: create random number code and attach to messy_handwriting
 TBD: Change room objects back to polymorphism (??)
-TBD: figure out why Working Copy isn't showing old git commits
+TBD: Go back and update descriptions and view-only objects from DCv2
+
+TBD: New Classes
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
 		TBD: Create method pull()
 			TBD: set lever value based on up or down (start down; down = 0)
