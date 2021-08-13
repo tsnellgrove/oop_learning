@@ -61,13 +61,9 @@ stateful_dict = {
 		'paths' : {
 				'entrance' : {'north' : main_hall},
 				'main_hall' : {'south' : entrance, 'north' : antechamber},
-#				'main_hall' : {'north' : antechamber},
-				'antechamber' : {'south' : main_hall, 'north' : entrance},
-#				'antechamber' : {'north' : entrance} # temp place holder for throne_room
+				'antechamber' : {'south' : main_hall, 'north' : entrance} # temp place holder for throne_room
 				}
 		}
-
-print(stateful_dict['paths'])
 
 buffer(stateful_dict, descript_dict["introduction"]) # replace with simple print() ?
 entrance.examine(stateful_dict) # can eventually replace with just desc ref?

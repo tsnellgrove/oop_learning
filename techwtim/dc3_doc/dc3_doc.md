@@ -19,7 +19,7 @@ DOEN: Create base classes and objects
 	DONE: create antechamber, torn_note, and messy_handwriting
 	DONE: Create protcullis, alcove, and control panel
 		DONE: iron_portcullis = Class Door (locked but no key)
-TBD: Fix paths dictionary - can't have multiple identical keys
+DONE: Fix paths dictionary - can't have multiple identical keys
 TBD: Eliminate start_me_up
 TBD: create random number code and attach to messy_handwriting
 TBD: Change room objects back to polymorphism (??)
