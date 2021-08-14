@@ -9,13 +9,12 @@
 # import statements
 import sys
 import dc3_init
-from dc3_startup import start_me_up
+from dc3_demo import wrapper
 
 # main
-start_me_up()
-from dc3_demo import wrapper
-end_of_game = False
 
+
+end_of_game = False
 while end_of_game == False:
 		user_input = input('Type your command: ')
 		end_of_game, output = wrapper(user_input)

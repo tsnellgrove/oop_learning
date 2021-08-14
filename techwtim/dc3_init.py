@@ -71,11 +71,16 @@ print(stateful_dict['out_buff'])
 
 master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
 
-with open('default_obj_pickle', 'wb') as f:
-		pickle.dump(master_obj_lst, f)
+### if, when the game is done, I want to load variables from pickle ###
+### (rather than declare openly as in dc3_init ### 
+### then re-enable default_obj_pickly dump ###
+### and call start_me_up() from dce_startup  in main ### 
 
-#with open('save_obj_pickle2', 'wb') as f:
+# with open('default_obj_pickle', 'wb') as f:
 #		pickle.dump(master_obj_lst, f)
+
+with open('save_obj_pickle2', 'wb') as f:
+		pickle.dump(master_obj_lst, f)
 
 
 ### Random Secret Code ###

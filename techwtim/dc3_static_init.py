@@ -75,7 +75,7 @@ descript_dict = {
 		
 		### door objects ###
 		'front_gate' : "The front gate is massive and imposing.",
-		'iron_portcullis' : "Beyond the iron_portcullis you can dimly make out the next room. The iron_portcullis is closed.",
+		'iron_portcullis' : "Beyond the iron portcullis you can dimly make out the next room.",
 		
 		### room objects ###
 		'entrance' : "*** Entrance ***\n\nYou stand before the daunting front gate of Dark Castle. In front of you is the front gate.",

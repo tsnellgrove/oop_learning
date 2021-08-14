@@ -20,7 +20,8 @@ DOEN: Create base classes and objects
 	DONE: Create protcullis, alcove, and control panel
 		DONE: iron_portcullis = Class Door (locked but no key)
 DONE: Fix paths dictionary - can't have multiple identical keys
-TBD: Eliminate start_me_up
+DONE: Eliminate start_me_up
+TBD: Sort out initial print
 TBD: create random number code and attach to messy_handwriting
 TBD: Change room objects back to polymorphism (??)
 TBD: Go back and update descriptions and view-only objects from DCv2
