@@ -6,9 +6,9 @@
 
 # import statements
 import pickle
-from dc3_helper import *
+#from dc3_helper import *
 from dc3_classes import *
-from dc3_static_init import *
+#from dc3_static_init import *
 
 
 # object instantiation
@@ -65,9 +65,9 @@ stateful_dict = {
 				}
 		}
 
-buffer(stateful_dict, descript_dict["introduction"]) # replace with simple print() ?
-entrance.examine(stateful_dict) # can eventually replace with just desc ref?
-print(stateful_dict['out_buff'])
+#buffer(stateful_dict, descript_dict["introduction"]) # replace with simple print() ?
+#entrance.examine(stateful_dict) # can eventually replace with just desc ref?
+#print(stateful_dict['out_buff'])
 
 master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
 

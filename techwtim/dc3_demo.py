@@ -123,8 +123,7 @@ def true_one_word(stateful_dict, word1, room_obj):
 				room_obj.examine(stateful_dict)
 		elif word1 == 'quit':
 				stateful_dict['game_ending'] = "quit"
-				move_dec(stateful_dict)
-				move_dec(stateful_dict)
+				move_dec(stateful_dict) # quitting is not deemed to be an actual move
 				end(stateful_dict)
 		return
 
