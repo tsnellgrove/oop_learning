@@ -1,17 +1,15 @@
-# program: dark castle v3.10
+# program: dark castle v3.20
 # name: Tom Snellgrove
-# date: June 8, 2021
+# date: Aug 14, 2021
 # description: object instantiation module
 
 
 # import statements
 import pickle
-#from dc3_helper import *
 from dc3_classes import *
-#from dc3_static_init import *
 
 
-# object instantiation
+# object instantiation - starting state
 rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'rusty_letters')
 dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", 'dwarven_runes')
 messy_handwriting = Writing('messy_handwriting', 'messy handwriting', 'handwriting', 'messy_handwriting')
@@ -45,8 +43,9 @@ main_hall = Room('main_hall', 'main hall', "hall", 'main_hall', None, [],
 antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
 				[torn_note], [iron_portcullis], [], {'north' : iron_portcullis})
 
-## dictionary of variables passed to all functions ##
-## any object variable that is passed to helper() must be in this dict ##
+
+#### dictionary of variables passed to all functions ###
+#### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key],
@@ -65,10 +64,7 @@ stateful_dict = {
 				}
 		}
 
-#buffer(stateful_dict, descript_dict["introduction"]) # replace with simple print() ?
-#entrance.examine(stateful_dict) # can eventually replace with just desc ref?
-#print(stateful_dict['out_buff'])
-
+# instantiated objects added to list
 master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
@@ -79,6 +75,7 @@ master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, 
 # with open('default_obj_pickle', 'wb') as f:
 #		pickle.dump(master_obj_lst, f)
 
+# list written to pickle
 with open('save_obj_pickle2', 'wb') as f:
 		pickle.dump(master_obj_lst, f)
 

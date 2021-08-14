@@ -11,10 +11,10 @@
 import sys
 import pickle
 from itertools import islice
-from dc3_static_init import *
+from dc3_static_init import * # variables declared in import = global to module
 from dc3_classes import *
 from dc3_helper import *
-from  dc3_obj_init2 import *
+from dc3_obj_init2 import *
 
 
 ### interpreter-specific helper functions ###
@@ -257,6 +257,6 @@ def interpreter(user_input):
 def wrapper(user_input): # version without stateful_dict
 		interpreter(user_input)
 		with open('save_obj_pickle2', 'wb') as f:
-				pickle.dump(master_obj_lst, f)
+				pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!
 		return stateful_dict['end_of_game'], stateful_dict['out_buff']
 

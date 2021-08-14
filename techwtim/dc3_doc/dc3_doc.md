@@ -1,5 +1,5 @@
 To Do List - Dark Castle v3
-Aug 6, 2021
+Aug 14, 2021
 
 ##########################
 ### VERSION 3.30 START ###
@@ -22,10 +22,15 @@ DOEN: Create base classes and objects
 DONE: Fix paths dictionary - can't have multiple identical keys
 DONE: Eliminate start_me_up
 DONE: Sort out initial print - all printing needs to happen in main!!
-TBD: Clean up print sort-out comments
+DONE: Clean up print sort-out comments
 TBD: create random number code and attach to messy_handwriting
 TBD: Change room objects back to polymorphism (??)
 TBD: Go back and update descriptions and view-only objects from DCv2
+
+
+##########################
+### VERSION 3.35 START ###
+##########################
 
 TBD: New Classes
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
@@ -43,7 +48,7 @@ TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 2) Add object in dc3_init
 3) Add object description in dc3_static_init
 4) Add object to master_obj_lst in dc3_init
-5) Add object to master_obj_lst in dc3_startup
+5) NO LONGER NEEDED: (Add object to master_obj_lst in dc3_startup)
 6) Add object to master_obj_lst in dc3_obj_init2
 
 
