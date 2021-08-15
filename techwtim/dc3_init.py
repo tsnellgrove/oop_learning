@@ -7,6 +7,7 @@
 # import statements
 import pickle
 from dc3_classes import *
+import random
 
 
 # object instantiation - starting state
@@ -61,8 +62,17 @@ stateful_dict = {
 				'entrance' : {'north' : main_hall},
 				'main_hall' : {'south' : entrance, 'north' : antechamber},
 				'antechamber' : {'south' : main_hall, 'north' : entrance} # temp place holder for throne_room
+				},
+		'descript_updates' : {
+				'messy_handwriting' : ""
 				}
 		}
+
+### Assign Random Secret Code ###
+portcullis_code = random.randint(0, 7)
+#switch_dict['big_red_button']['success_value'] = portcullis_code
+port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
+stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
 master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
@@ -80,9 +90,4 @@ with open('save_obj_pickle2', 'wb') as f:
 		pickle.dump(master_obj_lst, f)
 
 
-### Random Secret Code ###
-#portcullis_code = random.randint(0, 7)
-#switch_dict['big_red_button']['success_value'] = portcullis_code
-#port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
-#descript_updates_dict['messy_handwriting-read'] = port_code_txt
-#output = static_dict['global_dict']['output']
+

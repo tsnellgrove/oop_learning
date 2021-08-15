@@ -8,7 +8,6 @@ Aug 14, 2021
 Version 3.30 Goals:
 	Create antechamber room and contents
 	Start of game assignment for torn note code
-	New classes for levers and button
 	Update first 3 rooms with full desciptions and view-only objects
 	Add 4th room and contents
 	(no creatures, state machines, or conditional events)
@@ -23,7 +22,7 @@ DONE: Fix paths dictionary - can't have multiple identical keys
 DONE: Eliminate start_me_up
 DONE: Sort out initial print - all printing needs to happen in main!!
 DONE: Clean up print sort-out comments
-TBD: create random number code and attach to messy_handwriting
+DONE: create random number code and attach to messy_handwriting
 TBD: Change room objects back to polymorphism (??)
 TBD: Go back and update descriptions and view-only objects from DCv2
 
@@ -31,6 +30,13 @@ TBD: Go back and update descriptions and view-only objects from DCv2
 ##########################
 ### VERSION 3.35 START ###
 ##########################
+
+Version 3.35 Goals
+	New classes for levers and button
+	Lever and Button objects
+	Working portcullis puzzle
+	random responses to wrong direction commands ;-D
+	(no creatures, state machines, or conditional events)
 
 TBD: New Classes
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
@@ -53,10 +59,11 @@ TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 
 
 ##########################
-### VERSION 3.DB START ###
+### VERSION 3.xx START ###
 ##########################
 
-NOTE: 3.DB to be all about DB integration
+Version 3.xx Goals:
+	all about DB integration
 
 DONE: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
 	DONE: Create practice file

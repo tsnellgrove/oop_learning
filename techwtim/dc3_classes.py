@@ -20,8 +20,9 @@ class Writing(object):
 		def read(self, stateful_dict):
 				if writing_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
+				elif self.descript_key in stateful_dict['descript_updates']:
+						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
-##						buffer(stateful_dict, descript_dict[self.name])
 						buffer(stateful_dict, descript_dict[self.descript_key])
 
 		def __repr__(self):
@@ -35,8 +36,9 @@ class ViewOnly(Writing):
 		def examine(self, stateful_dict):
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
+				elif self.descript_key in stateful_dict['descript_updates']:
+						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
-##						buffer(stateful_dict, descript_dict[self.name])
 						buffer(stateful_dict, descript_dict[self.descript_key])
 						if self.writing is not None:
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
