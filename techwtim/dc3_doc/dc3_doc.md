@@ -25,6 +25,7 @@ DONE: Clean up print sort-out comments
 DONE: create random number code and attach to messy_handwriting
 TBD: Change room objects back to polymorphism (??)
 TBD: Go back and update descriptions and view-only objects from DCv2
+TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
 
 ##########################
@@ -36,6 +37,7 @@ Version 3.35 Goals
 	Lever and Button objects
 	Working portcullis puzzle
 	random responses to wrong direction commands ;-D
+	implement scoring
 	(no creatures, state machines, or conditional events)
 
 TBD: New Classes
@@ -45,6 +47,8 @@ TBD: New Classes
 	TBD: Create class ButtonToggleIfVal and object red_button
 		TBD: Create method push()
 			TBD: on push check value; if value then toggle state else nothing; descript text for success and fail
+TBD: random responses to wrong direction commands ;-D
+TBD: implement scoring
 
 *** Someday Maybe ***
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
@@ -134,6 +138,24 @@ TBD: Can (should) I make the program work without external triggers... can the o
 	IDEA: avoid external triggers - create classes / state-machines
 		Examples: conditional_cutscenes (moat, ending), antagonistic_guard (goblin), hungry_guard (hedgehog1), trader (hedgehog2)[introduce "give" verb, dispenser (throne), lever, button
 TBD: How should modules be inter-related (presumably minimally)
+
+More ideas on Conditional Events:
+- field in each object for associated conditional event
+- Idea is that Interpreter returns standard_command and noun_obj to wrapper
+- wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
+- (could be more than one event so likely a for loop here)
+- if no relevant event then output gets standard_output (generated from interpreter command)
+
+More ideas on Creatures:
+- Treat creatures like roving conditional events
+- Wrapper checks for presence of creature in room and checks for conditionals against creature too
+
+Additional Creature and Conditional Event thoughts:
+- In theory could have order of operations considerations:
+- (e.g. what if a monster causes darkness but you have a sword that glows around monsters?)
+- I don't think these will be a common problem that I need to code for - but worth thinking about
+- presently my creatures are not mobile but maybe someday?
+- What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
 
 Some Day Maybe
 TBD: Is the Item class worth having???
