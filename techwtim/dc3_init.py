@@ -37,12 +37,18 @@ front_gate = Door('front_gate', 'front gate', "gate", 'front_gate', rusty_letter
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 iron_portcullis = Door('iron_portcullis', 'iron portcullis', 'portcullis', 'iron_portcullis', None, False, False, None)
 
+#entrance = Room('entrance', 'entrance', "entrance", 'entrance', None, [dark_castle],
+#				[], [front_gate], [], {'north' : front_gate})
 entrance = Room('entrance', 'entrance', "entrance", 'entrance', None, [dark_castle],
-				[], [front_gate], [], {'north' : front_gate})
+				[front_gate], {'north' : front_gate})
+#main_hall = Room('main_hall', 'main hall', "hall", 'main_hall', None, [],
+#				[shiny_sword, brass_key], [front_gate], [wooden_chest], {'south' : front_gate})
 main_hall = Room('main_hall', 'main hall', "hall", 'main_hall', None, [],
-				[shiny_sword, brass_key], [front_gate], [wooden_chest], {'south' : front_gate})
+				[shiny_sword, brass_key, front_gate, wooden_chest], {'south' : front_gate})
+#antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
+#				[torn_note], [iron_portcullis], [], {'north' : iron_portcullis})
 antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
-				[torn_note], [iron_portcullis], [], {'north' : iron_portcullis})
+				[torn_note, iron_portcullis], {'north' : iron_portcullis})
 
 
 #### dictionary of variables passed to all functions ###

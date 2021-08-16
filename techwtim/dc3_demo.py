@@ -26,9 +26,18 @@ def root_word_count(stateful_dict, word2):
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
 		universal_lst = stateful_dict['universal']
-		room_obj_lst = room_obj.room_items + room_obj.room_doors + room_obj.room_containers
+#		room_obj_lst = room_obj.room_items + room_obj.room_doors + room_obj.room_containers
+		room_obj_lst = room_obj.room_obj_lst
 		features_lst = room_obj.features
-		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj.room_containers)
+
+#		open_cont_obj_lst = open_cont_scan(stateful_dict, room_obj.room_containers)
+
+		room_containers = []
+		for obj in room_obj_lst:
+				if hasattr(obj, 'contains'):
+						room_containers.append(obj)
+		open_cont_obj_lst = open_cont_scan(stateful_dict, room_containers) # editted
+
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
 						+ universal_lst + features_lst + open_cont_obj_lst)
 		scope_lst.append(room_obj)

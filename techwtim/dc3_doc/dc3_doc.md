@@ -8,8 +8,7 @@ Aug 14, 2021
 Version 3.30 Goals:
 	Create antechamber room and contents
 	Start of game assignment for torn note code
-	Update first 3 rooms with full desciptions and view-only objects
-	Add 4th room and contents
+	Do some code housekeeping (re-instate polymorphism, elim coding duplication)
 	(no creatures, state machines, or conditional events)
 
 DONE: figure out why Working Copy isn't showing old git commits (had to upgrade to Pro)
@@ -23,7 +22,23 @@ DONE: Eliminate start_me_up
 DONE: Sort out initial print - all printing needs to happen in main!!
 DONE: Clean up print sort-out comments
 DONE: create random number code and attach to messy_handwriting
-TBD: Change room objects back to polymorphism (??)
+DONE: Change room objects back to polymorphism (will be glad I did this when switches arrive)
+TBD: Clean up comments in classes, demo, & helper
+TBD: Clean up double instance of scope check (helper & demo)
+TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
+
+
+##########################
+### VERSION 3.33 START ###
+##########################
+
+Version 3.33 Goals:
+	Update first 3 rooms with full desciptions and view-only objects
+	food Class
+	Add 4th room and contents
+	Code clean-up / function isolation demo module (??)
+	(no creatures, state machines, or conditional events)
+
 TBD: Go back and update descriptions and view-only objects from DCv2
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
@@ -51,7 +66,7 @@ TBD: random responses to wrong direction commands ;-D
 TBD: implement scoring
 
 *** Someday Maybe ***
-TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
+
 
 *** How to Add Objects ***
 1) If needed, create Class and methods in dc3_classes
