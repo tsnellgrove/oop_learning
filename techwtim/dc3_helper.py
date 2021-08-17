@@ -25,7 +25,6 @@ def open_cont_scan(stateful_dict, room_containers):
 		return open_cont_obj_lst
 
 def scope_list(stateful_dict):
-#def scope_list(obj, stateful_dict):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
@@ -56,12 +55,10 @@ def objlst_to_strlst(obj_lst):
 
 def scope_check(obj, stateful_dict):
 		scope_lst = scope_list(stateful_dict)
-#		scope_lst = scope_list(obj, stateful_dict)
 		return obj in scope_lst
 
 def writing_check(writing, stateful_dict):
 		scope_lst = scope_list(stateful_dict)
-#		scope_lst = scope_list(writing, stateful_dict)
 		writing_found = False
 		for obj in scope_lst:
 				if obj.writing == writing:

@@ -24,7 +24,8 @@ DONE: Clean up print sort-out comments
 DONE: create random number code and attach to messy_handwriting
 DONE: Change room objects back to polymorphism (will be glad I did this when switches arrive)
 DONE: Clean up comments in classes, demo, & helper
-TBD: Clean up double instance of scope check (helper & demo)
+DONE: Clean up double instance of scope check (helper & demo)
+TBD: Comment clean-up
 
 
 
