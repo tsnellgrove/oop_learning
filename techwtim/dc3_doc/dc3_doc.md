@@ -25,7 +25,7 @@ DONE: create random number code and attach to messy_handwriting
 DONE: Change room objects back to polymorphism (will be glad I did this when switches arrive)
 DONE: Clean up comments in classes, demo, & helper
 TBD: Clean up double instance of scope check (helper & demo)
-TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
+
 
 
 ##########################
@@ -67,7 +67,9 @@ TBD: New Classes
 TBD: random responses to wrong direction commands ;-D
 TBD: implement scoring
 
+
 *** Someday Maybe ***
+TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 
 
 *** How to Add Objects ***
@@ -174,8 +176,11 @@ Additional Creature and Conditional Event thoughts:
 - presently my creatures are not mobile but maybe someday?
 - What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
 
+Key Creature Verbs (methods):
+- show, give, attack
+
 Some Day Maybe
-TBD: Is the Item class worth having???
+TBD: Is the Item class worth having??? Particularly, do I need the "takeable" attribute
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Need to dis-entangle modules better
 
@@ -185,6 +190,8 @@ TBD: Need to dis-entangle modules better
 - need a non-shrunken ruby to pay for sword sharpening (turns up nose at cheese and calls it common)
 - mini Zork maze to get to blacksmith mouse
 - maybe random mouse keeps appearing and if you give it cheese it runs off and can be followed to the blacksmith
+- maybe mouse in maze is from Who Moved my Cheese
+- references to grafitti in maze?? (e.g. "what would you do if you weren't afraid?")
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
