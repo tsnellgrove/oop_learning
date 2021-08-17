@@ -48,7 +48,7 @@ TBD: maybe break interpreter code into more functions within demo module (since 
 ##########################
 
 Version 3.35 Goals
-	New classes for levers and button
+	New classes for consumables, levers, and button
 	Lever and Button objects
 	Working portcullis puzzle
 	random responses to wrong direction commands ;-D
@@ -56,6 +56,8 @@ Version 3.35 Goals
 	(no creatures, state machines, or conditional events)
 
 TBD: New Classes
+	TBD: create Consumable Class with Food and Drink child classes
+		TBD Create cheese and bottle of wate and stale bisuits as obj (conditional event on biscuits)
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
 		TBD: Create method pull()
 			TBD: set lever value based on up or down (start down; down = 0)
@@ -180,6 +182,9 @@ TBD: Need to dis-entangle modules better
 
 ### New Puzzle Ideas ###
 - Can sharpen and clean sword in mouse hole - maybe only way to get past goblin
+- need a non-shrunken ruby to pay for sword sharpening (turns up nose at cheese and calls it common)
+- mini Zork maze to get to blacksmith mouse
+- maybe random mouse keeps appearing and if you give it cheese it runs off and can be followed to the blacksmith
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
