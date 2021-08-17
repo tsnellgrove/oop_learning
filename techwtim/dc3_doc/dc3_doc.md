@@ -23,7 +23,7 @@ DONE: Sort out initial print - all printing needs to happen in main!!
 DONE: Clean up print sort-out comments
 DONE: create random number code and attach to messy_handwriting
 DONE: Change room objects back to polymorphism (will be glad I did this when switches arrive)
-TBD: Clean up comments in classes, demo, & helper
+DONE: Clean up comments in classes, demo, & helper
 TBD: Clean up double instance of scope check (helper & demo)
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 

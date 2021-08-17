@@ -45,20 +45,15 @@ class ViewOnly(Writing):
 								buffer(stateful_dict, output)
 
 class Room(ViewOnly):
-#		def __init__(self, name, full_name, root_name, descript_key, writing, features, room_items, room_doors, room_containers, door_paths):
 		def __init__(self, name, full_name, root_name, descript_key, writing, features, room_obj_lst, door_paths):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.features = features # list of non-items in room (can be examined but not taken)
 				self.room_obj_lst = room_obj_lst # list of obj in the room that the player can interact with
-#				self.room_items = room_items # list of item objs in room
-#				self.room_doors = room_doors # list of door objs in room
-#				self.room_containers = room_containers # list of container objs in room
 				self.door_paths = door_paths # dictionary of {direction1 : door1}
 			
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self:
-#						room_str_lst = objlst_to_strlst(self.room_items + self.room_doors + self.room_containers)
 						room_str_lst = objlst_to_strlst(self.room_obj_lst)
 						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
@@ -66,9 +61,6 @@ class Room(ViewOnly):
 						if hasattr(obj, 'contains'):
 								if obj.open_state == True:
 										container_desc(obj, stateful_dict)
-#				for obj in self.room_containers:
-#						if obj.open_state == True:
-#								container_desc(obj, stateful_dict)
 
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
@@ -97,7 +89,6 @@ class Item(ViewOnly):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
 				backpack_lst = stateful_dict['backpack']
-#				room_obj_lst = room_obj.room_items
 				room_obj_lst = room_obj.room_obj_lst
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
@@ -114,17 +105,12 @@ class Item(ViewOnly):
 						if self in backpack_lst: # if taken from backpack, remove from backpack
 								stateful_dict['backpack'].remove(self)								
 						elif self in room_obj_lst: # if taken from room, remove from room
-#								room_obj.room_items.remove(self)
 								room_obj.room_obj_lst.remove(self)
 						else:
 								for obj in room_obj_lst: # else remove item from container it's in
 										if hasattr(obj, 'contains'):
 												if self in obj.contains:
 														obj.contains.remove(self)
-#								for obj in room_obj.room_containers: # eles remove item from the container it's in
-#										if len(obj.contains) > 0 and obj.open_state == True:
-#												if self in obj.contains:
-#														obj.contains.remove(self)
 
 		def drop(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -137,7 +123,6 @@ class Item(ViewOnly):
 				else:
 						hand_lst.remove(self)
 						stateful_dict['hand'] = hand_lst
-#						room_obj.room_items.append(self)
 						room_obj.room_obj_lst.append(self)
 						buffer(stateful_dict, "Dropped")
 

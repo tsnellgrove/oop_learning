@@ -29,7 +29,6 @@ def scope_list(obj, stateful_dict):
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
 		universal_lst = stateful_dict['universal']
-#		room_obj_lst = room_obj.room_items + room_obj.room_doors + room_obj.room_containers
 		room_obj_lst = room_obj.room_obj_lst
 		features_lst = room_obj.features
 
@@ -46,15 +45,9 @@ def scope_list(obj, stateful_dict):
 
 ### Called by Other Modules ###
 def buffer(stateful_dict, output_str):
-
-##		print(stateful_dict['out_buff'])
-
 		out_buff = stateful_dict['out_buff']
 		out_buff = out_buff + "\n" + output_str + "\n"
 		stateful_dict['out_buff'] = out_buff
-
-##		print(stateful_dict['out_buff'])
-
 
 def objlst_to_strlst(obj_lst):
 		str_lst = []
