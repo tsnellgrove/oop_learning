@@ -1,5 +1,5 @@
 To Do List - Dark Castle v3
-Aug 14, 2021
+Aug 17, 2021
 
 ##########################
 ### VERSION 3.30 START ###
@@ -25,7 +25,7 @@ DONE: create random number code and attach to messy_handwriting
 DONE: Change room objects back to polymorphism (will be glad I did this when switches arrive)
 DONE: Clean up comments in classes, demo, & helper
 DONE: Clean up double instance of scope check (helper & demo)
-TBD: Comment clean-up
+DONE: Comment clean-up
 
 
 
@@ -35,7 +35,6 @@ TBD: Comment clean-up
 
 Version 3.33 Goals:
 	Update first 3 rooms with full desciptions and view-only objects
-	food Class
 	Add 4th room and contents
 	Code clean-up / function isolation demo module (??)
 	(no creatures, state machines, or conditional events)
