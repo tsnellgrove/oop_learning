@@ -41,6 +41,8 @@ Version 3.33 Goals:
 
 IN-PROC: Go back and update descriptions and view-only objects from DCv2
 	DONE: Update Entrance and Universal descriptions
+		DONE: Add moat object to entrance
+		DONE: Capitalize usable nouns in the Entrance
 	TBD: Update Main Hall descriptions
 	TBD: Update Antechamber descriptions
 	TBD: Update Throne Room descriptions
@@ -79,6 +81,7 @@ TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 *** How to Add Objects ***
 1) If needed, create Class and methods in dc3_classes
 2) Add object in dc3_init
+2.5) Add object to room in dc3_init
 3) Add object description in dc3_static_init
 4) Add object to master_obj_lst in dc3_init
 5) NO LONGER NEEDED: (Add object to master_obj_lst in dc3_startup)
