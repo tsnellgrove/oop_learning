@@ -50,21 +50,24 @@ descript_dict = {
 		'help_prepositions' : "The only available preposition is 'in' and it is only used with the verb 'put'. This allows you to put items in containers. Example: 'put the rusty key in the wooden chest'",
 		
 		### universal objects ###
-		'dark_castle' : "The evil Dark Castle looms above you",
+		'dark_castle' : "Dark Castle looms over you. Its facade of blackened turrets and cracked walls is dour and singlularly univiting. It's hard to imagine but your great grandma Nana used to tell wonderous stories of the old days when the castle gleamed brightly on its hill and was a beacon of order and goodness for the land. Maybe it's because of the stories but you've always had a bit of an itch to venture inside. The place has somehow called to you - almost daring you to enter - and now that a round of beer and your alehouse repuation as a fearless ruffian are on the line you intend to answer the call!",
 		'backpack' : "Your trusty, well-worn leather backpack",
-		'burt' : "Yep, that's you Burt. A bit mangy and odd but undeniably lovable",
-		'fist' : "That is indeed your very own fist", 
-		'conscience' : "A tad murky Burt - what would your dear old Nana say?",
+		'burt' : "Yep, that's you Burt. A fine specimen of a man. If not for the drooling and the farting I don't know how you'd fend off the ladies.",
+		'fist' : "Yep, that's your fist. Still bruised from the last time you swung and missed and hit a wall...", 
+		'conscience' : "Burt, Dark Castle is quite murky enough without pondering your prodigal and Hal-esque misspent youth!",
+		
 		'alcove' : "A small indentation in the west wall near the iron_portcullis. It is just deep enough to hold one control panel and one goblin.",
 		'control_panel' : "The control_panel contains three levers: a left lever, a middle lever, and a right lever. The control panel also contains a Big-Red-Button. There are no directions posted as to what the controls are for or how to use them (a clear ISO lapse is ever you've seen one Burt).",
 		
 		### writing objects ###
-		'rusty_letters' : "'Abandon Hope All Ye Who Even Thank About It'",
+		'rusty_lettering' : "'ABANDON HOPE ALL YE WHO EVEN THINK ABOUT IT'",
+		
 		'dwarven_runes' : "'Goblin Wallopper'",
 		'messy_handwriting' : "...ode is X...",
 		
 		### item objects ###
-		'rusty_key' : "The key is rusty.",
+		'rusty_key' : "An old Rusty Key... the one they gave you at the pub when you swore to pillage the Dark Castle. What could you possibly do with it?",
+		
 		'shiny_sword' : "The sword is shiny.",
 		'brass_key' : "The key is brass.",
 		'bubbly_potion' : "The cork-stopperd glass vial contains a bubbly green potion.",
@@ -74,11 +77,13 @@ descript_dict = {
 		'wooden_chest' : "An old wooden chest.",
 		
 		### door objects ###
-		'front_gate' : "The front gate is massive and imposing.",
+		'front_gate' : "The Front Gate is just north of the Dark Castle's drawbridge. It is 10 feet tall and reenforced with steel bands. Imposing indeed! There is Rusty Lettering across the top of the gate and a rusty keyhole next to a handle.",
+		
 		'iron_portcullis' : "Beyond the iron portcullis you can dimly make out the next room.",
 		
 		### room objects ###
-		'entrance' : "*** Entrance ***\n\nYou stand before the daunting front gate of Dark Castle. In front of you is the front gate.",
+		'entrance' : "*** Entrance ***\n\nYou are standing atop the drawbridge before the daunting entrance of Dark Castle. To the north is the Front Gate. To the south the way back home. To the east and west and below you is the moat.",
+		
 		'main_hall' : "*** Main Hall ***\n\nA vast and once sumptuous chamber. The main gate is south. There is a passage going north.",
 		'antechamber' :"*** Antechamber ***\n\nYou are standing in a what feels more like a wide, tall-ceilinged corridor than a room. Apparently this is the room-before-the-room, the pre-room before the really, really grand room that comes after it. If so, the next room must be quite something because back in it's day this spot was clearly impressive. Alas, like all of the castle it has fallen on dark times and now feels more sinister than grand. The east and west walls are bare stone. To the south is an open passageway leading to the main_hall and to the north there is an iron portcullis that guards the path to the grand chamber beyond. Near the ironportcullis on the west wall there is a small alcove. It appears to have a control panel with some levers and a big red button on it but you can't see it very well due to the dim light. The whole north end of the room is cloaked in shadows that make you uneasy."
 }

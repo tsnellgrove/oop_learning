@@ -39,7 +39,11 @@ Version 3.33 Goals:
 	Code clean-up / function isolation demo module (??)
 	(no creatures, state machines, or conditional events)
 
-TBD: Go back and update descriptions and view-only objects from DCv2
+IN-PROC: Go back and update descriptions and view-only objects from DCv2
+	DONE: Update Entrance and Universal descriptions
+	TBD: Update Main Hall descriptions
+	TBD: Update Antechamber descriptions
+	TBD: Update Throne Room descriptions
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
 

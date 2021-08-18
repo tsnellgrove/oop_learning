@@ -11,7 +11,7 @@ import random
 
 
 # object instantiation - starting state
-rusty_letters = Writing('rusty_letters', 'rusty letters', "letters", 'rusty_letters')
+rusty_lettering = Writing('rusty_lettering', 'rusty lettering', "lettering", 'rusty_lettering')
 dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", 'dwarven_runes')
 messy_handwriting = Writing('messy_handwriting', 'messy handwriting', 'handwriting', 'messy_handwriting')
 
@@ -33,7 +33,7 @@ wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest'
 				False, False, brass_key, False, [bubbly_potion])
 # giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
 
-front_gate = Door('front_gate', 'front gate', "gate", 'front_gate', rusty_letters, False, False, rusty_key)
+front_gate = Door('front_gate', 'front gate', "gate", 'front_gate', rusty_lettering, False, False, rusty_key)
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 iron_portcullis = Door('iron_portcullis', 'iron portcullis', 'portcullis', 'iron_portcullis', None, False, False, None)
 
@@ -81,7 +81,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_letters, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, dark_castle, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 
