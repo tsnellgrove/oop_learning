@@ -43,7 +43,8 @@ IN-PROC: Go back and update descriptions and view-only objects from DCv2
 	DONE: Update Entrance and Universal descriptions
 		DONE: Add moat object to entrance
 		DONE: Capitalize usable nouns in the Entrance
-	TBD: Update Main Hall descriptions
+	DONE: Update Main Hall descriptions
+		DONE: Remove test objects (chest, brass key, potion)
 	TBD: Update Antechamber descriptions
 	TBD: Update Throne Room descriptions
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
@@ -125,12 +126,7 @@ IDEA: descriptions in separate descript_dict to be loaded from static text (isol
 TBD: Implement formal flask code vs. app separation
 TBD: Put client-server structure in place early!!
 
-### Cutscene ###
-IDEA: Conditional Cutscene Class
-IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for moat ????
-	- default, default description, default method
-	- special event first time, seft_description, seft_method, count
-	- special event additional times, seat_description, seat_method, count
+
 
 ### Score System ###
 - Figure out best implementation for scoring
@@ -165,12 +161,20 @@ TBD: Can (should) I make the program work without external triggers... can the o
 		Examples: conditional_cutscenes (moat, ending), antagonistic_guard (goblin), hungry_guard (hedgehog1), trader (hedgehog2)[introduce "give" verb, dispenser (throne), lever, button
 TBD: How should modules be inter-related (presumably minimally)
 
+### Cutscene ###
+IDEA: Conditional Cutscene Class
+IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for moat ????
+	- default, default description, default method
+	- special event first time, seft_description, seft_method, count
+	- special event additional times, seat_description, seat_method, count
+
 More ideas on Conditional Events:
 - field in each object for associated conditional event
 - Idea is that Interpreter returns standard_command and noun_obj to wrapper
 - wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
 - (could be more than one event so likely a for loop here)
 - if no relevant event then output gets standard_output (generated from interpreter command)
+-  events: conditional-command-list, conditions (list of lists; outer = AND; inner = OR), event-text, events (list); check for end of game in wrapper
 
 More ideas on Creatures:
 - Treat creatures like roving conditional events
@@ -199,6 +203,7 @@ TBD: Need to dis-entangle modules better
 - maybe random mouse keeps appearing and if you give it cheese it runs off and can be followed to the blacksmith
 - maybe mouse in maze is from Who Moved my Cheese
 - references to grafitti in maze?? (e.g. "what would you do if you weren't afraid?")
+- Potion cabinet => maze => sharpen payment; cabinet: Royal Potions Maker: Danni Igotyour , potion: 867-5 => combo
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest

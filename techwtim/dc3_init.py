@@ -12,42 +12,37 @@ import random
 
 # object instantiation - starting state
 rusty_lettering = Writing('rusty_lettering', 'Rusty Lettering', "lettering", 'rusty_lettering')
-dwarven_runes = Writing('dwarven_runes', 'dwarven runes', "runes", 'dwarven_runes')
-messy_handwriting = Writing('messy_handwriting', 'messy handwriting', 'handwriting', 'messy_handwriting')
+dwarven_runes = Writing('dwarven_runes', 'Dwarven Runes', "runes", 'dwarven_runes')
+messy_handwriting = Writing('messy_handwriting', 'Messy Handwriting', 'handwriting', 'messy_handwriting')
 
-dark_castle = ViewOnly('dark_castle', "dark castle", "castle", 'dark_castle', None)
-moat = ViewOnly('moat', 'moat', 'moat', 'moat', None)
-backpack = ViewOnly('backpack', "backpack", "backpack", 'backpack', None)
-burt = ViewOnly('burt', 'burt', "burt", 'burt', None)
-fist = ViewOnly('fist', 'fist', "fist", 'fist', None)
-conscience = ViewOnly('conscience', 'conscience', "conscience", 'conscience', None)
-alcove = ViewOnly('alcove', 'alcove', 'alcove', 'alcove', None)
-control_panel = ViewOnly('control_panel', 'control panel', 'panel', 'control_panel', None)
+dark_castle = ViewOnly('dark_castle', "Dark Castle", "castle", 'dark_castle', None)
+moat = ViewOnly('moat', 'Moat', 'moat', 'moat', None)
+backpack = ViewOnly('backpack', "Backpack", "backpack", 'backpack', None)
+burt = ViewOnly('burt', 'Burt', "burt", 'burt', None)
+fist = ViewOnly('fist', 'Fist', "fist", 'fist', None)
+conscience = ViewOnly('conscience', 'Conscience', "conscience", 'conscience', None)
+faded_tapestries = ViewOnly('faded_tapestries', 'Faded Tapestries', 'tapestries', 'faded_tapestries', None)
+alcove = ViewOnly('alcove', 'Alcove', 'alcove', 'alcove', None)
+control_panel = ViewOnly('control_panel', 'Control Panel', 'panel', 'control_panel', None)
 
 rusty_key = Item('rusty_key', 'Rusty Key', "key", 'rusty_key', None, True)
 shiny_sword = Item('shiny_sword', 'Shiny Sword', "sword", 'shiny_sword', dwarven_runes, True)
-brass_key = Item('brass_key', 'brass key', "key", 'brass_key', None, True)
-bubbly_potion = Item('bubbly_potion', 'bubbly potion', "potion", 'bubbly_potion', None, True)
-torn_note = Item('torn_note', 'torn note', 'note', 'torn_note', messy_handwriting, True)
+brass_key = Item('brass_key', 'brass key', "key", 'brass_key', None, True) # test object
+bubbly_potion = Item('bubbly_potion', 'bubbly potion', "potion", 'bubbly_potion', None, True) # test object
+torn_note = Item('torn_note', 'Torn Note', 'note', 'torn_note', messy_handwriting, True)
 
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
-				False, False, brass_key, False, [bubbly_potion])
+				False, False, brass_key, False, [bubbly_potion]) # test object
 # giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
 
 front_gate = Door('front_gate', 'Front Gate', "gate", 'front_gate', rusty_lettering, False, False, rusty_key)
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
-iron_portcullis = Door('iron_portcullis', 'iron portcullis', 'portcullis', 'iron_portcullis', None, False, False, None)
+iron_portcullis = Door('iron_portcullis', 'Iron Portcullis', 'portcullis', 'iron_portcullis', None, False, False, None)
 
-#entrance = Room('entrance', 'entrance', "entrance", 'entrance', None, [dark_castle],
-#				[], [front_gate], [], {'north' : front_gate})
-entrance = Room('entrance', 'entrance', "entrance", 'entrance', None, [dark_castle, moat],
+entrance = Room('entrance', 'Entrance', "entrance", 'entrance', None, [dark_castle, moat],
 				[front_gate], {'north' : front_gate})
-#main_hall = Room('main_hall', 'main hall', "hall", 'main_hall', None, [],
-#				[shiny_sword, brass_key], [front_gate], [wooden_chest], {'south' : front_gate})
-main_hall = Room('main_hall', 'main hall', "hall", 'main_hall', None, [],
-				[shiny_sword, brass_key, front_gate, wooden_chest], {'south' : front_gate})
-#antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
-#				[torn_note], [iron_portcullis], [], {'north' : iron_portcullis})
+main_hall = Room('main_hall', 'Main Hall', "hall", 'main_hall', None, [faded_tapestries],
+				[shiny_sword, front_gate], {'south' : front_gate})
 antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
 				[torn_note, iron_portcullis], {'north' : iron_portcullis})
 
@@ -82,7 +77,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, dark_castle, moat, backpack, burt, fist, conscience, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 
