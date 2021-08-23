@@ -59,8 +59,8 @@ descript_dict = {
 		### writing objects ###
 		'rusty_lettering' : "'ABANDON HOPE ALL YE WHO EVEN THINK ABOUT IT'",
 		'dwarven_runes' : "'Goblin Wallopper'",
-
-		'messy_handwriting' : "...ode is X...",
+		'messy_handwriting' : "...ode is X. Don't tell anyo..",
+		'small_print' : "'ACME AXE: Effective at dispatching small dragons, large crocodiles, and even the most agressive of trees.'",
 		
 		### ViewOnly objects ###
 		'dark_castle' : "Dark Castle looms over you. Its facade of blackened turrets and cracked walls is dour and singlularly univiting. It's hard to imagine but your great grandma Nana used to tell wonderous stories of the old days when the castle gleamed brightly on its hill and was a beacon of order and goodness for the land. Maybe it's because of the stories but you've always had a bit of an itch to venture inside. The place has somehow called to you - almost daring you to enter - and now that a round of beer and your alehouse repuation as a fearless ruffian are on the line you intend to answer the call!",		
@@ -71,10 +71,11 @@ descript_dict = {
 		### item objects ###
 		'rusty_key' : "An old Rusty Key... the one they gave you at the pub when you swore to pillage the Dark Castle. What could you possibly do with it?",
 		'shiny_sword' : "The Shiny Sword glitters even in the dim light. Despite its age, the edge is keen and looks ready for action. There are Dwarven Runes engraved upon the blade.",
-
+		'torn_note' : "This must have dropped from the Goblin's hand when you slew it. The Torn Note is ragged and only barely readable.", 
+		'grimy_axe' : "A nasty looking weapon - and poorly maintained too. If you ever get out of this castle you should set aside some time to polish it. You notice uppon inspection that there is some Small Print on the handle.",
+		
 		'brass_key' : "The key is brass.",
 		'bubbly_potion' : "The cork-stopperd glass vial contains a bubbly green potion.",
-		'torn_note' : "The note is ragged and torn. On it there is some messy handwriting.", 
 		
 		### container objects ###
 		'wooden_chest' : "An old wooden chest.",

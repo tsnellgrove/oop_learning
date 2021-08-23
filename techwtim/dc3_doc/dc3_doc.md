@@ -28,7 +28,6 @@ DONE: Clean up double instance of scope check (helper & demo)
 DONE: Comment clean-up
 
 
-
 ##########################
 ### VERSION 3.33 START ###
 ##########################
@@ -45,7 +44,8 @@ IN-PROC: Go back and update descriptions and view-only objects from DCv2
 		DONE: Capitalize usable nouns in the Entrance
 	DONE: Update Main Hall descriptions
 		DONE: Remove test objects (chest, brass key, potion)
-	TBD: Update Antechamber descriptions
+	DONE: Update Antechamber descriptions
+		TBD: How to "lock open" the Iron Portcullis? Need to alter the Class Method to check for locked on close?
 	TBD: Update Throne Room descriptions
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
@@ -77,6 +77,7 @@ TBD: implement scoring
 
 *** Someday Maybe ***
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
+TBD: Figure out a way in web browser to show all adventure text in scrolling window
 
 
 *** How to Add Objects ***
@@ -198,12 +199,23 @@ TBD: Need to dis-entangle modules better
 
 ### New Puzzle Ideas ###
 - Can sharpen and clean sword in mouse hole - maybe only way to get past goblin
-- need a non-shrunken ruby to pay for sword sharpening (turns up nose at cheese and calls it common)
+- need a non-shrunken ruby to pay for sword sharpening (turns up nose at cheese - says he never touches it because it gives him indigestion)
 - mini Zork maze to get to blacksmith mouse
 - maybe random mouse keeps appearing and if you give it cheese it runs off and can be followed to the blacksmith
 - maybe mouse in maze is from Who Moved my Cheese
 - references to grafitti in maze?? (e.g. "what would you do if you weren't afraid?")
 - Potion cabinet => maze => sharpen payment; cabinet: Royal Potions Maker: Danni Igotyour , potion: 867-5 => combo
+	- Give clues - mention that you hear a boppy tune in your head on description; give some lyrics after 5th attempt
+- Sign on mousehole mentions royal blacksmith and royal baker
+- Can only find royal baker by NOT taking the signed "exit" route from the blacksmith (easy east)
+- Machine in bakery makes cheese (for mouse) or biscuits (for hedgehog) by adding ingredients and pushing correct button
+	- Need to have "hatch" closed in order to run machine
+	- Takes 3 turns to create food
+	- if start biscuits turn after starting cheese then 5 turns later produces cheesecake! (only once - machine brakes after)
+	- Everyone wants cheesecake! Can be used to solve any creature puzzle (even goblin) and takes 5 turns to eat
+- potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
+	- 3 turns of shrink in Main Hall; 30 turns in mouse hole
+	- maybe 2 potions in cabinet
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
