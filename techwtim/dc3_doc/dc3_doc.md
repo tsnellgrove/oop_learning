@@ -219,6 +219,7 @@ TBD: Need to dis-entangle modules better
 	- maybe 2 potions in cabinet
 	- Need to keep the magic shrink potion from traveling... maybe have it in a basin with a chain-attached cup?
 		- (don't want to code every room for being mouse sized)
+- Maybe a magic radio (a machine entity like the baking machine) in the Maine Hall that plays "Danni I've got your numbrer" when tuned correctly? Gives clue for potion chest. Also maybe acts as distraction during time travel puzzel - plays over gentle lilting of harp, violins, and triange - which enables Burt to cut in and dance with princess (evil prince is off gyrating hips wildly)? Perhaps the magic radio used to live in the throne room but got moved to the main hall after the 'incident' (note could indicate this) ;-D
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
