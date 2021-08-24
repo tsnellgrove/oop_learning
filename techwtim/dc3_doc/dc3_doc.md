@@ -56,7 +56,7 @@ TBD: maybe break interpreter code into more functions within demo module (since 
 ##########################
 
 Version 3.35 Goals
-	New classes for consumables, levers, and button
+	New classes for consumables, levers, and button => and machines!
 	Lever and Button objects
 	Working portcullis puzzle
 	random responses to wrong direction commands ;-D
@@ -66,6 +66,13 @@ Version 3.35 Goals
 TBD: New Classes
 	TBD: create Consumable Class with Food and Drink child classes
 		TBD Create cheese and bottle of wate and stale bisuits as obj (conditional event on biscuits)
+	IDEA: Create Machine class
+		- Complex machines have at least 2 inputs (vs. doors)
+		- Control Panel is a machine
+		- Have 'help machines'
+		- Logic, outcomes, & descriptions live in machine - button just starts, levels just set values
+		- Machine obj also includes list of 'controls' (3x levers and button)
+		- (For fun, baking machine should have lever to start and buttons to set values)
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
 		TBD: Create method pull()
 			TBD: set lever value based on up or down (start down; down = 0)
