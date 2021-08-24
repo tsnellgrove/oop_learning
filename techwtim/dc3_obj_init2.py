@@ -13,5 +13,5 @@ with open('save_obj_pickle2', 'rb') as f:
 		master_obj_lst = pickle.load(f)
 
 # object vatiables declared / instantiated from un-pickled list
-rusty_lettering, dwarven_runes, messy_handwriting, small_print, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict = master_obj_lst
+rusty_lettering, dwarven_runes, messy_handwriting, small_print, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, control_panel, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, throne_room, stateful_dict = master_obj_lst
 

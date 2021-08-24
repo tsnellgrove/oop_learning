@@ -25,6 +25,8 @@ conscience = ViewOnly('conscience', 'Conscience', "conscience", 'conscience', No
 faded_tapestries = ViewOnly('faded_tapestries', 'Faded Tapestries', 'tapestries', 'faded_tapestries', None)
 alcove = ViewOnly('alcove', 'Alcove', 'alcove', 'alcove', None)
 control_panel = ViewOnly('control_panel', 'Control Panel', 'panel', 'control_panel', None)
+stone_coffer = ViewOnly('stone_coffer', 'Stone Coffer', 'coffer', 'stone_coffer', None)
+family_tree = ViewOnly('family_tree', 'Family Tree', 'tree', 'family_tree', None)
 
 rusty_key = Item('rusty_key', 'Rusty Key', "key", 'rusty_key', None, True)
 shiny_sword = Item('shiny_sword', 'Shiny Sword', "sword", 'shiny_sword', dwarven_runes, True)
@@ -45,8 +47,10 @@ entrance = Room('entrance', 'Entrance', "entrance", 'entrance', None, [dark_cast
 				[front_gate], {'north' : front_gate})
 main_hall = Room('main_hall', 'Main Hall', "hall", 'main_hall', None, [faded_tapestries],
 				[shiny_sword, front_gate], {'south' : front_gate})
-antechamber = Room('antechamber', 'antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
+antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
 				[torn_note, grimy_axe, iron_portcullis], {'north' : iron_portcullis})
+throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
+				[iron_portcullis], {'south' : iron_portcullis})
 
 
 #### dictionary of variables passed to all functions ###
@@ -65,7 +69,8 @@ stateful_dict = {
 		'paths' : {
 				'entrance' : {'north' : main_hall},
 				'main_hall' : {'south' : entrance, 'north' : antechamber},
-				'antechamber' : {'south' : main_hall, 'north' : entrance} # temp place holder for throne_room
+				'antechamber' : {'south' : main_hall, 'north' : throne_room},
+				'throne_room' : {'south' : antechamber}
 				},
 		'descript_updates' : {
 				'messy_handwriting' : ""
@@ -79,7 +84,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, control_panel, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, control_panel, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, throne_room, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 

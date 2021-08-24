@@ -170,6 +170,8 @@ class Door(ViewOnly):
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
+				elif self.unlock_state == False: # for Iron Portcullis
+						buffer(stateful_dict, "The " + self.full_name + " is locked.")
 				else:
 						self.open_state = False
 						buffer(stateful_dict, "Closed")

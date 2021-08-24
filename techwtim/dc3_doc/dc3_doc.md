@@ -45,8 +45,9 @@ IN-PROC: Go back and update descriptions and view-only objects from DCv2
 	DONE: Update Main Hall descriptions
 		DONE: Remove test objects (chest, brass key, potion)
 	DONE: Update Antechamber descriptions
-		TBD: How to "lock open" the Iron Portcullis? Need to alter the Class Method to check for locked on close?
-	TBD: Update Throne Room descriptions
+		DONE: How to "lock open" the Iron Portcullis? Need to alter the Class Method to check for locked on close?
+	DONE: Add Throne Room and ViewOnly descriptions
+		TBD: Add Throne Room Throne, Crystal Box, Silver Key, and Scroll
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
 
@@ -216,6 +217,8 @@ TBD: Need to dis-entangle modules better
 - potion shrinks for set turn count (can only drink twice); toes tingle just before you expand
 	- 3 turns of shrink in Main Hall; 30 turns in mouse hole
 	- maybe 2 potions in cabinet
+	- Need to keep the magic shrink potion from traveling... maybe have it in a basin with a chain-attached cup?
+		- (don't want to code every room for being mouse sized)
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
