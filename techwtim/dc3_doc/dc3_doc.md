@@ -47,7 +47,8 @@ IN-PROC: Go back and update descriptions and view-only objects from DCv2
 	DONE: Update Antechamber descriptions
 		DONE: How to "lock open" the Iron Portcullis? Need to alter the Class Method to check for locked on close?
 	DONE: Add Throne Room and ViewOnly descriptions
-		TBD: Add Throne Room Throne, Crystal Box, Silver Key, and Scroll
+		DONE: Add Throne Room items: Throne, Silver Key, Scroll, Letters
+		TBD: Add throne_room container: Crystal Box
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
 
@@ -56,23 +57,67 @@ TBD: maybe break interpreter code into more functions within demo module (since 
 ##########################
 
 Version 3.35 Goals
-	New classes for consumables, levers, and button => and machines!
-	Lever and Button objects
-	Working portcullis puzzle
+	New classes for consumables
 	random responses to wrong direction commands ;-D
 	implement scoring
-	(no creatures, state machines, or conditional events)
 
 TBD: New Classes
 	TBD: create Consumable Class with Food and Drink child classes
 		TBD Create cheese and bottle of wate and stale bisuits as obj (conditional event on biscuits)
-	IDEA: Create Machine class
+
+
+##########################
+### VERSION 3.38 START ###
+##########################
+
+Version 3.38 Goals
+	Conditional events before machines
+
+### Cutscene ###
+IDEA: Conditional Cutscene Class
+IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for moat ????
+	- default, default description, default method
+	- special event first time, seft_description, seft_method, count
+	- special event additional times, seat_description, seat_method, count
+
+More ideas on Conditional Events:
+- field in each object for associated conditional event
+- Idea is that Interpreter returns standard_command and noun_obj to wrapper
+- wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
+- (could be more than one event so likely a for loop here)
+- if no relevant event then output gets standard_output (generated from interpreter command)
+-  events: conditional-command-list, conditions (list of lists; outer = AND; inner = OR), event-text, events (list); check for end of game in wrapper
+
+Additional Creature and Conditional Event thoughts:
+- In theory could have order of operations considerations:
+- (e.g. what if a monster causes darkness but you have a sword that glows around monsters?)
+- I don't think these will be a common problem that I need to code for - but worth thinking about
+- presently my creatures are not mobile but maybe someday?
+- What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
+
+
+##########################
+### VERSION 3.4 START ###
+##########################
+
+Version 3.4 Goals
+	levers, and button => and machines!
+	Lever and Button objects
+	Working portcullis puzzle
+
+IDEA: Create Machine class
 		- Complex machines have at least 2 inputs (vs. doors)
-		- Control Panel is a machine
+		- Control Panel is a machine (also throne, radio, and baking machine)
 		- Have 'help machines'
 		- Logic, outcomes, & descriptions live in machine - button just starts, levels just set values
 		- Machine obj also includes list of 'controls' (3x levers and button)
 		- (For fun, baking machine should have lever to start and buttons to set values)
+		- Buttons & Levers are dumb
+			- Levers only know if they are up and down and how many times pulled
+			- Buttons only know if phushed this turn and how many times
+		- Machine state is checked each turn in wrapper (similar to conditional events & creatures)
+			- Machine checked based on room
+		- Should logic be in machine or in attached conditional events??
 	TBD: Create class LeverSetVal and objects left_lever, middle_lever, right_lever
 		TBD: Create method pull()
 			TBD: set lever value based on up or down (start down; down = 0)
@@ -227,6 +272,9 @@ TBD: Need to dis-entangle modules better
 	- Need to keep the magic shrink potion from traveling... maybe have it in a basin with a chain-attached cup?
 		- (don't want to code every room for being mouse sized)
 - Maybe a magic radio (a machine entity like the baking machine) in the Maine Hall that plays "Danni I've got your numbrer" when tuned correctly? Gives clue for potion chest. Also maybe acts as distraction during time travel puzzel - plays over gentle lilting of harp, violins, and triange - which enables Burt to cut in and dance with princess (evil prince is off gyrating hips wildly)? Perhaps the magic radio used to live in the throne room but got moved to the main hall after the 'incident' (note could indicate this) ;-D
+- Radio damaged during move from throne room (speaker out; etc)
+	- Radio volume goes to 11 (crossed out?)
+	- On time travel need right station & full volume to distract prince (learn songs during future time investigation; maybe "moany moany"?)
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest

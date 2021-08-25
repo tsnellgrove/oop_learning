@@ -15,6 +15,7 @@ rusty_lettering = Writing('rusty_lettering', 'Rusty Lettering', "lettering", 'ru
 dwarven_runes = Writing('dwarven_runes', 'Dwarven Runes', "runes", 'dwarven_runes')
 messy_handwriting = Writing('messy_handwriting', 'Messy Handwriting', 'handwriting', 'messy_handwriting')
 small_print = Writing('small_print', 'Small Print', 'print', 'small_print')
+illuminated_letters = Writing('illuminated_letters', 'Illuminated Letters', 'letters', 'illuminated_letters')
 
 dark_castle = ViewOnly('dark_castle', "Dark Castle", "castle", 'dark_castle', None)
 moat = ViewOnly('moat', 'Moat', 'moat', 'moat', None)
@@ -24,7 +25,6 @@ fist = ViewOnly('fist', 'Fist', "fist", 'fist', None)
 conscience = ViewOnly('conscience', 'Conscience', "conscience", 'conscience', None)
 faded_tapestries = ViewOnly('faded_tapestries', 'Faded Tapestries', 'tapestries', 'faded_tapestries', None)
 alcove = ViewOnly('alcove', 'Alcove', 'alcove', 'alcove', None)
-control_panel = ViewOnly('control_panel', 'Control Panel', 'panel', 'control_panel', None)
 stone_coffer = ViewOnly('stone_coffer', 'Stone Coffer', 'coffer', 'stone_coffer', None)
 family_tree = ViewOnly('family_tree', 'Family Tree', 'tree', 'family_tree', None)
 
@@ -34,6 +34,8 @@ brass_key = Item('brass_key', 'brass key', "key", 'brass_key', None, True) # tes
 bubbly_potion = Item('bubbly_potion', 'bubbly potion', "potion", 'bubbly_potion', None, True) # test object
 torn_note = Item('torn_note', 'Torn Note', 'note', 'torn_note', messy_handwriting, True)
 grimy_axe = Item('grimy_axe', 'Grimy Axe', 'axe', 'grimy_axe', small_print, True)
+silver_key = Item('silver_key', 'Silver Key', 'key', 'silver_key', None, True)
+kinging_scroll = Item('kinging_scroll', 'Kinging Scroll', 'scroll', 'kinging_scroll', illuminated_letters, True)
 
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
 				False, False, brass_key, False, [bubbly_potion]) # test object
@@ -43,6 +45,9 @@ front_gate = Door('front_gate', 'Front Gate', "gate", 'front_gate', rusty_letter
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
 iron_portcullis = Door('iron_portcullis', 'Iron Portcullis', 'portcullis', 'iron_portcullis', None, True, False, None)
 
+control_panel = ViewOnly('control_panel', 'Control Panel', 'panel', 'control_panel', None)
+throne = ViewOnly('throne', 'Throne', 'throne', 'throne', None)
+
 entrance = Room('entrance', 'Entrance', "entrance", 'entrance', None, [dark_castle, moat],
 				[front_gate], {'north' : front_gate})
 main_hall = Room('main_hall', 'Main Hall', "hall", 'main_hall', None, [faded_tapestries],
@@ -50,7 +55,7 @@ main_hall = Room('main_hall', 'Main Hall', "hall", 'main_hall', None, [faded_tap
 antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
 				[torn_note, grimy_axe, iron_portcullis], {'north' : iron_portcullis})
 throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
-				[iron_portcullis], {'south' : iron_portcullis})
+				[throne, silver_key, kinging_scroll, iron_portcullis], {'south' : iron_portcullis})
 
 
 #### dictionary of variables passed to all functions ###
@@ -84,7 +89,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, control_panel, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, wooden_chest, front_gate, iron_portcullis, entrance, main_hall, antechamber, throne_room, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, wooden_chest, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 
