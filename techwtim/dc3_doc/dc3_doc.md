@@ -1,56 +1,6 @@
 To Do List - Dark Castle v3
 Aug 26, 2021
 
-##########################
-### VERSION 3.30 START ###
-##########################
-
-Version 3.30 Goals:
-	Create antechamber room and contents
-	Start of game assignment for torn note code
-	Do some code housekeeping (re-instate polymorphism, elim coding duplication)
-	(no creatures, state machines, or conditional events)
-
-DONE: figure out why Working Copy isn't showing old git commits (had to upgrade to Pro)
-DONE: for all objects create descript_key field
-DOEN: Create base classes and objects
-	DONE: create antechamber, torn_note, and messy_handwriting
-	DONE: Create protcullis, alcove, and control panel
-		DONE: iron_portcullis = Class Door (locked but no key)
-DONE: Fix paths dictionary - can't have multiple identical keys
-DONE: Eliminate start_me_up
-DONE: Sort out initial print - all printing needs to happen in main!!
-DONE: Clean up print sort-out comments
-DONE: create random number code and attach to messy_handwriting
-DONE: Change room objects back to polymorphism (will be glad I did this when switches arrive)
-DONE: Clean up comments in classes, demo, & helper
-DONE: Clean up double instance of scope check (helper & demo)
-DONE: Comment clean-up
-
-
-##########################
-### VERSION 3.33 START ###
-##########################
-
-Version 3.33 Goals:
-	Update first 3 rooms with full desciptions and view-only objects
-	Add 4th room and contents
-	Code clean-up / function isolation demo module (??)
-	(no creatures, state machines, or conditional events)
-
-DONE: Go back and update descriptions and view-only objects from DCv2
-	DONE: Update Entrance and Universal descriptions
-		DONE: Add moat object to entrance
-		DONE: Capitalize usable nouns in the Entrance
-	DONE: Update Main Hall descriptions
-		DONE: Remove test objects (chest, brass key, potion)
-	DONE: Update Antechamber descriptions
-		DONE: How to "lock open" the Iron Portcullis? Need to alter the Class Method to check for locked on close?
-	DONE: Add Throne Room and ViewOnly descriptions
-		DONE: Add Throne Room items: Throne, Silver Key, Scroll, Letters
-		DONE: Add throne_room container: Crystal Box and Calligraphy
-
-
 
 ##########################
 ### VERSION 3.35 START ###
