@@ -1,6 +1,6 @@
-# program: dark castle v3.30
+# program: dark castle v3.33
 # name: Tom Snellgrove
-# date: Aug 17, 2021
+# date: Aug 26, 2021
 # description: object instantiation module
 
 
@@ -16,6 +16,7 @@ dwarven_runes = Writing('dwarven_runes', 'Dwarven Runes', "runes", 'dwarven_rune
 messy_handwriting = Writing('messy_handwriting', 'Messy Handwriting', 'handwriting', 'messy_handwriting')
 small_print = Writing('small_print', 'Small Print', 'print', 'small_print')
 illuminated_letters = Writing('illuminated_letters', 'Illuminated Letters', 'letters', 'illuminated_letters')
+calligraphy = Writing('calligraphy', 'Calligraphy', 'calligraphy', 'calligraphy')
 
 dark_castle = ViewOnly('dark_castle', "Dark Castle", "castle", 'dark_castle', None)
 moat = ViewOnly('moat', 'Moat', 'moat', 'moat', None)
@@ -39,6 +40,8 @@ kinging_scroll = Item('kinging_scroll', 'Kinging Scroll', 'scroll', 'kinging_scr
 
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
 				False, False, brass_key, False, [bubbly_potion]) # test object
+crystal_box = Container('crystal_box', 'Crystal Box', 'box', 'crystal_box', calligraphy,
+				False, False, silver_key, False, [kinging_scroll])
 # giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
 
 front_gate = Door('front_gate', 'Front Gate', "gate", 'front_gate', rusty_lettering, False, False, rusty_key)
@@ -55,7 +58,7 @@ main_hall = Room('main_hall', 'Main Hall', "hall", 'main_hall', None, [faded_tap
 antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', None, [alcove, control_panel],
 				[torn_note, grimy_axe, iron_portcullis], {'north' : iron_portcullis})
 throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
-				[throne, silver_key, kinging_scroll, iron_portcullis], {'south' : iron_portcullis})
+				[throne, silver_key, crystal_box, iron_portcullis], {'south' : iron_portcullis})
 
 
 #### dictionary of variables passed to all functions ###
@@ -89,7 +92,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, wooden_chest, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, wooden_chest, crystal_box, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 

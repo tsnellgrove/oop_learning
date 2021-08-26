@@ -1,5 +1,5 @@
 To Do List - Dark Castle v3
-Aug 17, 2021
+Aug 26, 2021
 
 ##########################
 ### VERSION 3.30 START ###
@@ -38,7 +38,7 @@ Version 3.33 Goals:
 	Code clean-up / function isolation demo module (??)
 	(no creatures, state machines, or conditional events)
 
-IN-PROC: Go back and update descriptions and view-only objects from DCv2
+DONE: Go back and update descriptions and view-only objects from DCv2
 	DONE: Update Entrance and Universal descriptions
 		DONE: Add moat object to entrance
 		DONE: Capitalize usable nouns in the Entrance
@@ -48,8 +48,8 @@ IN-PROC: Go back and update descriptions and view-only objects from DCv2
 		DONE: How to "lock open" the Iron Portcullis? Need to alter the Class Method to check for locked on close?
 	DONE: Add Throne Room and ViewOnly descriptions
 		DONE: Add Throne Room items: Throne, Silver Key, Scroll, Letters
-		TBD: Add throne_room container: Crystal Box
-TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
+		DONE: Add throne_room container: Crystal Box and Calligraphy
+
 
 
 ##########################
@@ -72,6 +72,9 @@ TBD: New Classes
 
 Version 3.38 Goals
 	Conditional events before machines
+	Re-org interpreter code into functions and to work with conditional events
+
+TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
 ### Cutscene ###
 IDEA: Conditional Cutscene Class
@@ -131,6 +134,8 @@ TBD: implement scoring
 *** Someday Maybe ***
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 TBD: Figure out a way in web browser to show all adventure text in scrolling window
+TBD: Consider having size values for items and capaicty limits on containers & backpack (should the crystal box really hold an axe?)
+	- This becomes important for 'take' capacity as well in shrinking puzzle
 
 
 *** How to Add Objects ***
