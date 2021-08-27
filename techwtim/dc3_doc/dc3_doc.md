@@ -11,9 +11,14 @@ Version 3.35 Goals
 	random responses to wrong direction commands ;-D
 	implement scoring
 
-TBD: New Classes
-	TBD: create Consumable Class with Food and Drink child classes
-		TBD Create cheese and bottle of wate and stale bisuits as obj (conditional event on biscuits)
+IN-PROC: New Classes
+	DONE: create Food Class (child of Item)
+		DONE: Crete cheese_wedge obj
+		TBD: create stale_biscuits obj (with Writing)
+	TBD: Create Drink Class (child of Food)
+		TBD: Create glass_bottle obj filled with water obj
+TBD: Wrong direction responese
+TBD: Scoring
 
 
 ##########################
@@ -145,6 +150,11 @@ TBD: Put client-server structure in place early!!
 
 
 ### Switch Classes (button & lever) ###
+
+More obj Ideas:
+- score obj ?
+- timers as obj
+- 'warnings' as obj
 
 
 TBD: Integrate advice from Franco!

@@ -226,4 +226,21 @@ class Container(Door):
 						self.contains.append(obj)
 						buffer(stateful_dict, "Done")
 						
+class Food(Item):
+		def __init__(self, name, full_name, root_name, descript_key, writing, takable, eat_desc):
+				super().__init__(name, full_name, root_name, descript_key, writing, takable)
+				self.eat_desc = eat_desc # description of eating food
+
+		def eat(self, stateful_dict):
+				hand_lst = stateful_dict['hand']
+				room_obj = stateful_dict['room']
+				if scope_check(self, stateful_dict) == False:
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
+				elif self not in hand_lst:
+						output = "You're not holding the " + self.full_name + " in your hand."
+						buffer(stateful_dict, output)
+				else:
+						hand_lst.remove(self)
+						stateful_dict['hand'] = hand_lst
+						buffer(stateful_dict, "Eaten. The " + self.full_name + " tastes " + self.eat_desc)
 
