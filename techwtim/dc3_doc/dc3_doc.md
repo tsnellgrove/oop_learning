@@ -11,11 +11,20 @@ Version 3.35 Goals
 	random responses to wrong direction commands ;-D
 	implement scoring
 
+IDEAS: For Drink Class
+- Make containers chile of Item
+- Implement takeable attribute	(change spelling?)
+- Make box and water not takable
+- implement a container Class without a lid (that cannot be 'openned', 'closed', 'locked', 'unlocked')
+- Implement size attribute for items (so that nothing else can fit in bottle)
+- Implement drink method that checks for container holding beverage
+
 IN-PROC: New Classes
-	DONE: create Food Class (child of Item)
+	DONE: create Food Class (child of Item) with eat method
 		DONE: Crete cheese_wedge obj
 		TBD: create stale_biscuits obj (with Writing)
-	TBD: Create Drink Class (child of Food)
+	TBD: Update Container class to support takeable containers that can't hold anything but Beverage
+	TBD: Create Beverage Class (child of Food) with drink method
 		TBD: Create glass_bottle obj filled with water obj
 TBD: Wrong direction responese
 TBD: Scoring
