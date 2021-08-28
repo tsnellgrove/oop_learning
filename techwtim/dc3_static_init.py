@@ -85,6 +85,10 @@ descript_dict = {
 		'cheese_wedge' : "A small wedge of cheese you absconded with from the larder. It's very small - so small that a lone mouse could probably make off with the whole thing - but your mother was saving it for company so you suspect it's quite delicious.",
 		'stale_biscuits' : "The Stale Biscuits are rather unappetizing. There is a Trademark baked into the biscuits.",
 
+		### eat descriptions ###
+		'cheese_eat' : "tastes delicious!",
+		'biscuit_eat' : "taste like damp cardboard that's been run over by a cart. You rather regret eating them... especially as to some poor creature out there they might be a rare and wonderous delicacy.",
+
 		### test objects ###
 		'brass_key' : "The key is brass.",
 		'bubbly_potion' : "The cork-stopperd glass vial contains a bubbly green potion.",

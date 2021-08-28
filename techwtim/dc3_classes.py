@@ -227,9 +227,9 @@ class Container(Door):
 						buffer(stateful_dict, "Done")
 						
 class Food(Item):
-		def __init__(self, name, full_name, root_name, descript_key, writing, takable, eat_desc):
+		def __init__(self, name, full_name, root_name, descript_key, writing, takable, eat_desc_key):
 				super().__init__(name, full_name, root_name, descript_key, writing, takable)
-				self.eat_desc = eat_desc # description of eating food
+				self.eat_desc_key = eat_desc_key # keys to description of eating food stored in descript_dict
 
 		def eat(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -242,5 +242,5 @@ class Food(Item):
 				else:
 						hand_lst.remove(self)
 						stateful_dict['hand'] = hand_lst
-						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + self.eat_desc)
+						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
 
