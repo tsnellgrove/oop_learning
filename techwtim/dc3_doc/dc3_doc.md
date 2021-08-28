@@ -12,7 +12,11 @@ Version 3.38 Goals
 	implement scoring
 
 IDEAS: For Drink Class
-- Make containers chile of Item
+- NEW THINKING:
+	- Containers can never be taken because they are children of Doors which are children of ViewOnly
+	- and we don't want container methods anyhow (open, close, lock, unlock)
+	- So create new Beverage class as child of Item
+- Make containers child of Item
 - Implement takeable attribute	(change spelling?)
 - Make box and water not takable
 - implement a container Class without a lid (that cannot be 'openned', 'closed', 'locked', 'unlocked')
