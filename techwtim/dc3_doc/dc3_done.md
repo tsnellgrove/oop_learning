@@ -1,5 +1,5 @@
 Done List - Dark Castle v3
-Aug 26, 2021
+Aug 28, 2021
 
 
 
@@ -548,3 +548,21 @@ DONE: Go back and update descriptions and view-only objects from DCv2
 	DONE: Add Throne Room and ViewOnly descriptions
 		DONE: Add Throne Room items: Throne, Silver Key, Scroll, Letters
 		DONE: Add throne_room container: Crystal Box and Calligraphy
+
+
+##########################
+### VERSION 3.35 START ###
+##########################
+
+Version 3.35 Goals
+	New class for Food
+
+DONE: New Class
+	DONE: create Food Class (child of Item) with eat method
+		DONE: Crete cheese_wedge obj
+		DONE: create stale_biscuits obj (with Trademark)
+DONE: Pull eat description from descript_dict
+DONE: provide useful error on trying to examine writing (advise player to 'read')
+	NOTE: Is non-trivial since 'Writing' does not have an examine method. Added guidance in 'help basic' instead
+
+

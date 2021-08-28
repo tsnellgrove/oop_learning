@@ -1,13 +1,13 @@
 To Do List - Dark Castle v3
-Aug 26, 2021
+Aug 28, 2021
 
 
 ##########################
-### VERSION 3.35 START ###
+### VERSION 3.38 START ###
 ##########################
 
-Version 3.35 Goals
-	New classes for consumables
+Version 3.38 Goals
+	New class for Beverage
 	random responses to wrong direction commands ;-D
 	implement scoring
 
@@ -19,25 +19,19 @@ IDEAS: For Drink Class
 - Implement size attribute for items (so that nothing else can fit in bottle)
 - Implement drink method that checks for container holding beverage
 
-DONE: New Class
-	DONE: create Food Class (child of Item) with eat method
-		DONE: Crete cheese_wedge obj
-		DONE: create stale_biscuits obj (with Trademark)
-DONE: Pull eat description from descript_dict
-TBD: provide useful error on trying to examine writing (advise player to 'read')
 TBD: Update Container class to support takeable containers that can't hold anything but Beverage
 TBD: New Class
 	TBD: Create Beverage Class (child of Food) with drink method
 		TBD: Create glass_bottle obj filled with water obj
-TBD: Wrong direction responese
+TBD: Random wrong direction responese
 TBD: Scoring
 
 
 ##########################
-### VERSION 3.38 START ###
+### VERSION 3.40 START ###
 ##########################
 
-Version 3.38 Goals
+Version 3.40 Goals
 	Conditional events before machines
 	Re-org interpreter code into functions and to work with conditional events
 
