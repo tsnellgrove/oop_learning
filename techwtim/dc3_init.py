@@ -17,6 +17,7 @@ messy_handwriting = Writing('messy_handwriting', 'Messy Handwriting', 'handwriti
 small_print = Writing('small_print', 'Small Print', 'print', 'small_print')
 illuminated_letters = Writing('illuminated_letters', 'Illuminated Letters', 'letters', 'illuminated_letters')
 calligraphy = Writing('calligraphy', 'Calligraphy', 'calligraphy', 'calligraphy')
+trademark = Writing('trademark', 'Trademark', 'trademark', 'trademark')
 
 dark_castle = ViewOnly('dark_castle', "Dark Castle", "castle", 'dark_castle', None)
 moat = ViewOnly('moat', 'Moat', 'moat', 'moat', None)
@@ -38,7 +39,8 @@ grimy_axe = Item('grimy_axe', 'Grimy Axe', 'axe', 'grimy_axe', small_print, True
 silver_key = Item('silver_key', 'Silver Key', 'key', 'silver_key', None, True)
 kinging_scroll = Item('kinging_scroll', 'Kinging Scroll', 'scroll', 'kinging_scroll', illuminated_letters, True)
 
-cheese_wedge = Food('cheese_wedge', 'Cheese Wedge', 'cheese', 'cheese_wedge', None, True, "delicious!")
+cheese_wedge = Food('cheese_wedge', 'Cheese Wedge', 'cheese', 'cheese_wedge', None, True, "tastes delicious!")
+stale_biscuits = Food('stale_biscuits', 'Stale Biscuits', 'biscuits', 'stale_biscuits', trademark, True, "taste like damp cardboard that's been run over by a cart. You rather regret eating them... especially as to some poor creature out there they might be a rare and wonderous delicacy.")
 
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
 				False, False, brass_key, False, [bubbly_potion]) # test object
@@ -67,7 +69,7 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 #### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {
 		'hand' : [], 
-		'backpack' : [rusty_key, cheese_wedge],
+		'backpack' : [rusty_key, cheese_wedge, stale_biscuits],
 		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,
 		'out_buff' : "",
@@ -94,7 +96,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, wooden_chest, crystal_box, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, wooden_chest, crystal_box, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 

@@ -22,7 +22,7 @@ IDEAS: For Drink Class
 IN-PROC: New Classes
 	DONE: create Food Class (child of Item) with eat method
 		DONE: Crete cheese_wedge obj
-		TBD: create stale_biscuits obj (with Writing)
+		DONE: create stale_biscuits obj (with Trademark)
 	TBD: Update Container class to support takeable containers that can't hold anything but Beverage
 	TBD: Create Beverage Class (child of Food) with drink method
 		TBD: Create glass_bottle obj filled with water obj

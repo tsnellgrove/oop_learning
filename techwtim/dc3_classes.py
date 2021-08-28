@@ -242,5 +242,5 @@ class Food(Item):
 				else:
 						hand_lst.remove(self)
 						stateful_dict['hand'] = hand_lst
-						buffer(stateful_dict, "Eaten. The " + self.full_name + " tastes " + self.eat_desc)
+						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + self.eat_desc)
 
