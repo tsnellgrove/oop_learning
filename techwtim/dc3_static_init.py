@@ -86,14 +86,14 @@ descript_dict = {
 		'stale_biscuits' : "The Stale Biscuits are rather unappetizing. There is a Trademark baked into the biscuits.",
 
 		### beverage objects ###
-		'fresh_water' : "After your trudge up the hill to get to Dark Castle the Fresh Water looks invitingly refreshing.",
+		'fresh_water' : "After your trudge up the hill to Dark Castle the Fresh Water looks invitingly refreshing.",
 
 		### eat descriptions ###
 		'cheese_eat' : "tastes delicious!",
 		'biscuit_eat' : "taste like damp cardboard that's been run over by a cart. You rather regret eating them... especially as to some poor creature out there they might be a rare and wonderous delicacy.",
 
 		### drink descriptions ###
-		'water_drink' : "That was refreshing!",
+		'water_drink' : "was refreshing!",
 
 		### test objects ###
 		'brass_key' : "The key is brass.",
