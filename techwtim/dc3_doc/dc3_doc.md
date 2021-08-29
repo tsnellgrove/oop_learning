@@ -9,7 +9,6 @@ Aug 28, 2021
 Version 3.38 Goals
 	New class for Beverage
 	random responses to wrong direction commands ;-D
-	implement scoring
 
 IDEAS: Portcullis Door:
 - For portcullis, maybe fix unlock method to say “no keyhole” in key == None ?
@@ -25,7 +24,6 @@ DONE: Create Jug class to support takeable containers that can't hold anything b
 DONE: Create Beverage Class (child of ViewOnly) with drink method
 		DONE: Create glass_bottle obj filled with water obj
 TBD: Random wrong direction responese
-TBD: Scoring
 
 
 ##########################
@@ -33,8 +31,10 @@ TBD: Scoring
 ##########################
 
 Version 3.40 Goals
-	Conditional events before machines
 	Re-org interpreter code into functions and to work with conditional events
+	Re-org interpreter so that the "try" command gets sent back to wapper where it can be inspected
+	Conditional events
+	implement scoring
 
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
@@ -61,6 +61,7 @@ Additional Creature and Conditional Event thoughts:
 - presently my creatures are not mobile but maybe someday?
 - What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
 
+TBD: Scoring (probably in wrapper?)
 
 ##########################
 ### VERSION 3.4 START ###
