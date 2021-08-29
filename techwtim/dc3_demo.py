@@ -245,6 +245,11 @@ def interpreter(user_input):
 
 # wrapper code - calls interpreter and saves game state
 def wrapper(user_input): # version without stateful_dict
+
+		### test commands ###
+#		fresh_water.drink(stateful_dict)
+		### test commands ###
+
 		interpreter(user_input)
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!

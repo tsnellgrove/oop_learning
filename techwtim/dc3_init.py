@@ -42,11 +42,15 @@ kinging_scroll = Item('kinging_scroll', 'Kinging Scroll', 'scroll', 'kinging_scr
 cheese_wedge = Food('cheese_wedge', 'Cheese Wedge', 'cheese', 'cheese_wedge', None, True, 'cheese_eat')
 stale_biscuits = Food('stale_biscuits', 'Stale Biscuits', 'biscuits', 'stale_biscuits', trademark, True, 'biscuit_eat')
 
+fresh_water = Beverage('fresh_water', 'Fresh Water', 'water', 'fresh_water', None, 'water_drink')
+
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
 				False, False, brass_key, False, [bubbly_potion]) # test object
 crystal_box = Container('crystal_box', 'Crystal Box', 'box', 'crystal_box', calligraphy,
 				False, False, silver_key, False, [kinging_scroll])
 # giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
+
+glass_bottle = Jug('glass_bottle', 'Glass Bottle', 'bottle', 'glass_bottle', None, True, True, [fresh_water])
 
 front_gate = Door('front_gate', 'Front Gate', "gate", 'front_gate', rusty_lettering, False, False, rusty_key)
 # screen_door = Door('screen_door', "You should never be able to examine the screen_door", None, False, False, chrome_key)
@@ -69,7 +73,7 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 #### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {
 		'hand' : [], 
-		'backpack' : [rusty_key, cheese_wedge, stale_biscuits],
+		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
 		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,
 		'out_buff' : "",
@@ -96,7 +100,7 @@ port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
 
 # instantiated objects added to list
-master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, wooden_chest, crystal_box, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
+master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
 
 ### if, when the game is done, I want to load variables from pickle ###
 ### (rather than declare openly as in dc3_init ### 

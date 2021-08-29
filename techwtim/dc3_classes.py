@@ -148,6 +148,8 @@ class Door(ViewOnly):
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self.unlock_state == True:
 						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
+				elif self.key is None:
+						buffer(stateful_dict, "You don't see a keyhole for this door.")
 				elif self.key not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the key.")
 				else:
@@ -229,11 +231,11 @@ class Container(Door):
 class Food(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable, eat_desc_key):
 				super().__init__(name, full_name, root_name, descript_key, writing, takable)
-				self.eat_desc_key = eat_desc_key # keys to description of eating food stored in descript_dict
+				self.eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
 
 		def eat(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
-				room_obj = stateful_dict['room']
+#				room_obj = stateful_dict['room']
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self not in hand_lst:
@@ -243,4 +245,30 @@ class Food(Item):
 						hand_lst.remove(self)
 						stateful_dict['hand'] = hand_lst
 						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
+
+class Jug(Item):
+		def __init__(self, name, full_name, root_name, descript_key, writing, takable, open_state, contains):
+				super().__init__(name, full_name, root_name, descript_key, writing, takable)
+				self.open_state = open_state # is the jug uncapped?
+				self.contains = contains # obj in the jug
+
+		def examine(self, stateful_dict):
+				super(Jug, self).examine(stateful_dict)
+				container_desc(self, stateful_dict)
+
+class Beverage(ViewOnly):
+		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):
+				super().__init__(name, full_name, root_name, descript_key, writing)
+				self.drink_desc_key = drink_descript_key # key to description of drinking the beverage (stored in descript_dict)
+
+		def drink(self, stateful_dict):
+				hand_lst = stateful_dict['hand']
+				if scope_check(self, stateful_dict) == False:
+						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
+				elif len(hand_lst) == 0 or self not in hand_lst[0].contains:
+						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
+						buffer(stateful_dict, output)
+				else:
+						hand_lst[0].contains.remove(self)
+						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 

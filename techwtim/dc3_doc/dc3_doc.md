@@ -11,22 +11,19 @@ Version 3.38 Goals
 	random responses to wrong direction commands ;-D
 	implement scoring
 
+IDEAS: Portcullis Door:
+- For portcullis, maybe fix unlock method to say “no keyhole” in key == None ?
+
 IDEAS: For Drink Class
-- NEW THINKING:
 	- Containers can never be taken because they are children of Doors which are children of ViewOnly
 	- and we don't want container methods anyhow (open, close, lock, unlock)
-	- So create new Beverage class as child of Item
-- Make containers child of Item
-- Implement takeable attribute	(change spelling?)
-- Make box and water not takable
-- implement a container Class without a lid (that cannot be 'openned', 'closed', 'locked', 'unlocked')
-- Implement size attribute for items (so that nothing else can fit in bottle)
-- Implement drink method that checks for container holding beverage
+	- So create new Jug class as child of Item
+	- inspect container scope check… I think it just checks for ‘contains’ attribute? 
 
-TBD: Update Container class to support takeable containers that can't hold anything but Beverage
-TBD: New Class
-	TBD: Create Beverage Class (child of Food) with drink method
-		TBD: Create glass_bottle obj filled with water obj
+DONE: Add "no keyhole" error message on key == NONE (portcullis case)
+DONE: Create Jug class to support takeable containers that can't hold anything but Beverage
+DONE: Create Beverage Class (child of ViewOnly) with drink method
+		DONE: Create glass_bottle obj filled with water obj
 TBD: Random wrong direction responese
 TBD: Scoring
 
@@ -57,6 +54,7 @@ More ideas on Conditional Events:
 -  events: conditional-command-list, conditions (list of lists; outer = AND; inner = OR), event-text, events (list); check for end of game in wrapper
 
 Additional Creature and Conditional Event thoughts:
+- Conditional Events could be warnings - not hard stops (e.g. 'eat biscuits')
 - In theory could have order of operations considerations:
 - (e.g. what if a monster causes darkness but you have a sword that glows around monsters?)
 - I don't think these will be a common problem that I need to code for - but worth thinking about

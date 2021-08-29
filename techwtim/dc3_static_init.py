@@ -12,7 +12,7 @@
 ### interpreter function language variables ###
 articles_lst = ['a', 'an', 'the']
 one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
-verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put', 'eat']
+verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put', 'eat', 'drink']
 abbreviations_dict = {
 		'n' : 'north',
 		's' : 'south',
@@ -85,9 +85,15 @@ descript_dict = {
 		'cheese_wedge' : "A small wedge of cheese you absconded with from the larder. It's very small - so small that a lone mouse could probably make off with the whole thing - but your mother was saving it for company so you suspect it's quite delicious.",
 		'stale_biscuits' : "The Stale Biscuits are rather unappetizing. There is a Trademark baked into the biscuits.",
 
+		### beverage objects ###
+		'fresh_water' : "After your trudge up the hill to get to Dark Castle the Fresh Water looks invitingly refreshing.",
+
 		### eat descriptions ###
 		'cheese_eat' : "tastes delicious!",
 		'biscuit_eat' : "taste like damp cardboard that's been run over by a cart. You rather regret eating them... especially as to some poor creature out there they might be a rare and wonderous delicacy.",
+
+		### drink descriptions ###
+		'water_drink' : "That was refreshing!",
 
 		### test objects ###
 		'brass_key' : "The key is brass.",
@@ -96,6 +102,9 @@ descript_dict = {
 				
 		### container objects ###
 		'crystal_box' : "Atop an ornate pillar to the left of the throne sits an intricate Crystal Box. The crystal panels are heavily leaded and skillfully carved such that you're unable to tell what may lie within. There is a silver keyhole on the front of the crystal_box that glitters brilliantly - much like the shiny_sword in fact - in the otherwise dark and brooding room. The top of the Crystal Box is engraved with Calligraphy.",
+		
+		### jug objects ###
+		'glass_bottle' : "A clear glass bottle suitable for carrying a liquid. Alas, if only it was filled with ale...",
 		
 		### door objects ###
 		'front_gate' : "The Front Gate is just north of the Dark Castle's drawbridge. It is 10 feet tall and reenforced with steel bands. Imposing indeed! There is Rusty Lettering across the top of the gate and a rusty keyhole next to a handle.",

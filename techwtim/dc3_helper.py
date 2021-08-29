@@ -31,13 +31,14 @@ def scope_list(stateful_dict):
 		universal_lst = stateful_dict['universal']
 		room_obj_lst = room_obj.room_obj_lst
 		features_lst = room_obj.features
+		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+						+ universal_lst + features_lst)
 		room_containers = []
-		for obj in room_obj_lst:
+		for obj in scope_lst:
 				if hasattr(obj, 'contains'):
 						room_containers.append(obj)
 		open_cont_obj_lst = open_cont_scan(stateful_dict, room_containers)
-		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
-						+ universal_lst + features_lst + open_cont_obj_lst)
+		scope_lst = scope_lst + open_cont_obj_lst
 		scope_lst.append(room_obj)
 		return scope_lst
 
