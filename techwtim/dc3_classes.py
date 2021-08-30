@@ -1,10 +1,11 @@
-# program: dark castle v3.35
+# program: dark castle v3.38
 # name: Tom Snellgrove
-# date: Aug 28, 2021
+# date: Aug 30, 2021
 # description: class deffinition module
 
 
 # import
+import random
 from dc3_static_init import *
 from dc3_helper import *
 
@@ -65,7 +66,9 @@ class Room(ViewOnly):
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
 				if direction not in stateful_dict['paths'][room_obj.name]:
-						buffer(stateful_dict, "You can't go that way.")
+						num = random.randint(0, 4)
+						wrong_way_key = 'wrong_way_' + str(num)
+						buffer(stateful_dict, descript_dict[wrong_way_key])
 				elif direction in self.door_paths:
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state

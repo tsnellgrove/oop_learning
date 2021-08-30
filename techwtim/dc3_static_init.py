@@ -1,6 +1,6 @@
-# program: dark castle v3.35
+# program: dark castle v3.38
 # name: Tom Snellgrove
-# date: Aug 28, 2021
+# date: Aug 30, 2021
 # description: static dictionary initialization function module
 
 
@@ -55,6 +55,13 @@ descript_dict = {
 		'burt' : "Yep, that's you Burt. A fine specimen of a man. If not for the drooling and the farting I don't know how you'd fend off the ladies.",
 		'fist' : "Yep, that's your fist. Still bruised from the last time you swung and missed and hit a wall...", 
 		'conscience' : "Burt, Dark Castle is quite murky enough without pondering your prodigal and Hal-esque misspent youth!",
+
+		### wrong way errors ###
+		'wrong_way_0' : "Ouch! Burt, stop walking into walls!",
+		'wrong_way_1' : "Ouch! You have walked into a wall.",
+		'wrong_way_2' : "There's no exit that way.",
+		'wrong_way_3' : "You can't go that way.",
+		'wrong_way_4' : "And exactly how do you propose to do that?",
 
 		### writing objects ###
 		'rusty_lettering' : "'ABANDON HOPE ALL YE WHO EVEN THINK ABOUT IT'",

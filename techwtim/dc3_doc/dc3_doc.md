@@ -1,29 +1,5 @@
 To Do List - Dark Castle v3
-Aug 28, 2021
-
-
-##########################
-### VERSION 3.38 START ###
-##########################
-
-Version 3.38 Goals
-	New class for Beverage
-	random responses to wrong direction commands ;-D
-
-IDEAS: Portcullis Door:
-- For portcullis, maybe fix unlock method to say “no keyhole” in key == None ?
-
-IDEAS: For Drink Class
-	- Containers can never be taken because they are children of Doors which are children of ViewOnly
-	- and we don't want container methods anyhow (open, close, lock, unlock)
-	- So create new Jug class as child of Item
-	- inspect container scope check… I think it just checks for ‘contains’ attribute? 
-
-DONE: Add "no keyhole" error message on key == NONE (portcullis case)
-DONE: Create Jug class to support takeable containers that can't hold anything but Beverage
-DONE: Create Beverage Class (child of ViewOnly) with drink method
-		DONE: Create glass_bottle obj filled with water obj
-TBD: Random wrong direction responese
+Aug 30, 2021
 
 
 ##########################
@@ -33,6 +9,11 @@ TBD: Random wrong direction responese
 Version 3.40 Goals
 	Re-org interpreter code into functions and to work with conditional events
 	Re-org interpreter so that the "try" command gets sent back to wapper where it can be inspected
+	what about 1-word commands?
+	Need to return is_error, is_1_word, noun, command (???)
+
+
+Version 3.4x Goals
 	Conditional events
 	implement scoring
 

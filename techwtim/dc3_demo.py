@@ -1,6 +1,6 @@
-# program: dark castle v3.35
+# program: dark castle v3.38
 # name: Tom Snellgrove
-# date: Aug 28, 2021
+# date: Aug 30, 2021
 # description: main and interpreter modules for a zork-like text adventure game
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								db integration, avoid external triggers, 
@@ -114,7 +114,7 @@ def true_one_word(stateful_dict, word1, room_obj):
 		elif word1 == 'quit':
 				stateful_dict['game_ending'] = "quit"
 				move_dec(stateful_dict) # quitting is not deemed to be an actual move
-				end(stateful_dict)
+				end(stateful_dict) # maybe move to wrapper?
 		return
 
 def noun_handling(stateful_dict, user_input_lst):
