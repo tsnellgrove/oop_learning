@@ -9,6 +9,7 @@ Aug 30, 2021
 Version 3.40 Goals
 	Re-org interpreter code into functions and to work with conditional events
 	Re-org interpreter so that the "try" command gets sent back to wapper where it can be inspected
+	what about errors?
 	what about 1-word commands?
 	Need to return is_error, is_1_word, noun, command (???)
 
@@ -229,7 +230,8 @@ TBD: Need to dis-entangle modules better
 - Maybe a magic radio (a machine entity like the baking machine) in the Maine Hall that plays "Danni I've got your numbrer" when tuned correctly? Gives clue for potion chest. Also maybe acts as distraction during time travel puzzel - plays over gentle lilting of harp, violins, and triange - which enables Burt to cut in and dance with princess (evil prince is off gyrating hips wildly)? Perhaps the magic radio used to live in the throne room but got moved to the main hall after the 'incident' (note could indicate this) ;-D
 - Radio damaged during move from throne room (speaker out; etc)
 	- Radio volume goes to 11 (crossed out?)
-	- On time travel need right station & full volume to distract prince (learn songs during future time investigation; maybe "moany moany"?)
+	- On time travel need right station & full volume to distract prince (learn songs during future time investigation; maybe "moany moany" or "old time rock and roll"?)
+	- Perhaps wearing Hedgehog brooch (and smiling) are key to winning princess' trust durning time travel?
 
 5.x Additional rooms
 	Have portait of Willie revealed in throne room and give player mouse hole and time travel quest
