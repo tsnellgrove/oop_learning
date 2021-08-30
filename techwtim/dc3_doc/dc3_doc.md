@@ -26,6 +26,7 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 	- default, default description, default method
 	- special event first time, seft_description, seft_method, count
 	- special event additional times, seat_description, seat_method, count
+	- Or maybe just binary cond_event_exists in each obj?
 
 More ideas on Conditional Events:
 - field in each object for associated conditional event
