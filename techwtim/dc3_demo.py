@@ -172,7 +172,7 @@ def interpreter(user_input):
 				move_dec(stateful_dict)
 				return
 
-		# user_input_lst must have at least one word in it
+		# len(user_input_lst) is not < 1 so user_input_lst must have at least one word in it
 		word1 = user_input_lst[0]
 
 		# handle true one-word commands

@@ -12,14 +12,34 @@ Version 3.40 Goals
 	what about errors?
 	what about 1-word commands?
 	Need to return is_error, is_1_word, noun, command (???)
+	Clean-up unneeded 'return's in bottome portion of interpreter
+	implement unknown word random responses
+
+IDEAS:
+- Naming convention: Room Events, Machines, and Creatures are all types of Conditional Events (CEs)
+- Different types of CEs (Conditional Events):
+	- Room Events = always pre-action
+	- Machines = always post-action (exisitng machines = control panel, throne, kinging scroll)
+	- Creatures = pre-action and post action
+
+FINDINGS (from reviewing interpreter code (true for now at least):
+- an error will never trigger a CE
+- a true_one_word command will never trigger a CE
++ converted_one_word commands CAN trigger Room Events
+	- Note: In this case, "north" is converted to "go north" and is then handled as a special case below
+* special case 'go' can trigger a Room Event
+- for now at least, no CEs are triggered by special case 'put' commands
+- CEs are not triggered by special case 'help' commands
+* final 'try' is where all non-Room Event CEs are triggered
+- don't need to return command strings - could just return variabls and cases (where case = error, go, help, put, try)??
 
 
 Version 3.4x Goals
 	Conditional events
 	implement scoring
-	implement unknown word random responses
 
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
+
 
 ### Cutscene ###
 IDEA: Conditional Cutscene Class
@@ -30,6 +50,12 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 	- Or maybe just binary cond_event_exists in each obj?
 	- also need to distinguish pre=action vs. post-action (e.g. 'take sword' vs. 'read lettering' or 'push button')
 	- also need to distinguish 1-time events (e.g. croc) vs. every-time events ('take sword') vs. warnings (e.g. 'eat biscuits')
+
+
+
+
+
+
 
 More ideas on Conditional Events:
 - field in each object for associated conditional event
