@@ -17,6 +17,7 @@ Version 3.40 Goals
 Version 3.4x Goals
 	Conditional events
 	implement scoring
+	implement unknown word random responses
 
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
@@ -27,6 +28,8 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 	- special event first time, seft_description, seft_method, count
 	- special event additional times, seat_description, seat_method, count
 	- Or maybe just binary cond_event_exists in each obj?
+	- also need to distinguish pre=action vs. post-action (e.g. 'take sword' vs. 'read lettering' or 'push button')
+	- also need to distinguish 1-time events (e.g. croc) vs. every-time events ('take sword') vs. warnings (e.g. 'eat biscuits')
 
 More ideas on Conditional Events:
 - field in each object for associated conditional event
