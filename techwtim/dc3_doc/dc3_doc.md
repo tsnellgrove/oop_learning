@@ -6,19 +6,17 @@ Aug 30, 2021
 ### VERSION 3.40 START ###
 ##########################
 
-Version 3.40 Goals
-	Re-org interpreter code into functions and to work with conditional events
-	Re-org interpreter so that the "try" command gets sent back to wapper where it can be inspected
-	what about errors?
-	what about 1-word commands?
-	Need to return is_error, is_1_word, noun, command (???)
+Version 3.40 Goals:
+	Review interpreter code to understand flow and cases
+	Extract method 'execution' and move to a separate routine called by wrapper
 	Clean-up unneeded 'return's in bottome portion of interpreter
 	implement unknown word random responses
 
-IDEAS:
+IDEAS (structure):
 - Naming convention: Room Events, Machines, and Creatures are all types of Conditional Events (CEs)
 - Different types of CEs (Conditional Events):
 	- Room Events = always pre-action
+	- Warnings = always pre-action
 	- Machines = always post-action (exisitng machines = control panel, throne, kinging scroll)
 	- Creatures = pre-action and post action
 
@@ -31,14 +29,33 @@ FINDINGS (from reviewing interpreter code (true for now at least):
 - for now at least, no CEs are triggered by special case 'put' commands
 - CEs are not triggered by special case 'help' commands
 * final 'try' is where all non-Room Event CEs are triggered
-- don't need to return command strings - could just return variabls and cases (where case = error, go, help, put, try)??
+
+IDEAS (implementation):
+- don't need to return to wrapper command strings - could just return case (error, tru_1word, go, help, put, try) and word_lst
+- for case = error, tru_1word, or help no need for execution
+- for case = go, put, or try - wrapper sends case and word_lst to execution
+- Check for Room Event triggers before (possibly in place of) execution
+- Check for Warning triggers before (possibly in place of) execution
+- Check for Machine triggers after execution
+- Check for Creature triggers both before and after
+
+DONE: Review interpreter code to understand flow and cases
+TBD: Clean-up unneeded 'return's in bottome portion of interpreter
+TBD: Separate 'interpret' and 'execute method' portions of interpreter()
+TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)?
+TBD:implement unknown word random responses
+
+
+
+
 
 
 Version 3.4x Goals
-	Conditional events
+	Room Events
+	
+
 	implement scoring
 
-TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)
 
 
 ### Cutscene ###
@@ -52,12 +69,8 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 	- also need to distinguish 1-time events (e.g. croc) vs. every-time events ('take sword') vs. warnings (e.g. 'eat biscuits')
 
 
-
-
-
-
-
 More ideas on Conditional Events:
+- Would like Room Events to be somehow linked to the Room obj so that you can inspect obj and know there will be a CE
 - field in each object for associated conditional event
 - Idea is that Interpreter returns standard_command and noun_obj to wrapper
 - wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
