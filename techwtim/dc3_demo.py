@@ -206,10 +206,11 @@ def interpreter(user_input):
 		if word1 == 'go':
 				word2 = user_input_lst[1]
 				getattr(room_obj, word1)(word2, stateful_dict)
-				return
+				return 
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
 				help(stateful_dict, word2)
+				return
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
 						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
@@ -219,27 +220,26 @@ def interpreter(user_input):
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-						exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
-						if exit_state:
+						noun_exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
+						dir_obj_exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
+						if noun_exit_state or dir_obj_exit_state:
 								return
-						exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
-						if exit_state:
-								return
-						try:
-								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
-						except:
-								buffer(stateful_dict, "That doesn't work.")
-								move_dec(stateful_dict)
-						return
+						else:
+								try:
+										getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+								except:
+										buffer(stateful_dict, "That doesn't work.")
+										move_dec(stateful_dict)
 		else:
 				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
 						return
-				try:
-						getattr(word2_obj, word1)(stateful_dict)
-				except:
-						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
-						move_dec(stateful_dict)
+				else:
+						try:
+								getattr(word2_obj, word1)(stateful_dict)
+						except:
+								buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
+								move_dec(stateful_dict)
 		return
 
 

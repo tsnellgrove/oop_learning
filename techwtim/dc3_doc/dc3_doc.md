@@ -13,7 +13,7 @@ Version 3.40 Goals:
 	implement unknown word random responses
 
 IDEAS (structure):
-- Naming convention: Room Events, Machines, and Creatures are all types of Conditional Events (CEs)
+- Naming convention: Room Events, Warnings, Machines, and Creatures are all types of Conditional Events (CEs)
 - Different types of CEs (Conditional Events):
 	- Room Events = always pre-action
 	- Warnings = always pre-action
@@ -31,7 +31,7 @@ FINDINGS (from reviewing interpreter code (true for now at least):
 * final 'try' is where all non-Room Event CEs are triggered
 
 IDEAS (implementation):
-- don't need to return to wrapper command strings - could just return case (error, tru_1word, go, help, put, try) and word_lst
+- don't need to return to wrapper command strings - could just return case (error, tru_1word, go, help, put, 2_word) and word_lst
 - for case = error, tru_1word, or help no need for execution
 - for case = go, put, or try - wrapper sends case and word_lst to execution
 - Check for Room Event triggers before (possibly in place of) execution
@@ -40,10 +40,13 @@ IDEAS (implementation):
 - Check for Creature triggers both before and after
 
 DONE: Review interpreter code to understand flow and cases
-TBD: Clean-up unneeded 'return's in bottome portion of interpreter
+DONE: Clean-up 'return's in interpreter to support case approach
 TBD: Separate 'interpret' and 'execute method' portions of interpreter()
-TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)?
-TBD:implement unknown word random responses
+	TBD: Return 'case' and 'word_lst' to wrapper from interpreter
+	TBD: Create 'execute' function in demo module; pass it 'case', 'word_lst', and stateful_dict
+	TBD: Comment out 'tries' in interpreter()
+	TBD: Clean up comments
+TBD:implement unknown word random responses in execute()
 
 
 
@@ -64,6 +67,7 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 	- default, default description, default method
 	- special event first time, seft_description, seft_method, count
 	- special event additional times, seat_description, seat_method, count
+	- track numbrer of times CE is run?
 	- Or maybe just binary cond_event_exists in each obj?
 	- also need to distinguish pre=action vs. post-action (e.g. 'take sword' vs. 'read lettering' or 'push button')
 	- also need to distinguish 1-time events (e.g. croc) vs. every-time events ('take sword') vs. warnings (e.g. 'eat biscuits')
@@ -124,7 +128,8 @@ TBD: implement scoring
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 TBD: Figure out a way in web browser to show all adventure text in scrolling window
 TBD: Consider having size values for items and capaicty limits on containers & backpack (should the crystal box really hold an axe?)
-	- This becomes important for 'take' capacity as well in shrinking puzzle
+	- This becomes important for 'take' capacity as well in shrinking puzzle (??)
+TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)?
 
 
 *** How to Add Objects ***
