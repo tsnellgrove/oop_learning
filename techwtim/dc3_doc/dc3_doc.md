@@ -24,27 +24,28 @@ FINDINGS (from reviewing interpreter code (true for now at least):
 - an error will never trigger a CE
 - a true_one_word command will never trigger a CE
 + converted_one_word commands CAN trigger Room Events
-	- Note: In this case, "north" is converted to "go north" and is then handled as a special case below
+	- Note: In this case, "north" is converted to "go north" and is then handled as special case 'go' below
 * special case 'go' can trigger a Room Event
-- for now at least, no CEs are triggered by special case 'put' commands
+* for now at least, no CEs are triggered by special case 'put' commands (but they could be!)
 - CEs are not triggered by special case 'help' commands
 * final 'try' is where all non-Room Event CEs are triggered
 
 IDEAS (implementation):
 - don't need to return to wrapper command strings - could just return case (error, tru_1word, go, help, put, 2_word) and word_lst
-- for case = error, tru_1word, or help no need for execution
-- for case = go, put, or try - wrapper sends case and word_lst to execution
-- Check for Room Event triggers before (possibly in place of) execution
-- Check for Warning triggers before (possibly in place of) execution
-- Check for Machine triggers after execution
-- Check for Creature triggers both before and after
+- for case == error, tru_1word, or help no need for execution
+- for case == go, put, or try - wrapper sends case and word_lst to cmd_execution()
+- Check for Room Event triggers before (possibly in place of) cmd_execution()
+- Check for Warning triggers before (possibly in place of) cmd_execution()
+- Check for Machine triggers after cmd_execution()
+- Check for Creature triggers both before and after cmd_execution()
 
 DONE: Review interpreter code to understand flow and cases
 DONE: Clean-up 'return's in interpreter to support case approach
-TBD: Separate 'interpret' and 'execute method' portions of interpreter()
-	TBD: Return 'case' and 'word_lst' to wrapper from interpreter
-	TBD: Create 'execute' function in demo module; pass it 'case', 'word_lst', and stateful_dict
+IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
+	DONE: Return 'case' and 'word_lst' to wrapper from interpreter
+	TBD: Create cmd_execution() function in demo module; pass it 'case', 'word_lst', and stateful_dict
 	TBD: Comment out 'tries' in interpreter()
+	TBD: Optimize interpreter() code
 	TBD: Clean up comments
 TBD:implement unknown word random responses in execute()
 
