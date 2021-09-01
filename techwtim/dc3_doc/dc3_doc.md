@@ -39,6 +39,10 @@ IDEAS (implementation):
 - Check for Machine triggers after cmd_execution()
 - Check for Creature triggers both before and after cmd_execution()
 
+MORE IDEAS: Maybe implement Room Events similar to paths via dictionary in each room obj?
+- Still need an obj to hold data for CE and a function to execute it
+- Idea is that death by croc would be the Room Event and Saved by Weapon would be a pre-action trigger?
+
 DONE: Review interpreter code to understand flow and cases
 DONE: Clean-up 'return's in interpreter to support case approach
 IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
@@ -56,8 +60,6 @@ TBD:implement unknown word random responses in execute()
 
 Version 3.4x Goals
 	Room Events
-	
-
 	implement scoring
 
 
