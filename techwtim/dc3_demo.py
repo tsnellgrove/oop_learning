@@ -160,7 +160,7 @@ def noun_handling(stateful_dict, user_input_lst):
 
 
 # interpreter
-def interpreter(user_input):
+def interpreter(stateful_dict, user_input):
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
 		room_obj = stateful_dict['room']
 		stateful_dict['out_buff'] = "" # resets buffer
@@ -205,7 +205,7 @@ def interpreter(user_input):
 		# handle 2-word commands (special cases first else general case)
 		if word1 == 'go':
 				word2 = user_input_lst[1]
-				getattr(room_obj, word1)(word2, stateful_dict)
+##				getattr(room_obj, word1)(word2, stateful_dict)
 				return 'go', [room_obj, word1, word2]
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
@@ -225,24 +225,44 @@ def interpreter(user_input):
 						if noun_exit_state or dir_obj_exit_state:
 								return 'error', []
 						else:
-								try:
-										getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
-								except:
-										buffer(stateful_dict, "That doesn't work.")
-										move_dec(stateful_dict)
+##								try:
+##										getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+##								except:
+##										buffer(stateful_dict, "That doesn't work.")
+##										move_dec(stateful_dict)
 								return 'put', [dirobj_obj, word1, noun_obj]
 		else:
 				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
 				if exit_state:
 						return 'error', []
 				else:
-						try:
-								getattr(word2_obj, word1)(stateful_dict)
-						except:
-								buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
-								move_dec(stateful_dict)
+##						try:
+##								getattr(word2_obj, word1)(stateful_dict)
+##						except:
+##								buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
+##								move_dec(stateful_dict)
 						return '2word', [word2_obj, word1]
-		return '???', [] # does not appear to be needed?
+##		return '???', [] # does not appear to be needed?
+
+
+def cmd_execute(stateful_dict, case, word_lst):
+		if case == 'go':
+				room_obj, word1, word2 = word_lst
+				getattr(room_obj, word1)(word2, stateful_dict)
+		elif case == '2word':
+				word2_obj, word1 = word_lst
+				try:
+						getattr(word2_obj, word1)(stateful_dict)
+				except:
+						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
+						move_dec(stateful_dict)
+		else: # case == 'put'
+				dirobj_obj, word1, noun_obj = word_lst
+				try:
+						getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+				except:
+						buffer(stateful_dict, "That doesn't work.")
+						move_dec(stateful_dict)
 
 
 # wrapper code - calls interpreter and saves game state
@@ -252,10 +272,13 @@ def wrapper(user_input):
 #		fresh_water.drink(stateful_dict)
 		### test commands ###
 
-		case, word_lst = interpreter(user_input)
+		case, word_lst = interpreter(stateful_dict, user_input)
 
-		buffer(stateful_dict, case) # troubleshooting
-		buffer(stateful_dict, str(word_lst)) # troubleshooting
+##		buffer(stateful_dict, case) # troubleshooting
+##		buffer(stateful_dict, str(word_lst)) # troubleshooting
+		
+		if case in ['go', 'put', '2word']:
+				cmd_execute(stateful_dict, case, word_lst)
 
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!
