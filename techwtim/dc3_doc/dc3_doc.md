@@ -47,11 +47,13 @@ DONE: Review interpreter code to understand flow and cases
 DONE: Clean-up 'return's in interpreter to support case approach
 IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
 	DONE: Return 'case' and 'word_lst' to wrapper from interpreter
-	TBD: Create cmd_execution() function in demo module; pass it 'case', 'word_lst', and stateful_dict
-	TBD: Comment out 'tries' in interpreter()
+	DONE: Create cmd_execution() function in demo module; pass it 'case', 'word_lst', and stateful_dict
+	DONE: Comment out 'tries' in interpreter()
+	DONE: Clean up comments
 	TBD: Optimize interpreter() code
 	TBD: Clean up comments
-TBD:implement unknown word random responses in execute()
+TBD: implement unknown word random responses in execute()
+TBD: Create a function for Class socope checks (they repleat a lot!)
 
 
 
