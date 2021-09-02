@@ -161,13 +161,11 @@ def noun_handling(stateful_dict, user_input_lst):
 
 # interpreter
 def interpreter(stateful_dict, user_input):
-		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1 
 		room_obj = stateful_dict['room']
-		stateful_dict['out_buff'] = "" # resets buffer
-
 		user_input_lst = input_cleanup(user_input)
- 
-		if len(user_input_lst) < 1: # no input or the only input is articles
+
+		# error if no input or the only input is articles 
+		if len(user_input_lst) < 1:
 				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
 				move_dec(stateful_dict)
 				return 'error', []
@@ -192,7 +190,7 @@ def interpreter(stateful_dict, user_input):
 						buffer(stateful_dict, word1 + " what?")
 						move_dec(stateful_dict)
 				else:
-						buffer(stateful_dict, "I don't understand what you're trying to say?")
+						buffer(stateful_dict, "I don't understand what you're trying to say?") # candidate for random error
 						move_dec(stateful_dict)
 				return 'error', []
 
@@ -255,6 +253,8 @@ def cmd_execute(stateful_dict, case, word_lst):
 
 # wrapper code - calls interpreter and saves game state
 def wrapper(user_input):
+		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1
+		stateful_dict['out_buff'] = "" # resets buffer
 
 		### test commands ###
 #		fresh_water.drink(stateful_dict)

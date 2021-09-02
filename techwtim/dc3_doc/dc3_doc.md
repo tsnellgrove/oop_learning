@@ -50,12 +50,10 @@ IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
 	DONE: Create cmd_execution() function in demo module; pass it 'case', 'word_lst', and stateful_dict
 	DONE: Comment out 'tries' in interpreter()
 	DONE: Clean up comments
-	TBD: Optimize interpreter() code
-	TBD: Clean up comments
+	DONE: Review / optimize interpreter() code
 TBD: implement unknown word random responses in execute()
-TBD: Create a function for Class socope checks (they repleat a lot!)
-
-
+TBD: Create a scope_error() function for Class socope checks (they repleat a lot!)
+TBD: Provied 'read help' option that explains where to use examine vs. read
 
 
 
