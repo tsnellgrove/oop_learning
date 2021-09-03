@@ -19,6 +19,10 @@ class Writing(object):
 				self.descript_key = descript_key
 
 		def read(self, stateful_dict):
+#				if scope_check(self, stateful_dict) == False: # std scope check doesn't work for writing
+#						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
+#				elif writing_check(self, stateful_dict) == False:
+#						buffer(stateful_dict, "You can't read the " + self.full_name + ".")
 				if writing_check(self, stateful_dict) == False:
 						if scope_check(self, stateful_dict) == False:
 								buffer(stateful_dict, "You can't see any " + self.full_name + " here.")

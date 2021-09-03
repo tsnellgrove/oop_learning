@@ -134,6 +134,7 @@ TBD: Figure out a way in web browser to show all adventure text in scrolling win
 TBD: Consider having size values for items and capaicty limits on containers & backpack (should the crystal box really hold an axe?)
 	- This becomes important for 'take' capacity as well in shrinking puzzle (??)
 TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)?
+TBD: Normalize scope_check() for objects of class Writing?
 
 
 *** How to Add Objects ***
