@@ -20,7 +20,10 @@ class Writing(object):
 
 		def read(self, stateful_dict):
 				if writing_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
+						if scope_check(self, stateful_dict) == False:
+								buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
+						else:
+								buffer(stateful_dict, "You can't read the " + self.full_name + ".")
 				elif self.descript_key in stateful_dict['descript_updates']:
 						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:

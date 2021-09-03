@@ -192,7 +192,10 @@ def interpreter(stateful_dict, user_input):
 						buffer(stateful_dict, word1 + " what?")
 						move_dec(stateful_dict)
 				else:
-						buffer(stateful_dict, "I don't understand what you're trying to say?") # candidate for random error
+						num = random.randint(0, 4)
+						interp_error_key = 'interp_error_' + str(num)
+						buffer(stateful_dict, descript_dict[interp_error_key])
+#						buffer(stateful_dict, "I don't understand what you're trying to say?") # candidate for random error
 						move_dec(stateful_dict)
 				return 'error', []
 
@@ -242,14 +245,20 @@ def cmd_execute(stateful_dict, case, word_lst):
 				try:
 						getattr(word2_obj, word1)(stateful_dict)
 				except:
-						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".")
+						num = random.randint(0, 4)
+						interp_error_key = 'interp_error_' + str(num)
+						buffer(stateful_dict, descript_dict[interp_error_key])
+#						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
 						move_dec(stateful_dict)
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
 				try:
 						getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
 				except:
-						buffer(stateful_dict, "That doesn't work.")
+						num = random.randint(0, 4)
+						interp_error_key = 'interp_error_' + str(num)
+						buffer(stateful_dict, descript_dict[interp_error_key])
+#						buffer(stateful_dict, "That doesn't work.") # old error
 						move_dec(stateful_dict)
 
 

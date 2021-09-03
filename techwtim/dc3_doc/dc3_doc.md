@@ -52,9 +52,9 @@ IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
 	DONE: Clean up comments
 	DONE: Review / optimize interpreter() code
 DONE: Provied 'read help' option that explains where to use examine vs. read
-TBD: implement unknown word random responses in execute()
+DONE: Improve read error
+DONE: implement unknown word random responses in cmd_execute() and interpreter()
 TBD: Create a scope_error() function for Class socope checks (they repleat a lot!)
-
 
 
 
