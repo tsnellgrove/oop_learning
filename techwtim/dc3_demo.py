@@ -76,6 +76,8 @@ def help(stateful_dict, option):
 				buffer(stateful_dict, output)
 		elif option == 'prepositions':
 					buffer(stateful_dict, descript_dict['help_prepositions'])
+		elif option == 'read':
+					buffer(stateful_dict, descript_dict['help_read'])
 		else:
 				buffer(stateful_dict, descript_dict['help'])
 

@@ -51,9 +51,10 @@ IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
 	DONE: Comment out 'tries' in interpreter()
 	DONE: Clean up comments
 	DONE: Review / optimize interpreter() code
+DONE: Provied 'read help' option that explains where to use examine vs. read
 TBD: implement unknown word random responses in execute()
 TBD: Create a scope_error() function for Class socope checks (they repleat a lot!)
-TBD: Provied 'read help' option that explains where to use examine vs. read
+
 
 
 
