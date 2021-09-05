@@ -243,6 +243,7 @@ def cmd_execute(stateful_dict, case, word_lst):
 				getattr(room_obj, word1)(word2, stateful_dict)
 		elif case == '2word':
 				word2_obj, word1 = word_lst
+#				print(word1)
 				try:
 						getattr(word2_obj, word1)(stateful_dict)
 				except:
@@ -253,8 +254,6 @@ def cmd_execute(stateful_dict, case, word_lst):
 						move_dec(stateful_dict)
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
-##				print(noun_obj)
-##				noun_obj_obj = str_to_class(noun_obj)
 				if scope_check(noun_obj, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + noun_obj.full_name + " here.")
 						return
@@ -268,7 +267,6 @@ def cmd_execute(stateful_dict, case, word_lst):
 								num = random.randint(0, 4)
 								interp_error_key = 'interp_error_' + str(num)
 								buffer(stateful_dict, descript_dict[interp_error_key])
-#								buffer(stateful_dict, "That doesn't work.") # old error
 								move_dec(stateful_dict)
 
 
@@ -282,8 +280,10 @@ def wrapper(user_input):
 		### test commands ###
 
 		case, word_lst = interpreter(stateful_dict, user_input)
+		# pre-action triggers will go here
 		if case in ['go', 'put', '2word']:
 				cmd_execute(stateful_dict, case, word_lst)
+		# post-action triggers will go here
 
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!

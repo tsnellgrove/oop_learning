@@ -28,11 +28,6 @@ class Writing(object):
 		# consider a 'set_description' method for over-rides
 
 		def read(self, stateful_dict):
-				# Note std scope check doesn't work for writing
-				# if scope_check(self, stateful_dict) == False:
-						# buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
-				# elif writing_check(self, stateful_dict) == False:
-						# buffer(stateful_dict, "You can't read the " + self.full_name + ".")
 				if writing_check(self, stateful_dict) == False:
 						if scope_check(self, stateful_dict) == False:
 								buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
@@ -41,7 +36,6 @@ class Writing(object):
 				elif self.descript_key in stateful_dict['descript_updates']:
 						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
-#						buffer(stateful_dict, descript_dict[self.descript_key])
 						buffer(stateful_dict, self.get_description())
 
 		def __repr__(self):
@@ -58,7 +52,6 @@ class ViewOnly(Writing):
 				elif self.descript_key in stateful_dict['descript_updates']:
 						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
-#						buffer(stateful_dict, descript_dict[self.descript_key])
 						buffer(stateful_dict, self.get_description())
 						if self.writing is not None:
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
@@ -232,11 +225,6 @@ class Container(Door):
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
-##				if scope_check(self, stateful_dict) == False:
-##						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
-##				elif scope_check(obj, stateful_dict) == False:
-##						buffer(stateful_dict, "You can't see a " + obj.full_name + " here.")
-##				elif len(hand_lst) == 0:
 				if len(hand_lst) == 0:
 						buffer(stateful_dict, "Your hand is empty")
 				elif obj not in hand_lst:
@@ -258,7 +246,6 @@ class Food(Item):
 
 		def eat(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
-#				room_obj = stateful_dict['room']
 				if scope_check(self, stateful_dict) == False:
 						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 				elif self not in hand_lst:
