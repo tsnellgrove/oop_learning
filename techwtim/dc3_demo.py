@@ -243,15 +243,24 @@ def cmd_execute(stateful_dict, case, word_lst):
 				getattr(room_obj, word1)(word2, stateful_dict)
 		elif case == '2word':
 				word2_obj, word1 = word_lst
-#				print(word1)
-				try:
-						getattr(word2_obj, word1)(stateful_dict)
-				except:
-						num = random.randint(0, 4)
-						interp_error_key = 'interp_error_' + str(num)
-						buffer(stateful_dict, descript_dict[interp_error_key])
-#						buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
-						move_dec(stateful_dict)
+				if word1 == 'read' and  writing_check(word2_obj, stateful_dict) == False:
+						if scope_check(word2_obj, stateful_dict) == False:
+								buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
+								return
+						else:
+								buffer(stateful_dict, "You can't read the " + word2_obj.full_name + ".")
+								return
+				elif scope_check(word2_obj, stateful_dict) == False:
+						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
+				else:
+						try:
+								getattr(word2_obj, word1)(stateful_dict)
+						except:
+								num = random.randint(0, 4)
+								interp_error_key = 'interp_error_' + str(num)
+								buffer(stateful_dict, descript_dict[interp_error_key])
+#								buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
+								move_dec(stateful_dict)
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
 				if scope_check(noun_obj, stateful_dict) == False:

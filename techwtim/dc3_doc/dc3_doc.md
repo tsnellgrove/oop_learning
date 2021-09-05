@@ -57,8 +57,9 @@ DONE: implement unknown word random responses in cmd_execute() and interpreter()
 IN-PROC: Create a scope_error() function for Class socope checks (they repleat a lot!)
 	DONE: put case
 	DONE: clean up comments
-	TBD: 2word case (non-read)
-	TBD: 2word case (read)
+	DONE: 2word case (non-read)
+	DONE: 2word case (read)
+	TBD: Clean up comments
 
 
 
@@ -268,6 +269,7 @@ Some Day Maybe
 TBD: Is the Item class worth having??? Particularly, do I need the "takeable" attribute
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Need to dis-entangle modules better
+TBD: get rid of Item takeable attribute
 
 
 ### New Puzzle Ideas ###
