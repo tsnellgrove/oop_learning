@@ -237,6 +237,7 @@ def interpreter(stateful_dict, user_input):
 
 
 def cmd_execute(stateful_dict, case, word_lst):
+
 		if case == 'go':
 				room_obj, word1, word2 = word_lst
 				getattr(room_obj, word1)(word2, stateful_dict)
@@ -252,14 +253,23 @@ def cmd_execute(stateful_dict, case, word_lst):
 						move_dec(stateful_dict)
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
-				try:
-						getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
-				except:
-						num = random.randint(0, 4)
-						interp_error_key = 'interp_error_' + str(num)
-						buffer(stateful_dict, descript_dict[interp_error_key])
-#						buffer(stateful_dict, "That doesn't work.") # old error
-						move_dec(stateful_dict)
+##				print(noun_obj)
+##				noun_obj_obj = str_to_class(noun_obj)
+				if scope_check(noun_obj, stateful_dict) == False:
+						buffer(stateful_dict, "You can't see a " + noun_obj.full_name + " here.")
+						return
+				elif scope_check(dirobj_obj, stateful_dict) == False:
+						buffer(stateful_dict, "You can't see a " + dirobj_obj.full_name + " here.")
+						return 
+				else:
+						try:
+								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+						except:
+								num = random.randint(0, 4)
+								interp_error_key = 'interp_error_' + str(num)
+								buffer(stateful_dict, descript_dict[interp_error_key])
+#								buffer(stateful_dict, "That doesn't work.") # old error
+								move_dec(stateful_dict)
 
 
 # wrapper code - calls interpreter and saves game state
@@ -268,7 +278,7 @@ def wrapper(user_input):
 		stateful_dict['out_buff'] = "" # resets buffer
 
 		### test commands ###
-#		fresh_water.drink(stateful_dict)
+#		dark_castle.examine(stateful_dict)
 		### test commands ###
 
 		case, word_lst = interpreter(stateful_dict, user_input)

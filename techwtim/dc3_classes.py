@@ -18,20 +18,31 @@ class Writing(object):
 				self.root_name = root_name
 				self.descript_key = descript_key
 
+		def get_description(self):
+#				if self.descript_key in stateful_dict['descript_updates']: # stateful_dict not yet defined
+#						description = stateful_dict['descript_updates'][self.descript_key]
+#				else:
+				description = descript_dict[self.descript_key]
+				return description
+
+		# consider a 'set_description' method for over-rides
+
 		def read(self, stateful_dict):
-#				if scope_check(self, stateful_dict) == False: # std scope check doesn't work for writing
-#						buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
-#				elif writing_check(self, stateful_dict) == False:
-#						buffer(stateful_dict, "You can't read the " + self.full_name + ".")
+				# Note std scope check doesn't work for writing
+				# if scope_check(self, stateful_dict) == False:
+						# buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
+				# elif writing_check(self, stateful_dict) == False:
+						# buffer(stateful_dict, "You can't read the " + self.full_name + ".")
 				if writing_check(self, stateful_dict) == False:
 						if scope_check(self, stateful_dict) == False:
-								buffer(stateful_dict, "You can't see any " + self.full_name + " here.")
+								buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
 						else:
 								buffer(stateful_dict, "You can't read the " + self.full_name + ".")
 				elif self.descript_key in stateful_dict['descript_updates']:
 						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
-						buffer(stateful_dict, descript_dict[self.descript_key])
+#						buffer(stateful_dict, descript_dict[self.descript_key])
+						buffer(stateful_dict, self.get_description())
 
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
@@ -47,7 +58,8 @@ class ViewOnly(Writing):
 				elif self.descript_key in stateful_dict['descript_updates']:
 						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
-						buffer(stateful_dict, descript_dict[self.descript_key])
+#						buffer(stateful_dict, descript_dict[self.descript_key])
+						buffer(stateful_dict, self.get_description())
 						if self.writing is not None:
 								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
@@ -220,11 +232,12 @@ class Container(Door):
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
-				if scope_check(self, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
-				elif scope_check(obj, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + obj.full_name + " here.")
-				elif len(hand_lst) == 0:
+##				if scope_check(self, stateful_dict) == False:
+##						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
+##				elif scope_check(obj, stateful_dict) == False:
+##						buffer(stateful_dict, "You can't see a " + obj.full_name + " here.")
+##				elif len(hand_lst) == 0:
+				if len(hand_lst) == 0:
 						buffer(stateful_dict, "Your hand is empty")
 				elif obj not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)

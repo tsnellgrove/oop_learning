@@ -54,8 +54,14 @@ IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
 DONE: Provied 'read help' option that explains where to use examine vs. read
 DONE: Improve read error
 DONE: implement unknown word random responses in cmd_execute() and interpreter()
-TBD: Create a scope_error() function for Class socope checks (they repleat a lot!)
-
+IN-PROC: Create a scope_error() function for Class socope checks (they repleat a lot!)
+	DONE: put case
+	TBD: clean up comments
+	TBD: 2word case (non-read)
+	TBD: 2word case (read)
+TBD: Franco: implement gets & sets (see Writing get_description example)
+TBD: Franco: think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
+TBD: Franco: think about using dictionary of functions
 
 
 
