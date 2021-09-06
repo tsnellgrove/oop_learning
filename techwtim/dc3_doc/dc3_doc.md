@@ -8,6 +8,7 @@ Sept 5, 2021
 
 Version 3.42 Goals
 
+tbd: container hasattrib => method in Writing
 TBD: Franco: implement gets & sets (see Writing get_description example)
 TBD: Franco: think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
 TBD: Franco: think about using dictionary of functions
