@@ -1,72 +1,12 @@
 To Do List - Dark Castle v3
-Aug 30, 2021
+Sept 5, 2021
 
 
 ##########################
-### VERSION 3.40 START ###
+### VERSION 3.42 START ###
 ##########################
 
-Version 3.40 Goals:
-	Review interpreter code to understand flow and cases
-	Extract method 'execution' and move to a separate routine called by wrapper
-	Clean-up unneeded 'return's in bottome portion of interpreter
-	implement unknown word random responses
-
-IDEAS (structure):
-- Naming convention: Room Events, Warnings, Machines, and Creatures are all types of Conditional Events (CEs)
-- Different types of CEs (Conditional Events):
-	- Room Events = always pre-action
-	- Warnings = always pre-action
-	- Machines = always post-action (exisitng machines = control panel, throne, kinging scroll)
-	- Creatures = pre-action and post action
-
-FINDINGS (from reviewing interpreter code (true for now at least):
-- an error will never trigger a CE
-- a true_one_word command will never trigger a CE
-+ converted_one_word commands CAN trigger Room Events
-	- Note: In this case, "north" is converted to "go north" and is then handled as special case 'go' below
-* special case 'go' can trigger a Room Event
-* for now at least, no CEs are triggered by special case 'put' commands (but they could be!)
-- CEs are not triggered by special case 'help' commands
-* final 'try' is where all non-Room Event CEs are triggered
-
-IDEAS (implementation):
-- don't need to return to wrapper command strings - could just return case (error, tru_1word, go, help, put, 2_word) and word_lst
-- for case == error, tru_1word, or help no need for execution
-- for case == go, put, or try - wrapper sends case and word_lst to cmd_execution()
-- Check for Room Event triggers before (possibly in place of) cmd_execution()
-- Check for Warning triggers before (possibly in place of) cmd_execution()
-- Check for Machine triggers after cmd_execution()
-- Check for Creature triggers both before and after cmd_execution()
-
-MORE IDEAS: Maybe implement Room Events similar to paths via dictionary in each room obj?
-- Still need an obj to hold data for CE and a function to execute it
-- Idea is that death by croc would be the Room Event and Saved by Weapon would be a pre-action trigger?
-
-DONE: Review interpreter code to understand flow and cases
-DONE: Clean-up 'return's in interpreter to support case approach
-IN-PROC: Separate 'interpret' and 'execute method' portions of interpreter()
-	DONE: Return 'case' and 'word_lst' to wrapper from interpreter
-	DONE: Create cmd_execution() function in demo module; pass it 'case', 'word_lst', and stateful_dict
-	DONE: Comment out 'tries' in interpreter()
-	DONE: Clean up comments
-	DONE: Review / optimize interpreter() code
-DONE: Provied 'read help' option that explains where to use examine vs. read
-DONE: Improve read error
-DONE: implement unknown word random responses in cmd_execute() and interpreter()
-IN-PROC: Create a scope_error() function for Class socope checks (they repleat a lot!)
-	DONE: put case
-	DONE: clean up comments
-	DONE: 2word case (non-read)
-	DONE: 2word case (read)
-	DONE: Fix 2word case
-	DONE: Fix water scope checks in class
-	TBD: Clean up comments
-
-
-
-
-Version 3.4x Goals
+Version 3.42 Goals
 
 TBD: Franco: implement gets & sets (see Writing get_description example)
 TBD: Franco: think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state

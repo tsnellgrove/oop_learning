@@ -1,6 +1,6 @@
-# program: dark castle v3.38
+# program: dark castle v3.40
 # name: Tom Snellgrove
-# date: Aug 30, 2021
+# date: Sept 5, 2021
 # description: object instantiation module
 
 

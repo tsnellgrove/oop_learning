@@ -1,6 +1,6 @@
-# program: dark castle v3.38
+# program: dark castle v3.40
 # name: Tom Snellgrove
-# date: Aug 30, 2021
+# date: Sept 5, 2021
 # description: main and interpreter modules for a zork-like text adventure game
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								db integration, avoid external triggers, 
@@ -237,7 +237,6 @@ def interpreter(stateful_dict, user_input):
 
 
 def cmd_execute(stateful_dict, case, word_lst):
-
 		if case == 'go':
 				room_obj, word1, word2 = word_lst
 				getattr(room_obj, word1)(word2, stateful_dict)
