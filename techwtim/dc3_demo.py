@@ -250,7 +250,7 @@ def cmd_execute(stateful_dict, case, word_lst):
 						else:
 								buffer(stateful_dict, "You can't read the " + word2_obj.full_name + ".")
 								return
-				elif scope_check(word2_obj, stateful_dict) == False:
+				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict) == False):
 						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
 						try:
@@ -285,7 +285,8 @@ def wrapper(user_input):
 		stateful_dict['out_buff'] = "" # resets buffer
 
 		### test commands ###
-#		dark_castle.examine(stateful_dict)
+#		stale_biscuits.take(stateful_dict)
+#		fresh_water.drink(stateful_dict)
 		### test commands ###
 
 		case, word_lst = interpreter(stateful_dict, user_input)

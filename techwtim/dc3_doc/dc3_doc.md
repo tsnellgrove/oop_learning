@@ -59,6 +59,8 @@ IN-PROC: Create a scope_error() function for Class socope checks (they repleat a
 	DONE: clean up comments
 	DONE: 2word case (non-read)
 	DONE: 2word case (read)
+	DONE: Fix 2word case
+	DONE: Fix water scope checks in class
 	TBD: Clean up comments
 
 
@@ -70,6 +72,7 @@ TBD: Franco: implement gets & sets (see Writing get_description example)
 TBD: Franco: think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
 TBD: Franco: think about using dictionary of functions
 TBD: Use gets and sets for CE objects!!
+TBD: Franco: consider having a 'game turn' across all or many objects
 	
 		
 	Room Events

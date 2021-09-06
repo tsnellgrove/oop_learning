@@ -275,8 +275,11 @@ class Beverage(ViewOnly):
 				hand_lst = stateful_dict['hand']
 #				if scope_check(self, stateful_dict) == False:
 #						buffer(stateful_dict, "You can't see a " + self.full_name + " here.")
-				if len(hand_lst) == 0 or self not in hand_lst[0].contains:
+				if (len(hand_lst) == 0) or (hasattr(hand_lst[0], 'contains') == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
+						buffer(stateful_dict, output)
+				elif self not in hand_lst[0].contains:
+						output = "The container in your hand doesn't contain " + self.full_name + "."
 						buffer(stateful_dict, output)
 				else:
 						hand_lst[0].contains.remove(self)
