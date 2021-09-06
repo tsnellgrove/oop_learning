@@ -7,14 +7,32 @@ Sept 5, 2021
 ##########################
 
 Version 3.42 Goals
+- Migrate stateful_dict to one or more game_state obj
+- Create methods to get & set game_state attributes
 
-tbd: container hasattrib => method in Writing
-TBD: Franco: implement gets & sets (see Writing get_description example)
-TBD: Franco: think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
-TBD: Franco: think about using dictionary of functions
-TBD: Use gets and sets for CE objects!!
-TBD: Franco: consider having a 'game turn' across all or many objects
+IDEA (Suggestions from Franco):
+- container hasattrib => method in Writing
+- implement gets & sets (see Writing get_description example)
+- think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
+- Franco: think about using dictionary of functions
+- Make scope_check() a method of game_state (which is an obj of class GameState)
+- Use gets and sets for objects (including CEs)!!
+- Franco: consider having a 'game turn' across all or many objects
 	
+IN-PROC: Simple Refactoring
+	- IN-PROC: replace hasattrib() with is_container() methond [should not be inspecting obj directly]
+		- DONE: Create is_container() method in class Writing
+		- IN-PROC: Replace hasattr intances
+	- TBD: replace stateful_dict['paths'] with map obj & methods
+	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
+TBD: Refactor stateful_dict
+
+	
+##########################
+### VERSION 3.45 START ###
+##########################
+
+Version 3.45 Goals
 		
 	Room Events
 	implement scoring

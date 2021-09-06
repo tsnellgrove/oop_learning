@@ -25,7 +25,13 @@ class Writing(object):
 				description = descript_dict[self.descript_key]
 				return description
 
-		# consider a 'set_description' method for over-rides
+#		consider a 'set_description' method for over-rides
+
+		def is_container(self):
+				if hasattr(self, 'contains'):
+						return True
+				else:
+						return False
 
 		def read(self, stateful_dict):
 				if self.descript_key in stateful_dict['descript_updates']:
@@ -65,6 +71,7 @@ class Room(ViewOnly):
 						buffer(stateful_dict, output)
 				for obj in self.room_obj_lst:
 						if hasattr(obj, 'contains'):
+#						if is_container(obj):
 								if obj.open_state == True:
 										container_desc(obj, stateful_dict)
 
@@ -115,6 +122,7 @@ class Item(ViewOnly):
 						else:
 								for obj in room_obj_lst: # else remove item from container it's in
 										if hasattr(obj, 'contains'):
+#										if is_container():
 												if self in obj.contains:
 														obj.contains.remove(self)
 
@@ -211,6 +219,7 @@ class Container(Door):
 				elif self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				elif hasattr(obj, 'contains'):
+#				elif is_container():
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
 						hand_lst.remove(obj)
@@ -250,7 +259,8 @@ class Beverage(ViewOnly):
 
 		def drink(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
-				if (len(hand_lst) == 0) or (hasattr(hand_lst[0], 'contains') == False):
+#				if (len(hand_lst) == 0) or (hasattr(hand_lst[0], 'contains') == False):
+				if (len(hand_lst) == 0) or (is_container(hand_lst[0]) == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
 				elif self not in hand_lst[0].contains:
