@@ -22,8 +22,10 @@ IDEA (Suggestions from Franco):
 IN-PROC: Simple Refactoring
 	- DONE: replace hasattr() with is_container() methond [should not be inspecting obj directly]
 		- DONE: Create is_container() method in class Writing
-		- Done: Replace hasattr intances
-		- TBD: Clean-up comments
+		- DONE: Replace hasattr intances
+		- DONE: Clean-up comments
+	- TBD: search for obj method opportunities in class module - classes should be black boxes
+	- TBD: search for obj method opportunities in demo module - classes should be black boxes
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
