@@ -70,8 +70,8 @@ class Room(ViewOnly):
 						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
 				for obj in self.room_obj_lst:
-						if hasattr(obj, 'contains'):
-#						if is_container(obj):
+#						if hasattr(obj, 'contains'):
+						if obj.is_container():
 								if obj.open_state == True:
 										container_desc(obj, stateful_dict)
 
@@ -121,8 +121,8 @@ class Item(ViewOnly):
 								room_obj.room_obj_lst.remove(self)
 						else:
 								for obj in room_obj_lst: # else remove item from container it's in
-										if hasattr(obj, 'contains'):
-#										if is_container():
+#										if hasattr(obj, 'contains'):
+										if obj.is_container():
 												if self in obj.contains:
 														obj.contains.remove(self)
 
@@ -218,8 +218,8 @@ class Container(Door):
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
-				elif hasattr(obj, 'contains'):
-#				elif is_container():
+#				elif hasattr(obj, 'contains'):
+				elif obj.is_container():
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
 						hand_lst.remove(obj)
@@ -260,13 +260,15 @@ class Beverage(ViewOnly):
 		def drink(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 #				if (len(hand_lst) == 0) or (hasattr(hand_lst[0], 'contains') == False):
-				if (len(hand_lst) == 0) or (is_container(hand_lst[0]) == False):
+				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
+# good candidate for a get ?
 				elif self not in hand_lst[0].contains:
 						output = "The container in your hand doesn't contain " + self.full_name + "."
 						buffer(stateful_dict, output)
 				else:
+# good candidate for a get ?
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 

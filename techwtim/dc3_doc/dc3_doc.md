@@ -20,9 +20,10 @@ IDEA (Suggestions from Franco):
 - Franco: consider having a 'game turn' across all or many objects
 	
 IN-PROC: Simple Refactoring
-	- IN-PROC: replace hasattrib() with is_container() methond [should not be inspecting obj directly]
+	- DONE: replace hasattr() with is_container() methond [should not be inspecting obj directly]
 		- DONE: Create is_container() method in class Writing
-		- IN-PROC: Replace hasattr intances
+		- Done: Replace hasattr intances
+		- TBD: Clean-up comments
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
