@@ -27,11 +27,11 @@ class Writing(object):
 
 #		consider a 'set_description' method for over-rides
 
+		def get_full_name(self):
+				return self.full_name
+
 		def is_container(self):
-				if hasattr(self, 'contains'):
-						return True
-				else:
-						return False
+				return hasattr(self, 'contains')
 
 		def read(self, stateful_dict):
 				if self.descript_key in stateful_dict['descript_updates']:
@@ -47,13 +47,19 @@ class ViewOnly(Writing):
 				super().__init__(name, full_name, root_name, descript_key)
 				self.writing = writing
 
+		def get_writing_full_name(self):
+				return (self.writing.get_full_name())
+
+		def has_writing(self):
+				return (self.writing is not None)
+
 		def examine(self, stateful_dict):
 				if self.descript_key in stateful_dict['descript_updates']:
 						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
 				else:
 						buffer(stateful_dict, self.get_description())
-						if self.writing is not None:
-								output = "On the " + self.full_name + " you see: " + self.writing.full_name
+						if self.has_writing():
+								output = "On the " + self.get_full_name() + " you see: " + self.get_writing_full_name()
 								buffer(stateful_dict, output)
 
 class Room(ViewOnly):
@@ -84,7 +90,7 @@ class Room(ViewOnly):
 						door_obj = self.door_paths[direction]
 						door_open = door_obj.open_state
 						if not door_open:
-								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
+								buffer(stateful_dict, "The " +  door_obj.get_full_name() + " is closed.")
 						else:
 								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 								stateful_dict['room'] = next_room_obj
@@ -105,9 +111,9 @@ class Item(ViewOnly):
 				backpack_lst = stateful_dict['backpack']
 				room_obj_lst = room_obj.room_obj_lst
 				if self in hand_lst:
-						buffer(stateful_dict, "You're already holding the " + self.full_name)
+						buffer(stateful_dict, "You're already holding the " + self.get_full_name())
 				elif self.takable == False:
-						buffer(stateful_dict, "You can't take the " + self.full_name)
+						buffer(stateful_dict, "You can't take the " + self.get_full_name())
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
 								stateful_dict['backpack'].append(hand_lst[0])
@@ -128,7 +134,7 @@ class Item(ViewOnly):
 				hand_lst = stateful_dict['hand']
 				room_obj = stateful_dict['room']
 				if self not in hand_lst:
-						output = "You're not holding the " + self.full_name + " in your hand."
+						output = "You're not holding the " + self.get_full_name() + " in your hand."
 						buffer(stateful_dict, output)
 				else:
 						hand_lst.remove(self)
@@ -148,14 +154,14 @@ class Door(ViewOnly):
 				if scope_check(self, stateful_dict) == False:
 						pass
 				elif self.open_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is closed.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is closed.")
 				else:
-						buffer(stateful_dict, "The " + self.full_name + " is open.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is open.")
 
 		def unlock(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if self.unlock_state == True:
-						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is already unlocked.")
 				elif self.key is None:
 						buffer(stateful_dict, "You don't see a keyhole for this door.")
 				elif self.key not in hand_lst:
@@ -166,18 +172,18 @@ class Door(ViewOnly):
 
 		def open(self, stateful_dict):
 				if self.open_state == True:
-						buffer(stateful_dict, "The " + self.full_name + " is already open.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is already open.")
 				elif self.unlock_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is locked.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is locked.")
 				else:
 						self.open_state = True
 						buffer(stateful_dict, "Openned")
 
 		def close(self, stateful_dict):
 				if self.open_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is already closed.")
 				elif self.unlock_state == False: # for Iron Portcullis
-						buffer(stateful_dict, "The " + self.full_name + " is locked.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is locked.")
 				else:
 						self.open_state = False
 						buffer(stateful_dict, "Closed")
@@ -189,7 +195,7 @@ class Door(ViewOnly):
 				elif self.key not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the key.")
 				elif self.unlock_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is already locked.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is already locked.")
 				else:
 						buffer(stateful_dict, "Locked")
 						self.unlock_state = False
@@ -213,9 +219,9 @@ class Container(Door):
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if obj not in hand_lst:
-						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
+						buffer(stateful_dict, "You aren't holding the " + obj.get_full_name())
 				elif self.open_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is closed.")
+						buffer(stateful_dict, "The " + self.get_full_name() + " is closed.")
 				elif obj.is_container():
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
@@ -232,12 +238,12 @@ class Food(Item):
 		def eat(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if self not in hand_lst:
-						output = "You're not holding the " + self.full_name + " in your hand."
+						output = "You're not holding the " + self.get_full_name() + " in your hand."
 						buffer(stateful_dict, output)
 				else:
 						hand_lst.remove(self)
 						stateful_dict['hand'] = hand_lst
-						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
+						buffer(stateful_dict, "Eaten. The " + self.get_full_name() + " " + descript_dict[self.eat_desc_key])
 
 class Jug(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable, open_state, contains):
@@ -257,14 +263,14 @@ class Beverage(ViewOnly):
 		def drink(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
-						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
+						output = "You don't seem to be holding a container of " + self.get_full_name() + " in your hand."
 						buffer(stateful_dict, output)
 # good candidate for a get ?
 				elif self not in hand_lst[0].contains:
-						output = "The container in your hand doesn't contain " + self.full_name + "."
+						output = "The container in your hand doesn't contain " + self.get_full_name() + "."
 						buffer(stateful_dict, output)
 				else:
 # good candidate for a get ?
 						hand_lst[0].contains.remove(self)
-						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
+						buffer(stateful_dict, "Drunk. The " + self.get_full_name() + " " + descript_dict[self.drink_desc_key])
 

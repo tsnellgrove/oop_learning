@@ -24,8 +24,8 @@ IN-PROC: Simple Refactoring
 		- DONE: Create is_container() method in class Writing
 		- DONE: Replace hasattr intances
 		- DONE: Clean-up comments
-	- TBD: search for obj method opportunities in class module - classes should be black boxes
-	- TBD: search for obj method opportunities in demo module - classes should be black boxes
+	- IN-PROC: search for obj method opportunities in class & demo modules - classes should be black boxes
+			- DONE: get_full_name(), has_writing(), get_writing_full_name()
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
