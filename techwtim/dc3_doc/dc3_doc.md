@@ -26,6 +26,8 @@ IN-PROC: Simple Refactoring
 		- DONE: Clean-up comments
 	- IN-PROC: search for obj method opportunities in class & demo modules - classes should be black boxes
 			- DONE: get_full_name(), has_writing(), get_writing_full_name()
+			- DONE: invetigate @properties for get_full_name()
+			- IN-PROC: convert classes and demo modules back to using full_name via @properties
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
@@ -235,6 +237,7 @@ TBD: Is the Item class worth having??? Particularly, do I need the "takeable" at
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Need to dis-entangle modules better
 TBD: get rid of Item takeable attribute
+TBD: Sort out writing and make it more accessable by examine
 
 
 ### New Puzzle Ideas ###
