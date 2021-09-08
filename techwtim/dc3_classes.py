@@ -14,7 +14,6 @@ from dc3_helper import *
 class Writing(object):
 		def __init__(self, name, full_name, root_name, descript_key):
 				self.name = name
-#				self.full_name = full_name
 				self._full_name = full_name
 				self.root_name = root_name
 				self.descript_key = descript_key
@@ -24,7 +23,6 @@ class Writing(object):
 				print("FULL NAME")
 				return self._full_name
 
-
 		def get_description(self):
 #				if self.descript_key in stateful_dict['descript_updates']: # stateful_dict not yet defined
 #						description = stateful_dict['descript_updates'][self.descript_key]
@@ -33,9 +31,6 @@ class Writing(object):
 				return description
 
 #		consider a 'set_description' method for over-rides
-
-##		def get_full_name(self):
-##				return self.full_name
 
 
 		def is_container(self):
@@ -53,11 +48,7 @@ class Writing(object):
 class ViewOnly(Writing):
 		def __init__(self, name, full_name, root_name, descript_key, writing):
 				super().__init__(name, full_name, root_name, descript_key)
-#				self.writing = writing
 				self._writing = writing
-
-##		def get_writing_full_name(self):
-##				return (self.writing.full_name)
 
 		@property
 		def writing(self):

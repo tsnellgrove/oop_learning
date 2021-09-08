@@ -7,8 +7,9 @@ Sept 5, 2021
 ##########################
 
 Version 3.42 Goals
-- Migrate stateful_dict to one or more game_state obj
 - Create methods to get & set game_state attributes
+- Migrate stateful_dict to one or more game_state obj
+
 
 IDEA (Suggestions from Franco):
 - container hasattrib => method in Writing
@@ -16,7 +17,8 @@ IDEA (Suggestions from Franco):
 - think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
 - Franco: think about using dictionary of functions
 - Make scope_check() a method of game_state (which is an obj of class GameState)
-- Use gets and sets for objects (including CEs)!!
+- Use gets and sets for objects (including CEs)!! => obj are black boxes
+	- Maybe not needed in many cases but since I want to convert code to DB back end is a good idea for my use case
 - Franco: consider having a 'game turn' across all or many objects
 	
 IN-PROC: Simple Refactoring
@@ -28,7 +30,7 @@ IN-PROC: Simple Refactoring
 			- DONE: get_full_name(), has_writing(), get_writing_full_name()
 			- DONE: invetigate @properties for get_full_name()
 			- DONE: convert classes and demo modules back to using full_name via @properties
-			- TBD: Clean up comments
+			- DONE: Clean up comments
 			= TBD: Try passing stateful_dict to description routine
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
