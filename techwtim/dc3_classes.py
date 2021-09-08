@@ -19,21 +19,11 @@ class Writing(object):
 				self.root_name = root_name
 				self.descript_key = descript_key
 
-
-#>>> class Mask:
-#...     def __init__(self, category, price=0):
-#...         self.brand = category
-#...         self._price = price
-#... 
-#...     @property
-#...     def price(self):
-#...         return self._price
-
-
 		@property
 		def full_name(self):
-				print("IT WORKED")
+				print("FULL NAME")
 				return self._full_name
+
 
 		def get_description(self):
 #				if self.descript_key in stateful_dict['descript_updates']: # stateful_dict not yet defined
@@ -44,8 +34,9 @@ class Writing(object):
 
 #		consider a 'set_description' method for over-rides
 
-		def get_full_name(self):
-				return self.full_name
+##		def get_full_name(self):
+##				return self.full_name
+
 
 		def is_container(self):
 				return hasattr(self, 'contains')
@@ -62,10 +53,16 @@ class Writing(object):
 class ViewOnly(Writing):
 		def __init__(self, name, full_name, root_name, descript_key, writing):
 				super().__init__(name, full_name, root_name, descript_key)
-				self.writing = writing
+#				self.writing = writing
+				self._writing = writing
 
-		def get_writing_full_name(self):
-				return (self.writing.get_full_name())
+##		def get_writing_full_name(self):
+##				return (self.writing.full_name)
+
+		@property
+		def writing(self):
+				print("WRITING")
+				return self._writing
 
 		def has_writing(self):
 				return (self.writing is not None)
@@ -76,7 +73,7 @@ class ViewOnly(Writing):
 				else:
 						buffer(stateful_dict, self.get_description())
 						if self.has_writing():
-								output = "On the " + self.full_name + " you see: " + self.get_writing_full_name()
+								output = "On the " + self.full_name + " you see: " + self.writing.full_name
 								buffer(stateful_dict, output)
 
 class Room(ViewOnly):
@@ -236,9 +233,9 @@ class Container(Door):
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if obj not in hand_lst:
-						buffer(stateful_dict, "You aren't holding the " + obj.get_full_name())
+						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
-						buffer(stateful_dict, "The " + self.get_full_name() + " is closed.")
+						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				elif obj.is_container():
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
@@ -255,12 +252,12 @@ class Food(Item):
 		def eat(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if self not in hand_lst:
-						output = "You're not holding the " + self.get_full_name() + " in your hand."
+						output = "You're not holding the " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
 				else:
 						hand_lst.remove(self)
 						stateful_dict['hand'] = hand_lst
-						buffer(stateful_dict, "Eaten. The " + self.get_full_name() + " " + descript_dict[self.eat_desc_key])
+						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
 
 class Jug(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable, open_state, contains):
@@ -280,14 +277,14 @@ class Beverage(ViewOnly):
 		def drink(self, stateful_dict):
 				hand_lst = stateful_dict['hand']
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
-						output = "You don't seem to be holding a container of " + self.get_full_name() + " in your hand."
+						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
 # good candidate for a get ?
 				elif self not in hand_lst[0].contains:
-						output = "The container in your hand doesn't contain " + self.get_full_name() + "."
+						output = "The container in your hand doesn't contain " + self.full_name + "."
 						buffer(stateful_dict, output)
 				else:
 # good candidate for a get ?
 						hand_lst[0].contains.remove(self)
-						buffer(stateful_dict, "Drunk. The " + self.get_full_name() + " " + descript_dict[self.drink_desc_key])
+						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 

@@ -42,7 +42,7 @@ def inventory(stateful_dict):
 		if len(hand_obj_lst) == 0:
 				hand_str = "nothing"
 		else:
-				hand_str = "the " + stateful_dict['hand'][0].get_full_name()
+				hand_str = "the " + stateful_dict['hand'][0].full_name
 		buffer(stateful_dict, "In your hand you are holding " + hand_str)
 
 		if len(backpack_str_lst) == 0:
@@ -244,13 +244,13 @@ def cmd_execute(stateful_dict, case, word_lst):
 				word2_obj, word1 = word_lst
 				if word1 == 'read' and  writing_check(word2_obj, stateful_dict) == False:
 						if scope_check(word2_obj, stateful_dict) == False:
-								buffer(stateful_dict, "You can't see a " + word2_obj.get_full_name() + " here.")
+								buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 								return
 						else:
-								buffer(stateful_dict, "You can't read the " + word2_obj.get_full_name() + ".")
+								buffer(stateful_dict, "You can't read the " + word2_obj.full_name + ".")
 								return
 				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict) == False):
-						buffer(stateful_dict, "You can't see a " + word2_obj.get_full_name() + " here.")
+						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
 						try:
 								getattr(word2_obj, word1)(stateful_dict)
@@ -263,10 +263,10 @@ def cmd_execute(stateful_dict, case, word_lst):
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
 				if scope_check(noun_obj, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + noun_obj.get_full_name() + " here.")
+						buffer(stateful_dict, "You can't see a " + noun_obj.full_name + " here.")
 						return
 				elif scope_check(dirobj_obj, stateful_dict) == False:
-						buffer(stateful_dict, "You can't see a " + dirobj_obj.get_full_name() + " here.")
+						buffer(stateful_dict, "You can't see a " + dirobj_obj.full_name + " here.")
 						return 
 				else:
 						try:

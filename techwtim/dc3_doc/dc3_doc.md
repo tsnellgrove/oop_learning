@@ -27,7 +27,9 @@ IN-PROC: Simple Refactoring
 	- IN-PROC: search for obj method opportunities in class & demo modules - classes should be black boxes
 			- DONE: get_full_name(), has_writing(), get_writing_full_name()
 			- DONE: invetigate @properties for get_full_name()
-			- IN-PROC: convert classes and demo modules back to using full_name via @properties
+			- DONE: convert classes and demo modules back to using full_name via @properties
+			- TBD: Clean up comments
+			= TBD: Try passing stateful_dict to description routine
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
