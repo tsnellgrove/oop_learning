@@ -16,7 +16,6 @@ class Writing(object):
 				self.name = name
 				self._full_name = full_name
 				self.root_name = root_name
-#				self.descript_key = descript_key
 				self._descript_key = descript_key
 
 		@property
@@ -25,7 +24,6 @@ class Writing(object):
 
 		@property
 		def descript_key(self):
-#				print("DESCRIPT_KEY")
 				return self._descript_key
 
 		def get_descript_str(self, stateful_dict):

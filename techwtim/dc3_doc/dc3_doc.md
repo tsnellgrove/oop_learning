@@ -27,12 +27,16 @@ IN-PROC: Simple Refactoring
 		- DONE: Replace hasattr intances
 		- DONE: Clean-up comments
 	- IN-PROC: search for obj method opportunities in class & demo modules - classes should be black boxes
-			- DONE: get_full_name(), has_writing(), get_writing_full_name()
-			- DONE: invetigate @properties for get_full_name()
-			- DONE: convert classes and demo modules back to using full_name via @properties
-			- DONE: Clean up comments
-			= DONE: Try passing stateful_dict to description routine
-			- TBD: Clean up comments
+			- DONE: @property and setters & getters for Writing & ViewOnly
+				- DONE: get_full_name(), has_writing(), get_writing_full_name()
+				- DONE: invetigate @properties for get_full_name()
+				- DONE: convert classes and demo modules back to using full_name via @properties
+				- DONE: Clean up comments
+				= DONE: Try passing stateful_dict to description routine
+				- DONE: Clean up comments
+				- DONE: @property for descript_key
+				- DONE: clean up comments
+			- TBD: Room class
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
