@@ -15,7 +15,8 @@ class Writing(object):
 		def __init__(self, name, full_name, root_name, descript_key):
 				self._name = name
 				self._full_name = full_name
-				self.root_name = root_name
+				self._root_name = root_name
+#				self.root_name = root_name
 				self._descript_key = descript_key
 
 		@property
@@ -25,6 +26,11 @@ class Writing(object):
 		@property
 		def full_name(self):
 				return self._full_name
+
+		@property
+		def root_name(self):
+#				print("ROOT")
+				return self._root_name
 
 		@property
 		def descript_key(self):
