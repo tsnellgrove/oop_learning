@@ -36,11 +36,15 @@ IN-PROC: Simple Refactoring
 				- DONE: Clean up comments
 				- DONE: @property for descript_key
 				- DONE: clean up comments
+				- TBD: reamining setters for Writing & ViewOnly
 			- TBD: Room class
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
 
+- IDEA: Full separation on interpreter() and cmd_execute()
+- IDEA: Module architecture - separate modeule for wrapper and each wrapper component (including 'end')
+		
 	
 ##########################
 ### VERSION 3.45 START ###
