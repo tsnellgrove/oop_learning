@@ -39,7 +39,8 @@ IN-PROC: Simple Refactoring
 				- IN-PROC: reamining setters for Writing & ViewOnly
 					- DONE: _name
 					- DONE: clean up comments
-					- TBD: _root_name
+					- DONE: _root_name
+					- DONE: clean up comments
 			- TBD: Room class
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
