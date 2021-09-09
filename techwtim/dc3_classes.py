@@ -13,7 +13,6 @@ from dc3_helper import *
 # classes
 class Writing(object):
 		def __init__(self, name, full_name, root_name, descript_key):
-#				self.name = name
 				self._name = name
 				self._full_name = full_name
 				self.root_name = root_name
@@ -21,7 +20,6 @@ class Writing(object):
 
 		@property
 		def name(self):
-				print("NAME")
 				return self._name
 
 		@property
