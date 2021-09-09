@@ -17,30 +17,27 @@ class Writing(object):
 				self._full_name = full_name
 				self.root_name = root_name
 				self.descript_key = descript_key
+#				self._descript_key = descript_key
 
 		@property
 		def full_name(self):
-#				print("FULL NAME")
 				return self._full_name
 
-		def get_description(self, stateful_dict):
+#		def descript_key(self):
+#				return self._descript_key
+
+		def get_descript_str(self, stateful_dict):
 				if self.descript_key in stateful_dict['descript_updates']:
 						descript_str = stateful_dict['descript_updates'][self.descript_key]
 				else:
 						descript_str = descript_dict[self.descript_key]
 				return descript_str
 
-#		consider a 'set_description' method for over-rides
-
-
 		def is_container(self):
 				return hasattr(self, 'contains')
 
 		def read(self, stateful_dict):
-#				if self.descript_key in stateful_dict['descript_updates']:
-#						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
-#				else:
-				buffer(stateful_dict, self.get_description(stateful_dict))
+				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
@@ -52,17 +49,13 @@ class ViewOnly(Writing):
 
 		@property
 		def writing(self):
-#				print("WRITING")
 				return self._writing
 
 		def has_writing(self):
 				return (self.writing is not None)
 
 		def examine(self, stateful_dict):
-#				if self.descript_key in stateful_dict['descript_updates']:
-#						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
-#				else:
-				buffer(stateful_dict, self.get_description(stateful_dict))
+				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
 						buffer(stateful_dict, output)
@@ -270,12 +263,10 @@ class Beverage(ViewOnly):
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
-# good candidate for a get ?
 				elif self not in hand_lst[0].contains:
 						output = "The container in your hand doesn't contain " + self.full_name + "."
 						buffer(stateful_dict, output)
 				else:
-# good candidate for a get ?
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 
