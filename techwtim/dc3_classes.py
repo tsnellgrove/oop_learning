@@ -77,17 +77,14 @@ class Room(ViewOnly):
 
 		@property
 		def features(self):
-#				print("FEATURES")
 				return self._features
 
 		@property
 		def room_obj_lst(self):
-#				print("ROOM_OBJ_LST")
 				return self._room_obj_lst
 
 		@property
 		def door_paths(self):
-#				print("DOOR_PATHS")
 				return self._door_paths
 
 		def examine(self, stateful_dict):
