@@ -36,12 +36,14 @@ IN-PROC: Simple Refactoring
 				- DONE: Clean up comments
 				- DONE: @property for descript_key
 				- DONE: clean up comments
-				- IN-PROC: reamining setters for Writing & ViewOnly
+				- DONE: reamining setters for Writing & ViewOnly
 					- DONE: _name
 					- DONE: clean up comments
 					- DONE: _root_name
 					- DONE: clean up comments
-			- TBD: Room class
+			- IN-PROC: Room class
+				- DONE: @property for _features, _room_obj_lst, and _door_paths
+				- TBD: clean up comments
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict

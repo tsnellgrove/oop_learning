@@ -71,10 +71,25 @@ class ViewOnly(Writing):
 class Room(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, features, room_obj_lst, door_paths):
 				super().__init__(name, full_name, root_name, descript_key, writing)
-				self.features = features # list of non-items in room (can be examined but not taken)
-				self.room_obj_lst = room_obj_lst # list of obj in the room that the player can interact with
-				self.door_paths = door_paths # dictionary of {direction1 : door1}
-			
+				self._features = features # list of non-items in room (can be examined but not taken)
+				self._room_obj_lst = room_obj_lst # list of obj in the room that the player can interact with
+				self._door_paths = door_paths # dictionary of {direction1 : door1}
+
+		@property
+		def features(self):
+#				print("FEATURES")
+				return self._features
+
+		@property
+		def room_obj_lst(self):
+#				print("ROOM_OBJ_LST")
+				return self._room_obj_lst
+
+		@property
+		def door_paths(self):
+#				print("DOOR_PATHS")
+				return self._door_paths
+
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self:
