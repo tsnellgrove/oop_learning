@@ -286,6 +286,7 @@ def wrapper(user_input):
 		### test commands ###
 #		stale_biscuits.take(stateful_dict)
 #		fresh_water.drink(stateful_dict)
+#		front_gate.examine(stateful_dict)
 		### test commands ###
 
 		case, word_lst = interpreter(stateful_dict, user_input)

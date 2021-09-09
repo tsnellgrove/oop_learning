@@ -31,7 +31,8 @@ IN-PROC: Simple Refactoring
 			- DONE: invetigate @properties for get_full_name()
 			- DONE: convert classes and demo modules back to using full_name via @properties
 			- DONE: Clean up comments
-			= TBD: Try passing stateful_dict to description routine
+			= DONE: Try passing stateful_dict to description routine
+			- TBD: Clean up comments
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict

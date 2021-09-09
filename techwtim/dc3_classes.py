@@ -20,15 +20,15 @@ class Writing(object):
 
 		@property
 		def full_name(self):
-				print("FULL NAME")
+#				print("FULL NAME")
 				return self._full_name
 
-		def get_description(self):
-#				if self.descript_key in stateful_dict['descript_updates']: # stateful_dict not yet defined
-#						description = stateful_dict['descript_updates'][self.descript_key]
-#				else:
-				description = descript_dict[self.descript_key]
-				return description
+		def get_description(self, stateful_dict):
+				if self.descript_key in stateful_dict['descript_updates']:
+						descript_str = stateful_dict['descript_updates'][self.descript_key]
+				else:
+						descript_str = descript_dict[self.descript_key]
+				return descript_str
 
 #		consider a 'set_description' method for over-rides
 
@@ -37,10 +37,10 @@ class Writing(object):
 				return hasattr(self, 'contains')
 
 		def read(self, stateful_dict):
-				if self.descript_key in stateful_dict['descript_updates']:
-						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
-				else:
-						buffer(stateful_dict, self.get_description())
+#				if self.descript_key in stateful_dict['descript_updates']:
+#						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
+#				else:
+				buffer(stateful_dict, self.get_description(stateful_dict))
 
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
@@ -52,20 +52,20 @@ class ViewOnly(Writing):
 
 		@property
 		def writing(self):
-				print("WRITING")
+#				print("WRITING")
 				return self._writing
 
 		def has_writing(self):
 				return (self.writing is not None)
 
 		def examine(self, stateful_dict):
-				if self.descript_key in stateful_dict['descript_updates']:
-						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
-				else:
-						buffer(stateful_dict, self.get_description())
-						if self.has_writing():
-								output = "On the " + self.full_name + " you see: " + self.writing.full_name
-								buffer(stateful_dict, output)
+#				if self.descript_key in stateful_dict['descript_updates']:
+#						buffer(stateful_dict, stateful_dict['descript_updates'][self.descript_key])
+#				else:
+				buffer(stateful_dict, self.get_description(stateful_dict))
+				if self.has_writing():
+						output = "On the " + self.full_name + " you see: " + self.writing.full_name
+						buffer(stateful_dict, output)
 
 class Room(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, features, room_obj_lst, door_paths):
