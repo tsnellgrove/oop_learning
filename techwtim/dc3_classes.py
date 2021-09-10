@@ -41,18 +41,18 @@ class Writing(object):
 						descript_str = descript_dict[self.descript_key]
 				return descript_str
 
-	def is_container(self):
-				return hasattr(self, 'contains')
+		def is_container(self):
+					return hasattr(self, 'contains')
 
-		def	get_container_contents_str(self, stateful_dict):
-				if not is_container(self):
-						raise ValueError("Object is not a container.")
-				elif obj.open_state == True:
-						if len(cont_obj.contains) == 0:
-								buffer(stateful_dict, "The " + cont_obj.full_name + " is empty.")
+		def	get_contents_str(self, stateful_dict):
+				if self.is_container() and self.open_state == True:
+#						raise ValueError("Object is not a container.")
+#				elif obj.open_state == True:
+						if len(self.contains) == 0:
+								buffer(stateful_dict, "The " + self.full_name + " is empty.")
 						else:
-								cont_str_lst = objlst_to_strlst(cont_obj.contains)
-								output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
+								cont_str_lst = objlst_to_strlst(self.contains)
+								output = "The " + self.full_name + " contains: "  + ', '.join(cont_str_lst)
 								buffer(stateful_dict, output)
 
 		def read(self, stateful_dict):
@@ -105,9 +105,10 @@ class Room(ViewOnly):
 						output = "The room contains: " + ', '.join(room_str_lst)
 						buffer(stateful_dict, output)
 				for obj in self.room_obj_lst:
-						if obj.is_container():
-								if obj.open_state == True:
-										container_desc(obj, stateful_dict)
+						obj.get_contents_str(stateful_dict)
+#						if obj.is_container():
+#								if obj.open_state == True:
+#										container_desc(obj, stateful_dict)
 
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
@@ -237,13 +238,15 @@ class Container(Door):
 
 		def examine(self, stateful_dict):
 				super(Container, self).examine(stateful_dict)
-				if self.open_state:
-						container_desc(self, stateful_dict)
+				self.get_contents_str(stateful_dict)
+#				if self.open_state:
+#						container_desc(self, stateful_dict)
 
 		def open(self, stateful_dict):
 				super(Container, self).open(stateful_dict)
-				if self.open_state:
-						container_desc(self, stateful_dict)
+				self.get_contents_str(stateful_dict)
+#				if self.open_state:
+#						container_desc(self, stateful_dict)
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -282,7 +285,8 @@ class Jug(Item):
 
 		def examine(self, stateful_dict):
 				super(Jug, self).examine(stateful_dict)
-				container_desc(self, stateful_dict)
+				self.get_contents_str(stateful_dict)
+#				container_desc(self, stateful_dict)
 
 class Beverage(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):
