@@ -41,8 +41,19 @@ class Writing(object):
 						descript_str = descript_dict[self.descript_key]
 				return descript_str
 
-		def is_container(self):
+	def is_container(self):
 				return hasattr(self, 'contains')
+
+		def	get_container_contents_str(self, stateful_dict):
+				if not is_container(self):
+						raise ValueError("Object is not a container.")
+				elif obj.open_state == True:
+						if len(cont_obj.contains) == 0:
+								buffer(stateful_dict, "The " + cont_obj.full_name + " is empty.")
+						else:
+								cont_str_lst = objlst_to_strlst(cont_obj.contains)
+								output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
+								buffer(stateful_dict, output)
 
 		def read(self, stateful_dict):
 				buffer(stateful_dict, self.get_descript_str(stateful_dict))
