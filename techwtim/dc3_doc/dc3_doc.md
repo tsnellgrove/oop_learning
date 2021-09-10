@@ -44,7 +44,8 @@ IN-PROC: Simple Refactoring
 			- IN-PROC: Room class
 				- DONE: @property for _features, _room_obj_lst, and _door_paths
 				- DONE: clean up comments
-				- TBD: Consider making container_desc a method of Writing with is_container and is_open tests (??)
+				- DONE: container_desc() func => get_contents_str() method of Writing with is_container and is_open tests
+				- DONE: clean up comments
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict

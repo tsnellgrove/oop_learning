@@ -66,14 +66,6 @@ def writing_check(writing, stateful_dict):
 						writing_found = True
 		return writing_found
 
-#def container_desc(cont_obj, stateful_dict):
-#		if len(cont_obj.contains) == 0:
-#				buffer(stateful_dict, "The " + cont_obj.full_name + " is empty.")
-#		else:
-#				cont_str_lst = objlst_to_strlst(cont_obj.contains)
-#				output = "The " + cont_obj.full_name + " contains: "  + ', '.join(cont_str_lst)
-#				buffer(stateful_dict, output)
-
 def print_score(stateful_dict):
 		output1 = ("Your score is " + str(stateful_dict['current_score']))
 		output2 = (" out of " + str(static_dict['max_score']))

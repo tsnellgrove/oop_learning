@@ -106,9 +106,6 @@ class Room(ViewOnly):
 						buffer(stateful_dict, output)
 				for obj in self.room_obj_lst:
 						obj.get_contents_str(stateful_dict)
-#						if obj.is_container():
-#								if obj.open_state == True:
-#										container_desc(obj, stateful_dict)
 
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
@@ -239,14 +236,10 @@ class Container(Door):
 		def examine(self, stateful_dict):
 				super(Container, self).examine(stateful_dict)
 				self.get_contents_str(stateful_dict)
-#				if self.open_state:
-#						container_desc(self, stateful_dict)
 
 		def open(self, stateful_dict):
 				super(Container, self).open(stateful_dict)
 				self.get_contents_str(stateful_dict)
-#				if self.open_state:
-#						container_desc(self, stateful_dict)
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -286,7 +279,6 @@ class Jug(Item):
 		def examine(self, stateful_dict):
 				super(Jug, self).examine(stateful_dict)
 				self.get_contents_str(stateful_dict)
-#				container_desc(self, stateful_dict)
 
 class Beverage(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):
