@@ -46,7 +46,7 @@ IN-PROC: Simple Refactoring
 				- DONE: clean up comments
 				- DONE: container_desc() func => get_contents_str() method of Writing with is_container and is_open tests
 				- DONE: clean up comments
-				- TBD: oblst_to_strlst() func => obj_lst_to_str() method w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
+				- IN-PROC: objlst_to_strlst() func => obj_lst_to_str() method w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
