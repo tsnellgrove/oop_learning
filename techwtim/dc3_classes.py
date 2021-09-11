@@ -46,10 +46,11 @@ class Writing(object):
 
 		def	get_contents_str(self, stateful_dict):
 				if self.is_container() and self.open_state == True:
-						if len(self.contains) == 0:
-								buffer(stateful_dict, "The " + self.full_name + " is empty.")
-						else:
-								buffer(stateful_dict, "The " + self.full_name + " contains: " + obj_lst_to_str(self.contains))
+						buffer(stateful_dict, "The " + self.full_name + " contains: " + obj_lst_to_str(self.contains))
+#						if len(self.contains) == 0:
+#								buffer(stateful_dict, "The " + self.full_name + " is empty.")
+#						else:
+#								buffer(stateful_dict, "The " + self.full_name + " contains: " + obj_lst_to_str(self.contains))
 
 		def read(self, stateful_dict):
 				buffer(stateful_dict, self.get_descript_str(stateful_dict))
@@ -97,11 +98,12 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
 				if stateful_dict['room'] == self:
-						if len(self.room_obj_lst) == 0:
-								room_str = "nothing"
-						else:
-								room_str = obj_lst_to_str(self.room_obj_lst)
-						buffer(stateful_dict, "The room contains: " + room_str)
+#						if len(self.room_obj_lst) == 0:
+#								room_str = "nothing"
+#						else:
+#								room_str = obj_lst_to_str(self.room_obj_lst)
+#						buffer(stateful_dict, "The room contains: " + room_str)
+						buffer(stateful_dict, "The room contains: " + obj_lst_to_str(self.room_obj_lst))
 				for obj in self.room_obj_lst:
 						obj.get_contents_str(stateful_dict)
 

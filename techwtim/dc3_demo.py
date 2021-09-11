@@ -37,19 +37,21 @@ def root_word_count(stateful_dict, word2):
 
 def inventory(stateful_dict):
 		hand_obj_lst = stateful_dict['hand']
+
+#		if len(hand_obj_lst) == 0:
+#				hand_str = "nothing"
+#		else:
+#				hand_str = "the " + stateful_dict['hand'][0].full_name
+#		buffer(stateful_dict, "In your hand you are holding " + hand_str)
+		buffer(stateful_dict, "In your hand you are holding: " + obj_lst_to_str(hand_obj_lst))
+
 		backpack_obj_lst = stateful_dict['backpack']
-
-		if len(hand_obj_lst) == 0:
-				hand_str = "nothing"
-		else:
-				hand_str = "the " + stateful_dict['hand'][0].full_name
-		buffer(stateful_dict, "In your hand you are holding " + hand_str)
-
-		if len(backpack_obj_lst) == 0:
-				backpack_str = "nothing"
-		else:
-				backpack_str = obj_lst_to_str(backpack_obj_lst)
-		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
+#		if len(backpack_obj_lst) == 0:
+#				backpack_str = "nothing"
+#		else:
+#				backpack_str = obj_lst_to_str(backpack_obj_lst)
+#		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
+		buffer(stateful_dict, "In your backpack you have: " + obj_lst_to_str(backpack_obj_lst))
 
 def help(stateful_dict, option):
 		if option == 'basics':
