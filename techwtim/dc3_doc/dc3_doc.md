@@ -20,7 +20,18 @@ IDEA (Suggestions from Franco):
 - Use gets and sets for objects (including CEs)!! => obj are black boxes
 	- Maybe not needed in many cases but since I want to convert code to DB back end is a good idea for my use case
 - Franco: consider having a 'game turn' across all or many objects
-	
+
+PRINICPLES:
+- encapsulate the sets and gets of all custom object attributes
+	- direct object access is a standard pythonic trait... but in my case I plan to eventually move obj attributes to a DB - so this is vital
+- If a routine acts on a custom object it should be a method of the object's (or it's parent object's) class
+	- Example: get_contents_str()
+- if a rountine acts strictly on a Python primative class (e.g. a list) - then it should be a function. 
+	- Often this is the case when a routine applies to the attribute of multiple different classes.
+	- Example: obj_lst_to_str()
+- make methods and functions as functional as possible while still being broadly applicable.
+	- For example, if you always need to handle a case for len(list) == 0, handle it in the same function code that produces the non-0 result
+
 IN-PROC: Simple Refactoring
 	- DONE: replace hasattr() with is_container() methond [should not be inspecting obj directly]
 		- DONE: Create is_container() method in class Writing
@@ -46,7 +57,10 @@ IN-PROC: Simple Refactoring
 				- DONE: clean up comments
 				- DONE: container_desc() func => get_contents_str() method of Writing with is_container and is_open tests
 				- DONE: clean up comments
-				- IN-PROC: objlst_to_strlst() func => obj_lst_to_str() method w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
+				- DONE: obj_lst_to_str() func => obj_lst_to_str() func w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
+				- TBD: clean up comments
+				- TBD: incorporate "nothing" condition into obj_lst_to_str()
+				- TBD: Clean up comments
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
