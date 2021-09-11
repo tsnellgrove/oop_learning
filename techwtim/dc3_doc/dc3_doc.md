@@ -59,8 +59,10 @@ IN-PROC: Simple Refactoring
 				- DONE: clean up comments
 				- DONE: obj_lst_to_str() func => obj_lst_to_str() func w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
 				- DONE: clean up comments
-				- TBD: incorporate "nothing" condition into obj_lst_to_str()
-				- TBD: Clean up comments
+				- DONE: incorporate "nothing" condition into obj_lst_to_str()
+				- DONE: Clean up comments
+				- DONE: remove room examine scope check - already taken care of via execute scope check
+				- TBD: examine room.paths method opportunities
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict
