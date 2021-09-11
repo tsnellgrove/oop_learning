@@ -62,7 +62,8 @@ IN-PROC: Simple Refactoring
 				- DONE: incorporate "nothing" condition into obj_lst_to_str()
 				- DONE: Clean up comments
 				- DONE: remove room examine scope check - already taken care of via execute scope check
-				- TBD: examine room.paths method opportunities
+				- DONE: Clean up comments
+				- TBD: examine room._door_paths method opportunities
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 TBD: Refactor stateful_dict

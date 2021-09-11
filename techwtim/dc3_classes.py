@@ -94,7 +94,6 @@ class Room(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
-#				if stateful_dict['room'] == self:
 				room_str = obj_lst_to_str(self.room_obj_lst)
 				buffer(stateful_dict, "The room contains: " + room_str)
 				for obj in self.room_obj_lst:
