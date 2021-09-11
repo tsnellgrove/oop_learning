@@ -37,7 +37,6 @@ def root_word_count(stateful_dict, word2):
 
 def inventory(stateful_dict):
 		hand_obj_lst = stateful_dict['hand']
-#		backpack_str_lst = objlst_to_strlst(stateful_dict['backpack'])
 		backpack_obj_lst = stateful_dict['backpack']
 
 		if len(hand_obj_lst) == 0:
@@ -46,11 +45,9 @@ def inventory(stateful_dict):
 				hand_str = "the " + stateful_dict['hand'][0].full_name
 		buffer(stateful_dict, "In your hand you are holding " + hand_str)
 
-#		if len(backpack_str_lst) == 0:
 		if len(backpack_obj_lst) == 0:
 				backpack_str = "nothing"
 		else:
-#				backpack_str = ', '.join(backpack_str_lst)
 				backpack_str = obj_lst_to_str(backpack_obj_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 

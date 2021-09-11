@@ -48,12 +48,6 @@ def buffer(stateful_dict, output_str):
 		out_buff = out_buff + "\n" + output_str + "\n"
 		stateful_dict['out_buff'] = out_buff
 
-#def objlst_to_strlst(obj_lst):
-#		str_lst = []
-#		for obj in obj_lst:
-#				str_lst.append(obj.full_name)
-#		return str_lst
-
 def obj_lst_to_str(obj_lst):
 		if not isinstance(obj_lst, list):
 				raise ValueError("is not a list")

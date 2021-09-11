@@ -58,7 +58,7 @@ IN-PROC: Simple Refactoring
 				- DONE: container_desc() func => get_contents_str() method of Writing with is_container and is_open tests
 				- DONE: clean up comments
 				- DONE: obj_lst_to_str() func => obj_lst_to_str() func w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
-				- TBD: clean up comments
+				- DONE: clean up comments
 				- TBD: incorporate "nothing" condition into obj_lst_to_str()
 				- TBD: Clean up comments
 	- TBD: replace stateful_dict['paths'] with map obj & methods
