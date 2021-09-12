@@ -8,8 +8,6 @@ Sept 5, 2021
 
 Version 3.42 Goals
 - Create methods to get & set game_state attributes
-- Migrate stateful_dict to one or more game_state obj
-
 
 IDEA (Suggestions from Franco):
 - container hasattrib => method in Writing
@@ -52,7 +50,7 @@ IN-PROC: Simple Refactoring
 					- DONE: clean up comments
 					- DONE: _root_name
 					- DONE: clean up comments
-			- IN-PROC: Room class
+			- DONE: Room class
 				- DONE: @property for _features, _room_obj_lst, and _door_paths
 				- DONE: clean up comments
 				- DONE: container_desc() func => get_contents_str() method of Writing with is_container and is_open tests
@@ -65,25 +63,45 @@ IN-PROC: Simple Refactoring
 				- DONE: Clean up comments
 				- DONE: encapsulate room.door_path access in get methods
 			- TBD: Create GameState class & game_state obj
-				TBD: attributes = dynamic_desc_dict, map_dict, state_dict
+				TBD: attributes = dynamic_desc_dict, map_dict, static_obj_dict (holds universal), state_dict
 				TBD: implement dynamic_desc_dict
 				TBD: implement map_dict
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
-TBD: Refactor stateful_dict
 
-- IDEA: Full separation on interpreter() and cmd_execute()
-- IDEA: Module architecture - separate modeule for wrapper and each wrapper component (including 'end')
+
+
 		
-	
 ##########################
 ### VERSION 3.45 START ###
 ##########################
 
 Version 3.45 Goals
-		
-	Room Events
-	implement scoring
+- Migrate stateful_dict to one or more game_state obj (refactor stateful_dict => object game_state(state_dict, statict_dict) )
+- most helper() functions will become methods of game_state
+- end() will become its own module called by wrapper
+
+TBD: Refactor stateful_dict
+
+
+##########################
+### VERSION 3.48 START ###
+##########################
+
+Version 3.48 Goals
+- Refactor module architecture
+
+- IDEA: Full separation on interpreter() and cmd_execute()
+- IDEA: Module architecture - separate modeule for wrapper and each wrapper component (including 'pre-trigger', 'post-trigger', & 'end')
+
+	
+##########################
+### VERSION 3.50 START ###
+##########################
+
+Version 3.50 Goals
+- Room Events (pre-action trigger)
+- implement scoring
 
 
 
@@ -119,10 +137,10 @@ Additional Creature and Conditional Event thoughts:
 TBD: Scoring (probably in wrapper?)
 
 ##########################
-### VERSION 3.4 START ###
+### VERSION 3.x START ###
 ##########################
 
-Version 3.4 Goals
+Version 3.x Goals
 	levers, and button => and machines!
 	Lever and Button objects
 	Working portcullis puzzle

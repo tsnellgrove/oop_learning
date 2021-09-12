@@ -112,8 +112,6 @@ class Room(ViewOnly):
 						wrong_way_key = 'wrong_way_' + str(num)
 						buffer(stateful_dict, descript_dict[wrong_way_key])
 				elif self.door_in_path(direction):
-#				elif direction in self.door_paths:
-#						door_obj = self.door_paths[direction]
 						door_obj = self.get_door(direction)
 						door_open = door_obj.open_state
 						if not door_open:
