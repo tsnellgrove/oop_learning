@@ -91,6 +91,12 @@ class Room(ViewOnly):
 		@property
 		def door_paths(self):
 				return self._door_paths
+		
+		def	door_in_path(self, direction):
+				return direction in self.door_paths
+
+		def get_door(self, direction):
+				return self.door_paths[direction]
 
 		def examine(self, stateful_dict):
 				super(Room, self).examine(stateful_dict)
@@ -105,8 +111,10 @@ class Room(ViewOnly):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
 						buffer(stateful_dict, descript_dict[wrong_way_key])
-				elif direction in self.door_paths:
-						door_obj = self.door_paths[direction]
+				elif self.door_in_path(direction):
+#				elif direction in self.door_paths:
+#						door_obj = self.door_paths[direction]
+						door_obj = self.get_door(direction)
 						door_open = door_obj.open_state
 						if not door_open:
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
