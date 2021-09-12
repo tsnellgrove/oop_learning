@@ -295,3 +295,22 @@ class Beverage(ViewOnly):
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 
+class GameState(object):
+		def __init__(self, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
+				self._dynamic_desc_dict = dynamic_desc_dict
+				self._map_dict = map_dict
+				self._static_obj_dict = static_obj_dict
+				self._state_dict = state_dict
+
+		@property
+		def dynamic_desc_dict(self, dynamic_desc_key):
+				return self._dynamic_desc_dict[dynamic_desc_key]
+
+		@dynamic_desc_dict.setter
+		def dynamic_desc_dict(self, dynamic_desc_key, dynamic_desc):
+				self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc
+
+
+# @price.setter
+#...     def price(self, new_price):
+#...         self._price = new_price

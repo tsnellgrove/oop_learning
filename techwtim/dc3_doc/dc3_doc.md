@@ -62,9 +62,10 @@ IN-PROC: Simple Refactoring
 				- DONE: remove room examine scope check - already taken care of via execute scope check
 				- DONE: Clean up comments
 				- DONE: encapsulate room.door_path access in get methods
-			- TBD: Create GameState class & game_state obj
-				TBD: attributes = dynamic_desc_dict, map_dict, static_obj_dict (holds universal), state_dict
-				TBD: implement dynamic_desc_dict
+			- DONE: Create GameState class & game_state obj
+			- DONE: attributes = dynamic_desc_dict, map_dict, static_obj_dict (holds universal), state_dict
+			- IN-PROC: implement dynamic_desc_dict
+				- TBD: figure out @property usage for dicts	
 				TBD: implement map_dict
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
