@@ -68,6 +68,8 @@ IN-PROC: Simple Refactoring
 				- DROP: figure out @property usage for dicts
 				- DONE: create setter & getter for dynamic_desc_dict
 				- DONE: Figure out where to declare game_state and how to reference it in classes... send email to Franco
+				- DONE: implement boostrap routine as suggested by Franco
+				- TBD: comment clean-up
 				TBD: implement map_dict
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method

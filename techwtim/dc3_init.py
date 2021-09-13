@@ -68,15 +68,27 @@ antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', N
 throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
 				[throne, silver_key, crystal_box, iron_portcullis], {'south' : iron_portcullis})
 
-game_state = GameState(
-				{'messy_handwriting' : ""}, 
-				{'entrance' : {'north' : main_hall},
+#game_state = GameState(
+#				{'messy_handwriting' : ""}, 
+#				{'entrance' : {'north' : main_hall},
+#				'main_hall' : {'south' : entrance, 'north' : antechamber},
+#				'antechamber' : {'south' : main_hall, 'north' : throne_room},
+#				'throne_room' : {'south' : antechamber}},
+#				{'universal' : [backpack, burt, fist, conscience]},
+#				{}
+#				)
+
+game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
+game_state._map_dict = {
+				'entrance' : {'north' : main_hall},
 				'main_hall' : {'south' : entrance, 'north' : antechamber},
 				'antechamber' : {'south' : main_hall, 'north' : throne_room},
-				'throne_room' : {'south' : antechamber}},
-				{'universal' : [backpack, burt, fist, conscience]},
-				{}
-				)
+				'throne_room' : {'south' : antechamber}
+				}
+game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
+game_state._state_dict = {}
+
+
 
 #### dictionary of variables passed to all functions ###
 #### any object variable that is passed to helper() must be in this dict ###

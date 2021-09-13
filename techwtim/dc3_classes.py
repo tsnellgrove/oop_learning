@@ -11,6 +11,44 @@ from dc3_helper import *
 
 
 # classes
+class GameState(object):
+		def __init__(self, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
+				self._dynamic_desc_dict = dynamic_desc_dict
+				self._map_dict = map_dict
+				self._static_obj_dict = static_obj_dict
+				self._state_dict = state_dict
+
+#		@property
+#		def dynamic_desc_dict(self, dynamic_desc_key):
+#				return self._dynamic_desc_dict[dynamic_desc_key]
+
+#		@dynamic_desc_dict.setter
+#		def dynamic_desc_dict(self, dynamic_desc_key, dynamic_desc):
+#				self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc
+
+		def dynamic_desc_key_exists(self, dynamic_desc_key):
+				return dynamic_desc_key in self._dynamic_desc_dict
+
+		def get_dynamic_desc_dict(self, dynamic_desc_key):
+				if dynamic_desc_key not in self._dynamic_desc_dict:
+						raise KeyError("key does not exist in dict")
+				else:
+						return self._dynamic_desc_dict[dynamic_desc_key]
+
+		def set_dynamic_desc_dict(self, dynamic_desc_key, dynamic_desc_str):
+				if dynamic_desc_key not in self._dynamic_desc_dict:
+						raise KeyError("key does not exist in dict")
+				else:
+						self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc_str
+
+# @price.setter
+#...     def price(self, new_price):
+#...         self._price = new_price
+
+game_state = GameState({}, {}, {}, {})
+
+
+
 class Writing(object):
 		def __init__(self, name, full_name, root_name, descript_key):
 				self._name = name
@@ -34,11 +72,12 @@ class Writing(object):
 		def descript_key(self):
 				return self._descript_key
 
-		def get_descript_str(self, stateful_dict):
-				if self.descript_key in stateful_dict['descript_updates']:
-##				if game_state.dynamic_desc_key_exists(self.descript_key):
-##						descript_str = game_state.get_dynamic_desc_dict(self.dynamic_desc_key)
-						descript_str = stateful_dict['descript_updates'][self.descript_key]
+#		def get_descript_str(self, stateful_dict):
+		def get_descript_str(self):
+#				if self.descript_key in stateful_dict['descript_updates']:
+				if game_state.dynamic_desc_key_exists(self.descript_key):
+						descript_str = game_state.get_dynamic_desc_dict(self.descript_key)
+#						descript_str = stateful_dict['descript_updates'][self.descript_key]
 				else:
 						descript_str = descript_dict[self.descript_key]
 				return descript_str
@@ -52,7 +91,8 @@ class Writing(object):
 						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
 
 		def read(self, stateful_dict):
-				buffer(stateful_dict, self.get_descript_str(stateful_dict))
+#				buffer(stateful_dict, self.get_descript_str(stateful_dict))
+				buffer(stateful_dict, self.get_descript_str())
 
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
@@ -70,7 +110,8 @@ class ViewOnly(Writing):
 				return (self.writing is not None)
 
 		def examine(self, stateful_dict):
-				buffer(stateful_dict, self.get_descript_str(stateful_dict))
+#				buffer(stateful_dict, self.get_descript_str(stateful_dict))
+				buffer(stateful_dict, self.get_descript_str())
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
 						buffer(stateful_dict, output)
@@ -297,36 +338,4 @@ class Beverage(ViewOnly):
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 
-class GameState(object):
-		def __init__(self, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
-				self._dynamic_desc_dict = dynamic_desc_dict
-				self._map_dict = map_dict
-				self._static_obj_dict = static_obj_dict
-				self._state_dict = state_dict
 
-#		@property
-#		def dynamic_desc_dict(self, dynamic_desc_key):
-#				return self._dynamic_desc_dict[dynamic_desc_key]
-
-#		@dynamic_desc_dict.setter
-#		def dynamic_desc_dict(self, dynamic_desc_key, dynamic_desc):
-#				self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc
-
-		def dynamic_desc_key_exists(self, dynamic_desc_key):
-				return dynamic_desc_key in self._dynamic_desc_dict
-
-		def get_dynamic_desc_dict(self, dynamic_desc_key):
-				if dynamic_desc_key not in self._dynamic_desc_dict:
-						raise KeyError("key does not exist in dict")
-				else:
-						return self._dynamic_desc_dict[dynamic_desc_key]
-
-		def set_dynamic_desc_dict(self, dynamic_desc_key, dynamic_desc_str):
-				if dynamic_desc_key not in self._dynamic_desc_dict:
-						raise KeyError("key does not exist in dict")
-				else:
-						self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc_str
-
-# @price.setter
-#...     def price(self, new_price):
-#...         self._price = new_price
