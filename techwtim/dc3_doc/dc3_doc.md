@@ -67,7 +67,7 @@ IN-PROC: Simple Refactoring
 			- IN-PROC: implement dynamic_desc_dict
 				- DROP: figure out @property usage for dicts
 				- DONE: create setter & getter for dynamic_desc_dict
-				- TBD: Figure out where to declare game_state and how to reference it in classes ???
+				- DONE: Figure out where to declare game_state and how to reference it in classes... send email to Franco
 				TBD: implement map_dict
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
