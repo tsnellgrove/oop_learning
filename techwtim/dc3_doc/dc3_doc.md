@@ -64,12 +64,12 @@ IN-PROC: Simple Refactoring
 				- DONE: encapsulate room.door_path access in get methods
 			- DONE: Create GameState class & game_state obj
 			- DONE: attributes = dynamic_desc_dict, map_dict, static_obj_dict (holds universal), state_dict
-			- IN-PROC: implement dynamic_desc_dict
+			- DONE: implement dynamic_desc_dict
 				- DROP: figure out @property usage for dicts
 				- DONE: create setter & getter for dynamic_desc_dict
 				- DONE: Figure out where to declare game_state and how to reference it in classes... send email to Franco
 				- DONE: implement boostrap routine as suggested by Franco
-				- TBD: comment clean-up
+				- DONE: comment clean-up
 				TBD: implement map_dict
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method

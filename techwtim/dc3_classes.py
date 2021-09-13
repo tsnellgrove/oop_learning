@@ -18,14 +18,6 @@ class GameState(object):
 				self._static_obj_dict = static_obj_dict
 				self._state_dict = state_dict
 
-#		@property
-#		def dynamic_desc_dict(self, dynamic_desc_key):
-#				return self._dynamic_desc_dict[dynamic_desc_key]
-
-#		@dynamic_desc_dict.setter
-#		def dynamic_desc_dict(self, dynamic_desc_key, dynamic_desc):
-#				self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc
-
 		def dynamic_desc_key_exists(self, dynamic_desc_key):
 				return dynamic_desc_key in self._dynamic_desc_dict
 
@@ -40,10 +32,6 @@ class GameState(object):
 						raise KeyError("key does not exist in dict")
 				else:
 						self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc_str
-
-# @price.setter
-#...     def price(self, new_price):
-#...         self._price = new_price
 
 game_state = GameState({}, {}, {}, {})
 
@@ -72,12 +60,9 @@ class Writing(object):
 		def descript_key(self):
 				return self._descript_key
 
-#		def get_descript_str(self, stateful_dict):
 		def get_descript_str(self):
-#				if self.descript_key in stateful_dict['descript_updates']:
 				if game_state.dynamic_desc_key_exists(self.descript_key):
 						descript_str = game_state.get_dynamic_desc_dict(self.descript_key)
-#						descript_str = stateful_dict['descript_updates'][self.descript_key]
 				else:
 						descript_str = descript_dict[self.descript_key]
 				return descript_str
@@ -91,7 +76,6 @@ class Writing(object):
 						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
 
 		def read(self, stateful_dict):
-#				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 				buffer(stateful_dict, self.get_descript_str())
 
 		def __repr__(self):
@@ -110,7 +94,6 @@ class ViewOnly(Writing):
 				return (self.writing is not None)
 
 		def examine(self, stateful_dict):
-#				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 				buffer(stateful_dict, self.get_descript_str())
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name

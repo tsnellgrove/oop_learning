@@ -68,16 +68,6 @@ antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', N
 throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
 				[throne, silver_key, crystal_box, iron_portcullis], {'south' : iron_portcullis})
 
-#game_state = GameState(
-#				{'messy_handwriting' : ""}, 
-#				{'entrance' : {'north' : main_hall},
-#				'main_hall' : {'south' : entrance, 'north' : antechamber},
-#				'antechamber' : {'south' : main_hall, 'north' : throne_room},
-#				'throne_room' : {'south' : antechamber}},
-#				{'universal' : [backpack, burt, fist, conscience]},
-#				{}
-#				)
-
 game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
 game_state._map_dict = {
 				'entrance' : {'north' : main_hall},
@@ -87,7 +77,6 @@ game_state._map_dict = {
 				}
 game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
 game_state._state_dict = {}
-
 
 
 #### dictionary of variables passed to all functions ###
@@ -109,22 +98,14 @@ stateful_dict = {
 				'antechamber' : {'south' : main_hall, 'north' : throne_room},
 				'throne_room' : {'south' : antechamber}
 				},
-		'descript_updates' : {
-				'messy_handwriting' : ""
-				}
 		}
 
 ### Assign Random Secret Code ###
 portcullis_code = random.randint(0, 7)
-#switch_dict['big_red_button']['success_value'] = portcullis_code
 port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
-stateful_dict['descript_updates']['messy_handwriting'] = port_code_txt
-
-## game_state.dynamic_desc_dict['messy_handwriting'] = port_code_txt
-## print(game_state.dynamic_desc_dict['messy_handwriting'])
-
 game_state.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
-#print(game_state.get_dynamic_desc_dict('messy_handwriting'))
+
+#switch_dict['big_red_button']['success_value'] = portcullis_code
 
 
 # instantiated objects added to list
