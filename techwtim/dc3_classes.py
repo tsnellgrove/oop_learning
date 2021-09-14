@@ -152,13 +152,13 @@ class Room(ViewOnly):
 						else:
 								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 ##								next_room_obj = game_state.get_next_room(room_obj, direction)
-								print(next_room_obj)
+								print(next_room_obj) # troubleshooting
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 				else:
 						next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 ##						next_room_obj = game_state.get_next_room(room_obj, direction)
-						print(next_room_obj)
+						print(next_room_obj) # troubleshooting
 						stateful_dict['room'] = next_room_obj
 						next_room_obj.examine(stateful_dict)
 
