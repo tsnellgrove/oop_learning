@@ -73,7 +73,8 @@ IN-PROC: Simple Refactoring
 				IN-PROC: implement map_dict
 					- DONE: Create getters
 					- DONE: Initial troubleshooting
-					- TBD: more complex troubleshooting
+					- DONE: more complex troubleshooting
+					- TBD: obj ID not being retained with game_state... investigate wrapper save... maybe call save module??
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 

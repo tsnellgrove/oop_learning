@@ -280,6 +280,8 @@ def wrapper(user_input):
 #		stale_biscuits.take(stateful_dict)
 #		fresh_water.drink(stateful_dict)
 #		front_gate.examine(stateful_dict)
+		print(stateful_dict['room'])
+		print(id(stateful_dict['room']))
 		### test commands ###
 
 		case, word_lst = interpreter(stateful_dict, user_input)
