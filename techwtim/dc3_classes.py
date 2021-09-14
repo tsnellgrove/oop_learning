@@ -33,6 +33,12 @@ class GameState(object):
 				else:
 						self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc_str
 
+		def is_valid_map_direction(self, room_obj, direction):
+				return direction in game_state._map_dict[room_obj.name]
+
+		def get_next_room(self, room_obj, direction):
+				return game_state._map_dict[room_obj.name][direction]
+
 game_state = GameState({}, {}, {}, {})
 
 
@@ -70,7 +76,7 @@ class Writing(object):
 		def is_container(self):
 					return hasattr(self, 'contains')
 
-		def	get_contents_str(self, stateful_dict):
+		def	print_contents_str(self, stateful_dict):
 				if self.is_container() and self.open_state == True:
 						container_str = obj_lst_to_str(self.contains)
 						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
@@ -129,11 +135,12 @@ class Room(ViewOnly):
 				room_str = obj_lst_to_str(self.room_obj_lst)
 				buffer(stateful_dict, "The room contains: " + room_str)
 				for obj in self.room_obj_lst:
-						obj.get_contents_str(stateful_dict)
+						obj.print_contents_str(stateful_dict)
 
 		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
 				if direction not in stateful_dict['paths'][room_obj.name]:
+##				if not game_state.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
 						buffer(stateful_dict, descript_dict[wrong_way_key])
@@ -144,10 +151,14 @@ class Room(ViewOnly):
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
 								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
+##								next_room_obj = game_state.get_next_room(room_obj, direction)
+								print(next_room_obj)
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 				else:
 						next_room_obj = stateful_dict['paths'][room_obj.name][direction]
+##						next_room_obj = game_state.get_next_room(room_obj, direction)
+						print(next_room_obj)
 						stateful_dict['room'] = next_room_obj
 						next_room_obj.examine(stateful_dict)
 
@@ -259,11 +270,11 @@ class Container(Door):
 
 		def examine(self, stateful_dict):
 				super(Container, self).examine(stateful_dict)
-				self.get_contents_str(stateful_dict)
+				self.print_contents_str(stateful_dict)
 
 		def open(self, stateful_dict):
 				super(Container, self).open(stateful_dict)
-				self.get_contents_str(stateful_dict)
+				self.print_contents_str(stateful_dict)
 
 		def put(self, obj, stateful_dict):
 				hand_lst = stateful_dict['hand']
@@ -302,7 +313,7 @@ class Jug(Item):
 
 		def examine(self, stateful_dict):
 				super(Jug, self).examine(stateful_dict)
-				self.get_contents_str(stateful_dict)
+				self.print_contents_str(stateful_dict)
 
 class Beverage(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):

@@ -70,7 +70,10 @@ IN-PROC: Simple Refactoring
 				- DONE: Figure out where to declare game_state and how to reference it in classes... send email to Franco
 				- DONE: implement boostrap routine as suggested by Franco
 				- DONE: comment clean-up
-				TBD: implement map_dict
+				IN-PROC: implement map_dict
+					- DONE: Create getters
+					- DONE: Initial troubleshooting
+					- TBD: more complex troubleshooting
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 
