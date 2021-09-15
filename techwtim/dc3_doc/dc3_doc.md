@@ -74,7 +74,9 @@ IN-PROC: Simple Refactoring
 					- DONE: Create getters
 					- DONE: Initial troubleshooting
 					- DONE: more complex troubleshooting
-					- TBD: obj ID not being retained with game_state... investigate wrapper save... maybe call save module??
+					- DONE: obj ID not being retained with game_state... 
+					- DONE: have proven that obj start with same IDs (in dc3_init module)
+					- TBD: investigate wrapper save... maybe call save module??
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 

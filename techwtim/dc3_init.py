@@ -78,6 +78,8 @@ game_state._map_dict = {
 game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
 game_state._state_dict = {}
 
+print(game_state._map_dict)
+print(id(game_state._map_dict['entrance']['north']))
 
 #### dictionary of variables passed to all functions ###
 #### any object variable that is passed to helper() must be in this dict ###
@@ -99,6 +101,10 @@ stateful_dict = {
 				'throne_room' : {'south' : antechamber}
 				},
 		}
+
+print(stateful_dict['paths'])
+print(id(stateful_dict['paths']['entrance']['north']))
+
 
 ### Assign Random Secret Code ###
 portcullis_code = random.randint(0, 7)
