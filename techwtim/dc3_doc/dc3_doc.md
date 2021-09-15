@@ -77,7 +77,13 @@ IN-PROC: Simple Refactoring
 					- DONE: obj ID not being retained with game_state... 
 					- DONE: have proven that obj start with same IDs (in dc3_init module)
 					- DONE: investigate wrapper save... maybe call save module??
-					- TBD: Now antechamber fails after Entrance but works after Throne Room... need review class coding carefully
+					- DONE: Now antechamber fails after Entrance but works after Throne Room... need review class coding carefully
+						- IDEA: This happens because I am testing with game_state for 'passages' but 'stateful_dict' for open doors...
+						- IDEA: so Entrance => Main Hall = open door = works
+						- IDEA: Main Hall => Antechamber = passage = fails
+						- IDEA: Antechamber => Throne Room = open door = works
+						- IDEA: Throne Room => Antechamber = open door = works
+					- TBD: setup testing to print Antechamber id vs. game_state Antechamber id every turn and figure out where they diverge
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 

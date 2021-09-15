@@ -104,6 +104,8 @@ stateful_dict = {
 
 print(stateful_dict['paths'])
 print(id(stateful_dict['paths']['entrance']['north']))
+print("The id of " + antechamber.name + " is " + str(id(antechamber)))
+print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
 
 
 ### Assign Random Secret Code ###
