@@ -76,7 +76,8 @@ IN-PROC: Simple Refactoring
 					- DONE: more complex troubleshooting
 					- DONE: obj ID not being retained with game_state... 
 					- DONE: have proven that obj start with same IDs (in dc3_init module)
-					- TBD: investigate wrapper save... maybe call save module??
+					- DONE: investigate wrapper save... maybe call save module??
+					- TBD: Now antechamber fails after Entrance but works after Throne Room... need review class coding carefully
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 
