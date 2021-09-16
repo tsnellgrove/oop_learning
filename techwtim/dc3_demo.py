@@ -282,8 +282,9 @@ def wrapper(user_input):
 #		front_gate.examine(stateful_dict)
 ##		print(stateful_dict['room'])
 ##		print(id(stateful_dict['room']))
-		print("The id of " + antechamber.name + " is " + str(id(antechamber)))
-		print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+		print("wrapper: The id of " + antechamber.name + " is " + str(id(antechamber)))
+		print("wrapper: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+		print("wrapper: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 		### test commands ###
 
 		case, word_lst = interpreter(stateful_dict, user_input)

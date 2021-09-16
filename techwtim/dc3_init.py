@@ -78,8 +78,8 @@ game_state._map_dict = {
 game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
 game_state._state_dict = {}
 
-print(game_state._map_dict)
-print(id(game_state._map_dict['entrance']['north']))
+#print(game_state._map_dict)
+#print("id(game_state._map_dict['entrance']['north']) = " + id(game_state._map_dict['entrance']['north']))
 
 #### dictionary of variables passed to all functions ###
 #### any object variable that is passed to helper() must be in this dict ###
@@ -102,10 +102,11 @@ stateful_dict = {
 				},
 		}
 
-print(stateful_dict['paths'])
-print(id(stateful_dict['paths']['entrance']['north']))
-print("The id of " + antechamber.name + " is " + str(id(antechamber)))
-print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+#print(stateful_dict['paths'])
+#print(id(stateful_dict['paths']['entrance']['north']))
+print("dc3_init: The id of " + antechamber.name + " is " + str(id(antechamber)))
+print("dc3_init: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+print("dc3_init: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 
 
 ### Assign Random Secret Code ###
