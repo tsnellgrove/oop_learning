@@ -89,6 +89,7 @@ IN-PROC: Simple Refactoring
 						- IDEA: fundamentally I think I am defining all variables twice somehow... 
 						- IDEA: and because game_state is declared early it is getter the first assignment and conflicting with the 2nd
 						- TBD: Review and confirm module model
+						- TBD: create print statements to track pickle dumps and loads
 						- TBD: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
