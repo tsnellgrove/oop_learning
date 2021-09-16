@@ -40,13 +40,23 @@ class GameState(object):
 				next_room = game_state._map_dict[room_obj.name][direction]
 				print("get_next_room: next room id is " + str(id(next_room)))
 #				print("The id of " + antechamber.name + " is " + str(id(antechamber)))
-				print("get_next_room: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+				print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
 #				print("The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 				return next_room
-##				return game_state._map_dict[room_obj.name][direction]
+#				return game_state._map_dict[room_obj.name][direction]
 
-game_state = GameState({}, {}, {}, {})
+##game_state = GameState({}, {}, {}, {})
 
+try:
+#		if len(game_state._map_dict) >= 0:
+#				print("game_state already defined")
+		game_state
+#		print("game_state already defined")
+except:
+		game_state = GameState({}, {}, {}, {})
+		print("classes: game_state declared")
+else:
+		print("classes: game_state already defined")
 
 
 class Writing(object):
@@ -158,15 +168,15 @@ class Room(ViewOnly):
 						else:
 								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 ##								next_room_obj = game_state.get_next_room(room_obj, direction)
-#								print(next_room_obj) # troubleshooting
-#								print(id(next_room_obj))
+								print(next_room_obj) # troubleshooting
+								print(id(next_room_obj))
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 				else:
 #						next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 						next_room_obj = game_state.get_next_room(room_obj, direction)
-#						print(next_room_obj) # troubleshooting
-#						print(id(next_room_obj))
+						print(next_room_obj) # troubleshooting
+						print(id(next_room_obj))
 						stateful_dict['room'] = next_room_obj
 						next_room_obj.examine(stateful_dict)
 

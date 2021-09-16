@@ -83,7 +83,13 @@ IN-PROC: Simple Refactoring
 						- IDEA: Main Hall => Antechamber = passage = fails
 						- IDEA: Antechamber => Throne Room = open door = works
 						- IDEA: Throne Room => Antechamber = open door = works
-					- TBD: setup testing to print Antechamber id vs. game_state Antechamber id every turn and figure out where they diverge
+					- DONE: setup testing to print Antechamber id vs. game_state Antechamber id every turn and figure out where they diverge
+						- DONE: map out module calls
+						- DONE: ensure that game_state is not declared multiple times during classes moduel calls (didn't seem to change anything)
+						- IDEA: fundamentally I think I am defining all variables twice somehow... 
+						- IDEA: and because game_state is declared early it is getter the first assignment and conflicting with the 2nd
+						- TBD: Review and confirm module model
+						- TBD: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 
