@@ -132,5 +132,5 @@ master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print
 with open('save_obj_pickle2', 'wb') as f:
 		pickle.dump(master_obj_lst, f)
 
-
+print("pickle dump")
 

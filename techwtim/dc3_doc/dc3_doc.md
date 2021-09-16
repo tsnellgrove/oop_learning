@@ -88,9 +88,10 @@ IN-PROC: Simple Refactoring
 						- DONE: ensure that game_state is not declared multiple times during classes moduel calls (didn't seem to change anything)
 						- IDEA: fundamentally I think I am defining all variables twice somehow... 
 						- IDEA: and because game_state is declared early it is getter the first assignment and conflicting with the 2nd
-						- TBD: Review and confirm module model
-						- TBD: create print statements to track pickle dumps and loads
-						- TBD: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
+						- DONE: create print statements to track pickle dumps and loads
+						- DONE: Review and confirm module model
+						- DONE: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
+						- TBD: Now interp module knows nothing about objs... maybe pass master_obj_lst ???
 	- TBD: replace stateful_dict['paths'] with map obj & methods
 	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
 
