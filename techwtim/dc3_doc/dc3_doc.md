@@ -91,10 +91,11 @@ IN-PROC: Simple Refactoring
 						- DONE: create print statements to track pickle dumps and loads
 						- DONE: Review and confirm module model
 						- DONE: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
-						- TBD: Now interp module knows nothing about objs... maybe pass master_obj_lst ???
-	- TBD: replace stateful_dict['paths'] with map obj & methods
-	- TBD: replace stateful_dict['descript_updates'] with dynamic_descriptions obj & method
-
+						- IDEA: investigated creating a separate dc3_wrapper module that would then call interpreter & cmd_execute from demo...
+							- IDEA: this won't work... wrapper needs access to stateful dict...
+							- IDEA: I'm thinking here's what I need to do:
+								- 1) return to pickle loading in wrapper at the start of every loop (and stop calling init2)
+								- 2) pack obj variables and pass them to interp and cmd_exe (or maybe pass as master_obj_lst ??)
 
 
 		
