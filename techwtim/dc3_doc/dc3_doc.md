@@ -93,10 +93,15 @@ IN-PROC: Simple Refactoring
 						- DONE: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
 						- IDEA: investigated creating a separate dc3_wrapper module that would then call interpreter & cmd_execute from demo...
 							- IDEA: this won't work... wrapper needs access to stateful dict...
+							- NOTES: I confirmed that, by default, pickled objects don't retain their obj id
 							- IDEA: I'm thinking here's what I need to do:
-								- 1) return to pickle loading in wrapper at the start of every loop (and stop calling init2)
-								- 2) pack obj variables and pass them to interp and cmd_exe (or maybe pass as master_obj_lst ??)
+								- DONE: 1) return to pickle loading in wrapper at the start of every loop (and stop calling init2)
+								- DONE: 2) pack obj variables and pass them to interp and cmd_exe (or maybe pass as master_obj_lst ??)
+							- NOTES: I am now pickle dumping & loading every turn in wrapper and formally passing obj to interpreter - an am *still* getting dups in classes get_next_room() method... I need to double down on troubleshooting this method in ugly detail 
 
+Someday: fix root-word var passing of master_obj_lst
+Someday: Eliminate eval using class-based-dict per this link: https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object
+Someday: clean up *very* ugly master_obj_lst passing - really the only function that needs this is the one that converts strings to obj... and maybe I can solve that by just passing master_obj_lst and checking to see if str = the name of a member of master_obj_lst
 
 		
 ##########################

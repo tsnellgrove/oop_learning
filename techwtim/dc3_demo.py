@@ -14,7 +14,7 @@ from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
 from dc3_classes import *
 from dc3_helper import *
-from dc3_obj_init2 import *
+###from dc3_obj_init2 import *
 
 
 ### interpreter-specific helper functions ###
@@ -112,10 +112,16 @@ def true_one_word(stateful_dict, word1, room_obj):
 				end(stateful_dict) # maybe move to wrapper?
 		return
 
-def noun_handling(stateful_dict, user_input_lst):
+###def noun_handling(stateful_dict, user_input_lst):
+def noun_handling(master_obj_lst, user_input_lst):
+
+		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
+
+		print(front_gate) # troubleshooting
+
 		exit_state = False
-#		word2_obj = rusty_key
-		word2_obj = ""
+		word2_obj = rusty_key
+###		word2_obj = ""
 		word2 = user_input_lst[1]
 
 		# convert 3-word verb-adj-noun commands into verb-obj_name commands
@@ -134,8 +140,12 @@ def noun_handling(stateful_dict, user_input_lst):
 				return exit_state, word2_obj
 		
 		# check to see if word2 is a known obj_name
+###		print(getattr(sys.modules[__name__], 'front_gate'))
+
 		try:
-				word2_obj = str_to_class(word2)
+###				word2_obj = str_to_class(word2)
+###				word2_obj = getattr(sys.modules[__name__], word2)
+				word2_obj = eval(word2)
 		except:
 				# check to see if the word2 is a root_name; convert to obj_name if valid
 				root_count, obj_name = root_word_count(stateful_dict, word2)
@@ -151,12 +161,19 @@ def noun_handling(stateful_dict, user_input_lst):
 						exit_state = True
 						return exit_state, word2_obj
 				else:
-						word2_obj = str_to_class(obj_name)
+###						word2_obj = str_to_class(obj_name)
+###						word2_obj = getattr(sys.modules[__name__], obj_name)
+						word2_obj = eval(obj_name)
 		return exit_state, word2_obj
 
 
 # interpreter
-def interpreter(stateful_dict, user_input):
+def interpreter(user_input, master_obj_lst):
+
+		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
+
+		print(rusty_key) # troubleshooting
+
 		room_obj = stateful_dict['room']
 		user_input_lst = input_cleanup(user_input)
 
@@ -223,7 +240,8 @@ def interpreter(stateful_dict, user_input):
 						else:
 								return 'put', [dirobj_obj, word1, noun_obj]
 		else:
-				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
+###				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
+				exit_state, word2_obj = noun_handling(master_obj_lst, user_input_lst)
 				if exit_state:
 						return 'error', []
 				else:
@@ -276,17 +294,17 @@ def cmd_execute(stateful_dict, case, word_lst):
 def wrapper(user_input):
 
 		# object list loaded from pickle
-###		with open('save_obj_pickle2', 'rb') as f:
-###				master_obj_lst = pickle.load(f)
+		with open('save_obj_pickle2', 'rb') as f:
+				master_obj_lst = pickle.load(f)
 
 		# object vatiables declared / instantiated from un-pickled list
-###		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
+		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
 
-###		print("pickle load")
+		print("pickle load")
 
-###		print("obj_init2: The id of " + antechamber.name + " is " + str(id(antechamber)))
-###		print("obj_init2: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-###		print("obj_init2: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
+		print("obj_init2: The id of " + antechamber.name + " is " + str(id(antechamber)))
+		print("obj_init2: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+		print("obj_init2: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1
 		stateful_dict['out_buff'] = "" # resets buffer
@@ -294,7 +312,7 @@ def wrapper(user_input):
 		### test commands ###
 #		stale_biscuits.take(stateful_dict)
 #		fresh_water.drink(stateful_dict)
-#		front_gate.examine(stateful_dict)
+#		torn_note.examine(stateful_dict)
 ##		print(stateful_dict['room'])
 ##		print(id(stateful_dict['room']))
 		print("wrapper: The id of " + antechamber.name + " is " + str(id(antechamber)))
@@ -302,7 +320,8 @@ def wrapper(user_input):
 		print("wrapper: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 		### test commands ###
 
-		case, word_lst = interpreter(stateful_dict, user_input)
+		case, word_lst = interpreter(user_input, master_obj_lst)
+###		case, word_lst = interpreter(stateful_dict, user_input)
 		# pre-action triggers will go here
 		if case in ['go', 'put', '2word']:
 				cmd_execute(stateful_dict, case, word_lst)
