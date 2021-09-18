@@ -14,6 +14,7 @@ from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
 from dc3_classes import *
 from dc3_helper import *
+import gc
 ###from dc3_obj_init2 import *
 
 
@@ -319,6 +320,12 @@ def wrapper(user_input):
 		print("wrapper: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
 		print("wrapper: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 		### test commands ###
+
+#		del(game_state) #troubleshooting
+		print("wrapper post pickle load, pre interpreter")
+		for obj in gc.get_objects():
+				if isinstance(obj, GameState):
+						print(obj, id(obj))
 
 		case, word_lst = interpreter(user_input, master_obj_lst)
 ###		case, word_lst = interpreter(stateful_dict, user_input)

@@ -97,7 +97,11 @@ IN-PROC: Simple Refactoring
 							- IDEA: I'm thinking here's what I need to do:
 								- DONE: 1) return to pickle loading in wrapper at the start of every loop (and stop calling init2)
 								- DONE: 2) pack obj variables and pass them to interp and cmd_exe (or maybe pass as master_obj_lst ??)
-							- NOTES: I am now pickle dumping & loading every turn in wrapper and formally passing obj to interpreter - an am *still* getting dups in classes get_next_room() method... I need to double down on troubleshooting this method in ugly detail 
+						- NOTES: I am now pickle dumping & loading every turn in wrapper and formally passing obj to interpreter - an am *still* getting dups in classes get_next_room() method... I need to double down on troubleshooting this method in ugly detail 
+							- DONE: check if there is a duplicate of of game_state - there is
+							- DONE: Determine when duplicate game_state is created => after init but before middle of wrapper
+							- NOTE: One version of game_state keeps the same id from the start... presumably this is not the pickled version?
+							- TBD: Keep troubleshooting to find out exactly where the duplicate game_state shows up; special focus on classes declaration
 
 Someday: fix root-word var passing of master_obj_lst
 Someday: Eliminate eval using class-based-dict per this link: https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object

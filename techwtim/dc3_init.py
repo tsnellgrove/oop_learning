@@ -8,6 +8,7 @@
 import pickle
 from dc3_classes import *
 import random
+import gc
 
 
 # object instantiation - starting state
@@ -68,6 +69,11 @@ antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', N
 throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
 				[throne, silver_key, crystal_box, iron_portcullis], {'south' : iron_portcullis})
 
+print("init pre game_state declarations")
+for obj in gc.get_objects():
+		if isinstance(obj, GameState):
+				print(obj, id(obj))
+
 game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
 game_state._map_dict = {
 				'entrance' : {'north' : main_hall},
@@ -77,6 +83,11 @@ game_state._map_dict = {
 				}
 game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
 game_state._state_dict = {}
+
+print("init post game_state declarations")
+for obj in gc.get_objects():
+		if isinstance(obj, GameState):
+				print(obj, id(obj))
 
 #print(game_state._map_dict)
 #print("id(game_state._map_dict['entrance']['north']) = " + id(game_state._map_dict['entrance']['north']))
@@ -133,4 +144,7 @@ with open('save_obj_pickle2', 'wb') as f:
 		pickle.dump(master_obj_lst, f)
 
 print("pickle dump")
+
+del(game_state) # troubleshooting
+
 

@@ -8,6 +8,7 @@
 import random
 from dc3_static_init import *
 from dc3_helper import *
+import gc
 
 
 # classes
@@ -54,6 +55,10 @@ try:
 #		print("game_state already defined")
 except:
 		game_state = GameState({}, {}, {}, {})
+		print("classes immediately after bootstrap game_state is declared")
+		for obj in gc.get_objects():
+				if isinstance(obj, GameState):
+						print(obj, id(obj))
 		print("classes: game_state declared")
 else:
 		print("classes: game_state already defined")
