@@ -13,7 +13,9 @@ import gc
 
 # classes
 class GameState(object):
-		def __init__(self, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
+###		def __init__(self, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
+		def __init__(self, name, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
+				self._name = name
 				self._dynamic_desc_dict = dynamic_desc_dict
 				self._map_dict = map_dict
 				self._static_obj_dict = static_obj_dict
@@ -48,21 +50,30 @@ class GameState(object):
 
 ##game_state = GameState({}, {}, {}, {})
 
+		def __repr__(self):
+				return f'Object { self._name } is of class { type(self).__name__ } '
+
 try:
 #		if len(game_state._map_dict) >= 0:
 #				print("game_state already defined")
-		game_state
+				print("classes game_state try " + game_state)
 #		print("game_state already defined")
 except:
-		game_state = GameState({}, {}, {}, {})
+		game_state = GameState('game_state1', {}, {}, {}, {})
+
 		print("classes immediately after bootstrap game_state is declared")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
 						print(obj, id(obj))
 		print("classes: game_state declared")
+
 else:
 		print("classes: game_state already defined")
 
+#def __repr__(self):
+#		return f'Object { self.name } is of class { type(self).__name__ } '
+
+print(game_state)
 
 class Writing(object):
 		def __init__(self, name, full_name, root_name, descript_key):

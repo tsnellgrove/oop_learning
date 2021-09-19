@@ -102,6 +102,9 @@ IN-PROC: Simple Refactoring
 							- DONE: Determine when duplicate game_state is created => after init but before middle of wrapper
 							- NOTE: One version of game_state keeps the same id from the start... presumably this is not the pickled version?
 							- TBD: Keep troubleshooting to find out exactly where the duplicate game_state shows up; special focus on classes declaration
+						- NOTES: So, the original game_state is not getting deleted, and now that I'm instantiating a new version I get 2 old game_state versions... need to dig deep into the classes bootstrap - that's where the issue lives... game_state1 never gets deleted and game_state2 gets created twice... ???
+						- I fundamentally need to reconsider my bootstrap approach... I will go back to adding values....
+						 
 
 Someday: fix root-word var passing of master_obj_lst
 Someday: Eliminate eval using class-based-dict per this link: https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object

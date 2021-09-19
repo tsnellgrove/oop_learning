@@ -74,6 +74,7 @@ for obj in gc.get_objects():
 		if isinstance(obj, GameState):
 				print(obj, id(obj))
 
+game_state._name = 'game_state2'
 game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
 game_state._map_dict = {
 				'entrance' : {'north' : main_hall},
@@ -83,6 +84,20 @@ game_state._map_dict = {
 				}
 game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
 game_state._state_dict = {}
+
+#game_state = GameState(
+#				'game_state2',
+#				{'messy_handwriting' : ""},
+#				{
+#						'entrance' : {'north' : main_hall},
+#						'main_hall' : {'south' : entrance, 'north' : antechamber},
+#						'antechamber' : {'south' : main_hall, 'north' : throne_room},
+#						'throne_room' : {'south' : antechamber}
+#				},
+#				{'universal' : [backpack, burt, fist, conscience]},
+#				{}
+#)
+
 
 print("init post game_state declarations")
 for obj in gc.get_objects():
@@ -147,4 +162,9 @@ print("pickle dump")
 
 del(game_state) # troubleshooting
 
-
+print("init post del(game_state)")
+for obj in gc.get_objects():
+		if isinstance(obj, GameState):
+				print(obj, id(obj))
+				
+#del(game_state) # troubleshooting

@@ -294,6 +294,11 @@ def cmd_execute(stateful_dict, case, word_lst):
 # wrapper code - calls interpreter and saves game state
 def wrapper(user_input):
 
+		print("wrapper pre pickle load")
+		for obj in gc.get_objects():
+				if isinstance(obj, GameState):
+						print(obj, id(obj))
+
 		# object list loaded from pickle
 		with open('save_obj_pickle2', 'rb') as f:
 				master_obj_lst = pickle.load(f)
