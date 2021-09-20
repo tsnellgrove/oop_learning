@@ -173,7 +173,7 @@ def interpreter(user_input, master_obj_lst):
 
 		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
 
-		print(rusty_key) # troubleshooting
+###		print(rusty_key) # troubleshooting
 
 		room_obj = stateful_dict['room']
 		user_input_lst = input_cleanup(user_input)
@@ -330,6 +330,8 @@ def wrapper(user_input):
 		print("wrapper post pickle load, pre interpreter")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
+						print(obj, id(obj))
+				if isinstance(obj, Door):
 						print(obj, id(obj))
 
 		case, word_lst = interpreter(user_input, master_obj_lst)

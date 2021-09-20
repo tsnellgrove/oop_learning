@@ -104,6 +104,8 @@ IN-PROC: Simple Refactoring
 							- TBD: Keep troubleshooting to find out exactly where the duplicate game_state shows up; special focus on classes declaration
 						- NOTES: So, the original game_state is not getting deleted, and now that I'm instantiating a new version I get 2 old game_state versions... need to dig deep into the classes bootstrap - that's where the issue lives... game_state1 never gets deleted and game_state2 gets created twice... ???
 						- I fundamentally need to reconsider my bootstrap approach... I will go back to adding values....
+						- NOTES: turns out I have duplicates of other obj (Doors) as well
+						- TBD: figure out why delete is not working in init
 						 
 
 Someday: fix root-word var passing of master_obj_lst

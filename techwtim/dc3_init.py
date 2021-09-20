@@ -73,6 +73,8 @@ print("init pre game_state declarations")
 for obj in gc.get_objects():
 		if isinstance(obj, GameState):
 				print(obj, id(obj))
+		if isinstance(obj, Door):
+				print(obj, id(obj))
 
 game_state._name = 'game_state2'
 game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
@@ -102,6 +104,8 @@ game_state._state_dict = {}
 print("init post game_state declarations")
 for obj in gc.get_objects():
 		if isinstance(obj, GameState):
+				print(obj, id(obj))
+		if isinstance(obj, Door):
 				print(obj, id(obj))
 
 #print(game_state._map_dict)
@@ -160,11 +164,17 @@ with open('save_obj_pickle2', 'wb') as f:
 
 print("pickle dump")
 
-del(game_state) # troubleshooting
+# del(game_state) # troubleshooting
+				
+#del(game_state) # troubleshooting
 
-print("init post del(game_state)")
+for obj in  master_obj_lst:
+		print("deleting object")
+		del(obj)
+
+print("init post del")
 for obj in gc.get_objects():
 		if isinstance(obj, GameState):
 				print(obj, id(obj))
-				
-#del(game_state) # troubleshooting
+		if isinstance(obj, Door):
+				print(obj, id(obj))
