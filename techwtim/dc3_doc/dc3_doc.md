@@ -105,7 +105,7 @@ IN-PROC: Simple Refactoring
 						- NOTES: So, the original game_state is not getting deleted, and now that I'm instantiating a new version I get 2 old game_state versions... need to dig deep into the classes bootstrap - that's where the issue lives... game_state1 never gets deleted and game_state2 gets created twice... ???
 						- I fundamentally need to reconsider my bootstrap approach... I will go back to adding values....
 						- NOTES: turns out I have duplicates of other obj (Doors) as well
-						- TBD: figure out why delete is not working in init
+						- DONE: figure out why delete is not working in init; also, why dups?? - learning more about gc.get_objects() and sys.refcount()
 						 
 
 Someday: fix root-word var passing of master_obj_lst
@@ -141,7 +141,7 @@ Version 3.48 Goals
 ##########################
 
 Version 3.50 Goals
-- Room Events (pre-action trigger)
+- Room Events (pre-action trigger) - maybe using exec()
 - implement scoring
 
 

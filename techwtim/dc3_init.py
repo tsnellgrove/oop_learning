@@ -5,6 +5,7 @@
 
 
 # import statements
+import sys
 import pickle
 from dc3_classes import *
 import random
@@ -169,8 +170,10 @@ print("pickle dump")
 #del(game_state) # troubleshooting
 
 for obj in  master_obj_lst:
-		print("deleting object")
+		print(obj, id(obj), sys.getrefcount(obj), "deleted")
+#		print("deleting object")
 		del(obj)
+
 
 print("init post del")
 for obj in gc.get_objects():
