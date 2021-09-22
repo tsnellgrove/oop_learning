@@ -106,7 +106,10 @@ IN-PROC: Simple Refactoring
 						- I fundamentally need to reconsider my bootstrap approach... I will go back to adding values....
 						- NOTES: turns out I have duplicates of other obj (Doors) as well
 						- DONE: figure out why delete is not working in init; also, why dups?? - learning more about gc.get_objects() and sys.refcount()
-						- TBD: Try checking refs on problem version of obj??
+						- DONE: Try checking refs on problem version of obj?? - Both obj sets have many ref (but first static set has more)
+						- NOTE: there are 2 obj sets - the initial one from init declaration that never changes id; And a 2nd set that changes every move... presumably loaded from the pickle? It appears that we don't actually need to load from pickle?
+						- DONE: track problem antechamber obj id - so the PROBLEM is the FIRST set of objects... the ones that never change... perhaps they never get updated?? For some reason, game_state._paths is pointing to this first set... and when they are called no room_obj can be interacted with... ???
+
 						 
 
 Someday: fix root-word var passing of master_obj_lst

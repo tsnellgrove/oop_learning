@@ -330,9 +330,9 @@ def wrapper(user_input):
 		print("wrapper post pickle load, pre interpreter")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
-						print(obj, id(obj))
-				if isinstance(obj, Door):
-						print(obj, id(obj))
+						print(obj, id(obj), sys.getrefcount(obj))
+				if isinstance(obj, Room):
+						print(obj, id(obj), sys.getrefcount(obj))
 
 		case, word_lst = interpreter(user_input, master_obj_lst)
 ###		case, word_lst = interpreter(stateful_dict, user_input)

@@ -73,9 +73,9 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 print("init pre game_state declarations")
 for obj in gc.get_objects():
 		if isinstance(obj, GameState):
-				print(obj, id(obj))
-		if isinstance(obj, Door):
-				print(obj, id(obj))
+				print(obj, id(obj), sys.getrefcount(obj))
+		if isinstance(obj, Room):
+				print(obj, id(obj), sys.getrefcount(obj))
 
 game_state._name = 'game_state2'
 game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
@@ -105,9 +105,9 @@ game_state._state_dict = {}
 print("init post game_state declarations")
 for obj in gc.get_objects():
 		if isinstance(obj, GameState):
-				print(obj, id(obj))
-		if isinstance(obj, Door):
-				print(obj, id(obj))
+				print(obj, id(obj), sys.getrefcount(obj))
+		if isinstance(obj, Room):
+				print(obj, id(obj), sys.getrefcount(obj))
 
 #print(game_state._map_dict)
 #print("id(game_state._map_dict['entrance']['north']) = " + id(game_state._map_dict['entrance']['north']))
@@ -170,14 +170,14 @@ print("pickle dump")
 #del(game_state) # troubleshooting
 
 for obj in  master_obj_lst:
-		print(obj, id(obj), sys.getrefcount(obj), "deleted")
+		print(obj, id(obj), sys.getrefcount(obj))
 #		print("deleting object")
-		del(obj)
+#		del(obj)
 
 
-print("init post del")
+print("init post dump")
 for obj in gc.get_objects():
 		if isinstance(obj, GameState):
-				print(obj, id(obj))
-		if isinstance(obj, Door):
-				print(obj, id(obj))
+				print(obj, id(obj), sys.getrefcount(obj))
+		if isinstance(obj, Room):
+				print(obj, id(obj), sys.getrefcount(obj))

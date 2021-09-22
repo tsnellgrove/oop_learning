@@ -5,6 +5,7 @@
 
 
 # import
+import sys
 import random
 from dc3_static_init import *
 from dc3_helper import *
@@ -64,7 +65,7 @@ except:
 		print("classes immediately after bootstrap game_state is declared")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
-						print(obj, id(obj))
+						print(obj, id(obj), sys.getrefcount(obj))
 		print("classes: game_state declared")
 
 else:
