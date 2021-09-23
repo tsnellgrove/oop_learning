@@ -114,7 +114,7 @@ IN-PROC: Simple Refactoring
 						- DONE: Create start_of_game variable in main and pass to wrapper
 						- DONE: Move initial room print to wrapper start of game routine
 						- TBD: Still need to figure out how to avoid game_state dup... that's my one problem case... maybe delete at end of class?
-							- TBD: maybe a custom start_of_game case where defautl_pickle doesn't include game_state
+							- DONE: maybe a custom start_of_game case where defautl_pickle doesn't include game_state (NO GAMESTATE IN DEFAULT PICKLE)
 							- TBD: game_state gets updated and added to new game pickle? then pickle is immediately loaded in main routine?
 						TBD: Move dynamic updates to wrapper for first run case
 						TBD: Create a "default pickle" file to load (and a routine to gen it up)
