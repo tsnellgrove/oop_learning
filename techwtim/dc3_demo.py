@@ -294,6 +294,7 @@ def cmd_execute(stateful_dict, case, word_lst):
 # wrapper code - calls interpreter and saves game state
 def wrapper(user_input):
 
+
 		print("wrapper pre pickle load")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
@@ -307,6 +308,14 @@ def wrapper(user_input):
 		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
 
 		print("pickle load")
+
+		if user_input == "xyzzy42":
+				buffer(stateful_dict, descript_dict["introduction"])
+				buffer(stateful_dict, descript_dict["entrance"])
+				
+				return stateful_dict['end_of_game'], stateful_dict['out_buff']
+
+
 
 		print("obj_init2: The id of " + antechamber.name + " is " + str(id(antechamber)))
 		print("obj_init2: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))

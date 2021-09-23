@@ -110,11 +110,12 @@ IN-PROC: Simple Refactoring
 						- NOTE: there are 2 obj sets - the initial one from init declaration that never changes id; And a 2nd set that changes every move... presumably loaded from the pickle? It appears that we don't actually need to load from pickle?
 						- DONE: track problem antechamber obj id - so the PROBLEM is the FIRST set of objects... the ones that never change... perhaps they never get updated?? For some reason, game_state._paths is pointing to this first set... and when they are called no room_obj can be interacted with... ???
 						- DONE: tested running dc3_init on its own (to initialize the pickle dump), commenting out the import of dc3_init, and then running main - worked great until tried to go to antechamber (key error on game_state._paths)... so this seems to be the answer!
-						DONE: check refs on gamestate at end of class (5 references)
-						TBD: Still need to figure out how to avoid game_state dup... that's my one problem case... maybe delete at end of class?
-							- IDEA: maybe a custom start_of_game case where defautl_pickle doesn't include game_state but game_state gets updated and added to new game pickle? then pickle is immediately loaded in main routine?
-						TBD: Create start_of_game variable in main and pass to wrapper
-						TBD: Move initial room print to wrapper start of game routine
+						- DONE: check refs on gamestate at end of class (5 references)
+						- DONE: Create start_of_game variable in main and pass to wrapper
+						- DONE: Move initial room print to wrapper start of game routine
+						- TBD: Still need to figure out how to avoid game_state dup... that's my one problem case... maybe delete at end of class?
+							- TBD: maybe a custom start_of_game case where defautl_pickle doesn't include game_state
+							- TBD: game_state gets updated and added to new game pickle? then pickle is immediately loaded in main routine?
 						TBD: Move dynamic updates to wrapper for first run case
 						TBD: Create a "default pickle" file to load (and a routine to gen it up)
 
