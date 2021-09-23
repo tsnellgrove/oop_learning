@@ -10,12 +10,6 @@
 import sys
 import dc3_init
 from dc3_demo import wrapper
-###from dc3_static_init import *
-
-# main
-###print(descript_dict["introduction"])
-###print(descript_dict["entrance"])
-###print()
 
 end_of_game = False
 start_of_game = True
