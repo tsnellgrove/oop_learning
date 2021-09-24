@@ -8,7 +8,7 @@
 
 # import statements
 import sys
-import dc3_init
+#import dc3_init
 from dc3_demo import wrapper
 
 end_of_game = False

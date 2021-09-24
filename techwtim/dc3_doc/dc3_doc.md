@@ -117,9 +117,10 @@ IN-PROC: Simple Refactoring
 							- IDEA: maybe a custom start_of_game case where defautl_pickle doesn't include game_state (NO GAMESTATE IN DEFAULT PICKLE)
 							- IDEA: game_state gets updated and added to new game pickle? then pickle is immediately loaded in main routine?
 							- DONE: Create a "default pickle" file to load (and a script to gen it up)
-							- TBD: in start_of_game section of wrapper, load default_obj_pickle (NO game_state included)
-							- TBD: in start_of_game section of wrapper, configure game_state
-							- TBD: in start_of_game section of wrapper, dump save_obj_pickle2 (WITH game_state included!)
+							- DONE: in start_of_game section of wrapper, load default_obj_pickle (NO game_state included)
+							- DONE: in start_of_game section of wrapper, configure game_state
+							- DONE: in start_of_game section of wrapper, dump save_obj_pickle2 (WITH game_state included!)
+							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths
 							- TBD: more testing
@@ -127,6 +128,7 @@ IN-PROC: Simple Refactoring
 							- TBD: Once I get it working again, consider calling this version done and continuing refactoring in v3.44
 
 						 
+Someday: fix game_state as global
 Someday: make wrapper startup section a routine of its own?
 Someday: fix root-word var passing of master_obj_lst
 Someday: clean up *very* ugly master_obj_lst passing 
