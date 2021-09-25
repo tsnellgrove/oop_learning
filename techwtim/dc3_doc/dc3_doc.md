@@ -120,6 +120,9 @@ IN-PROC: Simple Refactoring
 							- DONE: in start_of_game section of wrapper, load default_obj_pickle (NO game_state included)
 							- DONE: in start_of_game section of wrapper, configure game_state
 							- DONE: in start_of_game section of wrapper, dump save_obj_pickle2 (WITH game_state included!)
+						- NOTE: Again, there are 2 obj sets - the initial one from init declaration in the start-up section of wrapper, that never changes id; And a 2nd set that changes every move... the PROBLEM is the FIRST set of objects... the ones that never change... For some reason, game_state._paths is pointing to this first set... and when they are called no room_obj can be interacted with... ???
+							- NOTE: I seem to be back where I started... I think the next step is to make wrapper "start-up" a separate module... if that doesn't work - and I don't think it will - I need to go back and re-diagram the whole thing based on what I now understand about variables and objects
+							- TBD: Create start-up module
 							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths
