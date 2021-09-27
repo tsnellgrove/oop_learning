@@ -14,7 +14,6 @@ import gc
 
 # classes
 class GameState(object):
-###		def __init__(self, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
 		def __init__(self, name, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
 				self._name = name
 				self._dynamic_desc_dict = dynamic_desc_dict
@@ -42,23 +41,18 @@ class GameState(object):
 
 		def get_next_room(self, room_obj, direction):
 				next_room = game_state._map_dict[room_obj.name][direction]
-				print("get_next_room: next room id is " + str(id(next_room)))
-#				print("The id of " + antechamber.name + " is " + str(id(antechamber)))
-				print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-#				print("The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
-				return next_room
-#				return game_state._map_dict[room_obj.name][direction]
 
-##game_state = GameState({}, {}, {}, {})
+				print("get_next_room: next room id is " + str(id(next_room)))
+				print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+
+				return next_room
 
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 
+
 try:
-#		if len(game_state._map_dict) >= 0:
-#				print("game_state already defined")
 				print("classes game_state try " + game_state)
-#		print("game_state already defined")
 except:
 		game_state = GameState('game_state1', {}, {}, {}, {})
 
@@ -71,8 +65,6 @@ except:
 else:
 		print("classes: game_state already defined")
 
-#def __repr__(self):
-#		return f'Object { self.name } is of class { type(self).__name__ } '
 
 print(game_state)
 
