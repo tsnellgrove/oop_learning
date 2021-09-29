@@ -126,7 +126,8 @@ IN-PROC: Simple Refactoring
 							- IDEA: so now I have isolated the initial object declarations in start_me_up() and the every-turn declarations in wrapper() in separate modules... and I still have the duplicates issue...
 							- DONE: clean up comments and trouble-shooting - need to make the code readable again
 							- DONE: v1 detailed module / imports mapping
-							- TBD: v2
+							- DONE: v2
+							- TBD: Track program flow to determine order of ops
 							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths
