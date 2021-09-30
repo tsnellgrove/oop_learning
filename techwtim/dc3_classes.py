@@ -13,6 +13,9 @@ import gc
 
 
 # classes
+
+print("classes - start")
+
 class GameState(object):
 		def __init__(self, name, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
 				self._name = name
@@ -50,6 +53,8 @@ class GameState(object):
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 
+
+print("classes - game_state exists check")
 
 try:
 				print("classes game_state try " + game_state)
@@ -359,4 +364,4 @@ class Beverage(ViewOnly):
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 
-
+print("classes - end")

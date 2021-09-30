@@ -4,6 +4,8 @@
 # description: helper function module
 
 
+print("helper - start")
+
 ### imports ###
 from dc3_static_init import *
 

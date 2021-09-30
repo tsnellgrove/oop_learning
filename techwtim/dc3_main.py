@@ -7,12 +7,19 @@
 #								replicate full original, add more puzzles!
 
 # import statements
+print("main - start")
+
 import sys
 from dc3_demo import wrapper
+
+print("main post imports") # troubleshooting
 
 end_of_game = False
 start_of_game = True
 while end_of_game == False:
+
+		print("main while loop start") # troubleshooting
+
 		if start_of_game:
 				user_input = "xyzzy42"
 				start_of_game = False
@@ -21,3 +28,5 @@ while end_of_game == False:
 		end_of_game, output = wrapper(user_input)
 		print(output)
 print("THANKS FOR PLAYING!!")
+
+print("main end") # troubleshooting

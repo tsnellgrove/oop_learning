@@ -9,6 +9,8 @@
 ### also, these variable values cannot be objects ###
 ### (because static_init => helper => classes => obj_init2) ###
 
+print("static - start")
+
 ### interpreter function language variables ###
 articles_lst = ['a', 'an', 'the']
 one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']

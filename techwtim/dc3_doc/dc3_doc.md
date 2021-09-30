@@ -127,7 +127,8 @@ IN-PROC: Simple Refactoring
 							- DONE: clean up comments and trouble-shooting - need to make the code readable again
 							- DONE: v1 detailed module / imports mapping
 							- DONE: v2
-							- TBD: Track program flow to determine order of ops
+							- DONE: Track program flow to determine order of ops
+							- TBD: Analyze code run order - in what order does my code actually run? Number on diagram
 							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths

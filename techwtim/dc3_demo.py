@@ -173,6 +173,8 @@ def noun_handling(master_obj_lst, user_input_lst):
 # interpreter
 def interpreter(user_input, master_obj_lst):
 
+		print("interpreter - start")
+
 		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
 
 ###		print(rusty_key) # troubleshooting
@@ -252,6 +254,9 @@ def interpreter(user_input, master_obj_lst):
 
 
 def cmd_execute(stateful_dict, case, word_lst):
+
+		print("cmd_execute - start")
+
 		if case == 'go':
 				room_obj, word1, word2 = word_lst
 				getattr(room_obj, word1)(word2, stateful_dict)
@@ -297,6 +302,8 @@ def cmd_execute(stateful_dict, case, word_lst):
 def wrapper(user_input):
 
 
+		print("wrapper start") # troubleshooting
+
 		if user_input == "xyzzy42":
 				end_of_game, out_buff = start_me_up()
 		else:
@@ -313,7 +320,7 @@ def wrapper(user_input):
 				# object vatiables declared / instantiated from un-pickled list
 				rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict = master_obj_lst
 
-				print("main wrapper - pickle load")
+				print("wrapper - pickle load")
 
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1
 				stateful_dict['out_buff'] = "" # resets buffer
@@ -323,14 +330,14 @@ def wrapper(user_input):
 #				fresh_water.drink(stateful_dict)
 #				torn_note.examine(stateful_dict)
 
-				print("main wrapper: The id of " + antechamber.name + " is " + str(id(antechamber)))
-				print("main wrapper: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-				print("main wrapper: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
+#				print("main wrapper: The id of " + antechamber.name + " is " + str(id(antechamber)))
+#				print("main wrapper: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+#				print("main wrapper: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 
 				### test commands ###
 
 				#	troubleshooting
-				print("main wrapper - pre interpreter")
+				print("wrapper - pre interpreter")
 				for obj in gc.get_objects():
 						if isinstance(obj, GameState):
 								print(obj, id(obj), sys.getrefcount(obj))
@@ -349,7 +356,7 @@ def wrapper(user_input):
 				with open('save_obj_pickle2', 'wb') as f:
 						pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!
 		
-				print("main wrapper - pickle dump")
+				print("wrapper - pickle dump")
 				
 				end_of_game = stateful_dict['end_of_game']
 				out_buff = stateful_dict['out_buff']
