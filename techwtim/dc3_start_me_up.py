@@ -23,8 +23,8 @@ def start_me_up():
 
 		global game_state
 
-		# troubleshooting
 		print("start_me_up pickle load")
+
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
 						print(obj, id(obj), sys.getrefcount(obj))
@@ -63,9 +63,9 @@ def start_me_up():
 		port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 		game_state.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
 
-		print("start_up: The id of " + antechamber.name + " is " + str(id(antechamber)))
-		print("star_up: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-		print("start_up: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
+#		print("start_up: The id of " + antechamber.name + " is " + str(id(antechamber)))
+#		print("star_up: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+#		print("start_up: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 
 		print("start_me_up - post game_state assignments")
 		for obj in gc.get_objects():
