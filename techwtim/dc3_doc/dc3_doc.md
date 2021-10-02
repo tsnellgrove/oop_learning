@@ -128,8 +128,15 @@ IN-PROC: Simple Refactoring
 							- DONE: v1 detailed module / imports mapping
 							- DONE: v2
 							- DONE: Track program flow to determine order of ops
-							- IN-PROC: Analyze code run order - in what order does my code actually run? Number on diagram
-								- IDEA: Maybe classes, static, and helper in memory from main?? Convert calsses to function??
+							- DONE: Analyze code run order - in what order does my code actually run? Number on diagram
+							- IDEA: Maybe classes, static, and helper in memory from main?? Convert calsses to function??
+							- DONE: tired converting classes to a function in a classes2 module... 
+								- NOTES: this doesn't work either because the class definition remains in the scope of the classes2 module... 
+								- NOTES: so start_me_up knows nothing about GameState...
+							- IDEA: Instead, I need to make 2 separate modules: define_class_gs and define_class_other..
+								- IDEA: then I import each in the body of start_me_up and wrapper
+								- IDEA: in start_me_up, between the class definitions, I declare game_state
+								- TBD: create define_class_gs and define_class_other
 							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths

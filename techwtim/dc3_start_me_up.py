@@ -13,7 +13,8 @@ import pickle
 import random
 #from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
-from dc3_classes import *
+#from dc3_classes import *
+from dc3_classes2 import declare_classes
 #from dc3_helper import *
 import gc
 
@@ -21,9 +22,11 @@ def start_me_up():
 
 		print("start_me_up start")
 
-		global game_state
 
-		print("start_me_up pickle load")
+		declare_classes(first_time=True)
+#		global game_state
+
+		print("start_me_up post-declare_classes and pre-pickle load")
 
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
