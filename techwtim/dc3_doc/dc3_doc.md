@@ -137,8 +137,10 @@ IN-PROC: Simple Refactoring
 								- IDEA: then I import each in the body of start_me_up and wrapper
 								- IDEA: in start_me_up, between the class definitions, I declare game_state
 								- DONE: create define_class_gs and define_class_other
-								- NOTES: Making progress but now define_class_other knows nothing about game_state... need to find a way to pass it in
-								- TBD: pass game_state to define_class_other (somehow?!)
+								- NOTES: Making progress but now define_class_other knows nothing about game_state... need to find a way to pass it in?
+								- NOTES: No, issue is that game_state has not yet been defined in wrapper
+								- DONE: updated description method so that game_state is not required
+								- TBD: pass game_state in to go method!!!
 							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths
@@ -146,7 +148,7 @@ IN-PROC: Simple Refactoring
 							- TBD: clean up troubleshooting comments & prints!!!
 							- TBD: Once I get it working again, consider calling this version done and continuing refactoring in v3.44
 
-						 
+Someday: can I just declare game_state in default_pickle?
 Someday: fix game_state as global
 Someday: make wrapper startup section a routine of its own?
 Someday: fix root-word var passing of master_obj_lst

@@ -132,6 +132,9 @@ stateful_dict = {
 				'antechamber' : {'south' : main_hall, 'north' : throne_room},
 				'throne_room' : {'south' : antechamber}
 				},
+		'dynamic_desc_dict' : {
+				'messy_handwriting' : ""
+				},
 		}
 
 #print(stateful_dict['paths'])

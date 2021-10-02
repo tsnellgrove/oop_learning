@@ -75,6 +75,8 @@ def start_me_up():
 		portcullis_code = random.randint(0, 7)
 		port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 		game_state.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
+		
+		
 
 #		print("start_up: The id of " + antechamber.name + " is " + str(id(antechamber)))
 #		print("star_up: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
