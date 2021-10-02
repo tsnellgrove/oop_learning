@@ -14,16 +14,26 @@ import random
 #from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
 #from dc3_classes import *
-from dc3_classes2 import declare_classes
-#from dc3_helper import *
+#from dc3_classes2 import declare_classes
+from dc3_helper import *
 import gc
 
 def start_me_up():
 
 		print("start_me_up start")
 
+		from dc3_define_class_gs import GameState
 
-		declare_classes(first_time=True)
+		game_state = GameState('game_state1', {}, {}, {}, {})
+		print("classes immediately after bootstrap game_state is declared")
+		for obj in gc.get_objects():
+				if isinstance(obj, GameState):
+						print(obj, id(obj), sys.getrefcount(obj))
+		print("classes: game_state declared")
+
+		from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
+
+#		declare_classes(first_time=True)
 #		global game_state
 
 		print("start_me_up post-declare_classes and pre-pickle load")

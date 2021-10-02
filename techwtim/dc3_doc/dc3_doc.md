@@ -136,7 +136,9 @@ IN-PROC: Simple Refactoring
 							- IDEA: Instead, I need to make 2 separate modules: define_class_gs and define_class_other..
 								- IDEA: then I import each in the body of start_me_up and wrapper
 								- IDEA: in start_me_up, between the class definitions, I declare game_state
-								- TBD: create define_class_gs and define_class_other
+								- DONE: create define_class_gs and define_class_other
+								- NOTES: Making progress but now define_class_other knows nothing about game_state... need to find a way to pass it in
+								- TBD: pass game_state to define_class_other (somehow?!)
 							- TBD: troubleshoot dups
 							- TBD: test to ensure really, finally works
 							- TBD: full implementation of game_state._paths

@@ -54,6 +54,8 @@ class GameState(object):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 
 
+print("CLASSES IS BEING RUN!!!")
+
 print("classes - game_state exists check")
 
 try:

@@ -10,11 +10,11 @@
 # import statements
 import sys
 import pickle
-#import random
+import random
 from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
 #from dc3_classes import *
-from dc3_classes2 import declare_classes
+#from dc3_classes2 import declare_classes
 from dc3_helper import *
 import gc
 ###from dc3_obj_init2 import *
@@ -309,7 +309,11 @@ def wrapper(user_input):
 				end_of_game, out_buff = start_me_up()
 		else:
 
-				declare_classes(first_time=False)
+#				declare_classes(first_time=False)
+
+				from dc3_define_class_gs import GameState
+				from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
+
 
 				print("wrapper post-declare_classes pre-pickle-load")
 				for obj in gc.get_objects():
