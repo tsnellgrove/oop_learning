@@ -140,17 +140,22 @@ IN-PROC: Simple Refactoring
 								- NOTES: Making progress but now define_class_other knows nothing about game_state... need to find a way to pass it in?
 								- NOTES: No, issue is that game_state has not yet been defined in wrapper
 								- DONE: updated description method so that game_state is not required
-								- TBD: pass game_state in to go method!!!
-							- TBD: troubleshoot dups
-							- TBD: test to ensure really, finally works
+								- DONE: pass game_state in to go method!!! (suggested by JE)
+								- NOTES: Yes - THIS WORKS!!! NO DUPS!!! 
 							- TBD: full implementation of game_state._paths
-							- TBD: more testing
+							- TBD: Re-map modules
+							- TBD: rename game_state to active_gs
+							- TBD: now that I'm passing active_gs, simplify classes => standard import
+							- TBD: move active_gs declaration to default_pickle
+							- TBD: wrapper() to its own module
+							- TBD: interpreter() to its own module (and fix the 'Someday's below)
+							- TBD: cmd_execute() to its own module (and move ALL case execution to this module)
+							- TBD: Full testing
+							- TBD: re-map modules
 							- TBD: clean up troubleshooting comments & prints!!!
-							- TBD: Once I get it working again, consider calling this version done and continuing refactoring in v3.44
+							- TBD: version done and continuing active_gs refactoring in v3.44
 
-Someday: can I just declare game_state in default_pickle?
 Someday: fix game_state as global
-Someday: make wrapper startup section a routine of its own?
 Someday: fix root-word var passing of master_obj_lst
 Someday: clean up *very* ugly master_obj_lst passing 
 	- really the only function that needs this is the one that converts strings to obj...
@@ -180,7 +185,7 @@ Version 3.48 Goals
 - Refactor module architecture
 
 - IDEA: Full separation on interpreter() and cmd_execute()
-- IDEA: Module architecture - separate modeule for wrapper and each wrapper component (including 'pre-trigger', 'post-trigger', & 'end')
+
 
 	
 ##########################

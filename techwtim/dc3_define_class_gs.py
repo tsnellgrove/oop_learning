@@ -43,10 +43,11 @@ class GameState(object):
 				return direction in game_state._map_dict[room_obj.name]
 
 		def get_next_room(self, room_obj, direction):
-				next_room = game_state._map_dict[room_obj.name][direction]
+#				next_room = game_state._map_dict[room_obj.name][direction]
+				next_room = self._map_dict[room_obj.name][direction]
 
 				print("get_next_room: next room id is " + str(id(next_room)))
-				print("The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
+				print("The game_state id of antechamber (from main_hall) is " + str(id(self._map_dict['main_hall']['north'])))
 
 				return next_room
 

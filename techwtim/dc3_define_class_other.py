@@ -115,7 +115,8 @@ class Room(ViewOnly):
 				for obj in self.room_obj_lst:
 						obj.print_contents_str(stateful_dict)
 
-		def go(self, direction, stateful_dict):
+		def go(self, direction, stateful_dict, game_state):
+#		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
 				if direction not in stateful_dict['paths'][room_obj.name]:
 ##				if not game_state.is_valid_map_direction(room_obj, direction):
