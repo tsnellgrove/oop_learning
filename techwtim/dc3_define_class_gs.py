@@ -1,3 +1,5 @@
+# NO LONGER IN USE IN v3.42
+
 # program: dark castle v3.40
 # name: Tom Snellgrove
 # date: Sept 5, 2021
