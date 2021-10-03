@@ -1,6 +1,6 @@
-# program: dark castle v3.40
+# program: dark castle v3.42
 # name: Tom Snellgrove
-# date: Sept 5, 2021
+# date: Oct 2, 2021
 # description: main and interpreter modules for a zork-like text adventure game
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								db integration, avoid external triggers, 

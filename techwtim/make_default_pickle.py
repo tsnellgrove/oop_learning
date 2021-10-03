@@ -1,14 +1,12 @@
-# program: dark castle v3.40
+# program: dark castle v3.42
 # name: Tom Snellgrove
-# date: Sept 5, 2021
+# date: Oct 3, 2021
 # description: object instantiation module
 
 
 # import statements
 import sys
 import pickle
-#from dc3_classes import *
-#from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
 from dc3_class_deff import *
 
 
@@ -96,8 +94,6 @@ stateful_dict = {
 				},
 		}
 
-#(self, name, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
-
 ### active_gs will replace stateful_dict as the central store of game info ###
 active_gs = GameState(
 		'active_gs',
@@ -112,20 +108,7 @@ active_gs = GameState(
 		{}
 		)
 
-#		#	global game_state
-#		active_gs._name = 'active_gs2'
-#		active_gs._dynamic_desc_dict = {'messy_handwriting' : ""}
-#		active_gs._map_dict = {
-#						'entrance' : {'north' : main_hall},
-#						'main_hall' : {'south' : entrance, 'north' : antechamber},
-#						'antechamber' : {'south' : main_hall, 'north' : throne_room},
-#						'throne_room' : {'south' : antechamber}
-#						}
-#		active_gs._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
-#		active_gs._state_dict = {}
-
-
-# instantiated objects added to list (does NOT include game_state)
+# instantiated objects added to list
 master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict]
 
 

@@ -1,6 +1,6 @@
-# program: dark castle v3.40
+# program: dark castle v3.42
 # name: Tom Snellgrove
-# date: Sept 5, 2021
+# date: Oct 3, 2021
 # description: class deffinition module
 
 
@@ -9,7 +9,6 @@ import sys
 import random
 from dc3_static_init import *
 from dc3_helper import *
-# import gc
 
 
 # classes

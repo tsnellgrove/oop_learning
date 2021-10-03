@@ -1,163 +1,27 @@
 To Do List - Dark Castle v3
-Sept 5, 2021
+Oct 3, 2021
 
 
 ##########################
-### VERSION 3.42 START ###
+### VERSION 3.44 START ###
 ##########################
 
-Version 3.42 Goals
-- Create methods to get & set game_state attributes
+Version 3.44 Goals
+- After the massive mess that was the introduction of GameState in v3.42 the goals of 3.44 are hopefully simpler
+- 1. With troubleshooting messages still in place, re-architect modules
+- 2. sort out efficient variable handling
+- 3. eliminate bad usage (e.g. eval and global)
+- 4. re-map module calls
+- 5. clean-up troubleshooting prints and comments 
 
-IDEA (Suggestions from Franco):
-- container hasattrib => method in Writing
-- implement gets & sets (see Writing get_description example)
-- think about implementing stateful_dict as Class = GameState; Could hold dict and create gets and sets to change / access game_state
-- Franco: think about using dictionary of functions
-- Make scope_check() a method of game_state (which is an obj of class GameState)
-- Use gets and sets for objects (including CEs)!! => obj are black boxes
-	- Maybe not needed in many cases but since I want to convert code to DB back end is a good idea for my use case
-- Franco: consider having a 'game turn' across all or many objects
-
-PRINICPLES:
-- encapsulate the sets and gets of all custom object attributes
-	- direct object access is a standard pythonic trait... but in my case I plan to eventually move obj attributes to a DB - so this is vital
-- If a routine acts on a custom object it should be a method of the object's (or it's parent object's) class
-	- Example: get_contents_str()
-- if a rountine acts strictly on a Python primative class (e.g. a list) - then it should be a function. 
-	- Often this is the case when a routine applies to the attribute of multiple different classes.
-	- Example: obj_lst_to_str()
-- make methods and functions as functional as possible while still being broadly applicable.
-	- For example, if you always need to handle a case for len(list) == 0, handle it in the same function code that produces the non-0 result
-
-IN-PROC: Simple Refactoring
-	- DONE: replace hasattr() with is_container() methond [should not be inspecting obj directly]
-		- DONE: Create is_container() method in class Writing
-		- DONE: Replace hasattr intances
-		- DONE: Clean-up comments
-	- IN-PROC: search for obj method opportunities in class & demo modules - classes should be black boxes
-			- DONE: @property and setters & getters for Writing & ViewOnly
-				- DONE: get_full_name(), has_writing(), get_writing_full_name()
-				- DONE: invetigate @properties for get_full_name()
-				- DONE: convert classes and demo modules back to using full_name via @properties
-				- DONE: Clean up comments
-				= DONE: Try passing stateful_dict to description routine
-				- DONE: Clean up comments
-				- DONE: @property for descript_key
-				- DONE: clean up comments
-				- DONE: reamining setters for Writing & ViewOnly
-					- DONE: _name
-					- DONE: clean up comments
-					- DONE: _root_name
-					- DONE: clean up comments
-			- DONE: Room class
-				- DONE: @property for _features, _room_obj_lst, and _door_paths
-				- DONE: clean up comments
-				- DONE: container_desc() func => get_contents_str() method of Writing with is_container and is_open tests
-				- DONE: clean up comments
-				- DONE: obj_lst_to_str() func => obj_lst_to_str() func w/ lst test (ErrorValue) via instance(self, list) ; inlucde str convert
-				- DONE: clean up comments
-				- DONE: incorporate "nothing" condition into obj_lst_to_str()
-				- DONE: Clean up comments
-				- DONE: remove room examine scope check - already taken care of via execute scope check
-				- DONE: Clean up comments
-				- DONE: encapsulate room.door_path access in get methods
-			- DONE: Create GameState class & game_state obj
-			- DONE: attributes = dynamic_desc_dict, map_dict, static_obj_dict (holds universal), state_dict
-			- DONE: implement dynamic_desc_dict
-				- DROP: figure out @property usage for dicts
-				- DONE: create setter & getter for dynamic_desc_dict
-				- DONE: Figure out where to declare game_state and how to reference it in classes... send email to Franco
-				- DONE: implement boostrap routine as suggested by Franco
-				- DONE: comment clean-up
-				IN-PROC: implement map_dict
-					- DONE: Create getters
-					- DONE: Initial troubleshooting
-					- DONE: more complex troubleshooting
-					- DONE: obj ID not being retained with game_state... 
-					- DONE: have proven that obj start with same IDs (in dc3_init module)
-					- DONE: investigate wrapper save... maybe call save module??
-					- DONE: Now antechamber fails after Entrance but works after Throne Room... need review class coding carefully
-						- IDEA: This happens because I am testing with game_state for 'passages' but 'stateful_dict' for open doors...
-						- IDEA: so Entrance => Main Hall = open door = works
-						- IDEA: Main Hall => Antechamber = passage = fails
-						- IDEA: Antechamber => Throne Room = open door = works
-						- IDEA: Throne Room => Antechamber = open door = works
-					- DONE: setup testing to print Antechamber id vs. game_state Antechamber id every turn and figure out where they diverge
-						- DONE: map out module calls
-						- DONE: ensure that game_state is not declared multiple times during classes moduel calls (didn't seem to change anything)
-						- IDEA: fundamentally I think I am defining all variables twice somehow... 
-						- IDEA: and because game_state is declared early it is getter the first assignment and conflicting with the 2nd
-						- DONE: create print statements to track pickle dumps and loads
-						- DONE: Review and confirm module model
-						- DONE: looks like pickle is only loaded once during wrapper import (???); try moving pickle load to wrapper loop
-						- IDEA: investigated creating a separate dc3_wrapper module that would then call interpreter & cmd_execute from demo...
-							- IDEA: this won't work... wrapper needs access to stateful dict...
-							- NOTES: I confirmed that, by default, pickled objects don't retain their obj id
-							- IDEA: I'm thinking here's what I need to do:
-								- DONE: 1) return to pickle loading in wrapper at the start of every loop (and stop calling init2)
-								- DONE: 2) pack obj variables and pass them to interp and cmd_exe (or maybe pass as master_obj_lst ??)
-						- NOTES: I am now pickle dumping & loading every turn in wrapper and formally passing obj to interpreter - an am *still* getting dups in classes get_next_room() method... I need to double down on troubleshooting this method in ugly detail 
-							- DONE: check if there is a duplicate of of game_state - there is
-							- DONE: Determine when duplicate game_state is created => after init but before middle of wrapper
-							- NOTE: One version of game_state keeps the same id from the start... presumably this is not the pickled version?
-							- TBD: Keep troubleshooting to find out exactly where the duplicate game_state shows up; special focus on classes declaration
-						- NOTES: So, the original game_state is not getting deleted, and now that I'm instantiating a new version I get 2 old game_state versions... need to dig deep into the classes bootstrap - that's where the issue lives... game_state1 never gets deleted and game_state2 gets created twice... ???
-						- I fundamentally need to reconsider my bootstrap approach... I will go back to adding values....
-						- NOTES: turns out I have duplicates of other obj (Doors) as well
-						- DONE: figure out why delete is not working in init; also, why dups?? - learning more about gc.get_objects() and sys.refcount()
-						- DONE: Try checking refs on problem version of obj?? - Both obj sets have many ref (but first static set has more)
-						- NOTE: there are 2 obj sets - the initial one from init declaration that never changes id; And a 2nd set that changes every move... presumably loaded from the pickle? It appears that we don't actually need to load from pickle?
-						- DONE: track problem antechamber obj id - so the PROBLEM is the FIRST set of objects... the ones that never change... perhaps they never get updated?? For some reason, game_state._paths is pointing to this first set... and when they are called no room_obj can be interacted with... ???
-						- DONE: tested running dc3_init on its own (to initialize the pickle dump), commenting out the import of dc3_init, and then running main - worked great until tried to go to antechamber (key error on game_state._paths)... so this seems to be the answer!
-						- DONE: check refs on gamestate at end of class (5 references)
-						- DONE: Create start_of_game variable in main and pass to wrapper
-						- DONE: Move initial room print to wrapper start of game routine
-						- IN-PROC: Still need to figure out how to avoid game_state dup... that's my one problem case... maybe delete at end of class?
-							- IDEA: maybe a custom start_of_game case where defautl_pickle doesn't include game_state (NO GAMESTATE IN DEFAULT PICKLE)
-							- IDEA: game_state gets updated and added to new game pickle? then pickle is immediately loaded in main routine?
-							- DONE: Create a "default pickle" file to load (and a script to gen it up)
-							- DONE: in start_of_game section of wrapper, load default_obj_pickle (NO game_state included)
-							- DONE: in start_of_game section of wrapper, configure game_state
-							- DONE: in start_of_game section of wrapper, dump save_obj_pickle2 (WITH game_state included!)
-						- NOTE: Again, there are 2 obj sets - the initial one from init declaration in the start-up section of wrapper, that never changes id; And a 2nd set that changes every move... the PROBLEM is the FIRST set of objects... the ones that never change... For some reason, game_state._paths is pointing to this first set... and when they are called no room_obj can be interacted with... ???
-							- NOTE: I seem to be back where I started... I think the next step is to make wrapper "start-up" a separate module... if that doesn't work - and I don't think it will - I need to go back and re-diagram the whole thing based on what I now understand about variables and objects
-							- DONE: Create start-up module (no change in duplicates)
-							- IDEA: so now I have isolated the initial object declarations in start_me_up() and the every-turn declarations in wrapper() in separate modules... and I still have the duplicates issue...
-							- DONE: clean up comments and trouble-shooting - need to make the code readable again
-							- DONE: v1 detailed module / imports mapping
-							- DONE: v2
-							- DONE: Track program flow to determine order of ops
-							- DONE: Analyze code run order - in what order does my code actually run? Number on diagram
-							- IDEA: Maybe classes, static, and helper in memory from main?? Convert calsses to function??
-							- DONE: tired converting classes to a function in a classes2 module... 
-								- NOTES: this doesn't work either because the class definition remains in the scope of the classes2 module... 
-								- NOTES: so start_me_up knows nothing about GameState...
-							- IDEA: Instead, I need to make 2 separate modules: define_class_gs and define_class_other..
-								- IDEA: then I import each in the body of start_me_up and wrapper
-								- IDEA: in start_me_up, between the class definitions, I declare game_state
-								- DONE: create define_class_gs and define_class_other
-								- NOTES: Making progress but now define_class_other knows nothing about game_state... need to find a way to pass it in?
-								- NOTES: No, issue is that game_state has not yet been defined in wrapper
-								- DONE: updated description method so that game_state is not required
-								- DONE: pass game_state in to go method!!! (suggested by JE)
-								- NOTES: Yes - THIS WORKS!!! NO DUPS!!! 
-							- DONE: full implementation of game_state._paths
-							- DONE: rename game_state to active_gs
-							- DONE: comment clean up
-							- DONE: now that I'm passing active_gs, simplify classes => single standard import
-							- DONE: Mark unused modules
-							- DONE: move active_gs declaration to default_pickle
-							- TBD: clean up comments
-							- TBD: Re-map modules
-							- TBD: wrapper() to its own module
-							- TBD: interpreter() to its own module (and fix the 'Someday's below)
-							- TBD: cmd_execute() to its own module (and move ALL case execution to this module)
-							- TBD: Full testing
-							- TBD: re-map modules
-							- TBD: clean up troubleshooting comments & prints!!!
-							- TBD: move un-unsed modules to 'old versions' directory
-							- TBD: version done and continuing active_gs refactoring in v3.44
+TBD: move wrapper() to its own module
+TBD: move interpreter() to its own module (and fix the 'Someday's below)
+TBD: move cmd_execute() to its own module (and move ALL case execution to this module)
+TBD: make end() a module and call from wrapper()
+TBD: Full testing
+TBD: re-map modules
+TBD: clean up troubleshooting comments & prints!!!
+TBD: move un-unsed modules to 'old versions' directory
 
 Someday: fix game_state as global
 Someday: fix root-word var passing of master_obj_lst
@@ -167,13 +31,11 @@ Someday: clean up *very* ugly master_obj_lst passing
 	- or Someday: Eliminate eval using class-based-dict; link: https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object
 
 
-
-
 ##########################
-### VERSION 3.45 START ###
+### VERSION 3.46 START ###
 ##########################
 
-Version 3.45 Goals
+Version 3.46 Goals
 - Migrate stateful_dict to one or more game_state obj (refactor stateful_dict => object game_state(state_dict, statict_dict) )
 - most helper() functions will become methods of game_state
 - end() will become its own module called by wrapper
