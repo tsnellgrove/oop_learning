@@ -147,7 +147,8 @@ IN-PROC: Simple Refactoring
 							- DONE: comment clean up
 							- DONE: now that I'm passing active_gs, simplify classes => single standard import
 							- DONE: Mark unused modules
-							- TBD: move active_gs declaration to default_pickle
+							- DONE: move active_gs declaration to default_pickle
+							- TBD: clean up comments
 							- TBD: Re-map modules
 							- TBD: wrapper() to its own module
 							- TBD: interpreter() to its own module (and fix the 'Someday's below)
