@@ -8,7 +8,8 @@
 import sys
 import pickle
 #from dc3_classes import *
-from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
+#from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
+from dc3_class_deff import *
 
 
 # object instantiation - starting state

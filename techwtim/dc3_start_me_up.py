@@ -16,13 +16,14 @@ from dc3_static_init import * # variables declared in import = global to module
 #from dc3_classes import *
 #from dc3_classes2 import declare_classes
 from dc3_helper import *
+from dc3_class_deff import *
 import gc
 
 def start_me_up():
 
 		print("start_me_up start")
 
-		from dc3_define_class_gs import GameState
+#		from dc3_define_class_gs import GameState
 
 		active_gs = GameState('active_gs1', {}, {}, {}, {})
 		print("classes immediately after bootstrap active_gs is declared")
@@ -31,7 +32,7 @@ def start_me_up():
 						print(obj, id(obj), sys.getrefcount(obj))
 		print("classes: active_gs declared")
 
-		from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
+#		from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
 
 		print("start_me_up post-declare_classes and pre-pickle load")
 
