@@ -9,8 +9,6 @@ import sys
 import pickle
 #from dc3_classes import *
 from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
-#import random
-#import gc
 
 
 # object instantiation - starting state
@@ -71,47 +69,6 @@ antechamber = Room('antechamber', 'Antechamber', 'antechamber', 'antechamber', N
 throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', None, [stone_coffer, family_tree],
 				[throne, silver_key, crystal_box, iron_portcullis], {'south' : iron_portcullis})
 
-#print("init pre game_state declarations")
-#for obj in gc.get_objects():
-#		if isinstance(obj, GameState):
-#				print(obj, id(obj), sys.getrefcount(obj))
-#		if isinstance(obj, Room):
-#				print(obj, id(obj), sys.getrefcount(obj))
-
-#game_state._name = 'game_state2'
-#game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
-#game_state._map_dict = {
-#				'entrance' : {'north' : main_hall},
-#				'main_hall' : {'south' : entrance, 'north' : antechamber},
-#				'antechamber' : {'south' : main_hall, 'north' : throne_room},
-#				'throne_room' : {'south' : antechamber}
-#				}
-#game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
-#game_state._state_dict = {}
-
-#game_state = GameState(
-#				'game_state2',
-#				{'messy_handwriting' : ""},
-#				{
-#						'entrance' : {'north' : main_hall},
-#						'main_hall' : {'south' : entrance, 'north' : antechamber},
-#						'antechamber' : {'south' : main_hall, 'north' : throne_room},
-#						'throne_room' : {'south' : antechamber}
-#				},
-#				{'universal' : [backpack, burt, fist, conscience]},
-#				{}
-#)
-
-
-#print("init post game_state declarations")
-#for obj in gc.get_objects():
-#		if isinstance(obj, GameState):
-#				print(obj, id(obj), sys.getrefcount(obj))
-#		if isinstance(obj, Room):
-#				print(obj, id(obj), sys.getrefcount(obj))
-
-#print(game_state._map_dict)
-#print("id(game_state._map_dict['entrance']['north']) = " + id(game_state._map_dict['entrance']['north']))
 
 #### dictionary of variables passed to all functions ###
 #### any object variable that is passed to helper() must be in this dict ###
@@ -137,51 +94,12 @@ stateful_dict = {
 				},
 		}
 
-#print(stateful_dict['paths'])
-#print(id(stateful_dict['paths']['entrance']['north']))
-#print("dc3_init: The id of " + antechamber.name + " is " + str(id(antechamber)))
-#print("dc3_init: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-#print("dc3_init: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
-
-
-### Assign Random Secret Code ###
-#portcullis_code = random.randint(0, 7)
-#port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
-#game_state.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
-
-#switch_dict['big_red_button']['success_value'] = portcullis_code
-
-
 # instantiated objects added to list (does NOT include game_state)
 master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, stateful_dict]
 
-### if, when the game is done, I want to load variables from pickle ###
-### (rather than declare openly as in dc3_init ### 
-### then re-enable default_obj_pickly dump ###
-### and call start_me_up() from dce_startup  in main ### 
-
-# with open('default_obj_pickle', 'wb') as f:
-#		pickle.dump(master_obj_lst, f)
 
 # list written to pickle
 with open('default_obj_pickle', 'wb') as f:
 		pickle.dump(master_obj_lst, f)
 
-#print("pickle dump")
 
-# del(game_state) # troubleshooting
-				
-#del(game_state) # troubleshooting
-
-#for obj in  master_obj_lst:
-#		print(obj, id(obj), sys.getrefcount(obj))
-##		print("deleting object")
-##		del(obj)
-
-
-#print("init post dump")
-#for obj in gc.get_objects():
-#		if isinstance(obj, GameState):
-#				print(obj, id(obj), sys.getrefcount(obj))
-#		if isinstance(obj, Room):
-#				print(obj, id(obj), sys.getrefcount(obj))

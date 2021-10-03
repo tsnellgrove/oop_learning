@@ -33,9 +33,6 @@ def start_me_up():
 
 		from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
 
-#		declare_classes(first_time=True)
-#		global game_state
-
 		print("start_me_up post-declare_classes and pre-pickle load")
 
 		for obj in gc.get_objects():
@@ -77,10 +74,6 @@ def start_me_up():
 		active_gs.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
 		
 		stateful_dict['dynamic_desc_dict']['messy_handwriting'] = port_code_txt
-
-#		print("start_up: The id of " + antechamber.name + " is " + str(id(antechamber)))
-#		print("star_up: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-#		print("start_up: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 
 		print("start_me_up - post actvie_gs assignments")
 		for obj in gc.get_objects():

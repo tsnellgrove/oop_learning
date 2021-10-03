@@ -308,12 +308,8 @@ def wrapper(user_input):
 		if user_input == "xyzzy42":
 				end_of_game, out_buff = start_me_up()
 		else:
-
-#				declare_classes(first_time=False)
-
 				from dc3_define_class_gs import GameState
 				from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
-
 
 				print("wrapper post-declare_classes pre-pickle-load")
 				for obj in gc.get_objects():
@@ -336,11 +332,6 @@ def wrapper(user_input):
 #				stale_biscuits.take(stateful_dict)
 #				fresh_water.drink(stateful_dict)
 #				torn_note.examine(stateful_dict)
-
-#				print("main wrapper: The id of " + antechamber.name + " is " + str(id(antechamber)))
-#				print("main wrapper: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
-#				print("main wrapper: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
-
 				### test commands ###
 
 				#	troubleshooting

@@ -144,7 +144,8 @@ IN-PROC: Simple Refactoring
 								- NOTES: Yes - THIS WORKS!!! NO DUPS!!! 
 							- DONE: full implementation of game_state._paths
 							- DONE: rename game_state to active_gs
-							- TBD: now that I'm passing active_gs, simplify classes => standard import
+							- DONE: comment clean up
+							- TBD: now that I'm passing active_gs, simplify classes => single standard import
 							- TBD: move active_gs declaration to default_pickle
 							- TBD: Re-map modules
 							- TBD: wrapper() to its own module
@@ -153,6 +154,7 @@ IN-PROC: Simple Refactoring
 							- TBD: Full testing
 							- TBD: re-map modules
 							- TBD: clean up troubleshooting comments & prints!!!
+							- TBD: move un-unsed modules to 'old versions' directory
 							- TBD: version done and continuing active_gs refactoring in v3.44
 
 Someday: fix game_state as global
