@@ -40,7 +40,8 @@ class GameState(object):
 						self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc_str
 
 		def is_valid_map_direction(self, room_obj, direction):
-				return direction in game_state._map_dict[room_obj.name]
+#				return direction in game_state._map_dict[room_obj.name]
+				return direction in self._map_dict[room_obj.name]
 
 		def get_next_room(self, room_obj, direction):
 #				next_room = game_state._map_dict[room_obj.name][direction]

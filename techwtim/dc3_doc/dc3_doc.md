@@ -142,11 +142,11 @@ IN-PROC: Simple Refactoring
 								- DONE: updated description method so that game_state is not required
 								- DONE: pass game_state in to go method!!! (suggested by JE)
 								- NOTES: Yes - THIS WORKS!!! NO DUPS!!! 
-							- TBD: full implementation of game_state._paths
-							- TBD: Re-map modules
+							- DONE: full implementation of game_state._paths
 							- TBD: rename game_state to active_gs
 							- TBD: now that I'm passing active_gs, simplify classes => standard import
 							- TBD: move active_gs declaration to default_pickle
+							- TBD: Re-map modules
 							- TBD: wrapper() to its own module
 							- TBD: interpreter() to its own module (and fix the 'Someday's below)
 							- TBD: cmd_execute() to its own module (and move ALL case execution to this module)

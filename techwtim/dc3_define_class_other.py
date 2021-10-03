@@ -118,8 +118,8 @@ class Room(ViewOnly):
 		def go(self, direction, stateful_dict, game_state):
 #		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
-				if direction not in stateful_dict['paths'][room_obj.name]:
-##				if not game_state.is_valid_map_direction(room_obj, direction):
+#				if direction not in stateful_dict['paths'][room_obj.name]:
+				if not game_state.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
 						buffer(stateful_dict, descript_dict[wrong_way_key])
@@ -129,8 +129,8 @@ class Room(ViewOnly):
 						if not door_open:
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
-								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
-##								next_room_obj = game_state.get_next_room(room_obj, direction)
+#								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
+								next_room_obj = game_state.get_next_room(room_obj, direction)
 								print(next_room_obj) # troubleshooting
 								print(id(next_room_obj))
 								stateful_dict['room'] = next_room_obj
