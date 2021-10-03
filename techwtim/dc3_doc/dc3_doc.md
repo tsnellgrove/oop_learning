@@ -143,7 +143,7 @@ IN-PROC: Simple Refactoring
 								- DONE: pass game_state in to go method!!! (suggested by JE)
 								- NOTES: Yes - THIS WORKS!!! NO DUPS!!! 
 							- DONE: full implementation of game_state._paths
-							- TBD: rename game_state to active_gs
+							- DONE: rename game_state to active_gs
 							- TBD: now that I'm passing active_gs, simplify classes => standard import
 							- TBD: move active_gs declaration to default_pickle
 							- TBD: Re-map modules

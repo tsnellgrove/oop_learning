@@ -42,8 +42,8 @@ class Writing(object):
 
 		def get_descript_str(self, stateful_dict):
 #		def get_descript_str(self):
-#				if game_state.dynamic_desc_key_exists(self.descript_key):
-#						descript_str = game_state.get_dynamic_desc_dict(self.descript_key)
+#				if active_gs.dynamic_desc_key_exists(self.descript_key):
+#						descript_str = active_gs.get_dynamic_desc_dict(self.descript_key)
 				try:
 						descript_str = stateful_dict['dynamic_desc_dict'][self.descript_key]
 #				else:
@@ -115,11 +115,11 @@ class Room(ViewOnly):
 				for obj in self.room_obj_lst:
 						obj.print_contents_str(stateful_dict)
 
-		def go(self, direction, stateful_dict, game_state):
+		def go(self, direction, stateful_dict, active_gs):
 #		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
 #				if direction not in stateful_dict['paths'][room_obj.name]:
-				if not game_state.is_valid_map_direction(room_obj, direction):
+				if not active_gs.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
 						buffer(stateful_dict, descript_dict[wrong_way_key])
@@ -130,14 +130,14 @@ class Room(ViewOnly):
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
 #								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
-								next_room_obj = game_state.get_next_room(room_obj, direction)
+								next_room_obj = active_gs.get_next_room(room_obj, direction)
 								print(next_room_obj) # troubleshooting
 								print(id(next_room_obj))
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 				else:
 #						next_room_obj = stateful_dict['paths'][room_obj.name][direction]
-						next_room_obj = game_state.get_next_room(room_obj, direction)
+						next_room_obj = active_gs.get_next_room(room_obj, direction)
 						print(next_room_obj) # troubleshooting
 						print(id(next_room_obj))
 						stateful_dict['room'] = next_room_obj

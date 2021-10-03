@@ -24,12 +24,12 @@ def start_me_up():
 
 		from dc3_define_class_gs import GameState
 
-		game_state = GameState('game_state1', {}, {}, {}, {})
-		print("classes immediately after bootstrap game_state is declared")
+		active_gs = GameState('active_gs1', {}, {}, {}, {})
+		print("classes immediately after bootstrap active_gs is declared")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
 						print(obj, id(obj), sys.getrefcount(obj))
-		print("classes: game_state declared")
+		print("classes: active_gs declared")
 
 		from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
 
@@ -42,7 +42,7 @@ def start_me_up():
 				if isinstance(obj, GameState):
 						print(obj, id(obj), sys.getrefcount(obj))
 
-		# default object list loaded from pickle (NO game_state)
+		# default object list loaded from pickle (NO active_gs)
 		with open('default_obj_pickle', 'rb') as f:
 				master_obj_lst = pickle.load(f)
 
@@ -52,7 +52,7 @@ def start_me_up():
 		print("start_me_up - pickle load")
 
 		#	troubleshooting
-		print("start_up - pre game_state assignments")
+		print("start_up - pre active_gs assignments")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
 						print(obj, id(obj), sys.getrefcount(obj))
@@ -60,21 +60,21 @@ def start_me_up():
 						print(obj, id(obj), sys.getrefcount(obj))
 
 		#	global game_state
-		game_state._name = 'game_state2'
-		game_state._dynamic_desc_dict = {'messy_handwriting' : ""}
-		game_state._map_dict = {
+		active_gs._name = 'active_gs2'
+		active_gs._dynamic_desc_dict = {'messy_handwriting' : ""}
+		active_gs._map_dict = {
 						'entrance' : {'north' : main_hall},
 						'main_hall' : {'south' : entrance, 'north' : antechamber},
 						'antechamber' : {'south' : main_hall, 'north' : throne_room},
 						'throne_room' : {'south' : antechamber}
 						}
-		game_state._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
-		game_state._state_dict = {}
+		active_gs._static_obj_dict = {'universal' : [backpack, burt, fist, conscience]}
+		active_gs._state_dict = {}
 
 		### Assign Random Secret Code ###
 		portcullis_code = random.randint(0, 7)
 		port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
-		game_state.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
+		active_gs.set_dynamic_desc_dict('messy_handwriting', port_code_txt)
 		
 		stateful_dict['dynamic_desc_dict']['messy_handwriting'] = port_code_txt
 
@@ -82,7 +82,7 @@ def start_me_up():
 #		print("star_up: The game_state id of antechamber (from main_hall) is " + str(id(game_state._map_dict['main_hall']['north'])))
 #		print("start_up: The stateful_dict['paths']['main_hall']['north'] id is " + str(id(stateful_dict['paths']['main_hall']['north'])))
 
-		print("start_me_up - post game_state assignments")
+		print("start_me_up - post actvie_gs assignments")
 		for obj in gc.get_objects():
 				if isinstance(obj, GameState):
 						print(obj, id(obj), sys.getrefcount(obj))
@@ -92,7 +92,7 @@ def start_me_up():
 		buffer(stateful_dict, descript_dict["introduction"])
 		buffer(stateful_dict, descript_dict["entrance"])
 
-		master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, game_state, stateful_dict]
+		master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict]
 
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)

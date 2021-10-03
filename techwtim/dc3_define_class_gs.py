@@ -48,7 +48,7 @@ class GameState(object):
 				next_room = self._map_dict[room_obj.name][direction]
 
 				print("get_next_room: next room id is " + str(id(next_room)))
-				print("The game_state id of antechamber (from main_hall) is " + str(id(self._map_dict['main_hall']['north'])))
+				print("The active_gs id of antechamber (from main_hall) is " + str(id(self._map_dict['main_hall']['north'])))
 
 				return next_room
 
