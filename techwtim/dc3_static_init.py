@@ -36,7 +36,7 @@ one_word_convert_dict = {
 
 ### static dictionary ###
 static_dict = {
-		'version' : '3.40',
+		'version' : '3.42',
 		'max_score' : 75,
 }
 
