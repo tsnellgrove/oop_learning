@@ -19,9 +19,11 @@ DONE: fully comment out old wrapper within dc3_demo
 IN-PROC: sort out interpreter()
 	DONE: Sort out "put" command
 	DONE: Sort out interpreter master_obj_lst declaration & passing - commented out
+	TBD: examine limits to declarations in start_me_up and wrapper
 	TBD: move stateful_dict and active_gs to front of declarations
 	TBD: sort out noun_handling master_obj_lst declaration & passing
 	TBD: update word2 => word2_txt in noun_handling()
+	TBD: sort out use of eval
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
 	TBD: move interpreter() to its own module (and fix the 'Someday's below)
 TBD: move cmd_execute() to its own module (and move ALL case execution to this module)
