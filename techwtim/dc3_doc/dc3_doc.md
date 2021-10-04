@@ -14,8 +14,13 @@ Version 3.44 Goals
 - 4. re-map module calls
 - 5. clean-up troubleshooting prints and comments 
 
-TBD: move wrapper() to its own module
-TBD: move interpreter() to its own module (and fix the 'Someday's below)
+DONE: move wrapper() to its own module
+DONE: fully comment out old wrapper within dc3_demo
+IN-PROC: sort out interpreter()
+	DONE: Sort out "put" command
+	TBD: Sort out interpreter master_obj_lst declaration & passing
+	TBD: sort out noun_handling master_obj_lst declaration & passing
+	TBD: move interpreter() to its own module (and fix the 'Someday's below)
 TBD: move cmd_execute() to its own module (and move ALL case execution to this module)
 TBD: make end() a module and call from wrapper()
 TBD: Full testing
@@ -29,6 +34,10 @@ Someday: clean up *very* ugly master_obj_lst passing
 	- really the only function that needs this is the one that converts strings to obj...
 	- maybe I can solve that by just passing master_obj_lst and checking to see if str = the name of a member of master_obj_lst
 	- or Someday: Eliminate eval using class-based-dict; link: https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object
+someday: do we really need to declare objs in wrapper??
+	- can I just load master_obj_lst from the pickle and pull from it selectively?
+	- the only thing I really need to use all the time out of master_obj_lst is stateful_dict and active_gs
+someday: ditto for start_me_up
 
 
 ##########################

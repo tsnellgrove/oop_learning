@@ -10,7 +10,8 @@
 print("main - start")
 
 import sys
-from dc3_demo import wrapper
+#from dc3_demo import wrapper
+from dc3_wrapper import wrapper
 
 print("main post imports") # troubleshooting
 

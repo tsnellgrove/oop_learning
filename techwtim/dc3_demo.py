@@ -118,7 +118,8 @@ def true_one_word(stateful_dict, word1, room_obj):
 		return
 
 ###def noun_handling(stateful_dict, user_input_lst):
-def noun_handling(master_obj_lst, user_input_lst):
+###def noun_handling(master_obj_lst, user_input_lst):
+def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 
 		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict = master_obj_lst
 
@@ -173,7 +174,8 @@ def noun_handling(master_obj_lst, user_input_lst):
 
 
 # interpreter
-def interpreter(user_input, master_obj_lst):
+#def interpreter(user_input, master_obj_lst):
+def interpreter(user_input, stateful_dict, master_obj_lst):
 
 		print("interpreter - start")
 
@@ -240,15 +242,18 @@ def interpreter(user_input, master_obj_lst):
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-						noun_exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
-						dir_obj_exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
+###						noun_exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
+						noun_exit_state, noun_obj = noun_handling(master_obj_lst, stateful_dict, v_n_lst)
+###						dir_obj_exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
+						dir_obj_exit_state, dirobj_obj = noun_handling(master_obj_lst, stateful_dict, p_p_lst)
 						if noun_exit_state or dir_obj_exit_state:
 								return 'error', []
 						else:
 								return 'put', [dirobj_obj, word1, noun_obj]
 		else:
 ###				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
-				exit_state, word2_obj = noun_handling(master_obj_lst, user_input_lst)
+###				exit_state, word2_obj = noun_handling(master_obj_lst, user_input_lst)
+				exit_state, word2_obj = noun_handling(master_obj_lst, stateful_dict, user_input_lst)
 				if exit_state:
 						return 'error', []
 				else:
@@ -301,63 +306,65 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 
 
 # wrapper code - calls interpreter and saves game state
-def wrapper(user_input):
+# NO LONGER IN USE AFTER v3.42
+# wapper now called from dedicated dc3_wrapper module
+#def wrapper(user_input):
 
 
-		print("wrapper start") # troubleshooting
+#		print("old wrapper start - SHOULD NEVER PRINT") # troubleshooting
 
-		if user_input == "xyzzy42":
+#		if user_input == "xyzzy42":
 				end_of_game, out_buff = start_me_up()
-		else:
-#				from dc3_define_class_gs import GameState
-#				from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
+#		else:
+##				from dc3_define_class_gs import GameState
+##				from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
 
-				print("wrapper post-declare_classes pre-pickle-load")
-				for obj in gc.get_objects():
-						if isinstance(obj, GameState):
-								print(obj, id(obj))
+#				print("wrapper post-declare_classes pre-pickle-load - SHOULD NEVER PRINT")
+#				for obj in gc.get_objects():
+#						if isinstance(obj, GameState):
+#								print(obj, id(obj))
 
 				# object list loaded from pickle
-				with open('save_obj_pickle2', 'rb') as f:
-						master_obj_lst = pickle.load(f)
+#				with open('save_obj_pickle2', 'rb') as f:
+#						master_obj_lst = pickle.load(f)
 
 				# object vatiables declared / instantiated from un-pickled list
-				rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict = master_obj_lst
+#				rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict = master_obj_lst
 
-				print("wrapper - post-pickle load")
+#				print("wrapper - post-pickle load - SHOULD NEVER PRINT")
 
-				stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1
-				stateful_dict['out_buff'] = "" # resets buffer
+#				stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1
+#				stateful_dict['out_buff'] = "" # resets buffer
 
 				### test commands ###
-#				stale_biscuits.take(stateful_dict)
-#				fresh_water.drink(stateful_dict)
-#				torn_note.examine(stateful_dict)
+##				stale_biscuits.take(stateful_dict)
+##				fresh_water.drink(stateful_dict)
+##				torn_note.examine(stateful_dict)
 				### test commands ###
 
 				#	troubleshooting
-				print("wrapper - pre interpreter")
-				for obj in gc.get_objects():
-						if isinstance(obj, GameState):
-								print(obj, id(obj), sys.getrefcount(obj))
-						if isinstance(obj, Room):
-								print(obj, id(obj), sys.getrefcount(obj))
+#				print("wrapper - pre interpreter - SHOULD NEVER PRINT")
+#				for obj in gc.get_objects():
+#						if isinstance(obj, GameState):
+#								print(obj, id(obj), sys.getrefcount(obj))
+#						if isinstance(obj, Room):
+#								print(obj, id(obj), sys.getrefcount(obj))
 
-				case, word_lst = interpreter(user_input, master_obj_lst)
+#				case, word_lst = interpreter(user_input, master_obj_lst)
 ###			case, word_lst = interpreter(stateful_dict, user_input)
 				# pre-action triggers will go here
-				if case in ['go', 'put', '2word']:
-						cmd_execute(stateful_dict, active_gs, case, word_lst)
+#				if case in ['go', 'put', '2word']:
+#						cmd_execute(stateful_dict, active_gs, case, word_lst)
 				# post-action triggers will go here
 
-				master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict]
+#				master_obj_lst = [rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict]
 
-				with open('save_obj_pickle2', 'wb') as f:
-						pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!
+#				with open('save_obj_pickle2', 'wb') as f:
+#						pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!
 		
-				print("wrapper - pickle dump")
+#				print("wrapper - pickle dump - SHOULD NEVER PRINT")
 				
-				end_of_game = stateful_dict['end_of_game']
-				out_buff = stateful_dict['out_buff']
+#				end_of_game = stateful_dict['end_of_game']
+#				out_buff = stateful_dict['out_buff']
 		
-		return end_of_game, out_buff
+#		return end_of_game, out_buff
