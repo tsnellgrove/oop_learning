@@ -19,8 +19,9 @@ DONE: fully comment out old wrapper within dc3_demo
 IN-PROC: sort out interpreter()
 	DONE: Sort out "put" command
 	DONE: Sort out interpreter master_obj_lst declaration & passing - commented out
+	DONE: found and fixed small_print => small_printing error (root_name conflicted with reserved command 'print')
+	DONE: move stateful_dict and active_gs to front of declarations
 	TBD: examine limits to declarations in start_me_up and wrapper
-	TBD: move stateful_dict and active_gs to front of declarations
 	TBD: sort out noun_handling master_obj_lst declaration & passing
 	TBD: update word2 => word2_txt in noun_handling()
 	TBD: sort out use of eval

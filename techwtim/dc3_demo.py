@@ -121,13 +121,13 @@ def true_one_word(stateful_dict, word1, room_obj):
 ###def noun_handling(master_obj_lst, user_input_lst):
 def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 
-		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict = master_obj_lst
+		stateful_dict, active_gs, rusty_lettering, dwarven_runes, messy_handwriting, small_printing, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room = master_obj_lst
 
 ##		print(front_gate) # troubleshooting
 
 		exit_state = False
-##		word2_obj = rusty_key
-		word2_obj = ""
+		word2_obj = rusty_key
+##		word2_obj = ""
 		word2 = user_input_lst[1]
 
 		# convert 3-word verb-adj-noun commands into verb-obj_name commands
@@ -191,7 +191,7 @@ def interpreter(user_input, stateful_dict, master_obj_lst):
 
 		print("interpreter - start")
 
-#		rusty_lettering, dwarven_runes, messy_handwriting, small_print, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room, active_gs, stateful_dict = master_obj_lst
+#		stateful_dict, active_gs, rusty_lettering, dwarven_runes, messy_handwriting, small_printing, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room = master_obj_lst
 
 ###		print(rusty_key) # troubleshooting
 
