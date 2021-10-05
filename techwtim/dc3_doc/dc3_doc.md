@@ -27,6 +27,7 @@ IN-PROC: sort out interpreter()
 	DONE: update word2 => word2_txt in noun_handling()
 	IN-PROC: do I really need to pass stateful_dict to interpreter() & noun_handling() if I'm already passing master_obj_lst
 		- DONE: stop explicitly passing stateful_dict to interpreter()
+		- DONE: clean up comments
 	TBD: examine limits to declarations in start_me_up and wrapper
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
 	TBD: move turn decrement to cmd_execute()
