@@ -117,9 +117,7 @@ def true_one_word(stateful_dict, word1, room_obj):
 				end(stateful_dict) # maybe move to wrapper?
 		return
 
-###def noun_handling(stateful_dict, user_input_lst):
-###def noun_handling(master_obj_lst, user_input_lst):
-##def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
+
 def noun_handling(master_obj_lst, user_input_lst):
 		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
@@ -209,7 +207,6 @@ def interpreter(user_input, master_obj_lst):
 						num = random.randint(0, 4)
 						interp_error_key = 'interp_error_' + str(num)
 						buffer(stateful_dict, descript_dict[interp_error_key])
-#						buffer(stateful_dict, "I don't understand what you're trying to say?") # candidate for random error
 						move_dec(stateful_dict)
 				return 'error', []
 
@@ -236,20 +233,13 @@ def interpreter(user_input, master_obj_lst):
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-###						noun_exit_state, noun_obj = noun_handling(stateful_dict, v_n_lst)
-##						noun_exit_state, noun_obj = noun_handling(master_obj_lst, stateful_dict, v_n_lst)
 						noun_exit_state, noun_obj = noun_handling(master_obj_lst, v_n_lst)
-###						dir_obj_exit_state, dirobj_obj = noun_handling(stateful_dict, p_p_lst)
-##						dir_obj_exit_state, dirobj_obj = noun_handling(master_obj_lst, stateful_dict, p_p_lst)
 						dir_obj_exit_state, dirobj_obj = noun_handling(master_obj_lst, p_p_lst)
 						if noun_exit_state or dir_obj_exit_state:
 								return 'error', []
 						else:
 								return 'put', [dirobj_obj, word1, noun_obj]
 		else:
-###				exit_state, word2_obj = noun_handling(stateful_dict, user_input_lst)
-###				exit_state, word2_obj = noun_handling(master_obj_lst, user_input_lst)
-##				exit_state, word2_obj = noun_handling(master_obj_lst, stateful_dict, user_input_lst)
 				exit_state, word2_obj = noun_handling(master_obj_lst, user_input_lst)
 				if exit_state:
 						return 'error', []
