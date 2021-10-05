@@ -21,10 +21,11 @@ IN-PROC: sort out interpreter()
 	DONE: Sort out interpreter master_obj_lst declaration & passing - commented out
 	DONE: found and fixed small_print => small_printing error (root_name conflicted with reserved command 'print')
 	DONE: move stateful_dict and active_gs to front of declarations
+	DONE: sort out use of eval
+	DONE: sort out noun_handling master_obj_lst declaration & passing
+	TBD: clean up comments
 	TBD: examine limits to declarations in start_me_up and wrapper
-	TBD: sort out noun_handling master_obj_lst declaration & passing
 	TBD: update word2 => word2_txt in noun_handling()
-	TBD: sort out use of eval
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
 	TBD: move interpreter() to its own module (and fix the 'Someday's below)
 TBD: move cmd_execute() to its own module (and move ALL case execution to this module)
