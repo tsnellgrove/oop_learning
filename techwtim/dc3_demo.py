@@ -221,38 +221,29 @@ def interpreter(user_input, master_obj_lst):
 
 def help(stateful_dict, option):
 		if option == 'basics':
-#				buffer(stateful_dict, descript_dict['help_basics'])
 				output = descript_dict['help_basics']
 		elif option == 'verbs':
-#				buffer(stateful_dict, "Available verbs include: " + ', '.join(verbs_lst))
 				output = "Available verbs include: " + ', '.join(verbs_lst)
 		elif option == 'one-word-commands':
 				user_one_word_lst = one_word_only_lst
 				user_one_word_lst.pop()
 				output = ("Available one word commands include: "
 								+ ', '.join(user_one_word_lst))
-#				buffer(stateful_dict, output)
 		elif option == 'articles':
 				output = ("The following articles are supported but not required: "
 								+ ', '.join(articles_lst))
-#				buffer(stateful_dict, output)
 		elif option == 'adjectives':
-#					buffer(stateful_dict, descript_dict['help_adjectives'])
 					output = descript_dict['help_adjectives']
 		elif  option == 'abbreviations':
 				pre_out = "Available abbreviations include: "
 				for key in abbreviations_dict:
 						pre_out = pre_out + key + " = " + abbreviations_dict[key] + ", "
 				output = pre_out[:-2]
-#				buffer(stateful_dict, output)
 		elif option == 'prepositions':
-#					buffer(stateful_dict, descript_dict['help_prepositions'])
 					output = descript_dict['help_prepositions']
 		elif option == 'read':
-#					buffer(stateful_dict, descript_dict['help_read'])
 					output = descript_dict['help_read']
 		else:
-#				buffer(stateful_dict, descript_dict['help'])
 				output = descript_dict['help']
 		buffer(stateful_dict, output)
 
