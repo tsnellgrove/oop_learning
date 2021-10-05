@@ -30,13 +30,16 @@ IN-PROC: sort out interpreter()
 		- DONE: clean up comments
 		- DONE: stop explicitly passing stateful_dict to noun_handling()
 		- DONE: clean up comments
-	TBD: examine limits to declarations in start_me_up and wrapper
+	DONE: examine limits to declarations in start_me_up and wrapper
 		- DONE: remove full obj declarations from start_me_up() and just declare stateful_dict and active_gs
 		- NOTE: garbage collection still has all obj in scope once master_obj_lst is unpickled!
 		- DONE: comment clean-up
 		- DONE: remove full obj declarations from wapper() and just declare stateful_dict and active_gs
+		- DONE: comment clean-up
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
-	TBD: move turn decrement to cmd_execute()
+		TBD: move help routine to cmd_execute()
+		TBD: move tru_1word routines to cmd_execute()
+		TBD: move error output & turn decrement to cmd_execute()
 	TBD: fix any remaining 'Someday's below
 	TBD: move interpreter() to its own module
 TBD: sort out cmd_execute()
