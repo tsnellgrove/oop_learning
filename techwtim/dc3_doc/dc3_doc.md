@@ -40,7 +40,7 @@ IN-PROC: sort out interpreter()
 		IN-PROC: move help routine to cmd_execute()
 			DONE: move help() call to cmd_execute()
 			DONE: clean up comments
-			TBD: clean up help() routine
+			DONE: clean up help() routine
 		TBD: move tru_1word routines to cmd_execute()
 		TBD: move error output & turn decrement to cmd_execute()
 	TBD: fix any remaining 'Someday's below
