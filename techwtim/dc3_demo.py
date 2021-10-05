@@ -192,8 +192,6 @@ def interpreter(user_input, master_obj_lst):
 				return 'go', [room_obj, word1, word2]
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
-##				help(stateful_dict, word2)
-##				return 'help', []
 				return 'help', [word2]
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
@@ -250,6 +248,7 @@ def help(stateful_dict, option):
 					buffer(stateful_dict, descript_dict['help_read'])
 		else:
 				buffer(stateful_dict, descript_dict['help'])
+
 
 
 def cmd_execute(stateful_dict, active_gs, case, word_lst):

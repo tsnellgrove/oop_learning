@@ -39,7 +39,7 @@ IN-PROC: sort out interpreter()
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
 		IN-PROC: move help routine to cmd_execute()
 			DONE: move help() call to cmd_execute()
-			TBD: clean up comments
+			DONE: clean up comments
 			TBD: clean up help() routine
 		TBD: move tru_1word routines to cmd_execute()
 		TBD: move error output & turn decrement to cmd_execute()
