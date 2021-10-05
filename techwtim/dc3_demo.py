@@ -26,16 +26,16 @@ from dc3_start_me_up import start_me_up
 def str_to_class(str):
 		return getattr(sys.modules[__name__], str)
 
-def root_word_count(stateful_dict, word2):
+def root_word_count(stateful_dict, word2_txt):
 		scope_lst = scope_list(stateful_dict)
 		root_count = 0
 		obj_name = ""
 		for obj in scope_lst:
-				if obj.root_name == word2:
+				if obj.root_name == word2_txt:
 						root_count += 1
 						obj_name = obj.name
 				if obj.has_writing():
-						if obj.writing.root_name == word2:
+						if obj.writing.root_name == word2_txt:
 								root_count += 1
 								obj_name = obj.writing.name
 		return root_count, obj_name
@@ -122,13 +122,13 @@ def true_one_word(stateful_dict, word1, room_obj):
 def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 		exit_state = False
 		word2_obj = ""
-		word2 = user_input_lst[1]
+		word2_txt = user_input_lst[1]
 
 		# convert 3-word verb-adj-noun commands into verb-obj_name commands
 		if len(user_input_lst) == 3:
-				word3 = user_input_lst[2]
-				user_input_lst[1] = word2 + "_" + word3
-				word2 = user_input_lst[1]
+				word3_txt = user_input_lst[2]
+				user_input_lst[1] = word2_txt + "_" + word3_txt
+				word2_txt = user_input_lst[1]
 				del user_input_lst[2]
 
 		# error out commands that are still longer than two words
@@ -142,20 +142,20 @@ def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 		# check to see if word2 is a known obj_name
 		word2_txt_known = False
 		for obj in master_obj_lst[2:]:
-				if obj.name == word2:
+				if obj.name == word2_txt:
 						word2_txt_known = True
 						word2_obj = obj
 
 		# check to see if the word2 is a root_name; convert to obj_name if valid
 		if not word2_txt_known:
-				root_count, obj_name = root_word_count(stateful_dict, word2)
+				root_count, obj_name = root_word_count(stateful_dict, word2_txt)
 				if root_count < 1:
-						buffer(stateful_dict, "I don't see a " + word2 + " here.")
+						buffer(stateful_dict, "I don't see a " + word2_txt + " here.")
 						move_dec(stateful_dict)
 						exit_state = True
 						return exit_state, word2_obj
 				elif root_count > 1:
-						output = "I see more than one " + word2 + ". Please use the full name."
+						output = "I see more than one " + word2_txt + ". Please use the full name."
 						buffer(stateful_dict, output)
 						move_dec(stateful_dict)
 						exit_state = True

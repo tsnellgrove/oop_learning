@@ -24,12 +24,16 @@ IN-PROC: sort out interpreter()
 	DONE: sort out use of eval
 	DONE: sort out noun_handling master_obj_lst declaration & passing
 	DONE: clean up comments
-	TBD: update word2 => word2_txt in noun_handling()
+	DONE: update word2 => word2_txt in noun_handling()
 	TBD: do I really need to pass stateful_dict to interpreter() & noun_handling() if I'm already passing master_obj_lst
 	TBD: examine limits to declarations in start_me_up and wrapper
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
-	TBD: move interpreter() to its own module (and fix the 'Someday's below)
-TBD: move cmd_execute() to its own module (and move ALL case execution to this module)
+	TBD: move turn decrement to cmd_execute()
+	TBD: fix any remaining 'Someday's below
+	TBD: move interpreter() to its own module
+TBD: sort out cmd_execute()
+	TBD: move ALL case execution to this module
+	TBD: move cmd_execute() to its own module
 TBD: make end() a module and call from wrapper()
 TBD: Full testing
 TBD: re-map modules
@@ -341,10 +345,11 @@ TBD: Sort out writing and make it more accessable by examine
 		keys same colors as ready player 1
 
 5.x Future Ideas:
-	fun idea - small creature - like a mouse - as an item
-	more directions
-	landscape / path changes
-	create 'win' test routine with checksum
+- fun idea - small creature - like a mouse - as an item
+- more directions
+- landscape / path changes
+- create 'win' test routine with checksum
+- create a hint sub-system
 
 v4.x IDEAS:
 - DB based
