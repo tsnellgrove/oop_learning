@@ -23,9 +23,10 @@ IN-PROC: sort out interpreter()
 	DONE: move stateful_dict and active_gs to front of declarations
 	DONE: sort out use of eval
 	DONE: sort out noun_handling master_obj_lst declaration & passing
-	TBD: clean up comments
-	TBD: examine limits to declarations in start_me_up and wrapper
+	DONE: clean up comments
 	TBD: update word2 => word2_txt in noun_handling()
+	TBD: do I really need to pass stateful_dict to interpreter() & noun_handling() if I'm already passing master_obj_lst
+	TBD: examine limits to declarations in start_me_up and wrapper
 	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
 	TBD: move interpreter() to its own module (and fix the 'Someday's below)
 TBD: move cmd_execute() to its own module (and move ALL case execution to this module)

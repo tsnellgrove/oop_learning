@@ -120,13 +120,7 @@ def true_one_word(stateful_dict, word1, room_obj):
 ###def noun_handling(stateful_dict, user_input_lst):
 ###def noun_handling(master_obj_lst, user_input_lst):
 def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
-
-##		stateful_dict, active_gs, rusty_lettering, dwarven_runes, messy_handwriting, small_printing, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room = master_obj_lst
-
-##		print(front_gate) # troubleshooting
-
 		exit_state = False
-##		word2_obj = rusty_key
 		word2_obj = ""
 		word2 = user_input_lst[1]
 
@@ -146,23 +140,14 @@ def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 				return exit_state, word2_obj
 		
 		# check to see if word2 is a known obj_name
-###		print(getattr(sys.modules[__name__], 'front_gate'))
-
-
 		word2_txt_known = False
 		for obj in master_obj_lst[2:]:
 				if obj.name == word2:
 						word2_txt_known = True
 						word2_obj = obj
-		if not word2_txt_known:
-				 
 
-##		try:
-###				word2_obj = str_to_class(word2)
-###				word2_obj = getattr(sys.modules[__name__], word2)
-##				word2_obj = eval(word2)
-##		except:
-				# check to see if the word2 is a root_name; convert to obj_name if valid
+		# check to see if the word2 is a root_name; convert to obj_name if valid
+		if not word2_txt_known:
 				root_count, obj_name = root_word_count(stateful_dict, word2)
 				if root_count < 1:
 						buffer(stateful_dict, "I don't see a " + word2 + " here.")
@@ -176,9 +161,6 @@ def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 						exit_state = True
 						return exit_state, word2_obj
 				else:
-###						word2_obj = str_to_class(obj_name)
-###						word2_obj = getattr(sys.modules[__name__], obj_name)
-##						word2_obj = eval(obj_name)
 						for obj in master_obj_lst[2:]:
 								if obj.name == obj_name:
 										word2_obj = obj
@@ -186,14 +168,11 @@ def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 
 
 # interpreter
-#def interpreter(user_input, master_obj_lst):
+
+###def interpreter(user_input, master_obj_lst):
 def interpreter(user_input, stateful_dict, master_obj_lst):
 
 		print("interpreter - start")
-
-#		stateful_dict, active_gs, rusty_lettering, dwarven_runes, messy_handwriting, small_printing, illuminated_letters, calligraphy, trademark, dark_castle, moat, backpack, burt, fist, conscience, faded_tapestries, alcove, stone_coffer, family_tree, rusty_key, shiny_sword, brass_key, bubbly_potion, torn_note, grimy_axe, silver_key, kinging_scroll, cheese_wedge, stale_biscuits, fresh_water, wooden_chest, crystal_box, glass_bottle, front_gate, iron_portcullis, control_panel, throne, entrance, main_hall, antechamber, throne_room = master_obj_lst
-
-###		print(rusty_key) # troubleshooting
 
 		room_obj = stateful_dict['room']
 		user_input_lst = input_cleanup(user_input)
@@ -326,7 +305,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 #		print("old wrapper start - SHOULD NEVER PRINT") # troubleshooting
 
 #		if user_input == "xyzzy42":
-				end_of_game, out_buff = start_me_up()
+#				end_of_game, out_buff = start_me_up()
 #		else:
 ##				from dc3_define_class_gs import GameState
 ##				from dc3_define_class_other import Writing, ViewOnly, Room, Item, Door, Container, Food, Jug, Beverage
