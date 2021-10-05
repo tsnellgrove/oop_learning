@@ -80,6 +80,11 @@ Version 3.50 Goals
 - implement scoring
 
 
+### Timer Events ###
+- have a lantern that dimms over time
+- references to Zork Brass Lantern
+- Provides a timer based trigger that can be inspected each turn (not directly based on Burt actions)
+
 
 ### Cutscene ###
 IDEA: Conditional Cutscene Class
@@ -340,6 +345,14 @@ TBD: Sort out writing and make it more accessable by examine
 	more directions
 	landscape / path changes
 	create 'win' test routine with checksum
+
+v4.x IDEAS:
+- DB based
+- "dungeon bulder" web interface
+
+
+v5.x IDEAS
+- runs on AWS with API GW, Lambda, and DynamoDB!
 
 
 *** Demo Object Commands ***
