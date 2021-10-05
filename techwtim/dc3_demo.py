@@ -170,10 +170,13 @@ def noun_handling(master_obj_lst, stateful_dict, user_input_lst):
 # interpreter
 
 ###def interpreter(user_input, master_obj_lst):
-def interpreter(user_input, stateful_dict, master_obj_lst):
+##def interpreter(user_input, stateful_dict, master_obj_lst):
+def interpreter(user_input, master_obj_lst):
 
 		print("interpreter - start")
 
+		stateful_dict = master_obj_lst[0]
+		active_gs = master_obj_lst[1]
 		room_obj = stateful_dict['room']
 		user_input_lst = input_cleanup(user_input)
 

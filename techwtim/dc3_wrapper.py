@@ -60,7 +60,8 @@ def wrapper(user_input):
 								print(obj, id(obj), sys.getrefcount(obj))
 
 ##				case, word_lst = interpreter(user_input, master_obj_lst)
-				case, word_lst = interpreter(user_input, stateful_dict, master_obj_lst)
+				case, word_lst = interpreter(user_input, master_obj_lst)
+##				case, word_lst = interpreter(user_input, stateful_dict, master_obj_lst)
 ###			case, word_lst = interpreter(stateful_dict, user_input)
 				# pre-action triggers will go here
 				if case in ['go', 'put', '2word']:
