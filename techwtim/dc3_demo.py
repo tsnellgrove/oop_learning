@@ -49,36 +49,6 @@ def inventory(stateful_dict):
 		backpack_str = obj_lst_to_str(backpack_obj_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
-def help(stateful_dict, option):
-		if option == 'basics':
-				buffer(stateful_dict, descript_dict['help_basics'])
-		elif option == 'verbs':
-				buffer(stateful_dict, "Available verbs include: " + ', '.join(verbs_lst))
-		elif option == 'one-word-commands':
-				user_one_word_lst = one_word_only_lst
-				user_one_word_lst.pop()
-				output = ("Available one word commands include: "
-								+ ', '.join(user_one_word_lst))
-				buffer(stateful_dict, output)
-		elif option == 'articles':
-				output = ("The following articles are supported but not required: "
-								+ ', '.join(articles_lst))
-				buffer(stateful_dict, output)
-		elif option == 'adjectives':
-					buffer(stateful_dict, descript_dict['help_adjectives'])
-		elif  option == 'abbreviations':
-				pre_out = "Available abbreviations include: "
-				for key in abbreviations_dict:
-						pre_out = pre_out + key + " = " + abbreviations_dict[key] + ", "
-				output = pre_out[:-2]
-				buffer(stateful_dict, output)
-		elif option == 'prepositions':
-					buffer(stateful_dict, descript_dict['help_prepositions'])
-		elif option == 'read':
-					buffer(stateful_dict, descript_dict['help_read'])
-		else:
-				buffer(stateful_dict, descript_dict['help'])
-
 # convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
 		# first, convert user input string into word list
@@ -222,8 +192,9 @@ def interpreter(user_input, master_obj_lst):
 				return 'go', [room_obj, word1, word2]
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
-				help(stateful_dict, word2)
-				return 'help', []
+##				help(stateful_dict, word2)
+##				return 'help', []
+				return 'help', [word2]
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
 						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
@@ -247,11 +218,48 @@ def interpreter(user_input, master_obj_lst):
 						return '2word', [word2_obj, word1]
 
 
+
+
+
+def help(stateful_dict, option):
+		if option == 'basics':
+				buffer(stateful_dict, descript_dict['help_basics'])
+		elif option == 'verbs':
+				buffer(stateful_dict, "Available verbs include: " + ', '.join(verbs_lst))
+		elif option == 'one-word-commands':
+				user_one_word_lst = one_word_only_lst
+				user_one_word_lst.pop()
+				output = ("Available one word commands include: "
+								+ ', '.join(user_one_word_lst))
+				buffer(stateful_dict, output)
+		elif option == 'articles':
+				output = ("The following articles are supported but not required: "
+								+ ', '.join(articles_lst))
+				buffer(stateful_dict, output)
+		elif option == 'adjectives':
+					buffer(stateful_dict, descript_dict['help_adjectives'])
+		elif  option == 'abbreviations':
+				pre_out = "Available abbreviations include: "
+				for key in abbreviations_dict:
+						pre_out = pre_out + key + " = " + abbreviations_dict[key] + ", "
+				output = pre_out[:-2]
+				buffer(stateful_dict, output)
+		elif option == 'prepositions':
+					buffer(stateful_dict, descript_dict['help_prepositions'])
+		elif option == 'read':
+					buffer(stateful_dict, descript_dict['help_read'])
+		else:
+				buffer(stateful_dict, descript_dict['help'])
+
+
 def cmd_execute(stateful_dict, active_gs, case, word_lst):
 
 		print("cmd_execute - start")
 
-		if case == 'go':
+		if case == 'help':
+				word2 = word_lst[0]
+				help(stateful_dict, word2)
+		elif case == 'go':
 				room_obj, word1, word2 = word_lst
 				getattr(room_obj, word1)(word2, stateful_dict, active_gs)
 		elif case == '2word':

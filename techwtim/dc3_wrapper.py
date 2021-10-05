@@ -65,10 +65,12 @@ def wrapper(user_input):
 
 				# pre-action triggers will go here
 
-				if case in ['go', 'put', '2word']:
+				if case in ['go', 'put', '2word', 'help']:
 						cmd_execute(stateful_dict, active_gs, case, word_lst)
 
 				# post-action triggers will go here
+
+				# score routine here (?)
 
 				# end routine will go here
 
