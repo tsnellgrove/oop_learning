@@ -81,9 +81,6 @@ def noun_handling(master_obj_lst, user_input_lst):
 		# error out commands that are still longer than two words
 		if len(user_input_lst) > 2:
 				error_msg = "Can you state that more simply? Burt's a man of few words!"
-#				output = "Can you state that more simply? Burt's a man of few words!"
-#				buffer(stateful_dict, output)
-#				move_dec(stateful_dict)
 				error_state = True
 				return error_state, error_msg, word2_obj
 		
@@ -99,15 +96,10 @@ def noun_handling(master_obj_lst, user_input_lst):
 				root_count, obj_name = root_word_count(stateful_dict, word2_txt)
 				if root_count < 1:
 						error_msg = "I don't see a " + word2_txt + " here."
-#						buffer(stateful_dict, "I don't see a " + word2_txt + " here.")
-#						move_dec(stateful_dict)
 						error_state = True
 						return error_state, error_msg, word2_obj
 				elif root_count > 1:
 						error_msg = "I see more than one " + word2_txt + ". Please use the full name."
-#						output = "I see more than one " + word2_txt + ". Please use the full name."
-#						buffer(stateful_dict, output)
-#						move_dec(stateful_dict)
 						error_state = True
 						return error_state, error_msg, word2_obj
 				else:
@@ -128,8 +120,6 @@ def interpreter(user_input, master_obj_lst):
 
 		# error if no input or the only input is articles 
 		if len(user_input_lst) < 1:
-#				buffer(stateful_dict, "I have no idea what you're talking about Burt!")
-#				move_dec(stateful_dict)
 				return 'error', ["I have no idea what you're talking about Burt!"]
 
 		# len(user_input_lst) is not < 1 so user_input_lst must have at least one word in it
@@ -148,21 +138,15 @@ def interpreter(user_input, master_obj_lst):
 		# if not a known true or convertable one-word command, must be an error
 		elif len(user_input_lst) == 1:
 				if word1 in verbs_lst:
-#						buffer(stateful_dict, word1 + " what?")
-#						move_dec(stateful_dict)
 						output = word1 + " what?"
 				else:
 						num = random.randint(0, 4)
 						interp_error_key = 'interp_error_' + str(num)
-#						buffer(stateful_dict, descript_dict[interp_error_key])
-#						move_dec(stateful_dict)
 						output = descript_dict[interp_error_key]
 				return 'error', [output]
 
 		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
-#				buffer(stateful_dict, "Please start your sentence with a known verb!")
-#				move_dec(stateful_dict)
 				return 'error', ["Please start your sentence with a known verb!"]
 
 		# handle 2-word commands (special cases first else general case)
@@ -174,8 +158,6 @@ def interpreter(user_input, master_obj_lst):
 				return 'help', [word2]
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
-#						buffer(stateful_dict, "I don't see the word 'in' in that sentence")
-#						move_dec(stateful_dict)
 						return 'error', ["I don't see the word 'in' in that sentence"]
 				else:
 						in_position = user_input_lst.index('in')
