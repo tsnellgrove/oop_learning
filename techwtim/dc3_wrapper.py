@@ -21,6 +21,7 @@ from dc3_start_me_up import start_me_up
 from dc3_interpreter import interpreter
 from dc3_cmd_execute import cmd_execute
 #from dc3_demo import cmd_execute
+from  dc3_score import score
 from dc3_end import end
 
 
@@ -69,7 +70,7 @@ def wrapper(user_input):
 				# pre-action triggers will go here
 				cmd_execute(stateful_dict, active_gs, case, word_lst)
 				# post-action triggers will go here
-				score(stateful_dict, master_obj_lst)
+				score(stateful_dict)
 				if stateful_dict['game_ending'] != "tbd":
 						end(stateful_dict)
 

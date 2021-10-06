@@ -46,13 +46,25 @@ static_dict = {
 
 ### score value dictionary ###
 score_val_dict = {
-		'got_rusty_key' : 5,
-		'reached_main_hall' : 10,
-		'got_shiny_sword' : 10,
-		'reached_antechamber' : 10,
-		'got_silver_key' : 5,
-		'got_kinging_scroll' : 5
+		'rusty_key' : 5,
+		'main_hall' : 10,
+		'shiny_sword' : 10,
+		'throne_room' : 10,
+		'silver_key' : 5,
+		'kinging_scroll' : 5
 }
+
+item_score_lst = [
+		'rusty_key',
+		'shiny_sword',
+		'silver_key',
+		'kinging_scroll'
+]
+
+room_score_lst = [
+		'main_hall',
+		'throne_room'
+]
 
 ### description dict ###
 descript_dict = {

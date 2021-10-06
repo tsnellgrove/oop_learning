@@ -95,12 +95,12 @@ stateful_dict = {
 				'messy_handwriting' : ""
 				},
 		'points_earned_dict' : {
-				'got_rusty_key' : False,
-				'reached_main_hall' : False,
-				'got_shiny_sword' : False,
-				'reached_antechamber' : False,
-				'got_silver_key' : False,
-				'got_kinging_scroll' : False
+				'rusty_key' : False,
+				'main_hall' : False,
+				'shiny_sword' : False,
+				'throne_room' : False,
+				'silver_key' : False,
+				'kinging_scroll' : False
 				},
 		}
 
