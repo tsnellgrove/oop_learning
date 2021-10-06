@@ -63,9 +63,11 @@ DONE: sort out cmd_execute()
 DONE: fix any remaining 'Someday's below
 DONE: make end() a module and call from wrapper()
 TBD: create dc3_score() module based on stateful_dict values and call from wrapper
+TBD: clean up use of "import *"
 TBD: Full testing
 TBD: re-map modules
 TBD: clean up troubleshooting comments & prints!!!
+TBD: rename modules
 TBD: move un-unsed modules to 'old versions' directory
 
 Someday: fix game_state as global
