@@ -9,7 +9,7 @@
 
 # import statements
 import sys
-import pickle
+#import pickle
 import random
 from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
@@ -19,12 +19,15 @@ from dc3_helper import *
 from dc3_class_deff import *
 import gc
 ###from dc3_obj_init2 import *
-from dc3_start_me_up import start_me_up
+#from dc3_start_me_up import start_me_up
 
 
 ### interpreter-specific helper functions ###
 def str_to_class(str):
 		return getattr(sys.modules[__name__], str)
+
+
+
 
 def root_word_count(stateful_dict, word2_txt):
 		scope_lst = scope_list(stateful_dict)
@@ -39,7 +42,6 @@ def root_word_count(stateful_dict, word2_txt):
 								root_count += 1
 								obj_name = obj.writing.name
 		return root_count, obj_name
-
 
 # convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
@@ -60,7 +62,7 @@ def input_cleanup(user_input):
 				user_input_lst = [word for word in user_input_lst if word != article]
 		return user_input_lst
 
-
+# handle nouns and adjectives
 def noun_handling(master_obj_lst, user_input_lst):
 		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
@@ -110,7 +112,6 @@ def noun_handling(master_obj_lst, user_input_lst):
 										word2_obj = obj
 		return exit_state, word2_obj
 
-
 # interpreter
 def interpreter(user_input, master_obj_lst):
 
@@ -132,8 +133,6 @@ def interpreter(user_input, master_obj_lst):
 
 		# handle true one-word commands
 		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
-##				true_one_word(stateful_dict, word1, room_obj)
-##				return 'tru_1word', []
 				return 'tru_1word', [word1]
 
 		# convert one-word commands that are implicit two-word commands 
@@ -191,6 +190,8 @@ def interpreter(user_input, master_obj_lst):
 
 
 
+
+
 def true_one_word(stateful_dict, word1, room_obj):
 		if word1 == 'score':
 				print_score(stateful_dict)
@@ -237,7 +238,6 @@ def help(stateful_dict, option):
 		else:
 				output = descript_dict['help']
 		buffer(stateful_dict, output)
-
 
 def cmd_execute(stateful_dict, active_gs, case, word_lst):
 
