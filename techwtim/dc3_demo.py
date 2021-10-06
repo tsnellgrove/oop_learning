@@ -138,12 +138,13 @@ def interpreter(user_input, master_obj_lst):
 		# if not a known true or convertable one-word command, must be an error
 		elif len(user_input_lst) == 1:
 				if word1 in verbs_lst:
-						output = word1 + " what?"
+						error_msg = word1 + " what?"
 				else:
-						num = random.randint(0, 4)
-						interp_error_key = 'interp_error_' + str(num)
-						output = descript_dict[interp_error_key]
-				return 'error', [output]
+#						num = random.randint(0, 4)
+#						interp_error_key = 'interp_error_' + str(num)
+#						output = descript_dict[interp_error_key]
+						error_msg = "random error"
+				return 'error', [error_msg]
 
 		# all commands longer than one word should start with a verb
 		if word1 not in verbs_lst:
@@ -240,7 +241,13 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				word1 = word_lst[0]
 				true_one_word(stateful_dict, word1, room_obj)
 		elif case == 'error':
-				buffer(stateful_dict, word_lst[0])
+				if word_lst[0] == "random error":
+						num = random.randint(0, 4)
+						interp_error_key = 'interp_error_' + str(num)
+						output = descript_dict[interp_error_key]
+				else:
+						output = word_lst[0]
+				buffer(stateful_dict, output)
 				move_dec(stateful_dict)
 		elif case == 'go':
 				room_obj, word1, word2 = word_lst

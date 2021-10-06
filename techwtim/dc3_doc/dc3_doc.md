@@ -51,8 +51,9 @@ IN-PROC: sort out interpreter()
 			DONE: pass interpreter() errors to cmd_execute() and update wrapper and add move_dec()
 			DONE: pass noun_handling() errors to cmd_execute()
 			DONE: clean-up comments
-			TBD: update wrapper
-			TBD: move random routine to cmd_execute()
+			DONE: update wrapper
+			DONE: move random routine to cmd_execute()
+			DONE: clean-up comments
 	TBD: fix any remaining 'Someday's below
 	TBD: move interpreter() to its own module
 TBD: sort out cmd_execute()
