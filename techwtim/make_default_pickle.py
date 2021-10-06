@@ -94,6 +94,14 @@ stateful_dict = {
 		'dynamic_desc_dict' : {
 				'messy_handwriting' : ""
 				},
+		'points_earned_dict' : {
+				'got_rusty_key' : False,
+				'reached_main_hall' : False,
+				'got_shiny_sword' : False,
+				'reached_antechamber' : False,
+				'got_silver_key' : False,
+				'got_kinging_scroll' : False
+				},
 		}
 
 ### active_gs will replace stateful_dict as the central store of game info ###
