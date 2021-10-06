@@ -30,9 +30,8 @@ def true_one_word(stateful_dict, word1, room_obj):
 		elif word1 == 'look':
 				room_obj.examine(stateful_dict)
 		elif word1 == 'quit':
-				stateful_dict['game_ending'] = "quit"
-				move_dec(stateful_dict) # quitting is not deemed to be an actual move
-##				end(stateful_dict) # maybe move to wrapper?
+				stateful_dict['game_ending'] = "quit" # triggers call end() from wrapper()
+				move_dec(stateful_dict) # quitting not deemed to be an actual move
 		return
 
 def help(stateful_dict, option):

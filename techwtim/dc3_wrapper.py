@@ -72,7 +72,6 @@ def wrapper(user_input):
 				# score routine will go here (?)
 				if stateful_dict['game_ending'] != "tbd":
 						end(stateful_dict)
-				# end routine will go here
 
 				### dump updated objects to save_obj_pickle2 ###
 				with open('save_obj_pickle2', 'wb') as f:
