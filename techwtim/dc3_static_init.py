@@ -13,8 +13,11 @@ print("static - start")
 
 ### interpreter function language variables ###
 articles_lst = ['a', 'an', 'the']
+
 one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
+
 verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put', 'eat', 'drink']
+
 abbreviations_dict = {
 		'n' : 'north',
 		's' : 'south',
@@ -27,6 +30,7 @@ abbreviations_dict = {
 		'q' : 'quit',
 		'h' : 'help'
 }
+
 one_word_convert_dict = {
 		'north' : 'go',
 		'south' : 'go',
@@ -38,6 +42,16 @@ one_word_convert_dict = {
 static_dict = {
 		'version' : '3.42',
 		'max_score' : 75,
+}
+
+### score value dictionary ###
+score_val_dict = {
+		'got_rusty_key' : 5,
+		'reached_main_hall' : 10,
+		'got_shiny_sword' : 10,
+		'reached_antechamber' : 10,
+		'got_silver_key' : 5,
+		'got_kinging_scroll' : 5
 }
 
 ### description dict ###

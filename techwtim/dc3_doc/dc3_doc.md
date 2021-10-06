@@ -62,7 +62,9 @@ DONE: sort out cmd_execute()
 	DONE: move cmd_execute() to its own module
 DONE: fix any remaining 'Someday's below
 DONE: make end() a module and call from wrapper()
-TBD: create dc3_score() module based on stateful_dict values and call from wrapper
+IN-PROC: create dc3_score() module based on stateful_dict values and call from wrapper
+	DONE: create score_val_dict in dc3_static
+	TBD: create points_earned_dict in stateful_dict (same key as score_val_dict)
 TBD: clean up use of "import *"
 TBD: Full testing
 TBD: re-map modules
