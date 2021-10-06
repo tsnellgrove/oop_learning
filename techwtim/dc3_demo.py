@@ -11,7 +11,7 @@
 import sys
 #import pickle
 import random
-from itertools import islice
+#from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
 #from dc3_classes import *
 #from dc3_classes2 import declare_classes

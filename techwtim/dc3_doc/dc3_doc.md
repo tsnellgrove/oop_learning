@@ -55,6 +55,8 @@ IN-PROC: sort out interpreter()
 			DONE: move random routine to cmd_execute()
 			DONE: clean-up comments
 	TBD: move interpreter() to its own module
+		DONE: create dc3_interpreter()
+		DONE: migrate interpreter() routines to dc3_interpreter module
 TBD: sort out cmd_execute()
 	TBD: move ALL case execution to this module
 	TBD: move cmd_execute() to its own module
