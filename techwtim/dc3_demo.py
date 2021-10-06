@@ -140,9 +140,6 @@ def interpreter(user_input, master_obj_lst):
 				if word1 in verbs_lst:
 						error_msg = word1 + " what?"
 				else:
-#						num = random.randint(0, 4)
-#						interp_error_key = 'interp_error_' + str(num)
-#						output = descript_dict[interp_error_key]
 						error_msg = "random error"
 				return 'error', [error_msg]
 
