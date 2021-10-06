@@ -79,6 +79,15 @@ def print_score(stateful_dict):
 		output2 = (" out of " + str(static_dict['max_score']))
 		buffer(stateful_dict, output1 + output2)
 
+def inventory(stateful_dict):
+		hand_obj_lst = stateful_dict['hand']
+		hand_str = obj_lst_to_str(hand_obj_lst)
+		buffer(stateful_dict, "In your hand you are holding: " + hand_str)
+
+		backpack_obj_lst = stateful_dict['backpack']
+		backpack_str = obj_lst_to_str(backpack_obj_lst)
+		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
+
 def move_dec(stateful_dict): # was originally in interp_helper
 		stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 

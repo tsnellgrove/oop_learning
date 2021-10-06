@@ -40,14 +40,6 @@ def root_word_count(stateful_dict, word2_txt):
 								obj_name = obj.writing.name
 		return root_count, obj_name
 
-def inventory(stateful_dict):
-		hand_obj_lst = stateful_dict['hand']
-		hand_str = obj_lst_to_str(hand_obj_lst)
-		buffer(stateful_dict, "In your hand you are holding: " + hand_str)
-
-		backpack_obj_lst = stateful_dict['backpack']
-		backpack_str = obj_lst_to_str(backpack_obj_lst)
-		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
 # convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
@@ -67,25 +59,6 @@ def input_cleanup(user_input):
 		for article in articles_lst:
 				user_input_lst = [word for word in user_input_lst if word != article]
 		return user_input_lst
-
-def true_one_word(stateful_dict, word1, room_obj):
-		if word1 == 'score':
-				print_score(stateful_dict)
-		elif word1 == 'version':
-				buffer(stateful_dict, static_dict['version'])
-		elif word1 == 'help':
-				buffer(stateful_dict, descript_dict['help'])
-		elif word1 == 'credits':
-				buffer(stateful_dict, descript_dict['credits'])
-		elif word1 == 'inventory':
-				inventory(stateful_dict)
-		elif word1 == 'look':
-				room_obj.examine(stateful_dict)
-		elif word1 == 'quit':
-				stateful_dict['game_ending'] = "quit"
-				move_dec(stateful_dict) # quitting is not deemed to be an actual move
-				end(stateful_dict) # maybe move to wrapper?
-		return
 
 
 def noun_handling(master_obj_lst, user_input_lst):
@@ -159,8 +132,9 @@ def interpreter(user_input, master_obj_lst):
 
 		# handle true one-word commands
 		if len(user_input_lst) == 1 and word1 in one_word_only_lst:
-				true_one_word(stateful_dict, word1, room_obj)
-				return 'tru_1word', []
+##				true_one_word(stateful_dict, word1, room_obj)
+##				return 'tru_1word', []
+				return 'tru_1word', [word1]
 
 		# convert one-word commands that are implicit two-word commands 
 		elif len(user_input_lst) == 1 and word1 in one_word_convert_dict:
@@ -217,7 +191,24 @@ def interpreter(user_input, master_obj_lst):
 
 
 
-
+def true_one_word(stateful_dict, word1, room_obj):
+		if word1 == 'score':
+				print_score(stateful_dict)
+		elif word1 == 'version':
+				buffer(stateful_dict, static_dict['version'])
+		elif word1 == 'help':
+				buffer(stateful_dict, descript_dict['help'])
+		elif word1 == 'credits':
+				buffer(stateful_dict, descript_dict['credits'])
+		elif word1 == 'inventory':
+				inventory(stateful_dict)
+		elif word1 == 'look':
+				room_obj.examine(stateful_dict)
+		elif word1 == 'quit':
+				stateful_dict['game_ending'] = "quit"
+				move_dec(stateful_dict) # quitting is not deemed to be an actual move
+				end(stateful_dict) # maybe move to wrapper?
+		return
 
 def help(stateful_dict, option):
 		if option == 'basics':
@@ -251,10 +242,15 @@ def help(stateful_dict, option):
 def cmd_execute(stateful_dict, active_gs, case, word_lst):
 
 		print("cmd_execute - start")
+		
+		room_obj = stateful_dict['room']
 
 		if case == 'help':
 				word2 = word_lst[0]
 				help(stateful_dict, word2)
+		elif  case == 'tru_1word':
+				word1 = word_lst[0]
+				true_one_word(stateful_dict, word1, room_obj)
 		elif case == 'go':
 				room_obj, word1, word2 = word_lst
 				getattr(room_obj, word1)(word2, stateful_dict, active_gs)

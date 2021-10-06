@@ -42,7 +42,9 @@ IN-PROC: sort out interpreter()
 			DONE: clean up comments
 			DONE: clean up help() routine
 			DONE: clean up comments
-		TBD: move tru_1word routines to cmd_execute()
+		IN-PROC: move tru_1word routines to cmd_execute()
+			DONE: move true_one_word() call to cmd_execute()
+			DONE: move true_one_word() to cmd_execute() and move inventory() to dc3_helper()
 		TBD: move error output & turn decrement to cmd_execute()
 	TBD: fix any remaining 'Someday's below
 	TBD: move interpreter() to its own module
