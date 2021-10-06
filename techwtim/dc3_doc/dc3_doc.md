@@ -54,11 +54,11 @@ IN-PROC: sort out interpreter()
 			DONE: update wrapper
 			DONE: move random routine to cmd_execute()
 			DONE: clean-up comments
-	TBD: fix any remaining 'Someday's below
 	TBD: move interpreter() to its own module
 TBD: sort out cmd_execute()
 	TBD: move ALL case execution to this module
 	TBD: move cmd_execute() to its own module
+TBD: fix any remaining 'Someday's below
 TBD: make end() a module and call from wrapper()
 TBD: Full testing
 TBD: re-map modules
