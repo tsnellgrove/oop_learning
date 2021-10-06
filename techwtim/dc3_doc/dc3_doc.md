@@ -49,7 +49,8 @@ IN-PROC: sort out interpreter()
 		IN-PROC: move error output & turn decrementing to cmd_execute()
 			DONE: exit_state => error_state in both noun_handling() and interpreter
 			DONE: pass interpreter() errors to cmd_execute() and update wrapper and add move_dec()
-			TBD: pass noun_handling() errors to cmd_execute()
+			DONE: pass noun_handling() errors to cmd_execute()
+			TBD: clean-up comments
 			TBD: update wrapper
 			TBD: move random routine to cmd_execute()
 	TBD: fix any remaining 'Someday's below

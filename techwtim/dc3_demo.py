@@ -67,6 +67,7 @@ def noun_handling(master_obj_lst, user_input_lst):
 		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
 		error_state = False
+		error_msg = ""
 		word2_obj = ""
 		word2_txt = user_input_lst[1]
 
@@ -79,11 +80,12 @@ def noun_handling(master_obj_lst, user_input_lst):
 
 		# error out commands that are still longer than two words
 		if len(user_input_lst) > 2:
-				output = "Can you state that more simply? Burt's a man of few words!"
-				buffer(stateful_dict, output)
-				move_dec(stateful_dict)
+				error_msg = "Can you state that more simply? Burt's a man of few words!"
+#				output = "Can you state that more simply? Burt's a man of few words!"
+#				buffer(stateful_dict, output)
+#				move_dec(stateful_dict)
 				error_state = True
-				return error_state, word2_obj
+				return error_state, error_msg, word2_obj
 		
 		# check to see if word2 is a known obj_name
 		word2_txt_known = False
@@ -96,21 +98,23 @@ def noun_handling(master_obj_lst, user_input_lst):
 		if not word2_txt_known:
 				root_count, obj_name = root_word_count(stateful_dict, word2_txt)
 				if root_count < 1:
-						buffer(stateful_dict, "I don't see a " + word2_txt + " here.")
-						move_dec(stateful_dict)
+						error_msg = "I don't see a " + word2_txt + " here."
+#						buffer(stateful_dict, "I don't see a " + word2_txt + " here.")
+#						move_dec(stateful_dict)
 						error_state = True
-						return error_state, word2_obj
+						return error_state, error_msg, word2_obj
 				elif root_count > 1:
-						output = "I see more than one " + word2_txt + ". Please use the full name."
-						buffer(stateful_dict, output)
-						move_dec(stateful_dict)
+						error_msg = "I see more than one " + word2_txt + ". Please use the full name."
+#						output = "I see more than one " + word2_txt + ". Please use the full name."
+#						buffer(stateful_dict, output)
+#						move_dec(stateful_dict)
 						error_state = True
-						return error_state, word2_obj
+						return error_state, error_msg, word2_obj
 				else:
 						for obj in master_obj_lst[2:]:
 								if obj.name == obj_name:
 										word2_obj = obj
-		return error_state, word2_obj
+		return error_state, error_msg, word2_obj
 
 # interpreter
 def interpreter(user_input, master_obj_lst):
@@ -177,16 +181,16 @@ def interpreter(user_input, master_obj_lst):
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-						noun_error_state, noun_obj = noun_handling(master_obj_lst, v_n_lst)
-						dir_obj_error_state, dirobj_obj = noun_handling(master_obj_lst, p_p_lst)
+						noun_error_state, error_msg, noun_obj = noun_handling(master_obj_lst, v_n_lst)
+						dir_obj_error_state, error_msg, dirobj_obj = noun_handling(master_obj_lst, p_p_lst)
 						if noun_error_state or dir_obj_error_state:
-								return 'error', ["noun_handling"]
+								return 'error', [error_msg]
 						else:
 								return 'put', [dirobj_obj, word1, noun_obj]
 		else:
-				error_state, word2_obj = noun_handling(master_obj_lst, user_input_lst)
+				error_state, error_msg, word2_obj = noun_handling(master_obj_lst, user_input_lst)
 				if error_state:
-						return 'error', ["noun_handling"]
+						return 'error', [error_msg]
 				else:
 						return '2word', [word2_obj, word1]
 
