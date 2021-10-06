@@ -21,6 +21,8 @@ from dc3_start_me_up import start_me_up
 from dc3_interpreter import interpreter
 from dc3_cmd_execute import cmd_execute
 #from dc3_demo import cmd_execute
+from dc3_end import end
+
 
 # wrapper code - calls interpreter and saves game state
 def wrapper(user_input):
@@ -68,6 +70,8 @@ def wrapper(user_input):
 				cmd_execute(stateful_dict, active_gs, case, word_lst)
 				# post-action triggers will go here
 				# score routine will go here (?)
+				if stateful_dict['game_ending'] != "tbd":
+						end(stateful_dict)
 				# end routine will go here
 
 				### dump updated objects to save_obj_pickle2 ###

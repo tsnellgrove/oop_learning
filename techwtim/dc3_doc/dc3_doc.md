@@ -61,7 +61,8 @@ DONE: sort out cmd_execute()
 	DONE: move ALL case execution to this module
 	DONE: move cmd_execute() to its own module
 DONE: fix any remaining 'Someday's below
-TBD: make end() a module and call from wrapper()
+DONE: make end() a module and call from wrapper()
+TBD: create dc3_score() module based on stateful_dict values and call from wrapper
 TBD: Full testing
 TBD: re-map modules
 TBD: clean up troubleshooting comments & prints!!!
