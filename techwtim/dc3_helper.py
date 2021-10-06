@@ -116,7 +116,8 @@ def end(stateful_dict):
 		print_score(stateful_dict)
 #		buffer("Your title is: " + title)
 		if game_ending == 'won':
-				buffer(stateful_dict, credits.examine(stateful_dict))
+##				buffer(stateful_dict, credits.examine(stateful_dict))
+				buffer(stateful_dict, descript_dict['credits'])
 		stateful_dict['end_of_game'] = True
 		return
 

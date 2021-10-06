@@ -36,7 +36,7 @@ IN-PROC: sort out interpreter()
 		- DONE: comment clean-up
 		- DONE: remove full obj declarations from wapper() and just declare stateful_dict and active_gs
 		- DONE: comment clean-up
-	TBD: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
+	DONE: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
 		DONE: move help routine to cmd_execute()
 			DONE: move help() call to cmd_execute()
 			DONE: clean up comments
@@ -46,7 +46,7 @@ IN-PROC: sort out interpreter()
 			DONE: move true_one_word() call to cmd_execute()
 			DONE: move true_one_word() to cmd_execute() and move inventory() to dc3_helper()
 			DONE: clean up comments
-		IN-PROC: move error output & turn decrementing to cmd_execute()
+		DONE: move error output & turn decrementing to cmd_execute()
 			DONE: exit_state => error_state in both noun_handling() and interpreter
 			DONE: pass interpreter() errors to cmd_execute() and update wrapper and add move_dec()
 			DONE: pass noun_handling() errors to cmd_execute()
@@ -54,13 +54,13 @@ IN-PROC: sort out interpreter()
 			DONE: update wrapper
 			DONE: move random routine to cmd_execute()
 			DONE: clean-up comments
-	TBD: move interpreter() to its own module
+	DONE: move interpreter() to its own module
 		DONE: create dc3_interpreter()
 		DONE: migrate interpreter() routines to dc3_interpreter module
-TBD: sort out cmd_execute()
-	TBD: move ALL case execution to this module
-	TBD: move cmd_execute() to its own module
-TBD: fix any remaining 'Someday's below
+DONE: sort out cmd_execute()
+	DONE: move ALL case execution to this module
+	DONE: move cmd_execute() to its own module
+DONE: fix any remaining 'Someday's below
 TBD: make end() a module and call from wrapper()
 TBD: Full testing
 TBD: re-map modules

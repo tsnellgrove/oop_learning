@@ -19,7 +19,8 @@ import gc
 from dc3_start_me_up import start_me_up
 #from dc3_demo import interpreter, cmd_execute
 from dc3_interpreter import interpreter
-from dc3_demo import cmd_execute
+from dc3_cmd_execute import cmd_execute
+#from dc3_demo import cmd_execute
 
 # wrapper code - calls interpreter and saves game state
 def wrapper(user_input):

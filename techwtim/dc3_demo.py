@@ -1,3 +1,5 @@
+# NO LONGER IN USE POST v3.42
+
 # program: dark castle v3.42
 # name: Tom Snellgrove
 # date: Oct 3, 2021
