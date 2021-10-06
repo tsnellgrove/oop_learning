@@ -46,7 +46,12 @@ IN-PROC: sort out interpreter()
 			DONE: move true_one_word() call to cmd_execute()
 			DONE: move true_one_word() to cmd_execute() and move inventory() to dc3_helper()
 			DONE: clean up comments
-		TBD: move error output & turn decrementing to cmd_execute()
+		IN-PROC: move error output & turn decrementing to cmd_execute()
+			DONE: exit_state => error_state in both noun_handling() and interpreter
+			DONE: pass interpreter() errors to cmd_execute() and update wrapper and add move_dec()
+			TBD: pass noun_handling() errors to cmd_execute()
+			TBD: update wrapper
+			TBD: move random routine to cmd_execute()
 	TBD: fix any remaining 'Someday's below
 	TBD: move interpreter() to its own module
 TBD: sort out cmd_execute()
