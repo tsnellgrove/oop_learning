@@ -60,23 +60,16 @@ def wrapper(user_input):
 						if isinstance(obj, Room):
 								print(obj, id(obj), sys.getrefcount(obj))
 
-
 				case, word_lst = interpreter(user_input, master_obj_lst)
-
 				# pre-action triggers will go here
-
-				if case in ['go', 'put', '2word', 'help', 'tru_1word', 'error']:
-						cmd_execute(stateful_dict, active_gs, case, word_lst)
-
+				cmd_execute(stateful_dict, active_gs, case, word_lst)
 				# post-action triggers will go here
-
-				# score routine here (?)
-
+				# score routine will go here (?)
 				# end routine will go here
 
 				### dump updated objects to save_obj_pickle2 ###
 				with open('save_obj_pickle2', 'wb') as f:
-						pickle.dump(master_obj_lst, f) # Why are list elements updated? But works!
+						pickle.dump(master_obj_lst, f)
 		
 				print("wrapper - pickle dump")
 				
