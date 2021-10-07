@@ -67,8 +67,8 @@ DONE: create dc3_score() module based on stateful_dict values and call from wrap
 	DONE: create points_earned_dict in stateful_dict (same key as score_val_dict)
 	DONE: call score() from wrapper()
 	DONE: complete and test score(
-DONE: Full testing
-DONE: re-map modules
+DONE: Full testing (note: there's still an extra call of helper() from main that I don't quite understand)
+DONE: re-map modules and var passing
 TBD: clean up troubleshooting comments & prints!!!
 TBD: rename modules
 TBD: move un-unsed modules to 'old versions' directory
