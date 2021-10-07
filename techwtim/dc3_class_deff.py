@@ -350,4 +350,4 @@ class Beverage(ViewOnly):
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 
-print("class_def - end")
+print("class_deff - end")

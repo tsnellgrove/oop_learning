@@ -66,10 +66,9 @@ DONE: create dc3_score() module based on stateful_dict values and call from wrap
 	DONE: create score_val_dict in dc3_static
 	DONE: create points_earned_dict in stateful_dict (same key as score_val_dict)
 	DONE: call score() from wrapper()
-	DONE: complete and test score()
-TBD: clean up use of "import *"
-TBD: Full testing
-TBD: re-map modules
+	DONE: complete and test score(
+DONE: Full testing
+DONE: re-map modules
 TBD: clean up troubleshooting comments & prints!!!
 TBD: rename modules
 TBD: move un-unsed modules to 'old versions' directory
@@ -188,6 +187,7 @@ TBD: implement scoring
 
 
 *** Someday Maybe ***
+TBD: clean up use of "import *"
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 TBD: Figure out a way in web browser to show all adventure text in scrolling window
 TBD: Consider having size values for items and capaicty limits on containers & backpack (should the crystal box really hold an axe?)
