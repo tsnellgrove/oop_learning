@@ -9,8 +9,6 @@
 ### also, these variable values cannot be objects ###
 ### (because static_init => helper => classes => obj_init2) ###
 
-print("static - start")
-
 ### interpreter function language variables ###
 articles_lst = ['a', 'an', 'the']
 
@@ -38,13 +36,15 @@ one_word_convert_dict = {
 		'west' : 'go'
 }
 
+
 ### static dictionary ###
 static_dict = {
 		'version' : '3.42',
 		'max_score' : 75,
 }
 
-### score value dictionary ###
+
+### score dictionaries and lists ###
 score_val_dict = {
 		'rusty_key' : 5,
 		'main_hall' : 10,
@@ -65,6 +65,7 @@ room_score_lst = [
 		'main_hall',
 		'throne_room'
 ]
+
 
 ### description dict ###
 descript_dict = {

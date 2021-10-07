@@ -12,9 +12,6 @@ from dc3_helper import *
 
 
 # classes
-
-print("class_deff - start")
-
 class GameState(object):
 		def __init__(self, name, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
 				self._name = name
@@ -350,4 +347,3 @@ class Beverage(ViewOnly):
 						hand_lst[0].contains.remove(self)
 						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 
-print("class_deff - end")

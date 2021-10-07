@@ -13,7 +13,6 @@ import random
 from dc3_static_init import * # variables declared in import = global to module
 from dc3_helper import *
 from dc3_class_deff import *
-import gc
 
 
 def true_one_word(stateful_dict, word1, room_obj):
@@ -63,9 +62,6 @@ def help(stateful_dict, option):
 		buffer(stateful_dict, output)
 
 def cmd_execute(stateful_dict, active_gs, case, word_lst):
-
-		print("new dedicated cmd_execute - start")
-		
 		room_obj = stateful_dict['room']
 
 		if case == 'help':

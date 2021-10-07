@@ -67,11 +67,11 @@ DONE: create dc3_score() module based on stateful_dict values and call from wrap
 	DONE: create points_earned_dict in stateful_dict (same key as score_val_dict)
 	DONE: call score() from wrapper()
 	DONE: complete and test score(
-DONE: Full testing (note: there's still an extra call of helper() from main that I don't quite understand)
+DONE: Full testing (note: there's still an extra call of helper() from main that I don't quite understand: SOLVED! artifact from helper in end)
 DONE: re-map modules and var passing
-TBD: clean up troubleshooting comments & prints!!!
-TBD: rename modules
+DONE: clean up troubleshooting comments & prints!!!
 TBD: move un-unsed modules to 'old versions' directory
+TBD: finalize version
 
 Someday: fix game_state as global
 Someday: fix root-word var passing of master_obj_lst
@@ -188,6 +188,7 @@ TBD: implement scoring
 
 *** Someday Maybe ***
 TBD: clean up use of "import *"
+TBD: rename modules
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 TBD: Figure out a way in web browser to show all adventure text in scrolling window
 TBD: Consider having size values for items and capaicty limits on containers & backpack (should the crystal box really hold an axe?)
@@ -314,6 +315,7 @@ Key Creature Verbs (methods):
 
 Some Day Maybe
 TBD: Is the Item class worth having??? Particularly, do I need the "takeable" attribute
+TBD: rename modules
 TBD: room.room_stuf => room.room_obj_lst ??
 TBD: Need to dis-entangle modules better
 TBD: get rid of Item takeable attribute

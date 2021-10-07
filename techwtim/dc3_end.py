@@ -4,8 +4,6 @@
 # description: end function module
 
 
-print("helper - start")
-
 ### imports ###
 from dc3_static_init import *
 from dc3_helper import *
@@ -13,9 +11,6 @@ from dc3_helper import *
 
 ### end routine ###
 def end(stateful_dict):
-
-		print("start of end module")
-
 		score = stateful_dict['current_score']
 		moves = stateful_dict['move_counter']
 		game_ending = stateful_dict['game_ending']
@@ -41,4 +36,5 @@ def end(stateful_dict):
 ##				buffer(stateful_dict, credits.examine(stateful_dict))
 				buffer(stateful_dict, descript_dict['credits'])
 		stateful_dict['end_of_game'] = True
+
 		return

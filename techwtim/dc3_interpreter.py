@@ -9,12 +9,10 @@
 
 # import statements
 import sys
-#import random
 from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
 from dc3_helper import *
 from dc3_class_deff import *
-import gc
 
 
 def root_word_count(stateful_dict, word2_txt):
@@ -98,9 +96,6 @@ def noun_handling(master_obj_lst, user_input_lst):
 
 # interpreter
 def interpreter(user_input, master_obj_lst):
-
-		print("new dedicated interpreter - start")
-
 		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
 		room_obj = stateful_dict['room']

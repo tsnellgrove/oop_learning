@@ -14,9 +14,6 @@ from dc3_helper import *
 
 
 def score(stateful_dict):
-
-		print("start of new score module")
-
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 
