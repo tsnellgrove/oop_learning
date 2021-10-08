@@ -49,6 +49,18 @@ class GameState(object):
 
 				return next_room
 
+		def get_points_earned_state(self, score_key):
+				if score_key not in self._points_earned_dict:
+						raise KeyError("key does not exist in dict")
+				else:
+						return self._points_earned_dict[score_key]
+
+		def set_points_earned_state(self, score_key, value):
+				if score_key not in self._points_earned_dict:
+						raise KeyError("key does not exist in dict")
+				else:
+						self._points_earned_dict[score_key] = value
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 
