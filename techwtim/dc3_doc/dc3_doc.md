@@ -317,6 +317,9 @@ TBD: Sort out writing and make it more accessable by examine
 		guard with key_detector in main hall
 		trade keys with princess? give her the hedgehog broach? maybe during dance in throne room
 		dungeon down stairs from throne room
+		use the world "balter" (dance poorly but having fun)
+		save hedgehog from evil prince?
+		final question from princess "you look like you woke up an a stable" - final choice of response from Burt to princess - down to earth or prim
 		in throne room 3 paintings of past and 1 blank space for future
 		key to open dungeon?
 		keys same colors as ready player 1
