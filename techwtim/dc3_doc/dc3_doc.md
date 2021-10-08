@@ -1,88 +1,5 @@
 To Do List - Dark Castle v3
-Oct 3, 2021
-
-
-##########################
-### VERSION 3.44 START ###
-##########################
-
-Version 3.44 Goals
-- After the massive mess that was the introduction of GameState in v3.42 the goals of 3.44 are hopefully simpler
-- 1. With troubleshooting messages still in place, re-architect modules
-- 2. sort out efficient variable handling
-- 3. eliminate bad usage (e.g. eval and global)
-- 4. re-map module calls
-- 5. clean-up troubleshooting prints and comments 
-
-DONE: move wrapper() to its own module
-DONE: fully comment out old wrapper within dc3_demo
-IN-PROC: sort out interpreter()
-	DONE: Sort out "put" command
-	DONE: Sort out interpreter master_obj_lst declaration & passing - commented out
-	DONE: found and fixed small_print => small_printing error (root_name conflicted with reserved command 'print')
-	DONE: move stateful_dict and active_gs to front of declarations
-	DONE: sort out use of eval
-	DONE: sort out noun_handling master_obj_lst declaration & passing
-	DONE: clean up comments
-	DONE: update word2 => word2_txt in noun_handling()
-	DONE: do I really need to pass stateful_dict to interpreter() & noun_handling() if I'm already passing master_obj_lst
-		- DONE: stop explicitly passing stateful_dict to interpreter()
-		- DONE: clean up comments
-		- DONE: stop explicitly passing stateful_dict to noun_handling()
-		- DONE: clean up comments
-	DONE: examine limits to declarations in start_me_up and wrapper
-		- DONE: remove full obj declarations from start_me_up() and just declare stateful_dict and active_gs
-		- NOTE: garbage collection still has all obj in scope once master_obj_lst is unpickled!
-		- DONE: comment clean-up
-		- DONE: remove full obj declarations from wapper() and just declare stateful_dict and active_gs
-		- DONE: comment clean-up
-	DONE: move help, error, and tru_1word case execution from interpreter() to cmd_execute()
-		DONE: move help routine to cmd_execute()
-			DONE: move help() call to cmd_execute()
-			DONE: clean up comments
-			DONE: clean up help() routine
-			DONE: clean up comments
-		DONE: move tru_1word routines to cmd_execute()
-			DONE: move true_one_word() call to cmd_execute()
-			DONE: move true_one_word() to cmd_execute() and move inventory() to dc3_helper()
-			DONE: clean up comments
-		DONE: move error output & turn decrementing to cmd_execute()
-			DONE: exit_state => error_state in both noun_handling() and interpreter
-			DONE: pass interpreter() errors to cmd_execute() and update wrapper and add move_dec()
-			DONE: pass noun_handling() errors to cmd_execute()
-			DONE: clean-up comments
-			DONE: update wrapper
-			DONE: move random routine to cmd_execute()
-			DONE: clean-up comments
-	DONE: move interpreter() to its own module
-		DONE: create dc3_interpreter()
-		DONE: migrate interpreter() routines to dc3_interpreter module
-DONE: sort out cmd_execute()
-	DONE: move ALL case execution to this module
-	DONE: move cmd_execute() to its own module
-DONE: fix any remaining 'Someday's below
-DONE: make end() a module and call from wrapper()
-DONE: create dc3_score() module based on stateful_dict values and call from wrapper
-	DONE: create score_val_dict in dc3_static
-	DONE: create points_earned_dict in stateful_dict (same key as score_val_dict)
-	DONE: call score() from wrapper()
-	DONE: complete and test score(
-DONE: Full testing (note: there's still an extra call of helper() from main that I don't quite understand: SOLVED! artifact from helper in end)
-DONE: re-map modules and var passing
-DONE: clean up troubleshooting comments & prints!!!
-TBD: move un-unsed modules to 'old versions' directory
-TBD: finalize version
-
-Someday: fix game_state as global
-Someday: fix root-word var passing of master_obj_lst
-Someday: clean up *very* ugly master_obj_lst passing 
-	- really the only function that needs this is the one that converts strings to obj...
-	- maybe I can solve that by just passing master_obj_lst and checking to see if str = the name of a member of master_obj_lst
-	- or Someday: Eliminate eval using class-based-dict; link: https://stackoverflow.com/questions/1176136/convert-string-to-python-class-object
-someday: do we really need to declare objs in wrapper??
-	- can I just load master_obj_lst from the pickle and pull from it selectively?
-	- the only thing I really need to use all the time out of master_obj_lst is stateful_dict and active_gs
-someday: ditto for start_me_up
+Oct 7, 2021
 
 
 ##########################
@@ -105,7 +22,6 @@ Version 3.48 Goals
 - Refactor module architecture
 
 - IDEA: Full separation on interpreter() and cmd_execute()
-
 
 	
 ##########################

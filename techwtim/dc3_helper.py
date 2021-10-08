@@ -1,6 +1,6 @@
-# program: dark castle v3.42
+# program: dark castle v3.44
 # name: Tom Snellgrove
-# date: Oct 3, 2021
+# date: Oct 7, 2021
 # description: helper function module
 
 
