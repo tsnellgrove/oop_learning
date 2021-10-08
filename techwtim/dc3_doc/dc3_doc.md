@@ -21,7 +21,7 @@ IN-PROC: Refactor stateful_dict['points_earned_dict']
 	DONE: pass active_gs to dc3_score
 	DONE: create method to get and set score state for a given score_key
 	DONE: For items - update score() to use active_gs score state
-	TBD: For rooms - update score() to use active_gs score state
+	DONE: For rooms - update score() to use active_gs score state
 	TBD: comment out stateful_dict points_earned_dict
 	TBD: clean up comments
 TBD: pass active_gs to all calss definitions (except GameState)
