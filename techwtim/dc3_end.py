@@ -10,8 +10,8 @@ from dc3_helper import *
 
 
 ### end routine ###
-def end(stateful_dict):
-		score = stateful_dict['current_score']
+def end(stateful_dict, active_gs):
+#		score = stateful_dict['current_score']
 		moves = stateful_dict['move_counter']
 		game_ending = stateful_dict['game_ending']
 
@@ -30,7 +30,7 @@ def end(stateful_dict):
 		elif game_ending == 'won':
 				buffer(stateful_dict, "You have won!")
 		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
-		print_score(stateful_dict)
+		print_score(stateful_dict, active_gs)
 #		buffer("Your title is: " + title)
 		if game_ending == 'won':
 ##				buffer(stateful_dict, credits.examine(stateful_dict))

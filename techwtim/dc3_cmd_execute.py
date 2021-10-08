@@ -15,9 +15,9 @@ from dc3_helper import *
 from dc3_class_deff import *
 
 
-def true_one_word(stateful_dict, word1, room_obj):
+def true_one_word(stateful_dict, active_gs, word1, room_obj):
 		if word1 == 'score':
-				print_score(stateful_dict)
+				print_score(stateful_dict, active_gs)
 		elif word1 == 'version':
 				buffer(stateful_dict, static_dict['version'])
 		elif word1 == 'help':
@@ -69,7 +69,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				help(stateful_dict, word2)
 		elif  case == 'tru_1word':
 				word1 = word_lst[0]
-				true_one_word(stateful_dict, word1, room_obj)
+				true_one_word(stateful_dict, active_gs, word1, room_obj)
 		elif case == 'error':
 				if word_lst[0] == "random error":
 						num = random.randint(0, 4)

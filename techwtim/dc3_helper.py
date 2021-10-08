@@ -72,8 +72,9 @@ def writing_check(writing, stateful_dict):
 						writing_found = True
 		return writing_found
 
-def print_score(stateful_dict):
-		output1 = ("Your score is now " + str(stateful_dict['current_score']))
+def print_score(stateful_dict, active_gs):
+#		output1 = ("Your score is now " + str(stateful_dict['current_score']))
+		output1 = ("Your score is now " + str(active_gs.get_score()))
 		output2 = (" out of " + str(static_dict['max_score']))
 		buffer(stateful_dict, output1 + output2)
 

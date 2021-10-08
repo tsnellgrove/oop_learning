@@ -80,9 +80,9 @@ stateful_dict = {
 		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,
 		'out_buff' : "",
-		'score' : 0,
+#		'score' : 0,
 		'end_of_game' : False,
-		'current_score' : 0,
+#		'current_score' : 0,
 		'move_counter' : 0,
 		'game_ending' : "tbd",
 #		'paths' : {

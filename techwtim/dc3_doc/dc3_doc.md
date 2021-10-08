@@ -27,14 +27,14 @@ DONE: Refactor stateful_dict['points_earned_dict']
 TBD: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game', 'game_ending'
 	TBD: current_score & score
 		DONE: add 'score' to active_gs.state_dict (and clean up class_deff comments & prints)
-		TBD: create increase_score() method for GameState
-		TBD: update score() function to call increase_score() method
-		TBD: create get_score() method in GameState
-		TBD: update print_score() func in helper module to call get_score() method
-		TBD: comment out 'score' in stateful_dict
+		DONE: create increase_score() method for GameState
+		DONE: update score() function to call increase_score() method
+		DONE: create get_score() method in GameState
+		DONE: update print_score() func in helper module to call get_score() method
+		ONE: comment out 'score' in stateful_dict
+		NOTE: is stateful_dict['score'] even being used???
+		DONE: comment out 'score'
 		TBD: clean up comments
-		TBD: is stateful_dict['score'] even being used???
-		TBD: comment out 'score'
 
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']

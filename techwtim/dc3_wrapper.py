@@ -49,7 +49,7 @@ def wrapper(user_input):
 				# post-action triggers will go here
 				score(stateful_dict, active_gs)
 				if stateful_dict['game_ending'] != "tbd":
-						end(stateful_dict)
+						end(stateful_dict, active_gs)
 
 				### dump updated objects to save_obj_pickle2 ###
 				with open('save_obj_pickle2', 'wb') as f:

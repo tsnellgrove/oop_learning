@@ -55,6 +55,12 @@ class GameState(object):
 				else:
 						self._points_earned_dict[score_key] = value
 
+		def update_score(self, points):
+				self._state_dict['score'] += points 
+
+		def get_score(self):
+				return self._state_dict['score']
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 
