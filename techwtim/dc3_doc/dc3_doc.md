@@ -6,12 +6,22 @@ Oct 7, 2021
 ### VERSION 3.46 START ###
 ##########################
 
-Version 3.46 Goals
-- Migrate stateful_dict to one or more game_state obj (refactor stateful_dict => object game_state(state_dict, statict_dict) )
-- most helper() functions will become methods of game_state
-- end() will become its own module called by wrapper
+Version 3.46 Goals:
+- Refactor code to migrate variables from stateful_dict => active_gs
+- Migrate most helper() functions to methods of active_gs
 
-TBD: Refactor stateful_dict
+Notes:
+- Approach is to migrate variables one sub-dict at a time
+- Within main dict, migrate one var at a time
+
+
+DONE: Refactor stateful_dict['paths']
+TBD: Refactor stateful_dict['points_earned_dict']
+	TBD: add points_earned_dict to GameState vars and define active_gs values in maek_default_pickle()
+	TBD: pass active_gs to dc3_score
+TBD: pass active_gs to all calss definitions (except GameState)
+IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
+	
 
 
 ##########################

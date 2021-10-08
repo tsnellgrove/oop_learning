@@ -85,12 +85,12 @@ stateful_dict = {
 		'current_score' : 0,
 		'move_counter' : 0,
 		'game_ending' : "tbd",
-		'paths' : {
-				'entrance' : {'north' : main_hall},
-				'main_hall' : {'south' : entrance, 'north' : antechamber},
-				'antechamber' : {'south' : main_hall, 'north' : throne_room},
-				'throne_room' : {'south' : antechamber}
-				},
+#		'paths' : {
+#				'entrance' : {'north' : main_hall},
+#				'main_hall' : {'south' : entrance, 'north' : antechamber},
+#				'antechamber' : {'south' : main_hall, 'north' : throne_room},
+#				'throne_room' : {'south' : antechamber}
+#				},
 		'dynamic_desc_dict' : {
 				'messy_handwriting' : ""
 				},
