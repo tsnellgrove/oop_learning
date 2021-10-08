@@ -16,14 +16,15 @@ Notes:
 
 
 DONE: Refactor stateful_dict['paths']
-IN-PROC: Refactor stateful_dict['points_earned_dict']
+DONE: Refactor stateful_dict['points_earned_dict']
 	DONE: add points_earned_dict to GameState vars and define active_gs values in make_default_pickle()
 	DONE: pass active_gs to dc3_score
 	DONE: create method to get and set score state for a given score_key
 	DONE: For items - update score() to use active_gs score state
 	DONE: For rooms - update score() to use active_gs score state
 	DONE: comment out stateful_dict points_earned_dict
-	TBD: clean up comments
+	DONE: clean up comments
+TBD: figure out next easy use case
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 	
@@ -34,9 +35,7 @@ IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 ##########################
 
 Version 3.48 Goals
-- Refactor module architecture
-
-- IDEA: Full separation on interpreter() and cmd_execute()
+- sets and gets for rest of class definitions
 
 	
 ##########################
