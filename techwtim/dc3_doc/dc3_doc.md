@@ -24,7 +24,9 @@ DONE: Refactor stateful_dict['points_earned_dict']
 	DONE: For rooms - update score() to use active_gs score state
 	DONE: comment out stateful_dict points_earned_dict
 	DONE: clean up comments
-TBD: figure out next easy use case
+TBD: "Easy" use cases = 'score', 'end_of_game', 'current_score', 'move_counter', 'game_ending'
+	TBD: score
+		DONE: add 'score' to active_gs.state_dict (and clean up class_deff comments & prints)
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 	

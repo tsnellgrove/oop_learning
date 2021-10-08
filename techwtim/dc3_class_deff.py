@@ -37,16 +37,10 @@ class GameState(object):
 						self._dynamic_desc_dict[dynamic_desc_key] = dynamic_desc_str
 
 		def is_valid_map_direction(self, room_obj, direction):
-#				return direction in game_state._map_dict[room_obj.name]
 				return direction in self._map_dict[room_obj.name]
 
 		def get_next_room(self, room_obj, direction):
-#				next_room = game_state._map_dict[room_obj.name][direction]
 				next_room = self._map_dict[room_obj.name][direction]
-
-				print("get_next_room: next room id is " + str(id(next_room)))
-				print("The active_gs id of antechamber (from main_hall) is " + str(id(self._map_dict['main_hall']['north'])))
-
 				return next_room
 
 		def get_points_earned_state(self, score_key):
@@ -163,9 +157,7 @@ class Room(ViewOnly):
 						obj.print_contents_str(stateful_dict)
 
 		def go(self, direction, stateful_dict, active_gs):
-#		def go(self, direction, stateful_dict):
 				room_obj = stateful_dict['room']
-#				if direction not in stateful_dict['paths'][room_obj.name]:
 				if not active_gs.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
@@ -176,17 +168,11 @@ class Room(ViewOnly):
 						if not door_open:
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
-#								next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 								next_room_obj = active_gs.get_next_room(room_obj, direction)
-								print(next_room_obj) # troubleshooting
-								print(id(next_room_obj))
 								stateful_dict['room'] = next_room_obj
 								next_room_obj.examine(stateful_dict)
 				else:
-#						next_room_obj = stateful_dict['paths'][room_obj.name][direction]
 						next_room_obj = active_gs.get_next_room(room_obj, direction)
-						print(next_room_obj) # troubleshooting
-						print(id(next_room_obj))
 						stateful_dict['room'] = next_room_obj
 						next_room_obj.examine(stateful_dict)
 
