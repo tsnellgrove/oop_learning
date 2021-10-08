@@ -13,10 +13,11 @@ from dc3_helper import *
 
 # classes
 class GameState(object):
-		def __init__(self, name, dynamic_desc_dict, map_dict, static_obj_dict, state_dict):
+		def __init__(self, name, dynamic_desc_dict, map_dict, points_earned_dict, static_obj_dict, state_dict):
 				self._name = name
 				self._dynamic_desc_dict = dynamic_desc_dict
 				self._map_dict = map_dict
+				self._points_earned_dict = points_earned_dict
 				self._static_obj_dict = static_obj_dict
 				self._state_dict = state_dict
 

@@ -109,10 +109,18 @@ active_gs = GameState(
 		'active_gs',
 		{'messy_handwriting' : ""},
 		{
-					'entrance' : {'north' : main_hall},
-					'main_hall' : {'south' : entrance, 'north' : antechamber},
-					'antechamber' : {'south' : main_hall, 'north' : throne_room},
-					'throne_room' : {'south' : antechamber}
+				'entrance' : {'north' : main_hall},
+				'main_hall' : {'south' : entrance, 'north' : antechamber},
+				'antechamber' : {'south' : main_hall, 'north' : throne_room},
+				'throne_room' : {'south' : antechamber}
+		},
+		{
+				'rusty_key' : False,
+				'main_hall' : False,
+				'shiny_sword' : False,
+				'throne_room' : False,
+				'silver_key' : False,
+				'kinging_scroll' : False
 		},
 		{'universal' : [backpack, burt, fist, conscience]},
 		{}

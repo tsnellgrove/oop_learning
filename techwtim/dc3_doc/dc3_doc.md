@@ -16,9 +16,13 @@ Notes:
 
 
 DONE: Refactor stateful_dict['paths']
-TBD: Refactor stateful_dict['points_earned_dict']
-	TBD: add points_earned_dict to GameState vars and define active_gs values in maek_default_pickle()
+IN-PROC: Refactor stateful_dict['points_earned_dict']
+	DONE: add points_earned_dict to GameState vars and define active_gs values in make_default_pickle()
 	TBD: pass active_gs to dc3_score
+	TBD: create method to get score state for a given score_key
+	TBD: create method to set score state for a given score_key
+	TBD: update score() to use active_gs score state
+	TBD: comment out stateful_dict points_earned_dict
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 	
