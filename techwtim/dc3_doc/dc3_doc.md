@@ -40,10 +40,10 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		DONE: create 'move_inc' method in GameState to increment moves
 		DONE: create 'move_dec' method in GameState to decrement moves
 		DONE: update wrapper() with move_inc
-		DONE: update cmd_exe() with move_dec
-		TBD: crete 'get_moves' method in GameState
-		TBD: update end() with get_moves
-		TBD: comment out 'move_counter' in stateful_dict
+		DONE: update cmd_exe() 'errors' and 'quit' with move_dec
+		DONE: crete 'get_moves' method in GameState
+		DONE: update end() with get_moves
+		DONE: comment out 'move_counter' in stateful_dict
 		TBD: clean up comments
 
 TBD: pass active_gs to all calss definitions (except GameState)

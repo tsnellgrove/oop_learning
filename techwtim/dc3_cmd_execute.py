@@ -30,7 +30,8 @@ def true_one_word(stateful_dict, active_gs, word1, room_obj):
 				room_obj.examine(stateful_dict)
 		elif word1 == 'quit':
 				stateful_dict['game_ending'] = "quit" # triggers call end() from wrapper()
-				move_dec(stateful_dict) # quitting not deemed to be an actual move
+#				move_dec(stateful_dict) # quitting not deemed to be an actual move
+				active_gs.move_dec()
 		return
 
 def help(stateful_dict, option):
@@ -78,7 +79,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				else:
 						output = word_lst[0]
 				buffer(stateful_dict, output)
-				move_dec(stateful_dict)
+#				move_dec(stateful_dict)
 				active_gs.move_dec()
 		elif case == 'go':
 				room_obj, word1, word2 = word_lst

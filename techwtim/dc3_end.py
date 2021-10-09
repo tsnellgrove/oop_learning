@@ -12,7 +12,8 @@ from dc3_helper import *
 ### end routine ###
 def end(stateful_dict, active_gs):
 #		score = stateful_dict['current_score']
-		moves = stateful_dict['move_counter']
+#		moves = stateful_dict['move_counter']
+		moves = active_gs._state_dict['move_counter']
 		game_ending = stateful_dict['game_ending']
 
 #		if score < 0:

@@ -83,7 +83,7 @@ stateful_dict = {
 #		'score' : 0,
 		'end_of_game' : False,
 #		'current_score' : 0,
-		'move_counter' : 0,
+#		'move_counter' : 0,
 		'game_ending' : "tbd",
 #		'paths' : {
 #				'entrance' : {'north' : main_hall},
