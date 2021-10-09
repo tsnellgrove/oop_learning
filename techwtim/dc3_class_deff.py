@@ -61,6 +61,12 @@ class GameState(object):
 		def get_score(self):
 				return self._state_dict['score']
 
+		def move_inc(self):
+				self._state_dict['move_counter'] += 1
+
+		def move_dec(self):
+				self._state_dict['move_counter'] -= 1			
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 

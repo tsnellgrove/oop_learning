@@ -35,12 +35,14 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		NOTE: is stateful_dict['score'] even being used???
 		DONE: comment out 'score'
 		DONE: clean up comments
-	TBD: 'move_counter'
-		TBD: add 'move_counter' to active_gs.state_dict
-		TBD: create 'move_inc' method in GameState to increment moves
-		TBD: create 'move_dec' method in GameState to decrement moves
-		TBD: update wrapper() with move_inc
-		TBD: update cmd_exe() with move_dec
+	IN-PROC: 'move_counter'
+		DONE: add 'move_counter' to active_gs.state_dict
+		DONE: create 'move_inc' method in GameState to increment moves
+		DONE: create 'move_dec' method in GameState to decrement moves
+		DONE: update wrapper() with move_inc
+		DONE: update cmd_exe() with move_dec
+		TBD: crete 'get_moves' method in GameState
+		TBD: update end() with get_moves
 		TBD: comment out 'move_counter' in stateful_dict
 		TBD: clean up comments
 

@@ -124,7 +124,8 @@ active_gs = GameState(
 		},
 		{'universal' : [backpack, burt, fist, conscience]},
 		{
-				'score' : 0
+				'score' : 0,
+				'move_counter' : 0
 		}
 )
 

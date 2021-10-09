@@ -79,6 +79,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 						output = word_lst[0]
 				buffer(stateful_dict, output)
 				move_dec(stateful_dict)
+				active_gs.move_dec()
 		elif case == 'go':
 				room_obj, word1, word2 = word_lst
 				getattr(room_obj, word1)(word2, stateful_dict, active_gs)

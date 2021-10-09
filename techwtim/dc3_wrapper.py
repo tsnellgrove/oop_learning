@@ -34,6 +34,7 @@ def wrapper(user_input):
 				stateful_dict = master_obj_lst[0]
 				active_gs = master_obj_lst[1]
 
+				active_gs.move_inc()
 				stateful_dict['move_counter'] = stateful_dict['move_counter'] + 1
 				stateful_dict['out_buff'] = "" # resets buffer
 
