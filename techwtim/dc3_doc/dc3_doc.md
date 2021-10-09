@@ -35,7 +35,7 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		NOTE: is stateful_dict['score'] even being used???
 		DONE: comment out 'score'
 		DONE: clean up comments
-	IN-PROC: 'move_counter'
+	DONE: 'move_counter'
 		DONE: add 'move_counter' to active_gs.state_dict
 		DONE: create 'move_inc' method in GameState to increment moves
 		DONE: create 'move_dec' method in GameState to decrement moves
@@ -45,9 +45,23 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		DONE: update end() with get_moves
 		DONE: comment out 'move_counter' in stateful_dict
 		DONE: clean up comments
-
+	TBD: 'end_of_game' & 'game_ending'
+		TBD: add 'end_of_game' & 'game_ending' to active_gs.state_dict
+		TBD: create get & set 'end_of_game' in GameState
+		TBD: create get & set 'game_ending' in GameState
+		TBD: update 'quit' in cmd_exe() with set_game_ending
+		TBD: update wrapper() with get_game_ending & get_end_of_game
+		TBD: update end() with get_game_ending and set_end_of_game
+		TBD: test updates
+		TBD: comment out 'end_of_game' & 'game_ending' in stateful_dict
+		TBD: clean up comments
+TBD: 'universal'
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
+TBD: 'backpack'
+TBD: 'hand'
+TBD: 'room'
+TBD: 'out_buff' & buffer()
 	
 
 
