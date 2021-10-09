@@ -46,14 +46,15 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		DONE: comment out 'move_counter' in stateful_dict
 		DONE: clean up comments
 	TBD: 'end_of_game' & 'game_ending'
-		TBD: add 'end_of_game' & 'game_ending' to active_gs.state_dict
-		TBD: create get & set 'end_of_game' in GameState
-		TBD: create get & set 'game_ending' in GameState
-		TBD: update 'quit' in cmd_exe() with set_game_ending
-		TBD: update wrapper() with get_game_ending & get_end_of_game
-		TBD: update end() with get_game_ending and set_end_of_game
-		TBD: test updates
-		TBD: comment out 'end_of_game' & 'game_ending' in stateful_dict
+		DONE: add 'end_of_game' & 'game_ending' to active_gs.state_dict and run mk_default_pkl()
+		DONE: create get & set 'end_of_game' in GameState
+		DONE: create get & set 'game_ending' in GameState
+		DONE: update 'quit' in cmd_exe() with set_game_ending
+		DONE: update wrapper() with get_game_ending & get_end_of_game
+		DONE: update end() with get_game_ending and set_end_of_game
+		DONE: update start_me_up()
+		DONE: test updates
+		DONE: comment out 'end_of_game' & 'game_ending' in stateful_dict & run mk_defaul_pkl()
 		TBD: clean up comments
 TBD: 'universal'
 TBD: pass active_gs to all calss definitions (except GameState)

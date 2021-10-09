@@ -81,10 +81,10 @@ stateful_dict = {
 		'room' : entrance,
 		'out_buff' : "",
 #		'score' : 0,
-		'end_of_game' : False,
+#		'end_of_game' : False,
 #		'current_score' : 0,
 #		'move_counter' : 0,
-		'game_ending' : "tbd",
+#		'game_ending' : "tbd",
 #		'paths' : {
 #				'entrance' : {'north' : main_hall},
 #				'main_hall' : {'south' : entrance, 'north' : antechamber},
@@ -125,7 +125,9 @@ active_gs = GameState(
 		{'universal' : [backpack, burt, fist, conscience]},
 		{
 				'score' : 0,
-				'move_counter' : 0
+				'move_counter' : 0,
+				'end_of_game' : False,
+				'game_ending' : "tbd"
 		}
 )
 

@@ -48,14 +48,16 @@ def wrapper(user_input):
 				cmd_execute(stateful_dict, active_gs, case, word_lst)
 				# post-action triggers will go here
 				score(stateful_dict, active_gs)
-				if stateful_dict['game_ending'] != "tbd":
+#				if stateful_dict['game_ending'] != "tbd":
+				if active_gs.get_game_ending() != "tbd":
 						end(stateful_dict, active_gs)
 
 				### dump updated objects to save_obj_pickle2 ###
 				with open('save_obj_pickle2', 'wb') as f:
 						pickle.dump(master_obj_lst, f)
 				
-				end_of_game = stateful_dict['end_of_game']
+#				end_of_game = stateful_dict['end_of_game']
+				end_of_game = active_gs.get_end_of_game()
 				out_buff = stateful_dict['out_buff']
 
 		return end_of_game, out_buff

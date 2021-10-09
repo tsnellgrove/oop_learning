@@ -70,6 +70,18 @@ class GameState(object):
 		def get_moves(self):
 				return self._state_dict['move_counter']
 
+		def get_end_of_game(self):
+				return self._state_dict['end_of_game']
+
+		def set_end_of_game(self, value):
+				self._state_dict['end_of_game'] = value
+
+		def get_game_ending(self):
+				return self._state_dict['game_ending']
+
+		def set_game_ending(self, value):
+				self._state_dict['game_ending'] = value
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 
