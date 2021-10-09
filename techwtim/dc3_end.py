@@ -12,7 +12,6 @@ from dc3_helper import *
 ### end routine ###
 def end(stateful_dict, active_gs):
 		moves = active_gs._state_dict['move_counter']
-#		game_ending = stateful_dict['game_ending']
 		game_ending = active_gs.get_game_ending()
 
 #		if score < 0:
@@ -34,7 +33,6 @@ def end(stateful_dict, active_gs):
 #		buffer("Your title is: " + title)
 		if game_ending == 'won':
 				buffer(stateful_dict, descript_dict['credits'])
-#		stateful_dict['end_of_game'] = True
 		active_gs.set_end_of_game(True)
 
 		return

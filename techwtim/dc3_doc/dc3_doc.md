@@ -55,7 +55,7 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		DONE: update start_me_up()
 		DONE: test updates
 		DONE: comment out 'end_of_game' & 'game_ending' in stateful_dict & run mk_defaul_pkl()
-		TBD: clean up comments
+		DONE: clean up comments
 TBD: 'universal'
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']

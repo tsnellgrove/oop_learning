@@ -29,7 +29,6 @@ def true_one_word(stateful_dict, active_gs, word1, room_obj):
 		elif word1 == 'look':
 				room_obj.examine(stateful_dict)
 		elif word1 == 'quit':
-#				stateful_dict['game_ending'] = "quit" # triggers call end() from wrapper()
 				active_gs.set_game_ending('quit') # triggers call end() from wrapper()
 				active_gs.move_dec() # quitting is not deemed to be an actual move
 		return

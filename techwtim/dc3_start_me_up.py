@@ -38,8 +38,6 @@ def start_me_up():
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
 
-#		return stateful_dict['end_of_game'], stateful_dict['out_buff']
-
 		end_of_game = active_gs.get_end_of_game()
 		out_buff = stateful_dict['out_buff']
 
