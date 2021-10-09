@@ -20,16 +20,16 @@ def score(stateful_dict, active_gs):
 		# increment item scores
 		for score_key in item_score_lst:
 				if len(hand_lst) > 0 and hand_lst[0].name == score_key and active_gs.get_points_earned_state(score_key) == False:
-#						stateful_dict['current_score'] = stateful_dict['current_score'] + score_val_dict[score_key]
-						active_gs.update_score(score_val_dict[score_key])
+						points = score_val_dict[score_key]
+						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)
 						print_score(stateful_dict, active_gs)
 
 		# increment room scores
 		for score_key in room_score_lst:
 				if room_obj.name == score_key and active_gs.get_points_earned_state(score_key) == False:
-#						stateful_dict['current_score'] = stateful_dict['current_score'] + score_val_dict[score_key]
-						active_gs.update_score(score_val_dict[score_key])
+						points = score_val_dict[score_key]
+						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)
 						print_score(stateful_dict, active_gs)
 

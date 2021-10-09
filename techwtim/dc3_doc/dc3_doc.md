@@ -24,16 +24,24 @@ DONE: Refactor stateful_dict['points_earned_dict']
 	DONE: For rooms - update score() to use active_gs score state
 	DONE: comment out stateful_dict points_earned_dict
 	DONE: clean up comments
-TBD: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game', 'game_ending'
-	TBD: current_score & score
+IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game', 'game_ending'
+	DONE: current_score & score
 		DONE: add 'score' to active_gs.state_dict (and clean up class_deff comments & prints)
 		DONE: create increase_score() method for GameState
 		DONE: update score() function to call increase_score() method
 		DONE: create get_score() method in GameState
 		DONE: update print_score() func in helper module to call get_score() method
-		ONE: comment out 'score' in stateful_dict
+		DONE: comment out 'score' in stateful_dict
 		NOTE: is stateful_dict['score'] even being used???
 		DONE: comment out 'score'
+		DONE: clean up comments
+	TBD: 'move_counter'
+		TBD: add 'move_counter' to active_gs.state_dict
+		TBD: create 'move_inc' method in GameState to increment moves
+		TBD: create 'move_dec' method in GameState to decrement moves
+		TBD: update wrapper() with move_inc
+		TBD: update cmd_exe() with move_dec
+		TBD: comment out 'move_counter' in stateful_dict
 		TBD: clean up comments
 
 TBD: pass active_gs to all calss definitions (except GameState)
