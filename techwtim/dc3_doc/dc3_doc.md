@@ -14,7 +14,6 @@ Notes:
 - Approach is to migrate variables one sub-dict at a time
 - Within main dict, migrate one var at a time
 
-
 DONE: Refactor stateful_dict['paths']
 DONE: Refactor stateful_dict['points_earned_dict']
 	DONE: add points_earned_dict to GameState vars and define active_gs values in make_default_pickle()
@@ -24,7 +23,7 @@ DONE: Refactor stateful_dict['points_earned_dict']
 	DONE: For rooms - update score() to use active_gs score state
 	DONE: comment out stateful_dict points_earned_dict
 	DONE: clean up comments
-IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game', 'game_ending'
+DONE: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game', 'game_ending'
 	DONE: current_score & score
 		DONE: add 'score' to active_gs.state_dict (and clean up class_deff comments & prints)
 		DONE: create increase_score() method for GameState
@@ -45,7 +44,7 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		DONE: update end() with get_moves
 		DONE: comment out 'move_counter' in stateful_dict
 		DONE: clean up comments
-	TBD: 'end_of_game' & 'game_ending'
+	DONE: 'end_of_game' & 'game_ending'
 		DONE: add 'end_of_game' & 'game_ending' to active_gs.state_dict and run mk_default_pkl()
 		DONE: create get & set 'end_of_game' in GameState
 		DONE: create get & set 'game_ending' in GameState
@@ -56,7 +55,16 @@ IN-PROC: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_ga
 		DONE: test updates
 		DONE: comment out 'end_of_game' & 'game_ending' in stateful_dict & run mk_defaul_pkl()
 		DONE: clean up comments
-TBD: 'universal'
+IN-PROC: 'universal'
+	DONE: add 'universal' to active_gs.state_dict and run mk_default_pkl()
+	TBD: create get_universal_scope method in GameState
+	TBD: in cmd_exe() '2word' and 'put' cases pass active_gs to scope_check() & writing_check()
+	TBD: in helper() pass in active_gs to scope_check() & writing_check() and pass active_gs to scope_list()
+	TBD: in helper() pass in active_gs to scope_list and update 'universal_lst' with get_universal_scope
+	TBD: test updates
+	TBD: comment out 'universal' in stateful_dict and run mk_default_pkl()
+	TBD: test updates
+	TBD: clean up comments
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 TBD: 'backpack'
@@ -64,6 +72,13 @@ TBD: 'hand'
 TBD: 'room'
 TBD: 'out_buff' & buffer()
 	
+
+##########################
+### VERSION 3.47 START ###
+##########################
+
+Version 3.47 Goals:
+- Migrate most helper() functions to methods of active_gs
 
 
 ##########################
