@@ -84,14 +84,14 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				getattr(room_obj, word1)(word2, stateful_dict, active_gs)
 		elif case == '2word':
 				word2_obj, word1 = word_lst
-				if word1 == 'read' and  writing_check(word2_obj, stateful_dict) == False:
-						if scope_check(word2_obj, stateful_dict) == False:
+				if word1 == 'read' and  writing_check(word2_obj, stateful_dict, active_gs) == False:
+						if scope_check(word2_obj, stateful_dict, active_gs) == False:
 								buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 								return
 						else:
 								buffer(stateful_dict, "You can't read the " + word2_obj.full_name + ".")
 								return
-				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict) == False):
+				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict, active_gs) == False):
 						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
 						try:
@@ -104,10 +104,10 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 								move_dec(stateful_dict)
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
-				if scope_check(noun_obj, stateful_dict) == False:
+				if scope_check(noun_obj, stateful_dict, active_gs) == False:
 						buffer(stateful_dict, "You can't see a " + noun_obj.full_name + " here.")
 						return
-				elif scope_check(dirobj_obj, stateful_dict) == False:
+				elif scope_check(dirobj_obj, stateful_dict, active_gs) == False:
 						buffer(stateful_dict, "You can't see a " + dirobj_obj.full_name + " here.")
 						return 
 				else:

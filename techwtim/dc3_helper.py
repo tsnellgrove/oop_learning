@@ -24,11 +24,12 @@ def open_cont_scan(stateful_dict, room_containers):
 						open_cont_obj_lst = open_cont_obj_lst + obj.contains
 		return open_cont_obj_lst
 
-def scope_list(stateful_dict):
+def scope_list(stateful_dict, active_gs):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
-		universal_lst = stateful_dict['universal']
+#		universal_lst = stateful_dict['universal']
+		universal_lst = active_gs.get_static_obj('universal')
 		room_obj_lst = room_obj.room_obj_lst
 		features_lst = room_obj.features
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
@@ -60,12 +61,12 @@ def obj_lst_to_str(obj_lst):
 				lst_str = lst_str[:-2]
 		return lst_str
 
-def scope_check(obj, stateful_dict):
-		scope_lst = scope_list(stateful_dict)
+def scope_check(obj, stateful_dict, active_gs):
+		scope_lst = scope_list(stateful_dict, active_gs)
 		return obj in scope_lst
 
-def writing_check(writing, stateful_dict):
-		scope_lst = scope_list(stateful_dict)
+def writing_check(writing, stateful_dict, active_gs):
+		scope_lst = scope_list(stateful_dict, active_gs)
 		writing_found = False
 		for obj in scope_lst:
 				if obj.writing == writing:

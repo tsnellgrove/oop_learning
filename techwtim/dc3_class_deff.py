@@ -82,6 +82,12 @@ class GameState(object):
 		def set_game_ending(self, value):
 				self._state_dict['game_ending'] = value
 
+		def get_static_obj(self, static_key):
+				if static_key not in self._static_obj_dict:
+						raise KeyError("key does not exist in dict")
+				else:
+						return self._static_obj_dict[static_key]
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 

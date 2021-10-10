@@ -57,13 +57,15 @@ DONE: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game'
 		DONE: clean up comments
 IN-PROC: 'universal'
 	DONE: add 'universal' to active_gs.state_dict and run mk_default_pkl()
-	TBD: create get_universal_scope method in GameState
-	TBD: in cmd_exe() '2word' and 'put' cases pass active_gs to scope_check() & writing_check()
-	TBD: in helper() pass in active_gs to scope_check() & writing_check() and pass active_gs to scope_list()
-	TBD: in helper() pass in active_gs to scope_list and update 'universal_lst' with get_universal_scope
-	TBD: test updates
-	TBD: comment out 'universal' in stateful_dict and run mk_default_pkl()
-	TBD: test updates
+	DONE: create get_static_obj method in GameState
+	DONE: in cmd_exe() '2word' and 'put' cases pass active_gs to scope_check() & writing_check()
+	DONE: in helper() pass in active_gs to scope_check() & writing_check() and pass active_gs to scope_list()
+	DONE: in helper() pass in active_gs to scope_list and update 'universal_lst' with get_universal_scope
+	DONE: from noun_handling(), pass active_gs to root_word_count()
+	DONE: from root_word_count, pass active_gs to scope_lst()
+	DONE: test updates
+	DONE: comment out 'universal' in stateful_dict and run mk_default_pkl()
+	DONE: test updates
 	TBD: clean up comments
 TBD: pass active_gs to all calss definitions (except GameState)
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']

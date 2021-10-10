@@ -15,8 +15,8 @@ from dc3_helper import *
 from dc3_class_deff import *
 
 
-def root_word_count(stateful_dict, word2_txt):
-		scope_lst = scope_list(stateful_dict)
+def root_word_count(stateful_dict, active_gs, word2_txt):
+		scope_lst = scope_list(stateful_dict, active_gs)
 		root_count = 0
 		obj_name = ""
 		for obj in scope_lst:
@@ -79,7 +79,7 @@ def noun_handling(master_obj_lst, user_input_lst):
 
 		# check to see if the word2 is a root_name; convert to obj_name if valid
 		if not word2_txt_known:
-				root_count, obj_name = root_word_count(stateful_dict, word2_txt)
+				root_count, obj_name = root_word_count(stateful_dict, active_gs, word2_txt)
 				if root_count < 1:
 						error_msg = "I don't see a " + word2_txt + " here."
 						error_state = True

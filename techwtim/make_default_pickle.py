@@ -77,7 +77,7 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 stateful_dict = {
 		'hand' : [], 
 		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
-		'universal' : [backpack, burt, fist, conscience],
+#		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,
 		'out_buff' : "",
 #		'score' : 0,
