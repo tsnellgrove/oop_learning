@@ -67,13 +67,13 @@ DONE: 'universal'
 	DONE: comment out 'universal' in stateful_dict and run mk_default_pkl()
 	DONE: test updates
 	DONE: clean up comments
-TBD: pass active_gs to all class verb methods
+IN-PROC: pass active_gs to all class verb methods
+	DONE: troubleshoot examine.door error
+	
 	TBD '2word' case
-		TBD: comment out "try" from '2word' case
-		TBD: add active_gs to 2word methods
+		TBD: in "try" from '2word' case create if 'read'
+		TBD: add active_gs to method
 		TBD: test
-		TBD: re-enstate "try"
-		TBD: re-test
 	TBD 'put' case
 		TBD: comment out "try" from 'put' case
 		TBD: add active_gs to put methods
@@ -86,6 +86,7 @@ TBD: 'hand'
 TBD: 'room'
 TBD: 'out_buff' & buffer()
 	
+Someday: in cmd_exe() create rand_error() function
 
 ##########################
 ### VERSION 3.47 START ###

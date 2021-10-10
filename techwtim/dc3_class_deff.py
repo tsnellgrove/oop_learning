@@ -260,9 +260,9 @@ class Door(ViewOnly):
 
 		def examine(self, stateful_dict):
 				super(Door, self).examine(stateful_dict)
-				if scope_check(self, stateful_dict) == False:
-						pass
-				elif self.open_state == False:
+#				if scope_check(self, stateful_dict) == False:
+#						pass
+				if self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				else:
 						buffer(stateful_dict, "The " + self.full_name + " is open.")
