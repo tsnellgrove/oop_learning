@@ -94,9 +94,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict, active_gs) == False):
 						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
-						print("2word case")
 						if word1 == 'read': # gradual introduce of active_gs
-								print("case == 'read'")
 								try:
 										getattr(word2_obj, word1)(stateful_dict)
 								except:
@@ -105,20 +103,15 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 										buffer(stateful_dict, descript_dict[interp_error_key])
 										active_gs.move_dec()
 #										buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
-#										move_dec(stateful_dict)
 						else:
-								print("case != 'read'")
 								try:
 										getattr(word2_obj, word1)(stateful_dict)
-										print("!= read; try run")
 								except:
-										print("!= read; except running")
 										num = random.randint(0, 4)
 										interp_error_key = 'interp_error_' + str(num)
 										buffer(stateful_dict, descript_dict[interp_error_key])
 										active_gs.move_dec()
 #										buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
-#										move_dec(stateful_dict)
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
 				if scope_check(noun_obj, stateful_dict, active_gs) == False:

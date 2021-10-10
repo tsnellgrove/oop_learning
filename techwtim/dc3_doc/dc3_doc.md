@@ -69,7 +69,8 @@ DONE: 'universal'
 	DONE: clean up comments
 IN-PROC: pass active_gs to all class verb methods
 	DONE: troubleshoot examine.door error
-	
+		DONE: solve bug (scope_check in examine sub for door)
+		DONE: clean-up comments
 	TBD '2word' case
 		TBD: in "try" from '2word' case create if 'read'
 		TBD: add active_gs to method
