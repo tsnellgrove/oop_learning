@@ -55,7 +55,7 @@ DONE: "Easy" use cases = 'current_score', 'score', 'move_counter', 'end_of_game'
 		DONE: test updates
 		DONE: comment out 'end_of_game' & 'game_ending' in stateful_dict & run mk_defaul_pkl()
 		DONE: clean up comments
-IN-PROC: 'universal'
+DONE: 'universal'
 	DONE: add 'universal' to active_gs.state_dict and run mk_default_pkl()
 	DONE: create get_static_obj method in GameState
 	DONE: in cmd_exe() '2word' and 'put' cases pass active_gs to scope_check() & writing_check()
@@ -68,6 +68,18 @@ IN-PROC: 'universal'
 	DONE: test updates
 	DONE: clean up comments
 TBD: pass active_gs to all class verb methods
+	TBD '2word' case
+		TBD: comment out "try" from '2word' case
+		TBD: add active_gs to 2word methods
+		TBD: test
+		TBD: re-enstate "try"
+		TBD: re-test
+	TBD 'put' case
+		TBD: comment out "try" from 'put' case
+		TBD: add active_gs to put methods
+		TBD: test
+		TBD: re-enstate "try"
+		TBD: re-test
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 TBD: 'backpack'
 TBD: 'hand'
