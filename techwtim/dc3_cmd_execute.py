@@ -96,7 +96,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				else:
 						if word1 == 'read': # gradual introduce of active_gs
 								try:
-										getattr(word2_obj, word1)(stateful_dict)
+										getattr(word2_obj, word1)(stateful_dict, active_gs)
 								except:
 										num = random.randint(0, 4)
 										interp_error_key = 'interp_error_' + str(num)

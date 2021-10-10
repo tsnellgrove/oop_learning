@@ -133,7 +133,7 @@ class Writing(object):
 						container_str = obj_lst_to_str(self.contains)
 						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
 
-		def read(self, stateful_dict):
+		def read(self, stateful_dict, active_gs):
 				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 
 		def __repr__(self):

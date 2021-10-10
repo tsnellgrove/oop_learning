@@ -71,10 +71,13 @@ IN-PROC: pass active_gs to all class verb methods
 	DONE: troubleshoot examine.door error
 		DONE: solve bug (scope_check in examine sub for door)
 		DONE: clean-up comments
-	TBD '2word' case
-		TBD: in "try" from '2word' case create if 'read'
-		TBD: add active_gs to method
-		TBD: test
+	DONE: '2word' case = read
+		DONE: in "try" from '2word' case create if 'read'
+		DONE: add active_gs to method
+		DONE: test
+	TBD: '2word' case = eat
+	TBD: '2word' case = drink
+*
 	TBD 'put' case
 		TBD: comment out "try" from 'put' case
 		TBD: add active_gs to put methods
