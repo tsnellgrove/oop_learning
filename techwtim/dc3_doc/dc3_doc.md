@@ -66,8 +66,8 @@ IN-PROC: 'universal'
 	DONE: test updates
 	DONE: comment out 'universal' in stateful_dict and run mk_default_pkl()
 	DONE: test updates
-	TBD: clean up comments
-TBD: pass active_gs to all calss definitions (except GameState)
+	DONE: clean up comments
+TBD: pass active_gs to all class verb methods
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 TBD: 'backpack'
 TBD: 'hand'

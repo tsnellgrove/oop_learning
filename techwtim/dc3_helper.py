@@ -28,7 +28,6 @@ def scope_list(stateful_dict, active_gs):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
 		backpack_lst = stateful_dict['backpack']
-#		universal_lst = stateful_dict['universal']
 		universal_lst = active_gs.get_static_obj('universal')
 		room_obj_lst = room_obj.room_obj_lst
 		features_lst = room_obj.features
@@ -87,6 +86,6 @@ def inventory(stateful_dict):
 		backpack_str = obj_lst_to_str(backpack_obj_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 
-def move_dec(stateful_dict): # was originally in interp_helper
-		stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
+#def move_dec(stateful_dict): # was originally in interp_helper
+#		stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1
 
