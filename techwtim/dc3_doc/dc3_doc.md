@@ -75,8 +75,13 @@ IN-PROC: pass active_gs to all class verb methods
 		DONE: in "try" from '2word' case create if 'read'
 		DONE: add active_gs to method
 		DONE: test
-	TBD: '2word' case = eat
-	TBD: '2word' case = drink
+	DONE: '2word' case = eat
+	DONE: '2word' case = drink
+	TBD: '2word' case = take
+	TBD: '2word' case = drop
+	TBD: '2word' case = close
+	TBD: '2word' case = lock
+	TBD: '2word' case = unlock
 *
 	TBD 'put' case
 		TBD: comment out "try" from 'put' case

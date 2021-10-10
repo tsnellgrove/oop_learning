@@ -94,8 +94,9 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict, active_gs) == False):
 						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
-						if word1 == 'read': # gradual introduce of active_gs
+						if word1 in ['read', 'eat', 'drink']: # gradual introduce of active_gs
 								try:
+										print("migrated method") # troubleshoot
 										getattr(word2_obj, word1)(stateful_dict, active_gs)
 								except:
 										num = random.randint(0, 4)

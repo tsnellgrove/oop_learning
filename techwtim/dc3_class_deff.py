@@ -340,7 +340,7 @@ class Food(Item):
 				super().__init__(name, full_name, root_name, descript_key, writing, takable)
 				self.eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
 
-		def eat(self, stateful_dict):
+		def eat(self, stateful_dict, active_gs):
 				hand_lst = stateful_dict['hand']
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
@@ -365,7 +365,7 @@ class Beverage(ViewOnly):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.drink_desc_key = drink_descript_key # key to description of drinking the beverage (stored in descript_dict)
 
-		def drink(self, stateful_dict):
+		def drink(self, stateful_dict, active_gs):
 				hand_lst = stateful_dict['hand']
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
