@@ -87,20 +87,24 @@ IN-PROC: pass active_gs to all class verb methods
 	DONE: '2word' case = examine (many methods!)
 		DONE: Update in cmd_exe() tru_1word() too
 		DONE: Update in Room 'go' method in class_def()
+	DONE: remove if & try for 2-word case
+	TBD: clean-up comments
 	TBD 'put' case
 		TBD: comment out "try" from 'put' case
 		TBD: add active_gs to put methods
 		TBD: test
 		TBD: re-enstate "try"
 		TBD: re-test
-	TBD: clean-up comments
+		TBD: remove if & try for 2-word case
+		TBD: clean-up comments
+	TBD: in cmd_exe() create rand_error() function
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 TBD: 'backpack'
 TBD: 'hand'
 TBD: 'room'
 TBD: 'out_buff' & buffer()
 	
-Someday: in cmd_exe() create rand_error() function
+
 
 ##########################
 ### VERSION 3.47 START ###

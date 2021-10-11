@@ -94,25 +94,25 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict, active_gs) == False):
 						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
-						if word1 in ['read', 'eat', 'drink', 'take', 'drop', 'lock', 'unlock', 'close', 'open', 'examine']: # gradual introduce of active_gs
-								try:
-										print("migrated method") # troubleshoot
-										getattr(word2_obj, word1)(stateful_dict, active_gs)
-								except:
-										num = random.randint(0, 4)
-										interp_error_key = 'interp_error_' + str(num)
-										buffer(stateful_dict, descript_dict[interp_error_key])
-										active_gs.move_dec()
-#										buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
-						else:
-								try:
-										getattr(word2_obj, word1)(stateful_dict)
-								except:
-										num = random.randint(0, 4)
-										interp_error_key = 'interp_error_' + str(num)
-										buffer(stateful_dict, descript_dict[interp_error_key])
-										active_gs.move_dec()
-#										buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
+#						if word1 in ['read', 'eat', 'drink', 'take', 'drop', 'lock', 'unlock', 'close', 'open', 'examine']: # gradual introduce of active_gs
+#								try:
+#										print("migrated method") # troubleshoot
+#										getattr(word2_obj, word1)(stateful_dict, active_gs)
+#								except:
+#										num = random.randint(0, 4)
+#										interp_error_key = 'interp_error_' + str(num)
+#										buffer(stateful_dict, descript_dict[interp_error_key])
+#										active_gs.move_dec()
+##										buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
+#						else:
+						try:
+								getattr(word2_obj, word1)(stateful_dict, active_gs)
+						except:
+								num = random.randint(0, 4)
+								interp_error_key = 'interp_error_' + str(num)
+								buffer(stateful_dict, descript_dict[interp_error_key])
+								active_gs.move_dec()
+##										buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
 				if scope_check(noun_obj, stateful_dict, active_gs) == False:
