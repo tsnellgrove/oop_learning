@@ -27,7 +27,7 @@ def true_one_word(stateful_dict, active_gs, word1, room_obj):
 		elif word1 == 'inventory':
 				inventory(stateful_dict)
 		elif word1 == 'look':
-				room_obj.examine(stateful_dict)
+				room_obj.examine(stateful_dict, active_gs)
 		elif word1 == 'quit':
 				active_gs.set_game_ending('quit') # triggers call end() from wrapper()
 				active_gs.move_dec() # quitting is not deemed to be an actual move
@@ -94,7 +94,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				elif (word1 != 'read') and (scope_check(word2_obj, stateful_dict, active_gs) == False):
 						buffer(stateful_dict, "You can't see a " + word2_obj.full_name + " here.")
 				else:
-						if word1 in ['read', 'eat', 'drink']: # gradual introduce of active_gs
+						if word1 in ['read', 'eat', 'drink', 'take', 'drop', 'lock', 'unlock', 'close', 'open', 'examine']: # gradual introduce of active_gs
 								try:
 										print("migrated method") # troubleshoot
 										getattr(word2_obj, word1)(stateful_dict, active_gs)

@@ -77,18 +77,23 @@ IN-PROC: pass active_gs to all class verb methods
 		DONE: test
 	DONE: '2word' case = eat
 	DONE: '2word' case = drink
-	TBD: '2word' case = take
-	TBD: '2word' case = drop
-	TBD: '2word' case = close
-	TBD: '2word' case = lock
-	TBD: '2word' case = unlock
-*
+	DONE: '2word' case = take
+	DONE: '2word' case = drop
+	DONE: '2word' case = close
+	DONE: '2word' case = lock
+	DONE: '2word' case = unlock
+	DONE: '2word' case = open (2 methods)
+		NOTE: learned I need to pass active_gs in super
+	DONE: '2word' case = examine (many methods!)
+		DONE: Update in cmd_exe() tru_1word() too
+		DONE: Update in Room 'go' method in class_def()
 	TBD 'put' case
 		TBD: comment out "try" from 'put' case
 		TBD: add active_gs to put methods
 		TBD: test
 		TBD: re-enstate "try"
 		TBD: re-test
+	TBD: clean-up comments
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 TBD: 'backpack'
 TBD: 'hand'

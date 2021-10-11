@@ -151,7 +151,7 @@ class ViewOnly(Writing):
 		def has_writing(self):
 				return (self.writing is not None)
 
-		def examine(self, stateful_dict):
+		def examine(self, stateful_dict, active_gs):
 				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
@@ -182,8 +182,8 @@ class Room(ViewOnly):
 		def get_door(self, direction):
 				return self.door_paths[direction]
 
-		def examine(self, stateful_dict):
-				super(Room, self).examine(stateful_dict)
+		def examine(self, stateful_dict, active_gs):
+				super(Room, self).examine(stateful_dict, active_gs)
 				room_str = obj_lst_to_str(self.room_obj_lst)
 				buffer(stateful_dict, "The room contains: " + room_str)
 				for obj in self.room_obj_lst:
@@ -203,18 +203,18 @@ class Room(ViewOnly):
 						else:
 								next_room_obj = active_gs.get_next_room(room_obj, direction)
 								stateful_dict['room'] = next_room_obj
-								next_room_obj.examine(stateful_dict)
+								next_room_obj.examine(stateful_dict, active_gs)
 				else:
 						next_room_obj = active_gs.get_next_room(room_obj, direction)
 						stateful_dict['room'] = next_room_obj
-						next_room_obj.examine(stateful_dict)
+						next_room_obj.examine(stateful_dict, active_gs)
 
 class Item(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.takable = takable
 
-		def take(self, stateful_dict):
+		def take(self, stateful_dict, active_gs):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
 				backpack_lst = stateful_dict['backpack']
@@ -239,7 +239,7 @@ class Item(ViewOnly):
 												if self in obj.contains:
 														obj.contains.remove(self)
 
-		def drop(self, stateful_dict):
+		def drop(self, stateful_dict, active_gs):
 				hand_lst = stateful_dict['hand']
 				room_obj = stateful_dict['room']
 				if self not in hand_lst:
@@ -258,14 +258,14 @@ class Door(ViewOnly):
 				self.unlock_state = unlock_state
 				self.key = key
 
-		def examine(self, stateful_dict):
-				super(Door, self).examine(stateful_dict)
+		def examine(self, stateful_dict, active_gs):
+				super(Door, self).examine(stateful_dict, active_gs)
 				if self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 				else:
 						buffer(stateful_dict, "The " + self.full_name + " is open.")
 
-		def unlock(self, stateful_dict):
+		def unlock(self, stateful_dict, active_gs):
 				hand_lst = stateful_dict['hand']
 				if self.unlock_state == True:
 						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
@@ -277,7 +277,7 @@ class Door(ViewOnly):
 						buffer(stateful_dict, "Unlocked")
 						self.unlock_state = True
 
-		def open(self, stateful_dict):
+		def open(self, stateful_dict, active_gs):
 				if self.open_state == True:
 						buffer(stateful_dict, "The " + self.full_name + " is already open.")
 				elif self.unlock_state == False:
@@ -286,7 +286,7 @@ class Door(ViewOnly):
 						self.open_state = True
 						buffer(stateful_dict, "Openned")
 
-		def close(self, stateful_dict):
+		def close(self, stateful_dict, active_gs):
 				if self.open_state == False:
 						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
 				elif self.unlock_state == False: # for Iron Portcullis
@@ -295,7 +295,7 @@ class Door(ViewOnly):
 						self.open_state = False
 						buffer(stateful_dict, "Closed")
 
-		def lock(self, stateful_dict):
+		def lock(self, stateful_dict, active_gs):
 				hand_lst = stateful_dict['hand']
 				if self.open_state == True:
 						buffer(stateful_dict, "You can't lock something that's open.")						
@@ -313,12 +313,12 @@ class Container(Door):
 				self.takable = takable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
 				self.contains = contains # list of items in the container
 
-		def examine(self, stateful_dict):
-				super(Container, self).examine(stateful_dict)
+		def examine(self, stateful_dict, active_gs):
+				super(Container, self).examine(stateful_dict, active_gs)
 				self.print_contents_str(stateful_dict)
 
-		def open(self, stateful_dict):
-				super(Container, self).open(stateful_dict)
+		def open(self, stateful_dict, active_gs):
+				super(Container, self).open(stateful_dict, active_gs)
 				self.print_contents_str(stateful_dict)
 
 		def put(self, obj, stateful_dict):
@@ -356,8 +356,8 @@ class Jug(Item):
 				self.open_state = open_state # is the jug uncapped?
 				self.contains = contains # obj in the jug
 
-		def examine(self, stateful_dict):
-				super(Jug, self).examine(stateful_dict)
+		def examine(self, stateful_dict, active_gs):
+				super(Jug, self).examine(stateful_dict, active_gs)
 				self.print_contents_str(stateful_dict)
 
 class Beverage(ViewOnly):
