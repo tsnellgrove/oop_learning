@@ -112,7 +112,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 						return 
 				else:
 						try:
-								getattr(dirobj_obj, word1)(noun_obj, stateful_dict)
+								getattr(dirobj_obj, word1)(noun_obj, stateful_dict, active_gs)
 						except:
 								num = random.randint(0, 4)
 								interp_error_key = 'interp_error_' + str(num)

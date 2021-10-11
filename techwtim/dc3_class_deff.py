@@ -321,7 +321,7 @@ class Container(Door):
 				super(Container, self).open(stateful_dict, active_gs)
 				self.print_contents_str(stateful_dict)
 
-		def put(self, obj, stateful_dict):
+		def put(self, obj, stateful_dict, active_gs):
 				hand_lst = stateful_dict['hand']
 				if obj not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
