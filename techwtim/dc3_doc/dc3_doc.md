@@ -88,7 +88,7 @@ IN-PROC: pass active_gs to all class verb methods
 		DONE: Update in cmd_exe() tru_1word() too
 		DONE: Update in Room 'go' method in class_def()
 	DONE: remove if & try for 2-word case
-	TBD: clean-up comments
+	DONE: clean-up comments
 	TBD 'put' case
 		TBD: comment out "try" from 'put' case
 		TBD: add active_gs to put methods
