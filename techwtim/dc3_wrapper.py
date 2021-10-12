@@ -37,12 +37,6 @@ def wrapper(user_input):
 				active_gs.move_inc()
 				stateful_dict['out_buff'] = "" # resets buffer
 
-				### test commands ###
-#				stale_biscuits.take(stateful_dict)
-#				fresh_water.drink(stateful_dict)
-#				torn_note.examine(stateful_dict)
-				### test commands ###
-
 				case, word_lst = interpreter(user_input, master_obj_lst)
 				# pre-action triggers will go here
 				cmd_execute(stateful_dict, active_gs, case, word_lst)

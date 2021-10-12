@@ -93,6 +93,8 @@ DONE: pass active_gs to all class verb methods
 		DONE: put => active_gs
 	DONE: in cmd_exe() create rand_error() function
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
+	DONE: move dynamic_desc_dict from stateful_dict to active_gs
+	DONE: comment out stateful_dict sub-dict and re-run mk_default_pkl
 TBD: 'backpack'
 TBD: 'hand'
 TBD: 'room'

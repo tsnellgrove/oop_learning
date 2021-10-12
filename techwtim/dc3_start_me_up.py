@@ -28,7 +28,7 @@ def start_me_up():
 		portcullis_code = random.randint(0, 7)
 		port_code_txt = "'..ode is " + str(portcullis_code) + ". Don't tell anyo..'"
 		active_gs.set_dynamic_desc_dict('messy_handwriting', port_code_txt)		
-		stateful_dict['dynamic_desc_dict']['messy_handwriting'] = port_code_txt
+#		stateful_dict['dynamic_desc_dict']['messy_handwriting'] = port_code_txt
 
 		### introductory text ###
 		buffer(stateful_dict, descript_dict["introduction"])

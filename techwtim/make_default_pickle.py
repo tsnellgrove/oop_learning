@@ -91,9 +91,9 @@ stateful_dict = {
 #				'antechamber' : {'south' : main_hall, 'north' : throne_room},
 #				'throne_room' : {'south' : antechamber}
 #				},
-		'dynamic_desc_dict' : {
-				'messy_handwriting' : ""
-				},
+#		'dynamic_desc_dict' : {
+#				'messy_handwriting' : ""
+#				},
 #		'points_earned_dict' : {
 #				'rusty_key' : False,
 #				'main_hall' : False,
