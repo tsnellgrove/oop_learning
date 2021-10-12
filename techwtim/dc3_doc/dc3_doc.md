@@ -96,7 +96,15 @@ DONE: Refactor stateful_dict['dynamic_desc_dict']
 	DONE: move dynamic_desc_dict from stateful_dict to active_gs
 	DONE: comment out stateful_dict sub-dict and re-run mk_default_pkl
 	DONE: clean up comments
-TBD: 'backpack'
+IN-PROC: 'backpack'
+	DONE: add 'backpack' to active_gs
+	DONE: investigate 'backpack' usage
+	DONE: create get_backpack_lst method in GameState
+	DONE: create backpack_lst_append method in GameState
+	DONE: create backpack_lst_remove in method GameState
+	TBD: add active_gs backpack methods to modules and comment out stateful_dict
+	TBD: clean up comments
+	TBD: comment out stateful_dict
 TBD: 'hand'
 TBD: 'room'
 TBD: 'out_buff' & buffer()

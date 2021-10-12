@@ -127,7 +127,8 @@ active_gs = GameState(
 				'score' : 0,
 				'move_counter' : 0,
 				'end_of_game' : False,
-				'game_ending' : "tbd"
+				'game_ending' : "tbd",
+				'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle]
 		}
 )
 

@@ -79,6 +79,15 @@ class GameState(object):
 		def set_game_ending(self, value):
 				self._state_dict['game_ending'] = value
 
+		def get_backpack_lst(self):
+				return self._state_dict['backpack']
+
+		def backpack_lst_append_item(self, item):
+				self._state_dict['backpack'].append(item)
+
+		def backpack_lst_remove_item(self, item):
+				self._state_dict['backpack'].remove(item)
+
 		def get_static_obj(self, static_key):
 				if static_key not in self._static_obj_dict:
 						raise KeyError("key does not exist in dict")
