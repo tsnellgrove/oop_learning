@@ -77,9 +77,6 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				true_one_word(stateful_dict, active_gs, word1, room_obj)
 		elif case == 'error':
 				if word_lst[0] == "random error":
-#						num = random.randint(0, 4)
-#						interp_error_key = 'interp_error_' + str(num)
-#						output = descript_dict[interp_error_key]
 						output = rand_error()
 				else:
 						output = word_lst[0]
@@ -103,9 +100,6 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 						try:
 								getattr(word2_obj, word1)(stateful_dict, active_gs)
 						except:
-#								num = random.randint(0, 4)
-#								interp_error_key = 'interp_error_' + str(num)
-#								buffer(stateful_dict, descript_dict[interp_error_key])
 								error_msg = rand_error()
 								buffer(stateful_dict, error_msg)
 								active_gs.move_dec()
@@ -122,12 +116,8 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 						try:
 								getattr(dirobj_obj, word1)(noun_obj, stateful_dict, active_gs)
 						except:
-#								num = random.randint(0, 4)
-#								interp_error_key = 'interp_error_' + str(num)
-#								buffer(stateful_dict, descript_dict[interp_error_key])
 								error_msg = rand_error()
 								buffer(stateful_dict, error_msg)
-#								move_dec(stateful_dict)
 								active_gs.move_dec()
 
 

@@ -67,7 +67,7 @@ DONE: 'universal'
 	DONE: comment out 'universal' in stateful_dict and run mk_default_pkl()
 	DONE: test updates
 	DONE: clean up comments
-IN-PROC: pass active_gs to all class verb methods
+DONE: pass active_gs to all class verb methods
 	DONE: troubleshoot examine.door error
 		DONE: solve bug (scope_check in examine sub for door)
 		DONE: clean-up comments
@@ -91,7 +91,7 @@ IN-PROC: pass active_gs to all class verb methods
 	DONE: clean-up comments
 	DONE 'put' case
 		DONE: put => active_gs
-	TBD: in cmd_exe() create rand_error() function
+	DONE: in cmd_exe() create rand_error() function
 IN-PROC: Refactor stateful_dict['dynamic_desc_dict']
 TBD: 'backpack'
 TBD: 'hand'
