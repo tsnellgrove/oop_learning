@@ -107,6 +107,10 @@ IN-PROC: 'backpack'
 		DONE: comment out stateful_dict
 		DONE: clean up comments
 TBD: 'hand'
+	TBD: add 'hand' to active_gs
+	TBD: create methods
+	TBD: Update helper(), class_def(), & score()
+	TBD: clean-up comments
 TBD: 'room'
 TBD: 'out_buff' & buffer()
 	
@@ -117,6 +121,7 @@ TBD: 'out_buff' & buffer()
 ##########################
 
 Version 3.47 Goals:
+- Eliminate stateful_dict
 - Migrate most helper() functions to methods of active_gs
 
 
