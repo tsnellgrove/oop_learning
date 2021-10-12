@@ -21,9 +21,6 @@ class GameState(object):
 				self._static_obj_dict = static_obj_dict
 				self._state_dict = state_dict
 
-#		def dynamic_desc_key_exists(self, dynamic_desc_key):
-#				return dynamic_desc_key in self._dynamic_desc_dict
-
 		def get_dynamic_desc_dict(self, dynamic_desc_key):
 				if dynamic_desc_key not in self._dynamic_desc_dict:
 						raise KeyError("key does not exist in dict")
@@ -115,13 +112,8 @@ class Writing(object):
 				return self._descript_key
 
 		def get_descript_str(self, stateful_dict, active_gs):
-#		def get_descript_str(self):
-#				if active_gs.dynamic_desc_key_exists(self.descript_key):
-#						descript_str = active_gs.get_dynamic_desc_dict(self.descript_key)
 				try:
-#						descript_str = stateful_dict['dynamic_desc_dict'][self.descript_key]
 						descript_str = active_gs.get_dynamic_desc_dict(self.descript_key)
-#				else:
 				except:
 						descript_str = descript_dict[self.descript_key]
 				return descript_str
@@ -136,7 +128,6 @@ class Writing(object):
 
 		def read(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
-#				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 				buffer(stateful_dict, descript_str)
 
 		def __repr__(self):
@@ -156,7 +147,6 @@ class ViewOnly(Writing):
 
 		def examine(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
-#				buffer(stateful_dict, self.get_descript_str(stateful_dict))
 				buffer(stateful_dict, descript_str)
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
