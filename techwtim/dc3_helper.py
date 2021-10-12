@@ -27,7 +27,8 @@ def open_cont_scan(stateful_dict, room_containers):
 def scope_list(stateful_dict, active_gs):
 		room_obj = stateful_dict['room']
 		hand_lst = stateful_dict['hand']
-		backpack_lst = stateful_dict['backpack']
+#		backpack_lst = stateful_dict['backpack']
+		backpack_lst = active_gs.get_backpack_lst()
 		universal_lst = active_gs.get_static_obj('universal')
 		room_obj_lst = room_obj.room_obj_lst
 		features_lst = room_obj.features
@@ -77,12 +78,13 @@ def print_score(stateful_dict, active_gs):
 		output2 = (" out of " + str(static_dict['max_score']))
 		buffer(stateful_dict, output1 + output2)
 
-def inventory(stateful_dict):
+def inventory(stateful_dict, active_gs):
 		hand_obj_lst = stateful_dict['hand']
 		hand_str = obj_lst_to_str(hand_obj_lst)
 		buffer(stateful_dict, "In your hand you are holding: " + hand_str)
 
-		backpack_obj_lst = stateful_dict['backpack']
+#		backpack_obj_lst = stateful_dict['backpack']
+		backpack_obj_lst = active_gs.get_backpack_lst()
 		backpack_str = obj_lst_to_str(backpack_obj_lst)
 		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 

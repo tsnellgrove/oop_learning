@@ -221,7 +221,8 @@ class Item(ViewOnly):
 		def take(self, stateful_dict, active_gs):
 				room_obj = stateful_dict['room']
 				hand_lst = stateful_dict['hand']
-				backpack_lst = stateful_dict['backpack']
+#				backpack_lst = stateful_dict['backpack']
+				backpack_lst = active_gs.get_backpack_lst()
 				room_obj_lst = room_obj.room_obj_lst
 				if self in hand_lst:
 						buffer(stateful_dict, "You're already holding the " + self.full_name)
@@ -229,12 +230,14 @@ class Item(ViewOnly):
 						buffer(stateful_dict, "You can't take the " + self.full_name)
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
-								stateful_dict['backpack'].append(hand_lst[0])
+#								stateful_dict['backpack'].append(hand_lst[0])
+								active_gs.backpack_lst_append_item(hand_lst[0])
 								stateful_dict['hand'].remove(hand_lst[0])
 						hand_lst.append(self) # put taken item in hand
 						buffer(stateful_dict, "Taken")
 						if self in backpack_lst: # if taken from backpack, remove from backpack
-								stateful_dict['backpack'].remove(self)								
+#								stateful_dict['backpack'].remove(self)
+								active_gs.backpack_lst_remove_item(self)							
 						elif self in room_obj_lst: # if taken from room, remove from room
 								room_obj.room_obj_lst.remove(self)
 						else:

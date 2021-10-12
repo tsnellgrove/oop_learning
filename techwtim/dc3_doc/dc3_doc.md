@@ -102,9 +102,10 @@ IN-PROC: 'backpack'
 	DONE: create get_backpack_lst method in GameState
 	DONE: create backpack_lst_append method in GameState
 	DONE: create backpack_lst_remove in method GameState
-	TBD: add active_gs backpack methods to modules and comment out stateful_dict
-	TBD: clean up comments
-	TBD: comment out stateful_dict
+	DONE: add active_gs backpack methods to modules and comment out stateful_dict
+		DONE: Update scope_lst() in helper(), inventory() in helper(), take() method in Item class_def()
+		TBD: comment out stateful_dict
+		TBD: clean up comments
 TBD: 'hand'
 TBD: 'room'
 TBD: 'out_buff' & buffer()

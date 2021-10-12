@@ -30,7 +30,7 @@ def true_one_word(stateful_dict, active_gs, word1, room_obj):
 		elif word1 == 'credits':
 				buffer(stateful_dict, descript_dict['credits'])
 		elif word1 == 'inventory':
-				inventory(stateful_dict)
+				inventory(stateful_dict, active_gs)
 		elif word1 == 'look':
 				room_obj.examine(stateful_dict, active_gs)
 		elif word1 == 'quit':
