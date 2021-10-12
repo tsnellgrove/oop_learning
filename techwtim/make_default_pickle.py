@@ -76,7 +76,7 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 #### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {
 		'hand' : [], 
-		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
+#		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
 #		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,
 		'out_buff' : "",
