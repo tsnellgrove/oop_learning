@@ -103,6 +103,12 @@ class GameState(object):
 				else:
 						return self._static_obj_dict[static_key]
 
+		def get_room(self):
+				return self._state_dict['room']
+
+		def set_game_ending(self, value):
+				self._state_dict['room'] = value
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 

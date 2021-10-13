@@ -113,8 +113,8 @@ DONE: 'hand'
 	DONE: testing!!
 	DONE: clean-up comments
 TBD: 'room'
-	TBD: add 'room' to active_gs
-	TBD: create methods: get & set
+	DONE: add 'room' to active_gs
+	DONE: create methods: get & set
 	TBD: Update helper(), class_def(), interpret(), cmd_exe(), score()
 	TBD: comment out stateful_dict 'room'
 	TBD: testing!!
