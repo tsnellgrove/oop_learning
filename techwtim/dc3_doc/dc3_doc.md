@@ -110,7 +110,7 @@ IN-PROC: 'hand'
 	DONE: create methods
 	DONE: Update helper(), class_def(), & score()
 	DONE: testing!!
-	TBD: clean-up comments
+	DONE: clean-up comments
 TBD: 'room'
 TBD: 'out_buff' & buffer()
 	
