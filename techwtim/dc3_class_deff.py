@@ -88,6 +88,15 @@ class GameState(object):
 		def backpack_lst_remove_item(self, item):
 				self._state_dict['backpack'].remove(item)
 
+		def get_hand_lst(self):
+				return self._state_dict['hand']
+
+		def hand_lst_append_item(self, item):
+				self._state_dict['hand'].append(item)
+
+		def hand_lst_remove_item(self, item):
+				self._state_dict['hand'].remove(item)
+
 		def get_static_obj(self, static_key):
 				if static_key not in self._static_obj_dict:
 						raise KeyError("key does not exist in dict")
@@ -220,7 +229,8 @@ class Item(ViewOnly):
 
 		def take(self, stateful_dict, active_gs):
 				room_obj = stateful_dict['room']
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				backpack_lst = active_gs.get_backpack_lst()
 				room_obj_lst = room_obj.room_obj_lst
 				if self in hand_lst:
@@ -230,11 +240,13 @@ class Item(ViewOnly):
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
 								active_gs.backpack_lst_append_item(hand_lst[0])
-								stateful_dict['hand'].remove(hand_lst[0])
-						hand_lst.append(self) # put taken item in hand
+								active_gs.hand_lst_remove_item(hand_lst[0])
+#								stateful_dict['hand'].remove(hand_lst[0])
+#						hand_lst.append(self) # put taken item in hand
+						active_gs.hand_lst_append_item(self) # put taken item in hand
 						buffer(stateful_dict, "Taken")
 						if self in backpack_lst: # if taken from backpack, remove from backpack
-								active_gs.backpack_lst_remove_item(self)							
+								active_gs.backpack_lst_remove_item(self)					
 						elif self in room_obj_lst: # if taken from room, remove from room
 								room_obj.room_obj_lst.remove(self)
 						else:
@@ -244,14 +256,16 @@ class Item(ViewOnly):
 														obj.contains.remove(self)
 
 		def drop(self, stateful_dict, active_gs):
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				room_obj = stateful_dict['room']
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
 				else:
-						hand_lst.remove(self)
-						stateful_dict['hand'] = hand_lst
+#						hand_lst.remove(self)
+#						stateful_dict['hand'] = hand_lst
+						active_gs.hand_lst_remove_item(self)
 						room_obj.room_obj_lst.append(self)
 						buffer(stateful_dict, "Dropped")
 
@@ -270,7 +284,8 @@ class Door(ViewOnly):
 						buffer(stateful_dict, "The " + self.full_name + " is open.")
 
 		def unlock(self, stateful_dict, active_gs):
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				if self.unlock_state == True:
 						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
 				elif self.key is None:
@@ -300,7 +315,8 @@ class Door(ViewOnly):
 						buffer(stateful_dict, "Closed")
 
 		def lock(self, stateful_dict, active_gs):
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				if self.open_state == True:
 						buffer(stateful_dict, "You can't lock something that's open.")						
 				elif self.key not in hand_lst:
@@ -326,7 +342,8 @@ class Container(Door):
 				self.print_contents_str(stateful_dict)
 
 		def put(self, obj, stateful_dict, active_gs):
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				if obj not in hand_lst:
 						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
@@ -334,8 +351,9 @@ class Container(Door):
 				elif obj.is_container():
 						buffer(stateful_dict, "You can't put a container in a container")
 				else:
-						hand_lst.remove(obj)
-						stateful_dict['hand'] = hand_lst
+#						hand_lst.remove(obj)
+#						stateful_dict['hand'] = hand_lst
+						active_gs.hand_lst_remove_item(obj)
 						self.contains.append(obj)
 						buffer(stateful_dict, "Done")
 						
@@ -345,13 +363,15 @@ class Food(Item):
 				self.eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
 
 		def eat(self, stateful_dict, active_gs):
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)
 				else:
-						hand_lst.remove(self)
-						stateful_dict['hand'] = hand_lst
+#						hand_lst.remove(self)
+#						stateful_dict['hand'] = hand_lst
+						active_gs.hand_lst_remove_item(self)
 						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
 
 class Jug(Item):
@@ -370,7 +390,8 @@ class Beverage(ViewOnly):
 				self.drink_desc_key = drink_descript_key # key to description of drinking the beverage (stored in descript_dict)
 
 		def drink(self, stateful_dict, active_gs):
-				hand_lst = stateful_dict['hand']
+#				hand_lst = stateful_dict['hand']
+				hand_lst = active_gs.get_hand_lst()
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)

@@ -8,7 +8,6 @@ Oct 7, 2021
 
 Version 3.46 Goals:
 - Refactor code to migrate variables from stateful_dict => active_gs
-- Migrate most helper() functions to methods of active_gs
 
 Notes:
 - Approach is to migrate variables one sub-dict at a time
@@ -106,15 +105,15 @@ IN-PROC: 'backpack'
 		DONE: Update scope_lst() in helper(), inventory() in helper(), take() method in Item class_def()
 		DONE: comment out stateful_dict
 		DONE: clean up comments
-TBD: 'hand'
-	TBD: add 'hand' to active_gs
-	TBD: create methods
-	TBD: Update helper(), class_def(), & score()
+IN-PROC: 'hand'
+	DONE: add 'hand' to active_gs
+	DONE: create methods
+	DONE: Update helper(), class_def(), & score()
+	TBD: testing!!
 	TBD: clean-up comments
 TBD: 'room'
 TBD: 'out_buff' & buffer()
 	
-
 
 ##########################
 ### VERSION 3.47 START ###
