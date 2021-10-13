@@ -14,7 +14,8 @@ from dc3_helper import *
 
 
 def score(stateful_dict, active_gs):
-		room_obj = stateful_dict['room']
+#		room_obj = stateful_dict['room']
+		room_obj = active_gs.get_room()
 		hand_lst = active_gs.get_hand_lst()
 
 		# increment item scores

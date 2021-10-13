@@ -78,7 +78,7 @@ stateful_dict = {
 #		'hand' : [], 
 #		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
 #		'universal' : [backpack, burt, fist, conscience],
-		'room' : entrance,
+#		'room' : entrance,
 		'out_buff' : "",
 #		'score' : 0,
 #		'end_of_game' : False,

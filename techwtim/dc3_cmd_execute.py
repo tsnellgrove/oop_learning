@@ -67,7 +67,8 @@ def help(stateful_dict, option):
 		buffer(stateful_dict, output)
 
 def cmd_execute(stateful_dict, active_gs, case, word_lst):
-		room_obj = stateful_dict['room']
+#		room_obj = stateful_dict['room']
+		room_obj = active_gs.get_room()
 
 		if case == 'help':
 				word2 = word_lst[0]

@@ -106,7 +106,7 @@ class GameState(object):
 		def get_room(self):
 				return self._state_dict['room']
 
-		def set_game_ending(self, value):
+		def set_room(self, value):
 				self._state_dict['room'] = value
 
 		def __repr__(self):
@@ -209,7 +209,8 @@ class Room(ViewOnly):
 						obj.print_contents_str(stateful_dict)
 
 		def go(self, direction, stateful_dict, active_gs):
-				room_obj = stateful_dict['room']
+#				room_obj = stateful_dict['room']
+				room_obj = active_gs.get_room()
 				if not active_gs.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
@@ -221,11 +222,13 @@ class Room(ViewOnly):
 								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 						else:
 								next_room_obj = active_gs.get_next_room(room_obj, direction)
-								stateful_dict['room'] = next_room_obj
+#								stateful_dict['room'] = next_room_obj
+								active_gs.set_room(next_room_obj)
 								next_room_obj.examine(stateful_dict, active_gs)
 				else:
 						next_room_obj = active_gs.get_next_room(room_obj, direction)
-						stateful_dict['room'] = next_room_obj
+#						stateful_dict['room'] = next_room_obj
+						active_gs.set_room(next_room_obj)
 						next_room_obj.examine(stateful_dict, active_gs)
 
 class Item(ViewOnly):
@@ -234,7 +237,8 @@ class Item(ViewOnly):
 				self.takable = takable
 
 		def take(self, stateful_dict, active_gs):
-				room_obj = stateful_dict['room']
+#				room_obj = stateful_dict['room']
+				room_obj = active_gs.get_room()
 				hand_lst = active_gs.get_hand_lst()
 				backpack_lst = active_gs.get_backpack_lst()
 				room_obj_lst = room_obj.room_obj_lst
@@ -260,7 +264,8 @@ class Item(ViewOnly):
 
 		def drop(self, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
-				room_obj = stateful_dict['room']
+#				room_obj = stateful_dict['room']
+				room_obj = active_gs.get_room()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
 						buffer(stateful_dict, output)

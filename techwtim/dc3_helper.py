@@ -25,7 +25,8 @@ def open_cont_scan(stateful_dict, room_containers):
 		return open_cont_obj_lst
 
 def scope_list(stateful_dict, active_gs):
-		room_obj = stateful_dict['room']
+#		room_obj = stateful_dict['room']
+		room_obj = active_gs.get_room()
 		hand_lst = active_gs.get_hand_lst()
 		backpack_lst = active_gs.get_backpack_lst()
 		universal_lst = active_gs.get_static_obj('universal')
