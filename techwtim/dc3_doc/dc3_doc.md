@@ -117,7 +117,7 @@ TBD: 'room'
 	DONE: create methods: get & set
 	DONE: update score(), helper(), cmd_exe(), interpret(), class_def()
 	DONE: comment out stateful_dict 'room'
-	IN-PROC: detailed testing: score(), helper()
+	DONE: detailed testing: score(), helper(), cmd_exe(), interpret(), class_def()
 	TBD: clean-up comments
 TBD: 'out_buff' & buffer()
 	
