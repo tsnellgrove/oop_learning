@@ -75,7 +75,7 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 #### will ultimately be replaced by active_gs ###
 #### any object variable that is passed to helper() must be in this dict ###
 stateful_dict = {
-		'hand' : [], 
+#		'hand' : [], 
 #		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
 #		'universal' : [backpack, burt, fist, conscience],
 		'room' : entrance,

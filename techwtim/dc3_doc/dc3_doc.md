@@ -105,13 +105,20 @@ IN-PROC: 'backpack'
 		DONE: Update scope_lst() in helper(), inventory() in helper(), take() method in Item class_def()
 		DONE: comment out stateful_dict
 		DONE: clean up comments
-IN-PROC: 'hand'
+DONE: 'hand'
 	DONE: add 'hand' to active_gs
-	DONE: create methods
+	DONE: create methods: get, append, remove
 	DONE: Update helper(), class_def(), & score()
+	DONE: comment out stateful_dict 'hand'
 	DONE: testing!!
 	DONE: clean-up comments
 TBD: 'room'
+	TBD: add 'room' to active_gs
+	TBD: create methods: get & set
+	TBD: Update helper(), class_def(), interpret(), cmd_exe(), score()
+	TBD: comment out stateful_dict 'room'
+	TBD: testing!!
+	TBD: clean-up comments
 TBD: 'out_buff' & buffer()
 	
 
