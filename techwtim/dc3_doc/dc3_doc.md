@@ -109,7 +109,7 @@ IN-PROC: 'hand'
 	DONE: add 'hand' to active_gs
 	DONE: create methods
 	DONE: Update helper(), class_def(), & score()
-	TBD: testing!!
+	DONE: testing!!
 	TBD: clean-up comments
 TBD: 'room'
 TBD: 'out_buff' & buffer()
@@ -212,6 +212,8 @@ TBD: implement scoring
 
 *** Someday Maybe ***
 TBD: clean up use of "import *"
+TBD: maybe centralize "you aren't holding the X" errors in cmd_exe() someday?
+TBD: better error for "drink water" if not holding bottle
 TBD: rename modules
 TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
 TBD: Figure out a way in web browser to show all adventure text in scrolling window
