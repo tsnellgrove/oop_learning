@@ -118,7 +118,7 @@ TBD: 'room'
 	DONE: update score(), helper(), cmd_exe(), interpret(), class_def()
 	DONE: comment out stateful_dict 'room'
 	DONE: detailed testing: score(), helper(), cmd_exe(), interpret(), class_def()
-	TBD: clean-up comments
+	DONE: clean-up comments
 TBD: 'out_buff' & buffer()
 	
 

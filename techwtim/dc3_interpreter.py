@@ -98,7 +98,6 @@ def noun_handling(master_obj_lst, user_input_lst):
 def interpreter(user_input, master_obj_lst):
 		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
-#		room_obj = stateful_dict['room']
 		room_obj = active_gs.get_room()
 		user_input_lst = input_cleanup(user_input)
 
