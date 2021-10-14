@@ -38,7 +38,7 @@ def true_one_word(stateful_dict, active_gs, word1, room_obj):
 				active_gs.move_dec() # quitting is not deemed to be an actual move
 		return
 
-def help(stateful_dict, option):
+def help(stateful_dict, active_gs, option):
 		if option == 'basics':
 				output = descript_dict['help_basics']
 		elif option == 'verbs':
@@ -64,14 +64,15 @@ def help(stateful_dict, option):
 					output = descript_dict['help_read']
 		else:
 				output = descript_dict['help']
-		buffer(stateful_dict, output)
+#		buffer(stateful_dict, output)
+		active_gs.buffer(output)
 
 def cmd_execute(stateful_dict, active_gs, case, word_lst):
 		room_obj = active_gs.get_room()
 
 		if case == 'help':
 				word2 = word_lst[0]
-				help(stateful_dict, word2)
+				help(stateful_dict, active_gs, word2)
 		elif  case == 'tru_1word':
 				word1 = word_lst[0]
 				true_one_word(stateful_dict, active_gs, word1, room_obj)
