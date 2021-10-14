@@ -119,8 +119,25 @@ TBD: 'room'
 	DONE: comment out stateful_dict 'room'
 	DONE: detailed testing: score(), helper(), cmd_exe(), interpret(), class_def()
 	DONE: clean-up comments
-TBD: 'out_buff' & buffer()
-	
+IN-PROC: 'out_buff' & buffer()
+	DONE: add 'out_buff' to active_gs
+	DONE: create methods: get & buffer
+	DONE: in wrapper(), get and combine both stateful_dict and active_gs buffers and pass the combined out_buff to main()
+	IN-PROC: update modules:
+		DONE: document N/A modules: score(), interpret(), mk_default_pkl(), wrapper(), static(), main()
+		DONE: end()
+		DONE: create reset_buff method in GameState and call it in wrapper()
+		DONE: start_me_up()
+		TBD: helper()
+			TBD: print_score()
+			TBD: inventory()
+		TBD: cmd_exe()
+		TBD: class_def()
+	TBD: test without stateful_dict buffer being added to out_buff		
+	TBD: comment out stateful_dict 'buffer'
+	TBD: detailed testing
+	TBD: clean-up comments
+
 
 ##########################
 ### VERSION 3.47 START ###

@@ -36,6 +36,7 @@ def wrapper(user_input):
 
 				active_gs.move_inc()
 				stateful_dict['out_buff'] = "" # resets buffer
+				active_gs.reset_buff() # resets buffer
 
 				case, word_lst = interpreter(user_input, master_obj_lst)
 				# pre-action triggers will go here
@@ -50,6 +51,9 @@ def wrapper(user_input):
 						pickle.dump(master_obj_lst, f)
 
 				end_of_game = active_gs.get_end_of_game()
-				out_buff = stateful_dict['out_buff']
+#				out_buff = stateful_dict['out_buff']
+				out_buff_old = stateful_dict['out_buff']
+				out_buff_new = active_gs.get_buff()
+				out_buff = out_buff_old + out_buff_new
 
 		return end_of_game, out_buff

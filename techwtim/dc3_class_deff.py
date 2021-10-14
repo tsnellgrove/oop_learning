@@ -109,6 +109,17 @@ class GameState(object):
 		def set_room(self, value):
 				self._state_dict['room'] = value
 
+		def get_buff(self):
+				return self._state_dict['out_buff']
+
+		def buffer(self, output_str):
+				out_buff_old = self._state_dict['out_buff']
+				out_buff_new = out_buff_old + "\n" + output_str + "\n"
+				self._state_dict['out_buff'] = out_buff_new
+
+		def reset_buff(self):
+				self._state_dict['out_buff'] = ""
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 

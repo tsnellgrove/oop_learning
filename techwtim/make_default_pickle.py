@@ -130,7 +130,8 @@ active_gs = GameState(
 				'game_ending' : "tbd",
 				'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
 				'hand' : [],
-				'room' : entrance
+				'room' : entrance,
+				'out_buff' : ""
 		}
 )
 
