@@ -136,6 +136,17 @@ IN-PROC: 'out_buff' & buffer()
 			DONE: true_one_word()
 			DONE cmd_exe()
 		TBD: class_def()
+			TBD: Writing()
+				TBD: print_contents_str()
+				TBD: read()
+			TBD: ViewOnly()
+			TBD: Room()
+			TBD: Item()
+			TBD: Door()
+			TBD: Container()
+			TBD: Food()
+			TBD: Jug()
+			TBD: Beverage()
 	TBD: test without stateful_dict buffer being added to out_buff		
 	TBD: comment out stateful_dict 'buffer'
 	TBD: detailed testing
