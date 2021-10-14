@@ -156,10 +156,11 @@ class Writing(object):
 		def is_container(self):
 					return hasattr(self, 'contains')
 
-		def	print_contents_str(self, stateful_dict):
+		def	print_contents_str(self, stateful_dict, active_gs):
 				if self.is_container() and self.open_state == True:
 						container_str = obj_lst_to_str(self.contains)
-						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
+						active_gs.buffer("The " + self.full_name + " contains: " + container_str)
+#						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
 
 		def read(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
@@ -217,7 +218,7 @@ class Room(ViewOnly):
 				room_str = obj_lst_to_str(self.room_obj_lst)
 				buffer(stateful_dict, "The room contains: " + room_str)
 				for obj in self.room_obj_lst:
-						obj.print_contents_str(stateful_dict)
+						obj.print_contents_str(stateful_dict, active_gs)
 
 		def go(self, direction, stateful_dict, active_gs):
 				room_obj = active_gs.get_room()
@@ -344,11 +345,11 @@ class Container(Door):
 
 		def examine(self, stateful_dict, active_gs):
 				super(Container, self).examine(stateful_dict, active_gs)
-				self.print_contents_str(stateful_dict)
+				self.print_contents_str(stateful_dict, active_gs)
 
 		def open(self, stateful_dict, active_gs):
 				super(Container, self).open(stateful_dict, active_gs)
-				self.print_contents_str(stateful_dict)
+				self.print_contents_str(stateful_dict, active_gs)
 
 		def put(self, obj, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
@@ -385,7 +386,7 @@ class Jug(Item):
 
 		def examine(self, stateful_dict, active_gs):
 				super(Jug, self).examine(stateful_dict, active_gs)
-				self.print_contents_str(stateful_dict)
+				self.print_contents_str(stateful_dict, active_gs)
 
 class Beverage(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):
