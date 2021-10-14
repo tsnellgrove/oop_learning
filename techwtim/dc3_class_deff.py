@@ -164,7 +164,8 @@ class Writing(object):
 
 		def read(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
-				buffer(stateful_dict, descript_str)
+#				buffer(stateful_dict, descript_str)
+				active_gs.buffer(descript_str)
 
 		def __repr__(self):
 				return f'Object { self.name } is of class { type(self).__name__ } '
@@ -183,10 +184,12 @@ class ViewOnly(Writing):
 
 		def examine(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
-				buffer(stateful_dict, descript_str)
+#				buffer(stateful_dict, descript_str)
+				active_gs.buffer(descript_str)
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
-						buffer(stateful_dict, output)
+#						buffer(stateful_dict, output)
+						active_gs.buffer(output)
 
 class Room(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, features, room_obj_lst, door_paths):
