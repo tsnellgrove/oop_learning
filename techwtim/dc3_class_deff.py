@@ -302,50 +302,66 @@ class Door(ViewOnly):
 		def examine(self, stateful_dict, active_gs):
 				super(Door, self).examine(stateful_dict, active_gs)
 				if self.open_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is closed.")
+#						buffer(stateful_dict, "The " + self.full_name + " is closed.")
+						active_gs.buffer("The " + self.full_name + " is closed.")
 				else:
-						buffer(stateful_dict, "The " + self.full_name + " is open.")
+#						buffer(stateful_dict, "The " + self.full_name + " is open.")
+						active_gs.buffer("The " + self.full_name + " is open.")
 
 		def unlock(self, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self.unlock_state == True:
-						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
+#						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
+						active_gs.buffer("The " + self.full_name + " is already unlocked.")
 				elif self.key is None:
-						buffer(stateful_dict, "You don't see a keyhole for this door.")
+#						buffer(stateful_dict, "You don't see a keyhole for this door.")
+						active_gs.buffer("You don't see a keyhole for this door.")
 				elif self.key not in hand_lst:
-						buffer(stateful_dict, "You aren't holding the key.")
+#						buffer(stateful_dict, "You aren't holding the key.")
+						active_gs.buffer("You aren't holding the key.")
 				else:
-						buffer(stateful_dict, "Unlocked")
+#						buffer(stateful_dict, "Unlocked")
+						active_gs.buffer("Unlocked")
 						self.unlock_state = True
 
 		def open(self, stateful_dict, active_gs):
 				if self.open_state == True:
-						buffer(stateful_dict, "The " + self.full_name + " is already open.")
+#						buffer(stateful_dict, "The " + self.full_name + " is already open.")
+						active_gs.buffer("The " + self.full_name + " is already open.")
 				elif self.unlock_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is locked.")
+#						buffer(stateful_dict, "The " + self.full_name + " is locked.")
+						active_gs.buffer("The " + self.full_name + " is locked.")
 				else:
 						self.open_state = True
-						buffer(stateful_dict, "Openned")
+#						buffer(stateful_dict, "Openned")
+						active_gs.buffer("Openned")
 
 		def close(self, stateful_dict, active_gs):
 				if self.open_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
+#						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
+						active_gs.buffer("The " + self.full_name + " is already closed.")
 				elif self.unlock_state == False: # for Iron Portcullis
-						buffer(stateful_dict, "The " + self.full_name + " is locked.")
+#						buffer(stateful_dict, "The " + self.full_name + " is locked.")
+						active_gs.buffer("The " + self.full_name + " is locked.")
 				else:
 						self.open_state = False
-						buffer(stateful_dict, "Closed")
+#						buffer(stateful_dict, "Closed")
+						active_gs.buffer("Closed")
 
 		def lock(self, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self.open_state == True:
-						buffer(stateful_dict, "You can't lock something that's open.")						
+#						buffer(stateful_dict, "You can't lock something that's open.")
+						active_gs.buffer("You can't lock something that's open.")
 				elif self.key not in hand_lst:
-						buffer(stateful_dict, "You aren't holding the key.")
+#						buffer(stateful_dict, "You aren't holding the key.")
+						active_gs.buffer("You aren't holding the key.")
 				elif self.unlock_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is already locked.")
+#						buffer(stateful_dict, "The " + self.full_name + " is already locked.")
+						active_gs.buffer("The " + self.full_name + " is already locked.")
 				else:
-						buffer(stateful_dict, "Locked")
+#						buffer(stateful_dict, "Locked")
+						active_gs.buffer("Locked")
 						self.unlock_state = False
 
 class Container(Door):

@@ -147,10 +147,9 @@ IN-PROC: 'out_buff' & buffer()
 			DONE: Item()
 				DONE: take()
 				DONE: drop()
-			TBD: Door()
+			DONE: Door()
 			TBD: Container()
 			TBD: Food()
-			TBD: Jug()
 			TBD: Beverage()
 	TBD: test without stateful_dict buffer being added to out_buff		
 	TBD: comment out stateful_dict 'buffer'
