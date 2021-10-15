@@ -1,7 +1,7 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
-# description: end function module
+# date: Oct 15, 2021
+# description: presents end of game text 
 
 
 ### imports ###
@@ -23,23 +23,16 @@ def end(stateful_dict, active_gs):
 #		title = static_dict['titles_dict'][title_score]
 
 		if game_ending == 'death':
-#				buffer(stateful_dict, "You have died.")
 				active_gs.buffer("You have died.")
 		elif game_ending == 'quit':
-#				buffer(stateful_dict, "You have quit.")
 				active_gs.buffer("You have quit.")
 		elif game_ending == 'won':
-#				buffer(stateful_dict, "You have won!")
 				active_gs.buffer("You have won!")
-#		buffer(stateful_dict, "Your adventure ended after " + str(moves) + " moves.")
 		active_gs.buffer("Your adventure ended after " + str(moves) + " moves.")
 		print_score(stateful_dict, active_gs)
 ##		buffer("Your title is: " + title)
 		if game_ending == 'won':
-#				buffer(stateful_dict, descript_dict['credits'])
 				active_gs.buffer(descript_dict['credits'])
 		active_gs.set_end_of_game(True)
-
-#		print(active_gs.get_buff())
 
 		return

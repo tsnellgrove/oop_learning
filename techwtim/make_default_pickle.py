@@ -1,7 +1,7 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
-# description: object instantiation module
+# date: Oct 15, 2021
+# description: default object instantiation module (used as a tool)
 
 
 # import statements
@@ -74,35 +74,7 @@ throne_room = Room('throne_room', 'Throne Room', 'throne_room', 'throne_room', N
 #### legacy dictionary of variables passed to all functions ###
 #### will ultimately be replaced by active_gs ###
 #### any object variable that is passed to helper() must be in this dict ###
-stateful_dict = {
-#		'hand' : [], 
-#		'backpack' : [rusty_key, cheese_wedge, stale_biscuits, glass_bottle],
-#		'universal' : [backpack, burt, fist, conscience],
-#		'room' : entrance,
-#		'out_buff' : "",
-#		'score' : 0,
-#		'end_of_game' : False,
-#		'current_score' : 0,
-#		'move_counter' : 0,
-#		'game_ending' : "tbd",
-#		'paths' : {
-#				'entrance' : {'north' : main_hall},
-#				'main_hall' : {'south' : entrance, 'north' : antechamber},
-#				'antechamber' : {'south' : main_hall, 'north' : throne_room},
-#				'throne_room' : {'south' : antechamber}
-#				},
-#		'dynamic_desc_dict' : {
-#				'messy_handwriting' : ""
-#				},
-#		'points_earned_dict' : {
-#				'rusty_key' : False,
-#				'main_hall' : False,
-#				'shiny_sword' : False,
-#				'throne_room' : False,
-#				'silver_key' : False,
-#				'kinging_scroll' : False
-#				},
-		}
+stateful_dict = {}
 
 ### active_gs will replace stateful_dict as the central store of game info ###
 active_gs = GameState(

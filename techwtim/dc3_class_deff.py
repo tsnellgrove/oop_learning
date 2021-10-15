@@ -1,6 +1,6 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
+# date: Oct 15, 2021
 # description: class deffinition module
 
 
@@ -160,11 +160,9 @@ class Writing(object):
 				if self.is_container() and self.open_state == True:
 						container_str = obj_lst_to_str(self.contains)
 						active_gs.buffer("The " + self.full_name + " contains: " + container_str)
-#						buffer(stateful_dict, "The " + self.full_name + " contains: " + container_str)
 
 		def read(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
-#				buffer(stateful_dict, descript_str)
 				active_gs.buffer(descript_str)
 
 		def __repr__(self):
@@ -184,11 +182,9 @@ class ViewOnly(Writing):
 
 		def examine(self, stateful_dict, active_gs):
 				descript_str = self.get_descript_str(stateful_dict, active_gs)
-#				buffer(stateful_dict, descript_str)
 				active_gs.buffer(descript_str)
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
-#						buffer(stateful_dict, output)
 						active_gs.buffer(output)
 
 class Room(ViewOnly):
@@ -219,7 +215,6 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict, active_gs):
 				super(Room, self).examine(stateful_dict, active_gs)
 				room_str = obj_lst_to_str(self.room_obj_lst)
-#				buffer(stateful_dict, "The room contains: " + room_str)
 				active_gs.buffer("The room contains: " + room_str)
 				for obj in self.room_obj_lst:
 						obj.print_contents_str(stateful_dict, active_gs)
@@ -229,13 +224,11 @@ class Room(ViewOnly):
 				if not active_gs.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
-#						buffer(stateful_dict, descript_dict[wrong_way_key])
 						active_gs.buffer(descript_dict[wrong_way_key])
 				elif self.door_in_path(direction):
 						door_obj = self.get_door(direction)
 						door_open = door_obj.open_state
 						if not door_open:
-#								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
 								active_gs.buffer("The " +  door_obj.full_name + " is closed.")
 						else:
 								next_room_obj = active_gs.get_next_room(room_obj, direction)
@@ -257,17 +250,14 @@ class Item(ViewOnly):
 				backpack_lst = active_gs.get_backpack_lst()
 				room_obj_lst = room_obj.room_obj_lst
 				if self in hand_lst:
-#						buffer(stateful_dict, "You're already holding the " + self.full_name)
 						active_gs.buffer("You're already holding the " + self.full_name)
 				elif self.takable == False:
-#						buffer(stateful_dict, "You can't take the " + self.full_name)
 						active_gs.buffer("You can't take the " + self.full_name) # eliminate Takable attribute?
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
 								active_gs.backpack_lst_append_item(hand_lst[0])
 								active_gs.hand_lst_remove_item(hand_lst[0])
 						active_gs.hand_lst_append_item(self) # put taken item in hand
-#						buffer(stateful_dict, "Taken")
 						active_gs.buffer("Taken")
 						if self in backpack_lst: # if taken from backpack, remove from backpack
 								active_gs.backpack_lst_remove_item(self)					
@@ -284,12 +274,10 @@ class Item(ViewOnly):
 				room_obj = active_gs.get_room()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
-#						buffer(stateful_dict, output)
 						active_gs.buffer(output)
 				else:
 						active_gs.hand_lst_remove_item(self)
 						room_obj.room_obj_lst.append(self)
-#						buffer(stateful_dict, "Dropped")
 						active_gs.buffer("Dropped")
 
 class Door(ViewOnly):
@@ -302,65 +290,49 @@ class Door(ViewOnly):
 		def examine(self, stateful_dict, active_gs):
 				super(Door, self).examine(stateful_dict, active_gs)
 				if self.open_state == False:
-#						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 						active_gs.buffer("The " + self.full_name + " is closed.")
 				else:
-#						buffer(stateful_dict, "The " + self.full_name + " is open.")
 						active_gs.buffer("The " + self.full_name + " is open.")
 
 		def unlock(self, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self.unlock_state == True:
-#						buffer(stateful_dict, "The " + self.full_name + " is already unlocked.")
 						active_gs.buffer("The " + self.full_name + " is already unlocked.")
 				elif self.key is None:
-#						buffer(stateful_dict, "You don't see a keyhole for this door.")
 						active_gs.buffer("You don't see a keyhole for this door.")
 				elif self.key not in hand_lst:
-#						buffer(stateful_dict, "You aren't holding the key.")
 						active_gs.buffer("You aren't holding the key.")
 				else:
-#						buffer(stateful_dict, "Unlocked")
 						active_gs.buffer("Unlocked")
 						self.unlock_state = True
 
 		def open(self, stateful_dict, active_gs):
 				if self.open_state == True:
-#						buffer(stateful_dict, "The " + self.full_name + " is already open.")
 						active_gs.buffer("The " + self.full_name + " is already open.")
 				elif self.unlock_state == False:
-#						buffer(stateful_dict, "The " + self.full_name + " is locked.")
 						active_gs.buffer("The " + self.full_name + " is locked.")
 				else:
 						self.open_state = True
-#						buffer(stateful_dict, "Openned")
 						active_gs.buffer("Openned")
 
 		def close(self, stateful_dict, active_gs):
 				if self.open_state == False:
-#						buffer(stateful_dict, "The " + self.full_name + " is already closed.")
 						active_gs.buffer("The " + self.full_name + " is already closed.")
 				elif self.unlock_state == False: # for Iron Portcullis
-#						buffer(stateful_dict, "The " + self.full_name + " is locked.")
 						active_gs.buffer("The " + self.full_name + " is locked.")
 				else:
 						self.open_state = False
-#						buffer(stateful_dict, "Closed")
 						active_gs.buffer("Closed")
 
 		def lock(self, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self.open_state == True:
-#						buffer(stateful_dict, "You can't lock something that's open.")
 						active_gs.buffer("You can't lock something that's open.")
 				elif self.key not in hand_lst:
-#						buffer(stateful_dict, "You aren't holding the key.")
 						active_gs.buffer("You aren't holding the key.")
 				elif self.unlock_state == False:
-#						buffer(stateful_dict, "The " + self.full_name + " is already locked.")
 						active_gs.buffer("The " + self.full_name + " is already locked.")
 				else:
-#						buffer(stateful_dict, "Locked")
 						active_gs.buffer("Locked")
 						self.unlock_state = False
 
@@ -381,18 +353,14 @@ class Container(Door):
 		def put(self, obj, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if obj not in hand_lst:
-#						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
 						active_gs.buffer("You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
-#						buffer(stateful_dict, "The " + self.full_name + " is closed.")
 						active_gs.buffer("The " + self.full_name + " is closed.")
 				elif obj.is_container():
-#						buffer(stateful_dict, "You can't put a container in a container")
 						active_gs.buffer("You can't put a container in a container")
 				else:
 						active_gs.hand_lst_remove_item(obj)
 						self.contains.append(obj)
-#						buffer(stateful_dict, "Done")
 						active_gs.buffer("Done")
 						
 class Food(Item):
@@ -404,12 +372,10 @@ class Food(Item):
 				hand_lst = active_gs.get_hand_lst()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
-#						buffer(stateful_dict, output)
 						active_gs.buffer(output)
 				else:
 						active_gs.hand_lst_remove_item(self)
 						output = "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key]
-#						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
 						active_gs.buffer(output)
 
 class Jug(Item):
@@ -431,15 +397,12 @@ class Beverage(ViewOnly):
 				hand_lst = active_gs.get_hand_lst()
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
-#						buffer(stateful_dict, output)
 						active_gs.buffer(output)
 				elif self not in hand_lst[0].contains:
 						output = "The container in your hand doesn't contain " + self.full_name + "."
-#						buffer(stateful_dict, output)
 						active_gs.buffer(output)
 				else:
 						hand_lst[0].contains.remove(self)
 						output = "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key]
-#						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
 						active_gs.buffer(output)
 

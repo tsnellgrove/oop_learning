@@ -1,10 +1,7 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
-# description: main and interpreter modules for a zork-like text adventure game
-# goals vs. dc2: oop, modular, improved interpreter, working containers, 
-#								db integration, avoid external triggers, 
-#								replicate full original, add more puzzles!
+# date: Oct 15, 2021
+# description: app-side wrapper module that calls game functions
 
 
 # import statements
@@ -35,7 +32,6 @@ def wrapper(user_input):
 				active_gs = master_obj_lst[1]
 
 				active_gs.move_inc()
-				stateful_dict['out_buff'] = "" # resets buffer
 				active_gs.reset_buff() # resets buffer
 
 				case, word_lst = interpreter(user_input, master_obj_lst)
@@ -51,10 +47,6 @@ def wrapper(user_input):
 						pickle.dump(master_obj_lst, f)
 
 				end_of_game = active_gs.get_end_of_game()
-#				out_buff = stateful_dict['out_buff']
-#				out_buff_old = stateful_dict['out_buff']
-#				out_buff_new = active_gs.get_buff()
-#				out_buff = out_buff_old + out_buff_new
 				out_buff = active_gs.get_buff()
 
 		return end_of_game, out_buff

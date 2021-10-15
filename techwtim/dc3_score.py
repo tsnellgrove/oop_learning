@@ -1,10 +1,7 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
-# description: main and interpreter modules for a zork-like text adventure game
-# goals vs. dc2: oop, modular, improved interpreter, working containers, 
-#								db integration, avoid external triggers, 
-#								replicate full original, add more puzzles!
+# date: Oct 15, 2021
+# description: updates score based on post-command execution game state
 
 
 # import statements
@@ -33,7 +30,4 @@ def score(stateful_dict, active_gs):
 						active_gs.set_points_earned_state(score_key, True)
 						print_score(stateful_dict, active_gs)
 
-		return 
-
-
-
+		return

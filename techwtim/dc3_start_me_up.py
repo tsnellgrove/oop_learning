@@ -1,10 +1,8 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
-# description: main and interpreter modules for a zork-like text adventure game
-# goals vs. dc2: oop, modular, improved interpreter, working containers, 
-#								db integration, avoid external triggers, 
-#								replicate full original, add more puzzles!
+# date: Oct 15, 2021
+# description: gets obj from default_pkl, welcome text, sets starting values
+
 
 
 # import statements
@@ -30,17 +28,15 @@ def start_me_up():
 		active_gs.set_dynamic_desc_dict('messy_handwriting', port_code_txt)		
 
 		### introductory text ###
-#		buffer(stateful_dict, descript_dict["introduction"])
 		active_gs.buffer(descript_dict["introduction"])
-#		buffer(stateful_dict, descript_dict["entrance"])
 		active_gs.buffer(descript_dict["entrance"])
+		active_gs.buffer("The room contains: Front Gate")
 
 		### dump updated objects to save_obj_pickle ###
 		with open('save_obj_pickle2', 'wb') as f:
 				pickle.dump(master_obj_lst, f)
 
 		end_of_game = active_gs.get_end_of_game()
-#		out_buff = stateful_dict['out_buff']
 		out_buff = active_gs.get_buff()
 
 		return end_of_game, out_buff

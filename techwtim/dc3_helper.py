@@ -1,6 +1,6 @@
-# program: dark castle v3.44
+# program: dark castle v3.46
 # name: Tom Snellgrove
-# date: Oct 7, 2021
+# date: Oct 15, 2021
 # description: helper function module
 
 
@@ -75,18 +75,15 @@ def writing_check(writing, stateful_dict, active_gs):
 def print_score(stateful_dict, active_gs):
 		output1 = ("Your score is now " + str(active_gs.get_score()))
 		output2 = (" out of " + str(static_dict['max_score']))
-#		buffer(stateful_dict, output1 + output2)
 		active_gs.buffer(output1 + output2)
 
 def inventory(stateful_dict, active_gs):
 		hand_obj_lst = active_gs.get_hand_lst()
 		hand_str = obj_lst_to_str(hand_obj_lst)
-#		buffer(stateful_dict, "In your hand you are holding: " + hand_str)
 		active_gs.buffer("In your hand you are holding: " + hand_str)
 
 		backpack_obj_lst = active_gs.get_backpack_lst()
 		backpack_str = obj_lst_to_str(backpack_obj_lst)
-#		buffer(stateful_dict, "In your backpack you have: " + backpack_str)
 		active_gs.buffer("In your backpack you have: " + backpack_str)
 
 #def move_dec(stateful_dict): # was originally in interp_helper
