@@ -10,6 +10,11 @@ Version 3.47 Goals:
 - Eliminate stateful_dict
 - Migrate most helper() functions to methods of active_gs
 
+IN-PROC: remove stateful_dict
+	DONE: helper()
+
+		
+
 
 ##########################
 ### VERSION 3.48 START ###

@@ -20,7 +20,7 @@ def score(stateful_dict, active_gs):
 						points = score_val_dict[score_key]
 						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)
-						print_score(stateful_dict, active_gs)
+						print_score(active_gs)
 
 		# increment room scores
 		for score_key in room_score_lst:
@@ -28,6 +28,6 @@ def score(stateful_dict, active_gs):
 						points = score_val_dict[score_key]
 						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)
-						print_score(stateful_dict, active_gs)
+						print_score(active_gs)
 
 		return

@@ -13,7 +13,7 @@ from dc3_class_deff import *
 
 
 def root_word_count(stateful_dict, active_gs, word2_txt):
-		scope_lst = scope_list(stateful_dict, active_gs)
+		scope_lst = scope_list(active_gs)
 		root_count = 0
 		obj_name = ""
 		for obj in scope_lst:

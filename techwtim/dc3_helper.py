@@ -17,14 +17,14 @@ def change_desc(self, new_desc):
 
 
 ### Only Used by Helper Functions ###
-def open_cont_scan(stateful_dict, room_containers):
+def open_cont_scan(room_containers):
 		open_cont_obj_lst = []
 		for obj in room_containers:
 				if len(obj.contains) > 0 and obj.open_state == True:
 						open_cont_obj_lst = open_cont_obj_lst + obj.contains
 		return open_cont_obj_lst
 
-def scope_list(stateful_dict, active_gs):
+def scope_list(active_gs):
 		room_obj = active_gs.get_room()
 		hand_lst = active_gs.get_hand_lst()
 		backpack_lst = active_gs.get_backpack_lst()
@@ -37,16 +37,16 @@ def scope_list(stateful_dict, active_gs):
 		for obj in scope_lst:
 				if hasattr(obj, 'contains'):
 						room_containers.append(obj)
-		open_cont_obj_lst = open_cont_scan(stateful_dict, room_containers)
+		open_cont_obj_lst = open_cont_scan(room_containers)
 		scope_lst = scope_lst + open_cont_obj_lst
 		scope_lst.append(room_obj)
 		return scope_lst
 
 ### Called by Other Modules ###
-def buffer(stateful_dict, output_str):
-		out_buff = stateful_dict['out_buff']
-		out_buff = out_buff + "\n" + output_str + "\n"
-		stateful_dict['out_buff'] = out_buff
+#def buffer(stateful_dict, output_str):
+#		out_buff = stateful_dict['out_buff']
+#		out_buff = out_buff + "\n" + output_str + "\n"
+#		stateful_dict['out_buff'] = out_buff
 
 def obj_lst_to_str(obj_lst):
 		if not isinstance(obj_lst, list):
@@ -60,24 +60,24 @@ def obj_lst_to_str(obj_lst):
 				lst_str = lst_str[:-2]
 		return lst_str
 
-def scope_check(obj, stateful_dict, active_gs):
-		scope_lst = scope_list(stateful_dict, active_gs)
+def scope_check(obj, active_gs):
+		scope_lst = scope_list(active_gs)
 		return obj in scope_lst
 
-def writing_check(writing, stateful_dict, active_gs):
-		scope_lst = scope_list(stateful_dict, active_gs)
+def writing_check(writing, active_gs):
+		scope_lst = scope_list(active_gs)
 		writing_found = False
 		for obj in scope_lst:
 				if obj.writing == writing:
 						writing_found = True
 		return writing_found
 
-def print_score(stateful_dict, active_gs):
+def print_score(active_gs):
 		output1 = ("Your score is now " + str(active_gs.get_score()))
 		output2 = (" out of " + str(static_dict['max_score']))
 		active_gs.buffer(output1 + output2)
 
-def inventory(stateful_dict, active_gs):
+def inventory(active_gs):
 		hand_obj_lst = active_gs.get_hand_lst()
 		hand_str = obj_lst_to_str(hand_obj_lst)
 		active_gs.buffer("In your hand you are holding: " + hand_str)
