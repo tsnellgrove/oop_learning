@@ -10,7 +10,7 @@ from dc3_helper import *
 
 
 ### end routine ###
-def end(stateful_dict, active_gs):
+def end(active_gs):
 		moves = active_gs._state_dict['move_counter']
 		game_ending = active_gs.get_game_ending()
 

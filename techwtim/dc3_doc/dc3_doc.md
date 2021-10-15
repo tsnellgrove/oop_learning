@@ -12,6 +12,7 @@ Version 3.47 Goals:
 
 IN-PROC: remove stateful_dict
 	DONE: helper()
+	DONE: migrate score() and end()
 
 		
 

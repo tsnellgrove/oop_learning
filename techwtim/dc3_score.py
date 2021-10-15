@@ -10,7 +10,7 @@ from dc3_static_init import * # variables declared in import = global to module
 from dc3_helper import *
 
 
-def score(stateful_dict, active_gs):
+def score(active_gs):
 		room_obj = active_gs.get_room()
 		hand_lst = active_gs.get_hand_lst()
 
