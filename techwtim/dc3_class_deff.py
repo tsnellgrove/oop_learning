@@ -219,7 +219,8 @@ class Room(ViewOnly):
 		def examine(self, stateful_dict, active_gs):
 				super(Room, self).examine(stateful_dict, active_gs)
 				room_str = obj_lst_to_str(self.room_obj_lst)
-				buffer(stateful_dict, "The room contains: " + room_str)
+#				buffer(stateful_dict, "The room contains: " + room_str)
+				active_gs.buffer("The room contains: " + room_str)
 				for obj in self.room_obj_lst:
 						obj.print_contents_str(stateful_dict, active_gs)
 
@@ -228,12 +229,14 @@ class Room(ViewOnly):
 				if not active_gs.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
-						buffer(stateful_dict, descript_dict[wrong_way_key])
+#						buffer(stateful_dict, descript_dict[wrong_way_key])
+						active_gs.buffer(descript_dict[wrong_way_key])
 				elif self.door_in_path(direction):
 						door_obj = self.get_door(direction)
 						door_open = door_obj.open_state
 						if not door_open:
-								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
+#								buffer(stateful_dict, "The " +  door_obj.full_name + " is closed.")
+								active_gs.buffer("The " +  door_obj.full_name + " is closed.")
 						else:
 								next_room_obj = active_gs.get_next_room(room_obj, direction)
 								active_gs.set_room(next_room_obj)
