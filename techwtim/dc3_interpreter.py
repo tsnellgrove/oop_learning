@@ -12,7 +12,7 @@ from dc3_helper import *
 from dc3_class_deff import *
 
 
-def root_word_count(stateful_dict, active_gs, word2_txt):
+def root_word_count(active_gs, word2_txt):
 		scope_lst = scope_list(active_gs)
 		root_count = 0
 		obj_name = ""
@@ -47,7 +47,6 @@ def input_cleanup(user_input):
 
 # handle nouns and adjectives
 def noun_handling(master_obj_lst, user_input_lst):
-		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
 		error_state = False
 		error_msg = ""
@@ -76,7 +75,7 @@ def noun_handling(master_obj_lst, user_input_lst):
 
 		# check to see if the word2 is a root_name; convert to obj_name if valid
 		if not word2_txt_known:
-				root_count, obj_name = root_word_count(stateful_dict, active_gs, word2_txt)
+				root_count, obj_name = root_word_count(active_gs, word2_txt)
 				if root_count < 1:
 						error_msg = "I don't see a " + word2_txt + " here."
 						error_state = True
@@ -93,7 +92,6 @@ def noun_handling(master_obj_lst, user_input_lst):
 
 # interpreter
 def interpreter(user_input, master_obj_lst):
-		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
 		room_obj = active_gs.get_room()
 		user_input_lst = input_cleanup(user_input)
