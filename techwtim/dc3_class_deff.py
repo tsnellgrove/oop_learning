@@ -381,15 +381,19 @@ class Container(Door):
 		def put(self, obj, stateful_dict, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if obj not in hand_lst:
-						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
+#						buffer(stateful_dict, "You aren't holding the " + obj.full_name)
+						active_gs.buffer("You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
-						buffer(stateful_dict, "The " + self.full_name + " is closed.")
+#						buffer(stateful_dict, "The " + self.full_name + " is closed.")
+						active_gs.buffer("The " + self.full_name + " is closed.")
 				elif obj.is_container():
-						buffer(stateful_dict, "You can't put a container in a container")
+#						buffer(stateful_dict, "You can't put a container in a container")
+						active_gs.buffer("You can't put a container in a container")
 				else:
 						active_gs.hand_lst_remove_item(obj)
 						self.contains.append(obj)
-						buffer(stateful_dict, "Done")
+#						buffer(stateful_dict, "Done")
+						active_gs.buffer("Done")
 						
 class Food(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable, eat_desc_key):
@@ -400,10 +404,13 @@ class Food(Item):
 				hand_lst = active_gs.get_hand_lst()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
-						buffer(stateful_dict, output)
+#						buffer(stateful_dict, output)
+						active_gs.buffer(output)
 				else:
 						active_gs.hand_lst_remove_item(self)
-						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
+						output = "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key]
+#						buffer(stateful_dict, "Eaten. The " + self.full_name + " " + descript_dict[self.eat_desc_key])
+						active_gs.buffer(output)
 
 class Jug(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable, open_state, contains):
@@ -424,11 +431,15 @@ class Beverage(ViewOnly):
 				hand_lst = active_gs.get_hand_lst()
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
-						buffer(stateful_dict, output)
+#						buffer(stateful_dict, output)
+						active_gs.buffer(output)
 				elif self not in hand_lst[0].contains:
 						output = "The container in your hand doesn't contain " + self.full_name + "."
-						buffer(stateful_dict, output)
+#						buffer(stateful_dict, output)
+						active_gs.buffer(output)
 				else:
 						hand_lst[0].contains.remove(self)
-						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
+						output = "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key]
+#						buffer(stateful_dict, "Drunk. The " + self.full_name + " " + descript_dict[self.drink_desc_key])
+						active_gs.buffer(output)
 

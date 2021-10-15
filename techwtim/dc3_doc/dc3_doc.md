@@ -148,11 +148,11 @@ IN-PROC: 'out_buff' & buffer()
 				DONE: take()
 				DONE: drop()
 			DONE: Door()
-			TBD: Container()
-			TBD: Food()
-			TBD: Beverage()
-	TBD: test without stateful_dict buffer being added to out_buff		
-	TBD: comment out stateful_dict 'buffer'
+			DONE: Container()
+			DONE: Food()
+			DONE: Beverage()
+	DONE: test without stateful_dict buffer being added to out_buff		
+	DONE: comment out stateful_dict 'buffer'
 	TBD: detailed testing
 	TBD: clean-up comments
 
@@ -172,6 +172,21 @@ Version 3.47 Goals:
 
 Version 3.48 Goals
 - sets and gets for rest of class definitions
+
+
+##########################
+### VERSION 3.49 START ###
+##########################
+
+Version 3.49 Goals
+- code improvement tweaks
+
+TBD: elim takable atribute
+TBD: obj-not-in-hand error in cmd_exe()
+TBD: Better errors for "read note" and "get water"
+TBD: fix dup Room 'go' code for doorways and passages (?)
+TBD: search "somedays" for others
+
 
 	
 ##########################

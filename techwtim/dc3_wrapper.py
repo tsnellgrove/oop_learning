@@ -52,8 +52,9 @@ def wrapper(user_input):
 
 				end_of_game = active_gs.get_end_of_game()
 #				out_buff = stateful_dict['out_buff']
-				out_buff_old = stateful_dict['out_buff']
-				out_buff_new = active_gs.get_buff()
-				out_buff = out_buff_old + out_buff_new
+#				out_buff_old = stateful_dict['out_buff']
+#				out_buff_new = active_gs.get_buff()
+#				out_buff = out_buff_old + out_buff_new
+				out_buff = active_gs.get_buff()
 
 		return end_of_game, out_buff
