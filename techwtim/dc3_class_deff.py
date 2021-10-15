@@ -257,15 +257,18 @@ class Item(ViewOnly):
 				backpack_lst = active_gs.get_backpack_lst()
 				room_obj_lst = room_obj.room_obj_lst
 				if self in hand_lst:
-						buffer(stateful_dict, "You're already holding the " + self.full_name)
+#						buffer(stateful_dict, "You're already holding the " + self.full_name)
+						active_gs.buffer("You're already holding the " + self.full_name)
 				elif self.takable == False:
-						buffer(stateful_dict, "You can't take the " + self.full_name)
+#						buffer(stateful_dict, "You can't take the " + self.full_name)
+						active_gs.buffer("You can't take the " + self.full_name) # eliminate Takable attribute?
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
 								active_gs.backpack_lst_append_item(hand_lst[0])
 								active_gs.hand_lst_remove_item(hand_lst[0])
 						active_gs.hand_lst_append_item(self) # put taken item in hand
-						buffer(stateful_dict, "Taken")
+#						buffer(stateful_dict, "Taken")
+						active_gs.buffer("Taken")
 						if self in backpack_lst: # if taken from backpack, remove from backpack
 								active_gs.backpack_lst_remove_item(self)					
 						elif self in room_obj_lst: # if taken from room, remove from room
@@ -281,11 +284,13 @@ class Item(ViewOnly):
 				room_obj = active_gs.get_room()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
-						buffer(stateful_dict, output)
+#						buffer(stateful_dict, output)
+						active_gs.buffer(output)
 				else:
 						active_gs.hand_lst_remove_item(self)
 						room_obj.room_obj_lst.append(self)
-						buffer(stateful_dict, "Dropped")
+#						buffer(stateful_dict, "Dropped")
+						active_gs.buffer("Dropped")
 
 class Door(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key):
