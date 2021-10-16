@@ -23,6 +23,7 @@ TBD: obj-not-in-hand error in cmd_exe()
 TBD: Better errors for "read note" and "get water"
 TBD: fix dup Room 'go' code for doorways and passages (?)
 TBD: search "somedays" for others
+TBD: re-order and consolidate 3.50+ plans and ideas
 
 
 	
