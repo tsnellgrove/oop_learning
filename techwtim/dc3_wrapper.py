@@ -28,7 +28,7 @@ def wrapper(user_input):
 						master_obj_lst = pickle.load(f)
 
 				# object vatiables declared / instantiated from un-pickled list
-				active_gs = master_obj_lst[1]
+				active_gs = master_obj_lst[0]
 
 				active_gs.move_inc()
 				active_gs.reset_buff() # resets buffer

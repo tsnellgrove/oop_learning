@@ -47,7 +47,7 @@ def input_cleanup(user_input):
 
 # handle nouns and adjectives
 def noun_handling(master_obj_lst, user_input_lst):
-		active_gs = master_obj_lst[1]
+		active_gs = master_obj_lst[0]
 		error_state = False
 		error_msg = ""
 		word2_obj = ""
@@ -68,7 +68,7 @@ def noun_handling(master_obj_lst, user_input_lst):
 		
 		# check to see if word2 is a known obj_name
 		word2_txt_known = False
-		for obj in master_obj_lst[2:]:
+		for obj in master_obj_lst[1:]:
 				if obj.name == word2_txt:
 						word2_txt_known = True
 						word2_obj = obj
@@ -85,14 +85,14 @@ def noun_handling(master_obj_lst, user_input_lst):
 						error_state = True
 						return error_state, error_msg, word2_obj
 				else:
-						for obj in master_obj_lst[2:]:
+						for obj in master_obj_lst[1:]:
 								if obj.name == obj_name:
 										word2_obj = obj
 		return error_state, error_msg, word2_obj
 
 # interpreter
 def interpreter(user_input, master_obj_lst):
-		active_gs = master_obj_lst[1]
+		active_gs = master_obj_lst[0]
 		room_obj = active_gs.get_room()
 		user_input_lst = input_cleanup(user_input)
 

@@ -19,7 +19,7 @@ def start_me_up():
 		with open('default_obj_pickle', 'rb') as f:
 				master_obj_lst = pickle.load(f)
 
-		active_gs = master_obj_lst[1]
+		active_gs = master_obj_lst[0]
 
 		### Assign Random Secret Code ###
 		portcullis_code = random.randint(0, 7)

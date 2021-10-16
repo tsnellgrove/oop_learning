@@ -17,8 +17,8 @@ IN-PROC: remove stateful_dict
 	DONE: interpret()
 	DONE: cmd_exe() and class_def()
 	DONE: wrapper() and start_me_up()
-	TBD: mk_default_pkl() and run
-	TBD: update pkl obj index in wrapper() and start_me_up() and interpreter() including noun_handling()
+	DONE: mk_default_pkl() and run
+	DONE: update pkl obj index in wrapper() and start_me_up() and interpreter() including noun_handling()
 	TBD: search for all master_obj_lst refs
 	TBD: final search in every module for stateful_dict
 
