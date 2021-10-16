@@ -9,11 +9,11 @@ from dc3_static_init import *
 
 
 ### NOT IN USE ###
-def set_difference(a,b):
-    return list(set(a)-set(b))
+#def set_difference(a,b):
+#    return list(set(a)-set(b))
 
-def change_desc(self, new_desc):
-		self.desc = new_desc
+#def change_desc(self, new_desc):
+#		self.desc = new_desc
 
 
 ### Only Used by Helper Functions ###

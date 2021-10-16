@@ -8,14 +8,15 @@ Oct 15, 2021
 
 Version 3.47 Goals:
 - Eliminate stateful_dict
-- Migrate most helper() functions to methods of active_gs
+
 
 IN-PROC: remove stateful_dict
 	DONE: helper()
 	DONE: migrate score() and end()
 	DONE: help() in cmd_exe()
 	DONE: interpret()
-		
+	DONE: cmd_exe() and class_def()
+	
 
 
 ##########################
@@ -23,6 +24,7 @@ IN-PROC: remove stateful_dict
 ##########################
 
 Version 3.48 Goals
+- Migrate most helper() functions to methods of active_gs
 - sets and gets for rest of class definitions
 
 

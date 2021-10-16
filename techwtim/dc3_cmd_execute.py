@@ -17,7 +17,7 @@ def rand_error():
 		interp_error_key = 'interp_error_' + str(num)
 		return descript_dict[interp_error_key]
 
-def true_one_word(stateful_dict, active_gs, word1, room_obj):
+def true_one_word(active_gs, word1, room_obj):
 		if word1 == 'score':
 				print_score(active_gs)
 		elif word1 == 'version':
@@ -29,7 +29,7 @@ def true_one_word(stateful_dict, active_gs, word1, room_obj):
 		elif word1 == 'inventory':
 				inventory(active_gs)
 		elif word1 == 'look':
-				room_obj.examine(stateful_dict, active_gs)
+				room_obj.examine(active_gs)
 		elif word1 == 'quit':
 				active_gs.set_game_ending('quit') # triggers call end() from wrapper()
 				active_gs.move_dec() # quitting is not deemed to be an actual move
@@ -71,7 +71,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				help(active_gs, word2)
 		elif  case == 'tru_1word':
 				word1 = word_lst[0]
-				true_one_word(stateful_dict, active_gs, word1, room_obj)
+				true_one_word(active_gs, word1, room_obj)
 		elif case == 'error':
 				if word_lst[0] == "random error":
 						output = rand_error()
@@ -81,7 +81,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				active_gs.move_dec()
 		elif case == 'go':
 				room_obj, word1, word2 = word_lst
-				getattr(room_obj, word1)(word2, stateful_dict, active_gs)
+				getattr(room_obj, word1)(word2, active_gs)
 		elif case == '2word':
 				word2_obj, word1 = word_lst
 				if word1 == 'read' and  writing_check(word2_obj, active_gs) == False:
@@ -96,7 +96,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				else:
 ##						getattr(word2_obj, word1)(stateful_dict, active_gs) # for troubleshooting
 						try:
-								getattr(word2_obj, word1)(stateful_dict, active_gs)
+								getattr(word2_obj, word1)(active_gs)
 						except:
 								error_msg = rand_error()
 								active_gs.buffer(error_msg)
@@ -112,7 +112,7 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 						return 
 				else:
 						try:
-								getattr(dirobj_obj, word1)(noun_obj, stateful_dict, active_gs)
+								getattr(dirobj_obj, word1)(noun_obj, active_gs)
 						except:
 								error_msg = rand_error()
 								active_gs.buffer(error_msg)

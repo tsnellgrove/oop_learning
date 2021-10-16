@@ -146,7 +146,7 @@ class Writing(object):
 		def descript_key(self):
 				return self._descript_key
 
-		def get_descript_str(self, stateful_dict, active_gs):
+		def get_descript_str(self, active_gs):
 				try:
 						descript_str = active_gs.get_dynamic_desc_dict(self.descript_key)
 				except:
@@ -156,13 +156,13 @@ class Writing(object):
 		def is_container(self):
 					return hasattr(self, 'contains')
 
-		def	print_contents_str(self, stateful_dict, active_gs):
+		def	print_contents_str(self, active_gs):
 				if self.is_container() and self.open_state == True:
 						container_str = obj_lst_to_str(self.contains)
 						active_gs.buffer("The " + self.full_name + " contains: " + container_str)
 
-		def read(self, stateful_dict, active_gs):
-				descript_str = self.get_descript_str(stateful_dict, active_gs)
+		def read(self, active_gs):
+				descript_str = self.get_descript_str(active_gs)
 				active_gs.buffer(descript_str)
 
 		def __repr__(self):
@@ -180,8 +180,8 @@ class ViewOnly(Writing):
 		def has_writing(self):
 				return (self.writing is not None)
 
-		def examine(self, stateful_dict, active_gs):
-				descript_str = self.get_descript_str(stateful_dict, active_gs)
+		def examine(self, active_gs):
+				descript_str = self.get_descript_str(active_gs)
 				active_gs.buffer(descript_str)
 				if self.has_writing():
 						output = "On the " + self.full_name + " you see: " + self.writing.full_name
@@ -212,14 +212,14 @@ class Room(ViewOnly):
 		def get_door(self, direction):
 				return self.door_paths[direction]
 
-		def examine(self, stateful_dict, active_gs):
-				super(Room, self).examine(stateful_dict, active_gs)
+		def examine(self, active_gs):
+				super(Room, self).examine(active_gs)
 				room_str = obj_lst_to_str(self.room_obj_lst)
 				active_gs.buffer("The room contains: " + room_str)
 				for obj in self.room_obj_lst:
-						obj.print_contents_str(stateful_dict, active_gs)
+						obj.print_contents_str(active_gs)
 
-		def go(self, direction, stateful_dict, active_gs):
+		def go(self, direction, active_gs):
 				room_obj = active_gs.get_room()
 				if not active_gs.is_valid_map_direction(room_obj, direction):
 						num = random.randint(0, 4)
@@ -233,18 +233,18 @@ class Room(ViewOnly):
 						else:
 								next_room_obj = active_gs.get_next_room(room_obj, direction)
 								active_gs.set_room(next_room_obj)
-								next_room_obj.examine(stateful_dict, active_gs)
+								next_room_obj.examine(active_gs)
 				else:
 						next_room_obj = active_gs.get_next_room(room_obj, direction)
 						active_gs.set_room(next_room_obj)
-						next_room_obj.examine(stateful_dict, active_gs)
+						next_room_obj.examine(active_gs)
 
 class Item(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.takable = takable
 
-		def take(self, stateful_dict, active_gs):
+		def take(self, active_gs):
 				room_obj = active_gs.get_room()
 				hand_lst = active_gs.get_hand_lst()
 				backpack_lst = active_gs.get_backpack_lst()
@@ -269,7 +269,7 @@ class Item(ViewOnly):
 												if self in obj.contains:
 														obj.contains.remove(self)
 
-		def drop(self, stateful_dict, active_gs):
+		def drop(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				room_obj = active_gs.get_room()
 				if self not in hand_lst:
@@ -287,14 +287,14 @@ class Door(ViewOnly):
 				self.unlock_state = unlock_state
 				self.key = key
 
-		def examine(self, stateful_dict, active_gs):
-				super(Door, self).examine(stateful_dict, active_gs)
+		def examine(self, active_gs):
+				super(Door, self).examine(active_gs)
 				if self.open_state == False:
 						active_gs.buffer("The " + self.full_name + " is closed.")
 				else:
 						active_gs.buffer("The " + self.full_name + " is open.")
 
-		def unlock(self, stateful_dict, active_gs):
+		def unlock(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self.unlock_state == True:
 						active_gs.buffer("The " + self.full_name + " is already unlocked.")
@@ -306,7 +306,7 @@ class Door(ViewOnly):
 						active_gs.buffer("Unlocked")
 						self.unlock_state = True
 
-		def open(self, stateful_dict, active_gs):
+		def open(self, active_gs):
 				if self.open_state == True:
 						active_gs.buffer("The " + self.full_name + " is already open.")
 				elif self.unlock_state == False:
@@ -315,7 +315,7 @@ class Door(ViewOnly):
 						self.open_state = True
 						active_gs.buffer("Openned")
 
-		def close(self, stateful_dict, active_gs):
+		def close(self, active_gs):
 				if self.open_state == False:
 						active_gs.buffer("The " + self.full_name + " is already closed.")
 				elif self.unlock_state == False: # for Iron Portcullis
@@ -324,7 +324,7 @@ class Door(ViewOnly):
 						self.open_state = False
 						active_gs.buffer("Closed")
 
-		def lock(self, stateful_dict, active_gs):
+		def lock(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self.open_state == True:
 						active_gs.buffer("You can't lock something that's open.")
@@ -342,15 +342,15 @@ class Container(Door):
 				self.takable = takable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
 				self.contains = contains # list of items in the container
 
-		def examine(self, stateful_dict, active_gs):
-				super(Container, self).examine(stateful_dict, active_gs)
-				self.print_contents_str(stateful_dict, active_gs)
+		def examine(self, active_gs):
+				super(Container, self).examine(active_gs)
+				self.print_contents_str(active_gs)
 
-		def open(self, stateful_dict, active_gs):
-				super(Container, self).open(stateful_dict, active_gs)
-				self.print_contents_str(stateful_dict, active_gs)
+		def open(self, active_gs):
+				super(Container, self).open(active_gs)
+				self.print_contents_str(active_gs)
 
-		def put(self, obj, stateful_dict, active_gs):
+		def put(self, obj, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if obj not in hand_lst:
 						active_gs.buffer("You aren't holding the " + obj.full_name)
@@ -368,7 +368,7 @@ class Food(Item):
 				super().__init__(name, full_name, root_name, descript_key, writing, takable)
 				self.eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
 
-		def eat(self, stateful_dict, active_gs):
+		def eat(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if self not in hand_lst:
 						output = "You're not holding the " + self.full_name + " in your hand."
@@ -384,16 +384,16 @@ class Jug(Item):
 				self.open_state = open_state # is the jug uncapped?
 				self.contains = contains # obj in the jug
 
-		def examine(self, stateful_dict, active_gs):
-				super(Jug, self).examine(stateful_dict, active_gs)
-				self.print_contents_str(stateful_dict, active_gs)
+		def examine(self, active_gs):
+				super(Jug, self).examine(active_gs)
+				self.print_contents_str(active_gs)
 
 class Beverage(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.drink_desc_key = drink_descript_key # key to description of drinking the beverage (stored in descript_dict)
 
-		def drink(self, stateful_dict, active_gs):
+		def drink(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
 				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."

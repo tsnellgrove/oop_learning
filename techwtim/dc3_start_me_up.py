@@ -19,7 +19,7 @@ def start_me_up():
 		with open('default_obj_pickle', 'rb') as f:
 				master_obj_lst = pickle.load(f)
 
-		stateful_dict = master_obj_lst[0]
+#		stateful_dict = master_obj_lst[0]
 		active_gs = master_obj_lst[1]
 
 		### Assign Random Secret Code ###
