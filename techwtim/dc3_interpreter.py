@@ -1,6 +1,6 @@
-# program: dark castle v3.46
+# program: dark castle v3.47
 # name: Tom Snellgrove
-# date: Oct 15, 2021
+# date: Oct 16, 2021
 # description: converts player input into game commands
 
 

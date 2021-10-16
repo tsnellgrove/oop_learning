@@ -1,26 +1,5 @@
 To Do List - Dark Castle v3
-Oct 15, 2021
-
-
-##########################
-### VERSION 3.47 START ###
-##########################
-
-Version 3.47 Goals:
-- Eliminate stateful_dict
-
-
-IN-PROC: remove stateful_dict
-	DONE: helper()
-	DONE: score() and end()
-	DONE: help() in cmd_exe()
-	DONE: interpret()
-	DONE: cmd_exe() and class_def()
-	DONE: wrapper() and start_me_up()
-	DONE: mk_default_pkl() and run
-	DONE: update pkl obj index in wrapper() and start_me_up() and interpreter() including noun_handling()
-	TBD: search for all master_obj_lst refs
-	TBD: final search in every module for stateful_dict
+Oct 16, 2021
 
 
 ##########################
