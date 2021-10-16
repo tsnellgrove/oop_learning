@@ -28,7 +28,6 @@ def wrapper(user_input):
 						master_obj_lst = pickle.load(f)
 
 				# object vatiables declared / instantiated from un-pickled list
-				stateful_dict = master_obj_lst[0]
 				active_gs = master_obj_lst[1]
 
 				active_gs.move_inc()
@@ -36,7 +35,7 @@ def wrapper(user_input):
 
 				case, word_lst = interpreter(user_input, master_obj_lst)
 				# pre-action triggers will go here
-				cmd_execute(stateful_dict, active_gs, case, word_lst)
+				cmd_execute(active_gs, case, word_lst)
 				# post-action triggers will go here
 				score(active_gs)
 				if active_gs.get_game_ending() != "tbd":

@@ -63,7 +63,7 @@ def help(active_gs, option):
 				output = descript_dict['help']
 		active_gs.buffer(output)
 
-def cmd_execute(stateful_dict, active_gs, case, word_lst):
+def cmd_execute(active_gs, case, word_lst):
 		room_obj = active_gs.get_room()
 
 		if case == 'help':
@@ -94,14 +94,14 @@ def cmd_execute(stateful_dict, active_gs, case, word_lst):
 				elif (word1 != 'read') and (scope_check(word2_obj, active_gs) == False):
 						active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
 				else:
-##						getattr(word2_obj, word1)(stateful_dict, active_gs) # for troubleshooting
+##						getattr(word2_obj, word1)(active_gs) # for troubleshooting
 						try:
 								getattr(word2_obj, word1)(active_gs)
 						except:
 								error_msg = rand_error()
 								active_gs.buffer(error_msg)
 								active_gs.move_dec()
-##							buffer(stateful_dict, "You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
+##							active_gs.buffer("You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
 				if scope_check(noun_obj, active_gs) == False:
