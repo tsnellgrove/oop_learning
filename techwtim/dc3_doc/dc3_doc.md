@@ -18,10 +18,10 @@ IN-PROC: start migrating helper() functions to GameState methods
 	IN-PROC: migrate scope_check and writing_check to class_def() GameState methods
 		DONE: writing_check moved
 		DONE: scope_check moved
-	TBD: migrate scope_lst() to class_def() GameState method
-	TBD: mark helper() module inactive
-	TBD: comment out helper imports
-	TBD: clean up comments
+	DONE: migrate scope_lst() to class_def() GameState method
+	DONE: mark helper() module inactive
+	DONE: comment out helper imports
+	DONE: clean up comments
 TBD: sets & gets for remaining classes
 	TBD: Item
 	TBD: Door

@@ -8,12 +8,11 @@
 import sys
 from itertools import islice
 from dc3_static_init import * # variables declared in import = global to module
-from dc3_helper import *
 from dc3_class_deff import *
 
 
 def root_word_count(active_gs, word2_txt):
-		scope_lst = scope_list(active_gs)
+		scope_lst = active_gs.scope_lst()
 		root_count = 0
 		obj_name = ""
 		for obj in scope_lst:

@@ -1,8 +1,9 @@
+# INACTIVE AS OF V3.48
+
 # program: dark castle v3.47
 # name: Tom Snellgrove
 # date: Oct 16, 2021
 # description: helper function module
-
 
 ### imports ###
 from dc3_static_init import *
@@ -24,26 +25,26 @@ from dc3_static_init import *
 #						open_cont_obj_lst = open_cont_obj_lst + obj.contains
 #		return open_cont_obj_lst
 
-def scope_list(active_gs):
-		room_obj = active_gs.get_room()
-		hand_lst = active_gs.get_hand_lst()
-		backpack_lst = active_gs.get_backpack_lst()
-		universal_lst = active_gs.get_static_obj('universal')
-		room_obj_lst = room_obj.room_obj_lst
-		features_lst = room_obj.features
-		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
-						+ universal_lst + features_lst)
-		scope_lst.append(room_obj)
-		room_containers = []
-		for obj in scope_lst:
-				if hasattr(obj, 'contains'):
-						room_containers.append(obj)
-		open_cont_obj_lst = []
-		for obj in room_containers:
-				if len(obj.contains) > 0 and obj.open_state == True:
-						open_cont_obj_lst = open_cont_obj_lst + obj.contains
-		scope_lst = scope_lst + open_cont_obj_lst
-		return scope_lst
+#def scope_list(active_gs):
+#		room_obj = active_gs.get_room()
+#		hand_lst = active_gs.get_hand_lst()
+#		backpack_lst = active_gs.get_backpack_lst()
+#		universal_lst = active_gs.get_static_obj('universal')
+#		room_obj_lst = room_obj.room_obj_lst
+#		features_lst = room_obj.features
+#		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+#						+ universal_lst + features_lst)
+#		scope_lst.append(room_obj)
+#		room_containers = []
+#		for obj in scope_lst:
+#				if hasattr(obj, 'contains'):
+#						room_containers.append(obj)
+#		open_cont_obj_lst = []
+#		for obj in room_containers:
+#				if len(obj.contains) > 0 and obj.open_state == True:
+#						open_cont_obj_lst = open_cont_obj_lst + obj.contains
+#		scope_lst = scope_lst + open_cont_obj_lst
+#		return scope_lst
 
 ### Called by Other Modules ###
 #def buffer(stateful_dict, output_str):

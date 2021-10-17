@@ -8,7 +8,6 @@
 import sys
 import random
 from dc3_static_init import * # variables declared in import = global to module
-from dc3_helper import *
 from dc3_class_deff import *
 
 

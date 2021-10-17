@@ -8,7 +8,6 @@
 import sys
 import pickle
 from dc3_static_init import * # variables declared in import = global to module
-from dc3_helper import *
 from dc3_class_deff import *
 from dc3_start_me_up import start_me_up
 from dc3_interpreter import interpreter

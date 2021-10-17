@@ -8,7 +8,6 @@
 import sys
 import random
 from dc3_static_init import *
-from dc3_helper import *
 
 
 # class functions
@@ -148,8 +147,29 @@ class GameState(object):
 				backpack_str = obj_lst_to_str(backpack_obj_lst)
 				self.buffer("In your backpack you have: " + backpack_str)
 
+		def scope_lst(self):
+				room_obj = self.get_room()
+				hand_lst = self.get_hand_lst()
+				backpack_lst = self.get_backpack_lst()
+				universal_lst = self.get_static_obj('universal')
+				room_obj_lst = room_obj.room_obj_lst
+				features_lst = room_obj.features
+				scope_lst = (room_obj_lst + hand_lst + backpack_lst 
+								+ universal_lst + features_lst)
+				scope_lst.append(room_obj)
+				room_containers = []
+				for obj in scope_lst:
+						if hasattr(obj, 'contains'):
+								room_containers.append(obj)
+				open_cont_obj_lst = []
+				for obj in room_containers:
+						if len(obj.contains) > 0 and obj.open_state == True:
+								open_cont_obj_lst = open_cont_obj_lst + obj.contains
+				scope_lst = scope_lst + open_cont_obj_lst
+				return scope_lst
+
 		def writing_check(self, writing):
-				scope_lst = scope_list(self)
+				scope_lst = self.scope_lst()
 				writing_found = False
 				for obj in scope_lst:
 						if obj.writing == writing:
@@ -157,7 +177,7 @@ class GameState(object):
 				return writing_found
 
 		def scope_check(self, obj):
-				scope_lst = scope_list(self)
+				scope_lst = self.scope_lst()
 				return obj in scope_lst
 
 		def __repr__(self):

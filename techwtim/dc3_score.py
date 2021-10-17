@@ -6,8 +6,7 @@
 
 # import statements
 import sys
-from dc3_static_init import * # variables declared in import = global to module
-from dc3_helper import *
+from dc3_static_init import *
 
 
 def score(active_gs):
