@@ -156,6 +156,10 @@ class GameState(object):
 								writing_found = True
 				return writing_found
 
+		def scope_check(self, obj):
+				scope_lst = scope_list(self)
+				return obj in scope_lst
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 

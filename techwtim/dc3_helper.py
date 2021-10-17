@@ -33,6 +33,7 @@ def scope_list(active_gs):
 		features_lst = room_obj.features
 		scope_lst = (room_obj_lst + hand_lst + backpack_lst 
 						+ universal_lst + features_lst)
+		scope_lst.append(room_obj)
 		room_containers = []
 		for obj in scope_lst:
 				if hasattr(obj, 'contains'):
@@ -41,9 +42,7 @@ def scope_list(active_gs):
 		for obj in room_containers:
 				if len(obj.contains) > 0 and obj.open_state == True:
 						open_cont_obj_lst = open_cont_obj_lst + obj.contains
-#		open_cont_obj_lst = open_cont_scan(room_containers)
 		scope_lst = scope_lst + open_cont_obj_lst
-		scope_lst.append(room_obj)
 		return scope_lst
 
 ### Called by Other Modules ###
@@ -64,9 +63,9 @@ def scope_list(active_gs):
 #				lst_str = lst_str[:-2]
 #		return lst_str
 
-def scope_check(obj, active_gs):
-		scope_lst = scope_list(active_gs)
-		return obj in scope_lst
+#def scope_check(obj, active_gs):
+#		scope_lst = scope_list(active_gs)
+#		return obj in scope_lst
 
 #def writing_check(writing, active_gs):
 #		scope_lst = scope_list(active_gs)
