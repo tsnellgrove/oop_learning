@@ -148,6 +148,14 @@ class GameState(object):
 				backpack_str = obj_lst_to_str(backpack_obj_lst)
 				self.buffer("In your backpack you have: " + backpack_str)
 
+		def writing_check(self, writing):
+				scope_lst = scope_list(self)
+				writing_found = False
+				for obj in scope_lst:
+						if obj.writing == writing:
+								writing_found = True
+				return writing_found
+
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
 

@@ -14,8 +14,10 @@ IN-PROC: start migrating helper() functions to GameState methods
 	DONE: print_score()
 	DONE: move obj_lst_to_str() function to class_def() module
 	DONE: inventory()
-	TBD: integrate open_cont_scan() into scope_lst() {still in helper()}
-	TBD: migrate scope_check and writing_check to class_def() GameState methods
+	DONE: integrate open_cont_scan() into scope_lst() {still in helper()}
+	IN-PROC: migrate scope_check and writing_check to class_def() GameState methods
+		DONE: writing_check moved
+		TBD: scope_check moved
 	TBD: migrate scope_lst() to class_def() GameState method
 TBD: sets & gets for remaining classes
 	TBD: Item

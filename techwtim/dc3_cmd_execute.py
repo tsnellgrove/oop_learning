@@ -84,7 +84,7 @@ def cmd_execute(active_gs, case, word_lst):
 				getattr(room_obj, word1)(word2, active_gs)
 		elif case == '2word':
 				word2_obj, word1 = word_lst
-				if word1 == 'read' and  writing_check(word2_obj, active_gs) == False:
+				if word1 == 'read' and  active_gs.writing_check(word2_obj) == False:
 						if scope_check(word2_obj, active_gs) == False:
 								active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
 								return

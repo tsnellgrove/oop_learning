@@ -17,12 +17,12 @@ from dc3_static_init import *
 
 
 ### Only Used by Helper Functions ###
-def open_cont_scan(room_containers):
-		open_cont_obj_lst = []
-		for obj in room_containers:
-				if len(obj.contains) > 0 and obj.open_state == True:
-						open_cont_obj_lst = open_cont_obj_lst + obj.contains
-		return open_cont_obj_lst
+#def open_cont_scan(room_containers):
+#		open_cont_obj_lst = []
+#		for obj in room_containers:
+#				if len(obj.contains) > 0 and obj.open_state == True:
+#						open_cont_obj_lst = open_cont_obj_lst + obj.contains
+#		return open_cont_obj_lst
 
 def scope_list(active_gs):
 		room_obj = active_gs.get_room()
@@ -37,7 +37,11 @@ def scope_list(active_gs):
 		for obj in scope_lst:
 				if hasattr(obj, 'contains'):
 						room_containers.append(obj)
-		open_cont_obj_lst = open_cont_scan(room_containers)
+		open_cont_obj_lst = []
+		for obj in room_containers:
+				if len(obj.contains) > 0 and obj.open_state == True:
+						open_cont_obj_lst = open_cont_obj_lst + obj.contains
+#		open_cont_obj_lst = open_cont_scan(room_containers)
 		scope_lst = scope_lst + open_cont_obj_lst
 		scope_lst.append(room_obj)
 		return scope_lst
@@ -64,13 +68,13 @@ def scope_check(obj, active_gs):
 		scope_lst = scope_list(active_gs)
 		return obj in scope_lst
 
-def writing_check(writing, active_gs):
-		scope_lst = scope_list(active_gs)
-		writing_found = False
-		for obj in scope_lst:
-				if obj.writing == writing:
-						writing_found = True
-		return writing_found
+#def writing_check(writing, active_gs):
+#		scope_lst = scope_list(active_gs)
+#		writing_found = False
+#		for obj in scope_lst:
+#				if obj.writing == writing:
+#						writing_found = True
+#		return writing_found
 
 #def print_score(active_gs):
 #		output1 = ("Your score is now " + str(active_gs.get_score()))
