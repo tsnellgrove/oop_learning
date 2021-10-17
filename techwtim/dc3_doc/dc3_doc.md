@@ -10,8 +10,8 @@ Version 3.48 Goals
 - Migrate most helper() functions to methods of active_gs
 - sets and gets for rest of class definitions
 
-TBD: start migrating helper() functions to GameState methods
-	TBD: print_score()
+IN-PROC: start migrating helper() functions to GameState methods
+	DONE: print_score()
 	TBD move obj_lst_to_str() function to class_def() module
 	TBD: inventory()
 	TBD: integrate open_cont_scan() into scope_lst() {still in helper()}

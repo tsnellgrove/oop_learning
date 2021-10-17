@@ -29,7 +29,7 @@ def end(active_gs):
 		elif game_ending == 'won':
 				active_gs.buffer("You have won!")
 		active_gs.buffer("Your adventure ended after " + str(moves) + " moves.")
-		print_score(active_gs)
+		active_gs.print_score()
 ##		buffer("Your title is: " + title)
 		if game_ending == 'won':
 				active_gs.buffer(descript_dict['credits'])

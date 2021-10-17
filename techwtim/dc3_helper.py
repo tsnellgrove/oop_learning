@@ -72,10 +72,10 @@ def writing_check(writing, active_gs):
 						writing_found = True
 		return writing_found
 
-def print_score(active_gs):
-		output1 = ("Your score is now " + str(active_gs.get_score()))
-		output2 = (" out of " + str(static_dict['max_score']))
-		active_gs.buffer(output1 + output2)
+#def print_score(active_gs):
+#		output1 = ("Your score is now " + str(active_gs.get_score()))
+#		output2 = (" out of " + str(static_dict['max_score']))
+#		active_gs.buffer(output1 + output2)
 
 def inventory(active_gs):
 		hand_obj_lst = active_gs.get_hand_lst()

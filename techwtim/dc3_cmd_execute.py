@@ -19,7 +19,7 @@ def rand_error():
 
 def true_one_word(active_gs, word1, room_obj):
 		if word1 == 'score':
-				print_score(active_gs)
+				active_gs.print_score()
 		elif word1 == 'version':
 				active_gs.buffer(static_dict['version'])
 		elif word1 == 'help':

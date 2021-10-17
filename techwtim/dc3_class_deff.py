@@ -58,6 +58,11 @@ class GameState(object):
 		def get_score(self):
 				return self._state_dict['score']
 
+		def print_score(self):
+				output1 = ("Your score is now " + str(self.get_score()))
+				output2 = (" out of " + str(static_dict['max_score']))
+				self.buffer(output1 + output2)
+
 		def move_inc(self):
 				self._state_dict['move_counter'] += 1
 
