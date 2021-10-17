@@ -12,8 +12,8 @@ Version 3.48 Goals
 
 IN-PROC: start migrating helper() functions to GameState methods
 	DONE: print_score()
-	TBD move obj_lst_to_str() function to class_def() module
-	TBD: inventory()
+	DONE: move obj_lst_to_str() function to class_def() module
+	DONE: inventory()
 	TBD: integrate open_cont_scan() into scope_lst() {still in helper()}
 	TBD: migrate scope_check and writing_check to class_def() GameState methods
 	TBD: migrate scope_lst() to class_def() GameState method
@@ -33,12 +33,12 @@ TBD: sets & gets for remaining classes
 Version 3.49 Goals
 - code improvement tweaks
 
+TBD: re-order and consolidate 3.50+ plans and ideas
+TBD: search "somedays" for others
 TBD: elim takable atribute
 TBD: obj-not-in-hand error in cmd_exe()
 TBD: Better errors for "read note" and "get water"
 TBD: fix dup Room 'go' code for doorways and passages (?)
-TBD: search "somedays" for others
-TBD: re-order and consolidate 3.50+ plans and ideas
 
 
 	

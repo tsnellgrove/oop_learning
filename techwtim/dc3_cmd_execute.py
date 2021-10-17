@@ -27,7 +27,7 @@ def true_one_word(active_gs, word1, room_obj):
 		elif word1 == 'credits':
 				active_gs.buffer(descript_dict['credits'])
 		elif word1 == 'inventory':
-				inventory(active_gs)
+				active_gs.inventory()
 		elif word1 == 'look':
 				room_obj.examine(active_gs)
 		elif word1 == 'quit':

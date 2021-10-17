@@ -48,17 +48,17 @@ def scope_list(active_gs):
 #		out_buff = out_buff + "\n" + output_str + "\n"
 #		stateful_dict['out_buff'] = out_buff
 
-def obj_lst_to_str(obj_lst):
-		if not isinstance(obj_lst, list):
-				raise ValueError("is not a list")
-		elif len(obj_lst) == 0:
-				lst_str = "nothing"
-		else:
-				lst_str = ""
-				for obj in obj_lst:
-						lst_str = lst_str + obj.full_name + ", "
-				lst_str = lst_str[:-2]
-		return lst_str
+#def obj_lst_to_str(obj_lst):
+#		if not isinstance(obj_lst, list):
+#				raise ValueError("is not a list")
+#		elif len(obj_lst) == 0:
+#				lst_str = "nothing"
+#		else:
+#				lst_str = ""
+#				for obj in obj_lst:
+#						lst_str = lst_str + obj.full_name + ", "
+#				lst_str = lst_str[:-2]
+#		return lst_str
 
 def scope_check(obj, active_gs):
 		scope_lst = scope_list(active_gs)
@@ -77,14 +77,14 @@ def writing_check(writing, active_gs):
 #		output2 = (" out of " + str(static_dict['max_score']))
 #		active_gs.buffer(output1 + output2)
 
-def inventory(active_gs):
-		hand_obj_lst = active_gs.get_hand_lst()
-		hand_str = obj_lst_to_str(hand_obj_lst)
-		active_gs.buffer("In your hand you are holding: " + hand_str)
+#def inventory(active_gs):
+#		hand_obj_lst = active_gs.get_hand_lst()
+#		hand_str = obj_lst_to_str(hand_obj_lst)
+#		active_gs.buffer("In your hand you are holding: " + hand_str)
 
-		backpack_obj_lst = active_gs.get_backpack_lst()
-		backpack_str = obj_lst_to_str(backpack_obj_lst)
-		active_gs.buffer("In your backpack you have: " + backpack_str)
+#		backpack_obj_lst = active_gs.get_backpack_lst()
+#		backpack_str = obj_lst_to_str(backpack_obj_lst)
+#		active_gs.buffer("In your backpack you have: " + backpack_str)
 
 #def move_dec(stateful_dict): # was originally in interp_helper
 #		stateful_dict['move_counter'] = stateful_dict['move_counter'] - 1

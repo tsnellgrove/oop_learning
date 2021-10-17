@@ -11,6 +11,20 @@ from dc3_static_init import *
 from dc3_helper import *
 
 
+# class functions
+def obj_lst_to_str(obj_lst):
+		if not isinstance(obj_lst, list):
+				raise ValueError("is not a list")
+		elif len(obj_lst) == 0:
+				lst_str = "nothing"
+		else:
+				lst_str = ""
+				for obj in obj_lst:
+						lst_str = lst_str + obj.full_name + ", "
+				lst_str = lst_str[:-2]
+		return lst_str
+
+
 # classes
 class GameState(object):
 		def __init__(self, name, dynamic_desc_dict, map_dict, points_earned_dict, static_obj_dict, state_dict):
@@ -124,6 +138,15 @@ class GameState(object):
 
 		def reset_buff(self):
 				self._state_dict['out_buff'] = ""
+
+		def inventory(self):
+				hand_obj_lst = self.get_hand_lst()
+				hand_str = obj_lst_to_str(hand_obj_lst)
+				self.buffer("In your hand you are holding: " + hand_str)
+
+				backpack_obj_lst = self.get_backpack_lst()
+				backpack_str = obj_lst_to_str(backpack_obj_lst)
+				self.buffer("In your backpack you have: " + backpack_str)
 
 		def __repr__(self):
 				return f'Object { self._name } is of class { type(self).__name__ } '
