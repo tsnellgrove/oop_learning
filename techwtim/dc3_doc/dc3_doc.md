@@ -22,8 +22,9 @@ IN-PROC: start migrating helper() functions to GameState methods
 	DONE: mark helper() module inactive
 	DONE: comment out helper imports
 	DONE: clean up comments
-TBD: sets & gets for remaining classes
-	TBD: Item
+IN-PROC: sets & gets for remaining classes
+	IN-PROC: Item
+		IN-PROC: troubleshooting 'takable'
 	TBD: Door
 	TBD: Container
 	TBD: Food

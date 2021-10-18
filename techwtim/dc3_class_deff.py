@@ -302,7 +302,11 @@ class Room(ViewOnly):
 class Item(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, takable):
 				super().__init__(name, full_name, root_name, descript_key, writing)
-				self.takable = takable
+				self._takable = takable
+
+		@property
+		def takable(self):
+				return self._takable
 
 		def take(self, active_gs):
 				room_obj = active_gs.get_room()
