@@ -300,14 +300,8 @@ class Room(ViewOnly):
 						next_room_obj.examine(active_gs)
 
 class Item(ViewOnly):
-#		def __init__(self, name, full_name, root_name, descript_key, writing, takable):
 		def __init__(self, name, full_name, root_name, descript_key, writing):
 				super().__init__(name, full_name, root_name, descript_key, writing)
-#				self._takable = takable
-
-#		@property
-#		def takable(self):
-#				return self._takable
 
 		def take(self, active_gs):
 				room_obj = active_gs.get_room()
@@ -316,8 +310,6 @@ class Item(ViewOnly):
 				room_obj_lst = room_obj.room_obj_lst
 				if self in hand_lst:
 						active_gs.buffer("You're already holding the " + self.full_name)
-#				elif self.takable == False:
-#						active_gs.buffer("You can't take the " + self.full_name) # eliminate Takable attribute?
 				else:
 						if len(hand_lst) > 0: # if hand not empty move item to backpack
 								active_gs.backpack_lst_append_item(hand_lst[0])
@@ -429,9 +421,7 @@ class Container(Door):
 						active_gs.buffer("Done")
 						
 class Food(Item):
-#		def __init__(self, name, full_name, root_name, descript_key, writing, takable, eat_desc_key):
 		def __init__(self, name, full_name, root_name, descript_key, writing, eat_desc_key):
-#				super().__init__(name, full_name, root_name, descript_key, writing, takable)
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
 
@@ -446,9 +436,7 @@ class Food(Item):
 						active_gs.buffer(output)
 
 class Jug(Item):
-#		def __init__(self, name, full_name, root_name, descript_key, writing, takable, open_state, contains):
 		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, contains):
-#				super().__init__(name, full_name, root_name, descript_key, writing, takable)
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.open_state = open_state # is the jug uncapped?
 				self.contains = contains # obj in the jug

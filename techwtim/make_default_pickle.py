@@ -14,7 +14,6 @@ from dc3_class_deff import *
 rusty_lettering = Writing('rusty_lettering', 'Rusty Lettering', "lettering", 'rusty_lettering')
 dwarven_runes = Writing('dwarven_runes', 'Dwarven Runes', "runes", 'dwarven_runes')
 messy_handwriting = Writing('messy_handwriting', 'Messy Handwriting', 'handwriting', 'messy_handwriting')
-#small_print = Writing('small_print', 'Small Print', 'print', 'small_print')
 small_printing = Writing('small_printing', 'Small Printing', 'printing', 'small_printing')
 illuminated_letters = Writing('illuminated_letters', 'Illuminated Letters', 'letters', 'illuminated_letters')
 calligraphy = Writing('calligraphy', 'Calligraphy', 'calligraphy', 'calligraphy')
@@ -31,15 +30,6 @@ alcove = ViewOnly('alcove', 'Alcove', 'alcove', 'alcove', None)
 stone_coffer = ViewOnly('stone_coffer', 'Stone Coffer', 'coffer', 'stone_coffer', None)
 family_tree = ViewOnly('family_tree', 'Family Tree', 'tree', 'family_tree', None)
 
-#rusty_key = Item('rusty_key', 'Rusty Key', "key", 'rusty_key', None, True)
-#shiny_sword = Item('shiny_sword', 'Shiny Sword', "sword", 'shiny_sword', dwarven_runes, True)
-#brass_key = Item('brass_key', 'brass key', "key", 'brass_key', None, True) # test object
-#bubbly_potion = Item('bubbly_potion', 'bubbly potion', "potion", 'bubbly_potion', None, True) # test object
-#torn_note = Item('torn_note', 'Torn Note', 'note', 'torn_note', messy_handwriting, True)
-#grimy_axe = Item('grimy_axe', 'Grimy Axe', 'axe', 'grimy_axe', small_printing, True)
-#silver_key = Item('silver_key', 'Silver Key', 'key', 'silver_key', None, True)
-#kinging_scroll = Item('kinging_scroll', 'Kinging Scroll', 'scroll', 'kinging_scroll', illuminated_letters, True)
-
 rusty_key = Item('rusty_key', 'Rusty Key', "key", 'rusty_key', None)
 shiny_sword = Item('shiny_sword', 'Shiny Sword', "sword", 'shiny_sword', dwarven_runes)
 brass_key = Item('brass_key', 'brass key', "key", 'brass_key', None) # test object
@@ -48,9 +38,6 @@ torn_note = Item('torn_note', 'Torn Note', 'note', 'torn_note', messy_handwritin
 grimy_axe = Item('grimy_axe', 'Grimy Axe', 'axe', 'grimy_axe', small_printing)
 silver_key = Item('silver_key', 'Silver Key', 'key', 'silver_key', None)
 kinging_scroll = Item('kinging_scroll', 'Kinging Scroll', 'scroll', 'kinging_scroll', illuminated_letters)
-
-#cheese_wedge = Food('cheese_wedge', 'Cheese Wedge', 'cheese', 'cheese_wedge', None, True, 'cheese_eat')
-#stale_biscuits = Food('stale_biscuits', 'Stale Biscuits', 'biscuits', 'stale_biscuits', trademark, True, 'biscuit_eat')
 
 cheese_wedge = Food('cheese_wedge', 'Cheese Wedge', 'cheese', 'cheese_wedge', None, 'cheese_eat')
 stale_biscuits = Food('stale_biscuits', 'Stale Biscuits', 'biscuits', 'stale_biscuits', trademark, 'biscuit_eat')
@@ -62,8 +49,6 @@ wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest'
 crystal_box = Container('crystal_box', 'Crystal Box', 'box', 'crystal_box', calligraphy,
 				False, False, silver_key, False, [kinging_scroll])
 ## giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])
-
-#glass_bottle = Jug('glass_bottle', 'Glass Bottle', 'bottle', 'glass_bottle', None, True, True, [fresh_water])
 
 glass_bottle = Jug('glass_bottle', 'Glass Bottle', 'bottle', 'glass_bottle', None, True, [fresh_water])
 
