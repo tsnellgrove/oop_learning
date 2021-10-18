@@ -24,7 +24,9 @@ IN-PROC: start migrating helper() functions to GameState methods
 	DONE: clean up comments
 IN-PROC: sets & gets for remaining classes
 	IN-PROC: Item
-		IN-PROC: troubleshooting 'takable'
+		DONE: troubleshooting 'takable'
+		DONE: takable eliminated
+		TBD: clean up comments
 	TBD: Door
 	TBD: Container
 	TBD: Food
