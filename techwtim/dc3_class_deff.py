@@ -340,9 +340,13 @@ class Item(ViewOnly):
 class Door(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key):
 				super().__init__(name, full_name, root_name, descript_key, writing)
-				self.open_state = open_state
+				self._open_state = open_state
 				self.unlock_state = unlock_state
 				self.key = key
+
+		@property
+		def open_state(self):
+				return self._open_state
 
 		def examine(self, active_gs):
 				super(Door, self).examine(active_gs)
