@@ -28,7 +28,9 @@ IN-PROC: sets & gets for remaining classes
 		DONE: takable eliminated
 		DONE: clean-up comments
 	IN-PROC: Door
-		IN-PROC: troubleshooting (still working on it)
+		DONE: troubleshooting (still working on it)
+		NOTE: solved it!! After each class def change I need to re-run mk_default_pkl() !!!
+		TBD: rest of Door
 	TBD: Container
 	TBD: Food
 	TBD: Jug
