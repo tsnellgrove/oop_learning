@@ -28,7 +28,7 @@ IN-PROC: sets & gets for remaining classes
 		DONE: takable eliminated
 		DONE: clean-up comments
 	IN-PROC: Door
-		IN-PROC: troubleshooting
+		IN-PROC: troubleshooting (still working on it)
 	TBD: Container
 	TBD: Food
 	TBD: Jug
