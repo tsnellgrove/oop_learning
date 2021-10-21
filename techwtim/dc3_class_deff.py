@@ -341,12 +341,32 @@ class Door(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self._open_state = open_state
-				self.unlock_state = unlock_state
-				self.key = key
+				self._unlock_state = unlock_state
+				self._key = key
+
+		@property
+		def unlock_state(self):
+				return self._unlock_state
+
+		@unlock_state.setter
+		def unlock_state(self, new_state):
+				self._unlock_state = new_state
 
 		@property
 		def open_state(self):
 				return self._open_state
+
+		@open_state.setter
+		def open_state(self, new_state):
+				self._open_state = new_state
+
+		@property
+		def key(self):
+				return self._key
+
+		@key.setter
+		def key(self, new_key):
+				self._key = key
 
 		def examine(self, active_gs):
 				super(Door, self).examine(active_gs)

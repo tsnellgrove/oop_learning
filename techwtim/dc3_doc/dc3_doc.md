@@ -30,7 +30,9 @@ IN-PROC: sets & gets for remaining classes
 	IN-PROC: Door
 		DONE: troubleshooting (still working on it)
 		NOTE: solved it!! After each class def change I need to re-run mk_default_pkl() !!!
-		TBD: rest of Door
+		DONE: open_state
+		DONE: unlock_state
+		DONE: key
 	TBD: Container
 	TBD: Food
 	TBD: Jug
