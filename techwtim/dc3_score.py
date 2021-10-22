@@ -1,6 +1,6 @@
-# program: dark castle v3.47
+# program: dark castle v3.48
 # name: Tom Snellgrove
-# date: Oct 16, 2021
+# date: Oct 22, 2021
 # description: updates score based on post-command execution game state
 
 

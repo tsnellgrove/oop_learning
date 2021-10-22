@@ -1,48 +1,5 @@
 To Do List - Dark Castle v3
-Oct 16, 2021
-
-
-##########################
-### VERSION 3.48 START ###
-##########################
-
-Version 3.48 Goals
-- Migrate most helper() functions to methods of active_gs
-- sets and gets for rest of class definitions
-
-IN-PROC: start migrating helper() functions to GameState methods
-	DONE: print_score()
-	DONE: move obj_lst_to_str() function to class_def() module
-	DONE: inventory()
-	DONE: integrate open_cont_scan() into scope_lst() {still in helper()}
-	DONE: migrate scope_check and writing_check to class_def() GameState methods
-		DONE: writing_check moved
-		DONE: scope_check moved
-	DONE: migrate scope_lst() to class_def() GameState method
-	DONE: mark helper() module inactive
-	DONE: comment out helper imports
-	DONE: clean up comments
-IN-PROC: sets & gets for remaining classes
-	DONE: Item
-		DONE: troubleshooting 'takable'
-		DONE: takable eliminated
-		DONE: clean-up comments
-	DONE: Door
-		DONE: troubleshooting (still working on it)
-		NOTE: solved it!! After each class def change I need to re-run mk_default_pkl() !!!
-		DONE: open_state
-		DONE: unlock_state
-		DONE: key
-	DONE: Container
-		DONE: Eliminate takable
-		DONE: clean up contents
-		DONE: Contains
-			DONE: @property getter
-			DONE: investigate room_obj append & remove
-			DONE: investigate contains append & remove
-	TBD: Food
-	TBD: Jug
-	TBD: Beverage
+Oct 22, 2021
 
 
 ##########################
@@ -54,7 +11,6 @@ Version 3.49 Goals
 
 TBD: re-order and consolidate 3.50+ plans and ideas
 TBD: search "somedays" for others
-TBD: elim takable atribute
 TBD: obj-not-in-hand error in cmd_exe()
 TBD: Better errors for "read note" and "get water"
 TBD: fix dup Room 'go' code for doorways and passages (?)

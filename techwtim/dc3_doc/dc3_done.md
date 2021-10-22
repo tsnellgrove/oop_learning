@@ -1,5 +1,5 @@
 Done List - Dark Castle v3
-Oct 16, 2021
+Oct 22, 2021
 
 
 
@@ -1048,7 +1048,6 @@ IN-PROC: 'out_buff' & buffer()
 Version 3.47 Goals:
 - Eliminate stateful_dict
 
-
 DONE: remove stateful_dict
 	DONE: helper()
 	DONE: score() and end()
@@ -1062,3 +1061,44 @@ DONE: remove stateful_dict
 	DONE: final search in every module for stateful_dict
 
 
+##########################
+### VERSION 3.48 START ###
+##########################
+
+Version 3.48 Goals
+- Migrate most helper() functions to methods of active_gs
+- sets and gets for rest of class definitions
+
+IN-PROC: start migrating helper() functions to GameState methods
+	DONE: print_score()
+	DONE: move obj_lst_to_str() function to class_def() module
+	DONE: inventory()
+	DONE: integrate open_cont_scan() into scope_lst() {still in helper()}
+	DONE: migrate scope_check and writing_check to class_def() GameState methods
+		DONE: writing_check moved
+		DONE: scope_check moved
+	DONE: migrate scope_lst() to class_def() GameState method
+	DONE: mark helper() module inactive
+	DONE: comment out helper imports
+	DONE: clean up comments
+IN-PROC: sets & gets for remaining classes
+	DONE: Item
+		DONE: troubleshooting 'takable'
+		DONE: takable eliminated
+		DONE: clean-up comments
+	DONE: Door
+		DONE: troubleshooting (still working on it)
+		NOTE: solved it!! After each class def change I need to re-run mk_default_pkl() !!!
+		DONE: open_state
+		DONE: unlock_state
+		DONE: key
+	DONE: Container
+		DONE: Eliminate takable
+		DONE: clean up contents
+		DONE: Contains
+			DONE: @property getter
+			DONE: investigate room_obj append & remove
+			DONE: investigate contains append & remove
+	DONE: Food
+	DONE: Jug
+	DONE: Beverage

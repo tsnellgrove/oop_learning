@@ -1,6 +1,6 @@
-# program: dark castle v3.47
+# program: dark castle v3.48
 # name: Tom Snellgrove
-# date: Oct 16, 2021
+# date: Oct 22, 2021
 # description: class deffinition module
 
 
@@ -462,7 +462,11 @@ class Container(Door):
 class Food(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, eat_desc_key):
 				super().__init__(name, full_name, root_name, descript_key, writing)
-				self.eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
+				self._eat_desc_key = eat_desc_key # keys to description of eating food (stored in descript_dict)
+
+		@property
+		def eat_desc_key(self):
+				return self._eat_desc_key
 
 		def eat(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
@@ -478,7 +482,11 @@ class Jug(Item):
 		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, contains):
 				super().__init__(name, full_name, root_name, descript_key, writing)
 				self.open_state = open_state # is the jug uncapped?
-				self.contains = contains # obj in the jug
+				self._contains = contains # obj in the jug
+
+		@property
+		def contains(self):
+				return self._contains
 
 		def examine(self, active_gs):
 				super(Jug, self).examine(active_gs)
@@ -487,7 +495,11 @@ class Jug(Item):
 class Beverage(ViewOnly):
 		def __init__(self, name, full_name, root_name, descript_key, writing, drink_descript_key):
 				super().__init__(name, full_name, root_name, descript_key, writing)
-				self.drink_desc_key = drink_descript_key # key to description of drinking the beverage (stored in descript_dict)
+				self._drink_desc_key = drink_descript_key # key to description of drinking the beverage (stored in descript_dict)
+
+		@property
+		def drink_desc_key(self):
+				return self._drink_desc_key
 
 		def drink(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
