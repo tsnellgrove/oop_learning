@@ -27,7 +27,7 @@ IN-PROC: sets & gets for remaining classes
 		DONE: troubleshooting 'takable'
 		DONE: takable eliminated
 		DONE: clean-up comments
-	IN-PROC: Door
+	DONE: Door
 		DONE: troubleshooting (still working on it)
 		NOTE: solved it!! After each class def change I need to re-run mk_default_pkl() !!!
 		DONE: open_state
@@ -37,8 +37,8 @@ IN-PROC: sets & gets for remaining classes
 		DONE: Eliminate takable
 		DONE: clean up contents
 		TBD: Contains
-			TBD: @property getter
-			TBD: investigate room_obj append & remove
+			DONE: @property getter
+			DONE: investigate room_obj append & remove
 			TBD: investigate contains append & remove
 	TBD: Food
 	TBD: Jug

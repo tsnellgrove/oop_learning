@@ -262,6 +262,12 @@ class Room(ViewOnly):
 		def room_obj_lst(self):
 				return self._room_obj_lst
 
+		def room_obj_lst_append(self, item):
+				self._room_obj_lst.append(item)
+
+		def room_obj_lst_remove(self, item):
+				self._room_obj_lst.remove(item)
+
 		@property
 		def door_paths(self):
 				return self._door_paths
@@ -319,7 +325,7 @@ class Item(ViewOnly):
 						if self in backpack_lst: # if taken from backpack, remove from backpack
 								active_gs.backpack_lst_remove_item(self)					
 						elif self in room_obj_lst: # if taken from room, remove from room
-								room_obj.room_obj_lst.remove(self)
+								room_obj.room_obj_lst_remove(self)
 						else:
 								for obj in room_obj_lst: # else remove item from container it's in
 										if obj.is_container():
@@ -334,7 +340,7 @@ class Item(ViewOnly):
 						active_gs.buffer(output)
 				else:
 						active_gs.hand_lst_remove_item(self)
-						room_obj.room_obj_lst.append(self)
+						room_obj.room_obj_lst_append(self)
 						active_gs.buffer("Dropped")
 
 class Door(ViewOnly):
@@ -420,7 +426,11 @@ class Door(ViewOnly):
 class Container(Door):
 		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key, contains):
 				super().__init__(name, full_name, root_name, descript_key, writing, open_state, unlock_state, key)
-				self.contains = contains # list of items in the container
+				self._contains = contains # list of items in the container
+
+		@property
+		def contains(self):
+				return self._contains
 
 		def examine(self, active_gs):
 				super(Container, self).examine(active_gs)
