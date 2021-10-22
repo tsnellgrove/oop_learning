@@ -418,9 +418,10 @@ class Door(ViewOnly):
 						self.unlock_state = False
 
 class Container(Door):
-		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key, takable, contains):
+		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key, contains):
+#		def __init__(self, name, full_name, root_name, descript_key, writing, open_state, unlock_state, key, takable, contains):
 				super().__init__(name, full_name, root_name, descript_key, writing, open_state, unlock_state, key)
-				self.takable = takable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
+#				self.takable = takable # can the container be taken? Note: As Room class is currently coded, containers CANNOT be taken
 				self.contains = contains # list of items in the container
 
 		def examine(self, active_gs):
