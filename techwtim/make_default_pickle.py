@@ -44,12 +44,8 @@ stale_biscuits = Food('stale_biscuits', 'Stale Biscuits', 'biscuits', 'stale_bis
 
 fresh_water = Beverage('fresh_water', 'Fresh Water', 'water', 'fresh_water', None, 'water_drink')
 
-#wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
-#				False, False, brass_key, False, [bubbly_potion]) # test object
 wooden_chest = Container('wooden_chest', 'wooden chest', "chest", 'wooden_chest', None,
 				False, False, brass_key, [bubbly_potion]) # test object
-#crystal_box = Container('crystal_box', 'Crystal Box', 'box', 'crystal_box', calligraphy,
-#				False, False, silver_key, False, [kinging_scroll])
 crystal_box = Container('crystal_box', 'Crystal Box', 'box', 'crystal_box', calligraphy,
 				False, False, silver_key, [kinging_scroll])
 ## giftbox = Container('giftbox', 'A pretty gift box', None, False, True, 'none', True, [necklace])

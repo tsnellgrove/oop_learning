@@ -35,7 +35,7 @@ IN-PROC: sets & gets for remaining classes
 		DONE: key
 	TBD: Container
 		DONE: Eliminate takable
-		TBD: clean up contents
+		DONE: clean up contents
 		TBD: Contains
 			TBD: @property getter
 			TBD: investigate room_obj append & remove
