@@ -330,7 +330,7 @@ class Item(ViewOnly):
 								for obj in room_obj_lst: # else remove item from container it's in
 										if obj.is_container():
 												if self in obj.contains:
-														obj.contains.remove(self)
+														obj.contains_remove(self)
 
 		def drop(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
@@ -432,6 +432,12 @@ class Container(Door):
 		def contains(self):
 				return self._contains
 
+		def contains_append(self, item):
+				self._contains.append(item)
+
+		def contains_remove(self, item):
+				self._contains.remove(item)
+
 		def examine(self, active_gs):
 				super(Container, self).examine(active_gs)
 				self.print_contents_str(active_gs)
@@ -450,7 +456,7 @@ class Container(Door):
 						active_gs.buffer("You can't put a container in a container")
 				else:
 						active_gs.hand_lst_remove_item(obj)
-						self.contains.append(obj)
+						self.contains_append(obj)
 						active_gs.buffer("Done")
 						
 class Food(Item):

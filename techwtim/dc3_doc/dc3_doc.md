@@ -33,13 +33,13 @@ IN-PROC: sets & gets for remaining classes
 		DONE: open_state
 		DONE: unlock_state
 		DONE: key
-	TBD: Container
+	DONE: Container
 		DONE: Eliminate takable
 		DONE: clean up contents
-		TBD: Contains
+		DONE: Contains
 			DONE: @property getter
 			DONE: investigate room_obj append & remove
-			TBD: investigate contains append & remove
+			DONE: investigate contains append & remove
 	TBD: Food
 	TBD: Jug
 	TBD: Beverage
