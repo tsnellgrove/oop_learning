@@ -2,6 +2,15 @@ To Do List - Dark Castle v3
 Oct 22, 2021
 
 
+*** How to Add Objects ***
+1) If needed, create Class and methods in dc3_classes
+2) Instantiate object in mk_default_pkl()
+3) Add object to room in mk_default_pkl()
+4) Add object to master_obj_lst in mk_default_pkl()
+5) Run mk_default_pkl()
+6) Add object description in dc3_static_init
+
+
 ##########################
 ### VERSION 3.49 START ###
 ##########################
@@ -9,12 +18,17 @@ Oct 22, 2021
 Version 3.49 Goals
 - code improvement tweaks
 
-TBD: re-order and consolidate 3.50+ plans and ideas
-TBD: search "somedays" for others
+DONE: re-order and consolidate 3.50+ plans and ideas
+DONE: search "somedays" for others
+DONE: Is the Item class worth having? (decision = 'yes')
 TBD: obj-not-in-hand error in cmd_exe()
-TBD: Better errors for "read note" and "get water"
+TBD: Better errors for "read note" and "get water" and "examine lettering"
+	- maybe a 'special errors' funciton in cmd_exe() ??
 TBD: fix dup Room 'go' code for doorways and passages (?)
-
+TBD: clean up use of "import *"
+TBD: rename modules
+TBD: Normalize scope_check() for objects of class Writing????
+TBD: map ojbect attributes, methods, and inheritance visually
 
 	
 ##########################
@@ -32,7 +46,55 @@ Version 3.50 Goals
 - Provides a timer based trigger that can be inspected each turn (not directly based on Burt actions)
 
 
+
+*** NOTES ***
+
+PRINCIPLES:
+- Would like Room Events to be somehow linked to the Room obj so that you can inspect obj and know there will be a CE
+- field in each object for associated conditional event
+- Conditional Events could be warnings - not hard stops (e.g. 'eat biscuits')
+- In theory could have order of operations considerations:
+- (e.g. what if a monster causes darkness but you have a sword that glows around monsters?)
+- I don't think these will be a common problem that I need to code for - but worth thinking about
+- presently my creatures are not mobile but maybe someday?
+- What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
+- For machines, the 'trigger' just sets the value... the machine holds the logic and takes the action
+
+DONE: How should modules be inter-related
+	 - minimally - there should be a clear flow with each sizable atomic bit of work having its own module
+DONE: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
+	IDEA: Objects only aware of what is "inside" of them. Examples:
+		1) A room knows about the door on its north wall but not the room beyond the door.
+		2) An item knows what is written on it but the "writing" knows nothing about the object it is written on
+		3) A container knows its contents but items know nothing about the container they are in
+TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
+	Perhaps the key is to make creatures behave as state machines... 
+	each has conditions under which they will guard, attack, gift, etc..
+	Also room 'events' with conditionals?
+	IDEA: avoid external triggers - create classes / state-machines
+		Examples: conditional_cutscenes (moat, ending), antagonistic_guard (goblin), hungry_guard (hedgehog1), trader (hedgehog2)[introduce "give" verb, dispenser (throne), lever, button
+IDEA: The value of the Item class:
+	- Now that I have eliminated the 'takable' attribute from Item there is no attribute difference between Item and ViewOnly
+	- the key functional difference is that Item has the take() and drop() methods
+	- this is occasionally inconvenient because it makes it hard for me to give clear errors to reasonable requests (e.g. 'take water')
+	- however, most of the time this is handy because it eliminates the need to handle all sorts of crazy requests (e.g. 'take castle')
+	- Further, someday, I may want to add attributes to Items (e.g. some measure of carrying capacity)
+	- So, in summary, I think it makes snese to keep Item and ViewOnly as separate classes - at least for now (10/23/2021)
+
+
+
+MODULE FLOW:
+- Idea is that Interpreter returns standard_command and noun_obj to wrapper
+- wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
+- (could be more than one event so likely a for loop here)
+- if no relevant event then output gets standard_output (generated from interpreter command)
+
+
+
+CLASS IDEAS:
+
 ### Cutscene ###
+-  events: conditional-command-list, conditions (list of lists; outer = AND; inner = OR), event-text, events (list); check for end of game in wrapper
 IDEA: Conditional Cutscene Class
 IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for moat ????
 	- default, default description, default method
@@ -43,32 +105,25 @@ IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for m
 	- also need to distinguish pre=action vs. post-action (e.g. 'take sword' vs. 'read lettering' or 'push button')
 	- also need to distinguish 1-time events (e.g. croc) vs. every-time events ('take sword') vs. warnings (e.g. 'eat biscuits')
 
+### Creature Class ###
+### Switch Classes (button & lever) ###
 
-More ideas on Conditional Events:
-- Would like Room Events to be somehow linked to the Room obj so that you can inspect obj and know there will be a CE
-- field in each object for associated conditional event
-- Idea is that Interpreter returns standard_command and noun_obj to wrapper
-- wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
-- (could be more than one event so likely a for loop here)
-- if no relevant event then output gets standard_output (generated from interpreter command)
--  events: conditional-command-list, conditions (list of lists; outer = AND; inner = OR), event-text, events (list); check for end of game in wrapper
+More obj Ideas:
+- timers as obj
+- 'warnings' as obj
 
-Additional Creature and Conditional Event thoughts:
-- Conditional Events could be warnings - not hard stops (e.g. 'eat biscuits')
-- In theory could have order of operations considerations:
-- (e.g. what if a monster causes darkness but you have a sword that glows around monsters?)
-- I don't think these will be a common problem that I need to code for - but worth thinking about
-- presently my creatures are not mobile but maybe someday?
-- What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
+More ideas on Creatures:
+- Treat creatures like roving conditional events
+- Wrapper checks for presence of creature in room and checks for conditionals against creature too
 
-TBD: Scoring (probably in wrapper?)
+Key Creature Verbs (methods):
+- show, give, attack
 
-##########################
-### VERSION 3.x START ###
-##########################
 
-Version 3.x Goals
-	levers, and button => and machines!
+
+HOW MACHINES SHOULD WORK:
+
+levers, and button => and machines!
 	Lever and Button objects
 	Working portcullis puzzle
 
@@ -95,143 +150,23 @@ TBD: random responses to wrong direction commands ;-D
 TBD: implement scoring
 
 
-*** Someday Maybe ***
-TBD: clean up use of "import *"
-TBD: maybe centralize "you aren't holding the X" errors in cmd_exe() someday?
-TBD: better error for "drink water" if not holding bottle
-TBD: rename modules
-TBD: Clean up non-door 'go' method in dc3_classes Room class (avoid code reuse)
+
+SOMEDAY MAYBE IDEAS:
 TBD: Figure out a way in web browser to show all adventure text in scrolling window
 TBD: Consider having size values for items and capaicty limits on containers & backpack (should the crystal box really hold an axe?)
 	- This becomes important for 'take' capacity as well in shrinking puzzle (??)
-TBD: maybe break interpreter code into more functions within demo module (since I now have global vars)?
-TBD: Normalize scope_check() for objects of class Writing?
-
-
-*** How to Add Objects ***
-1) If needed, create Class and methods in dc3_classes
-2) Add object in dc3_init
-2.5) Add object to room in dc3_init
-3) Add object description in dc3_static_init
-4) Add object to master_obj_lst in dc3_init
-5) NO LONGER NEEDED: (Add object to master_obj_lst in dc3_startup)
-6) Add object to master_obj_lst in dc3_obj_init2
-
-
-##########################
-### VERSION 3.xx START ###
-##########################
-
-Version 3.xx Goals:
-	all about DB integration
-
-DONE: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
-	DONE: Create practice file
-	DONE: Watch video
-
-DONE: instantiate sqlalchemy DB
-	DONE: Queue huge sdk issues due to ancient version of sqlalchemy...
-	DONE: Have upgraded to version 1.1.2 using Stash but still getting issues in sqlite compiler
-	DONE: Think I might have to upgrade to 1.4.x to get JSON support for sqlalchemy.dialect.sqlite (installed 1.4.18)
-	DONE: now requires install of importlib_metadata (installed via 'pip install')
-	DONE: now I need to 'pip install typing_extensions'
-	NOTE: APPEARS TO WORK!!!
-
-TBD: now start working with sqlalchemy again in place of txt files
-	TBD: How do I setup a DB that continues to persist independent of an app running??
-	TBD: Before returning values, Interpreter must save stateful_dict to DB
-	TBD: Before running code, must load the value of stateful_dict from DB
-	IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
-		
-		
-
-
-To Do Next:
-
-### Data Structures ###
-IDEA: descriptions in separate descript_dict to be loaded from static text (isolate data & code) ???								
-	TBD: Resolve use of descript_dict
-	IDEA: static_dict ??
-TBD: Implement formal flask code vs. app separation
-TBD: Put client-server structure in place early!!
+TBD: Try argument unpacking ( https://www.geeksforgeeks.org/packing-and-unpacking-arguments-in-python/ )
+TBD: Try tupples for descript_dict
+	NOTE: Franco on Tupples: A tuple is most suitable for immutable data with a well-defined order.  The static data that you pass to class constructors is often a good example.Another useful time for tuples is when you want dictionary keys with more than one field.  You cannot use something mutable there.
+- fun idea - small creature - like a mouse - as an item
+- more directions
+- landscape / path changes
+- create 'win' test routine with checksum
+- create a hint sub-system
 
 
 
-### Score System ###
-- Figure out best implementation for scoring
-
-
-### Creature Class ###
-
-
-### Switch Classes (button & lever) ###
-
-More obj Ideas:
-- score obj ?
-- timers as obj
-- 'warnings' as obj
-
-
-TBD: Integrate advice from Franco!
-	TBD: I think it’s fine to have a big string in your class.  I think it’s also fine to have a separate dictionary or file or db or whatever for big static strings and just put the key into your class.  Or put each object in its own module so you can define a constant nearby but not in the class
-	TBD: Use more modules; I would definitely move object instantiation out of the module where the classes are defined.
-	TBD: You may also benefit from a single function that takes the object type (Door, etc) as well and instantiates the correct class.	
-	TBD: Once you've done that, you might want to have an entire object description in some string format on disk.   I personally kind of like using standard python objects (tuples of strings, mainly) instead of JSON, but YMMV.
-	TBD: Try tupples for descript_dict
-		Franco on Tupples: A tuple is most suitable for immutable data with a well-defined order.  The static data that you pass to class constructors is often a good example.Another useful time for tuples is when you want dictionary keys with more than one field.  You cannot use something mutable there.
-	TBD: Try argument unpacking ( https://www.geeksforgeeks.org/packing-and-unpacking-arguments-in-python/ )
-
-Expert Questions:
-DONE: Std solution for declaring obj variables with reciprocal properties (e.g. writing)
-	IDEA: Objects only aware of what is "inside" of them. Examples:
-		1) A room knows about the door on its north wall but not the room beyond the door.
-		2) An item knows what is written on it but the "writing" knows nothing about the object it is written on
-		3) A container knows its contents but items know nothing about the container they are in
-TBD: Can (should) I make the program work without external triggers... can the obj just interact on their own?
-	Perhaps the key is to make creatures behave as state machines... 
-	each has conditions under which they will guard, attack, gift, etc..
-	Also room 'events' with conditionals?
-	IDEA: avoid external triggers - create classes / state-machines
-		Examples: conditional_cutscenes (moat, ending), antagonistic_guard (goblin), hungry_guard (hedgehog1), trader (hedgehog2)[introduce "give" verb, dispenser (throne), lever, button
-TBD: How should modules be inter-related (presumably minimally)
-
-### Cutscene ###
-IDEA: Conditional Cutscene Class
-IDEA: Conditional_events (a class similar to dcv2 triggers??) => implement for moat ????
-	- default, default description, default method
-	- special event first time, seft_description, seft_method, count
-	- special event additional times, seat_description, seat_method, count
-
-More ideas on Conditional Events:
-- field in each object for associated conditional event
-- Idea is that Interpreter returns standard_command and noun_obj to wrapper
-- wrapper checks for noun_obj.event_lst > 0 and sends to event checker routine which returns event_output if appropriate
-- (could be more than one event so likely a for loop here)
-- if no relevant event then output gets standard_output (generated from interpreter command)
--  events: conditional-command-list, conditions (list of lists; outer = AND; inner = OR), event-text, events (list); check for end of game in wrapper
-
-More ideas on Creatures:
-- Treat creatures like roving conditional events
-- Wrapper checks for presence of creature in room and checks for conditionals against creature too
-
-Additional Creature and Conditional Event thoughts:
-- In theory could have order of operations considerations:
-- (e.g. what if a monster causes darkness but you have a sword that glows around monsters?)
-- I don't think these will be a common problem that I need to code for - but worth thinking about
-- presently my creatures are not mobile but maybe someday?
-- What about timers? Maybe timers are associated with events and creatures and switches? Presumably they need to be triggered somehow?
-
-Key Creature Verbs (methods):
-- show, give, attack
-
-Some Day Maybe
-TBD: Is the Item class worth having??? Particularly, do I need the "takeable" attribute
-TBD: rename modules
-TBD: room.room_stuf => room.room_obj_lst ??
-TBD: Need to dis-entangle modules better
-TBD: get rid of Item takeable attribute
-TBD: Sort out writing and make it more accessable by examine
-
+NEW PUZZLE IDEAS:
 
 ### New Puzzle Ideas ###
 - Can sharpen and clean sword in mouse hole - maybe only way to get past goblin
@@ -294,20 +229,43 @@ TBD: Sort out writing and make it more accessable by examine
 		key to open dungeon?
 		keys same colors as ready player 1
 
-5.x Future Ideas:
-- fun idea - small creature - like a mouse - as an item
-- more directions
-- landscape / path changes
-- create 'win' test routine with checksum
-- create a hint sub-system
 
-v4.x IDEAS:
-- DB based
-- "dungeon bulder" web interface
 
+##########################
+### VERSION 4.xx START ###
+##########################
+
+Version 4.xx Goals:
+	- DB back end
+	- "dungeon bulder" web interface (?)
+
+DONE: Watch YouTube vid on SQLAlchemy: https://youtu.be/51RpDZKShiw
+	DONE: Create practice file
+	DONE: Watch video
+
+DONE: instantiate sqlalchemy DB
+	DONE: Queue huge sdk issues due to ancient version of sqlalchemy...
+	DONE: Have upgraded to version 1.1.2 using Stash but still getting issues in sqlite compiler
+	DONE: Think I might have to upgrade to 1.4.x to get JSON support for sqlalchemy.dialect.sqlite (installed 1.4.18)
+	DONE: now requires install of importlib_metadata (installed via 'pip install')
+	DONE: now I need to 'pip install typing_extensions'
+	NOTE: APPEARS TO WORK!!!
+
+TBD: now start working with sqlalchemy again in place of txt files
+	TBD: How do I setup a DB that continues to persist independent of an app running??
+	TBD: Before returning values, Interpreter must save stateful_dict to DB
+	TBD: Before running code, must load the value of stateful_dict from DB
+	IDEA: default object values should start as a DB entry (or txt files) and be loaded on new game
+
+
+
+##########################
+### VERSION 5.xx START ###
+##########################
 
 v5.x IDEAS
 - runs on AWS with API GW, Lambda, and DynamoDB!
+
 
 
 *** Demo Object Commands ***
