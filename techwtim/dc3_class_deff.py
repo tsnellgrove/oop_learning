@@ -147,6 +147,19 @@ class GameState(object):
 				backpack_str = obj_lst_to_str(backpack_obj_lst)
 				self.buffer("In your backpack you have: " + backpack_str)
 
+		def hand_check(self, obj):
+				if obj in self.get_hand_lst():
+						return True
+				else:
+						if obj.root_name == 'key':
+								item = obj.root_name
+						else:
+								item = obj.full_name
+#						output = "You're not holding the " + obj.full_name + " in your hand."
+						output = "You're not holding the " + item + " in your hand."
+						self.buffer(output)
+						return False
+
 		def scope_lst(self):
 				room_obj = self.get_room()
 				hand_lst = self.get_hand_lst()
@@ -333,13 +346,15 @@ class Item(ViewOnly):
 														obj.contains_remove(self)
 
 		def drop(self, active_gs):
-				hand_lst = active_gs.get_hand_lst()
-				room_obj = active_gs.get_room()
-				if self not in hand_lst:
-						output = "You're not holding the " + self.full_name + " in your hand."
-						active_gs.buffer(output)
-				else:
+#				hand_lst = active_gs.get_hand_lst()
+#				room_obj = active_gs.get_room()
+#				if self not in hand_lst:
+#						output = "You're not holding the " + self.full_name + " in your hand."
+#						active_gs.buffer(output)
+#				else:
+				if active_gs.hand_check(self):
 						active_gs.hand_lst_remove_item(self)
+						room_obj = active_gs.get_room()
 						room_obj.room_obj_lst_append(self)
 						active_gs.buffer("Dropped")
 
@@ -382,14 +397,15 @@ class Door(ViewOnly):
 						active_gs.buffer("The " + self.full_name + " is open.")
 
 		def unlock(self, active_gs):
-				hand_lst = active_gs.get_hand_lst()
+#				hand_lst = active_gs.get_hand_lst()
 				if self.unlock_state == True:
 						active_gs.buffer("The " + self.full_name + " is already unlocked.")
 				elif self.key is None:
 						active_gs.buffer("You don't see a keyhole for this door.")
-				elif self.key not in hand_lst:
-						active_gs.buffer("You aren't holding the key.")
-				else:
+#				elif self.key not in hand_lst:
+#						active_gs.buffer("You aren't holding the key.")
+#				else:
+				elif active_gs.hand_check(self.key):
 						active_gs.buffer("Unlocked")
 						self.unlock_state = True
 
@@ -412,14 +428,15 @@ class Door(ViewOnly):
 						active_gs.buffer("Closed")
 
 		def lock(self, active_gs):
-				hand_lst = active_gs.get_hand_lst()
+#				hand_lst = active_gs.get_hand_lst()
 				if self.open_state == True:
 						active_gs.buffer("You can't lock something that's open.")
-				elif self.key not in hand_lst:
-						active_gs.buffer("You aren't holding the key.")
+#				elif self.key not in hand_lst:
+#						active_gs.buffer("You aren't holding the key.")
 				elif self.unlock_state == False:
 						active_gs.buffer("The " + self.full_name + " is already locked.")
-				else:
+#				else:
+				elif active_gs.hand_check(self.key):
 						active_gs.buffer("Locked")
 						self.unlock_state = False
 
@@ -447,14 +464,17 @@ class Container(Door):
 				self.print_contents_str(active_gs)
 
 		def put(self, obj, active_gs):
-				hand_lst = active_gs.get_hand_lst()
-				if obj not in hand_lst:
-						active_gs.buffer("You aren't holding the " + obj.full_name)
-				elif self.open_state == False:
+#				hand_lst = active_gs.get_hand_lst()
+#				if obj not in hand_lst:
+#						active_gs.buffer("You aren't holding the " + obj.full_name)
+#				elif self.open_state == False:
+				if self.open_state == False:
+###				if (active_gs.hand_check(obj) == True) and (self.open_state == False):
 						active_gs.buffer("The " + self.full_name + " is closed.")
 				elif obj.is_container():
 						active_gs.buffer("You can't put a container in a container")
-				else:
+#				else:
+				elif active_gs.hand_check(obj):
 						active_gs.hand_lst_remove_item(obj)
 						self.contains_append(obj)
 						active_gs.buffer("Done")

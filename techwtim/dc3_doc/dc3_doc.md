@@ -21,7 +21,9 @@ Version 3.49 Goals
 DONE: re-order and consolidate 3.50+ plans and ideas
 DONE: search "somedays" for others
 DONE: Is the Item class worth having? (decision = 'yes')
-TBD: obj-not-in-hand error in cmd_exe()
+IN-PROC: obj-not-in-hand error in cmd_exe()
+	IN-PROC: Strange "blank line" error on trying to put item in box if item is already in box
+	NOTE: Very conflicted re balance between less repitition vs. less readible & less customizable; Pondering
 TBD: Better errors for "read note" and "get water" and "examine lettering"
 	- maybe a 'special errors' funciton in cmd_exe() ??
 TBD: fix dup Room 'go' code for doorways and passages (?)
