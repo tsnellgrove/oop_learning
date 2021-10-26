@@ -26,7 +26,8 @@ IN-PROC: obj-not-in-hand error in cmd_exe()
 	NOTE: Very conflicted re balance between less repitition vs. less readible & less customizable; Pondering
 	DECISION: Now that I've started to standardize hand_check() the code was more readable & customizable before; maybe implement a simple boolean function instead
 	DONE: drop, unlock, lock reversed
-	TBD: reverse put
+	DONE: reverse put
+	TBD: solve the 'blank response if try to put item in closed container when it's already in the container'
 	TBD: boolean version of hand_check()
 	TBD: maybe also a hand_empty() ?
 TBD: create 'coding decisions' file

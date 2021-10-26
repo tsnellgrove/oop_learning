@@ -459,17 +459,14 @@ class Container(Door):
 				self.print_contents_str(active_gs)
 
 		def put(self, obj, active_gs):
-#				hand_lst = active_gs.get_hand_lst()
-#				if obj not in hand_lst:
-#						active_gs.buffer("You aren't holding the " + obj.full_name)
-#				elif self.open_state == False:
-				if self.open_state == False:
-###				if (active_gs.hand_check(obj) == True) and (self.open_state == False):
+				hand_lst = active_gs.get_hand_lst()
+				if obj not in hand_lst:
+						active_gs.buffer("You aren't holding the " + obj.full_name)
+				elif self.open_state == False:
 						active_gs.buffer("The " + self.full_name + " is closed.")
 				elif obj.is_container():
 						active_gs.buffer("You can't put a container in a container")
-#				else:
-				elif active_gs.hand_check(obj):
+				else:
 						active_gs.hand_lst_remove_item(obj)
 						self.contains_append(obj)
 						active_gs.buffer("Done")
