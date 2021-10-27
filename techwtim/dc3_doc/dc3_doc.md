@@ -27,7 +27,9 @@ IN-PROC: obj-not-in-hand error in cmd_exe()
 	DECISION: Now that I've started to standardize hand_check() the code was more readable & customizable before; maybe implement a simple boolean function instead
 	DONE: drop, unlock, lock reversed
 	DONE: reverse put
-	TBD: solve the 'blank response if try to put item in closed container when it's already in the container' (problem in scope_lst() I think)
+	IN-PROC: solve the 'blank response if try to put item in closed container when it's already in the container' (problem in scope_lst() I think)
+		NOTE: turns out blank happens any time you try to put a not-in-scope noun in box
+		NOTE: Appears the cmd_exe() put routine never runs if obj_noun is not in scope???
 	TBD: clean up old hand_check()
 	TBD: boolean version of hand_check()
 	TBD: maybe also a hand_empty() ?

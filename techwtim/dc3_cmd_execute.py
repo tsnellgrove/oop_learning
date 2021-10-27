@@ -103,6 +103,7 @@ def cmd_execute(active_gs, case, word_lst):
 ##							active_gs.buffer("You can't " + word1 + " with the " + word2_obj.full_name + ".") # old error
 		else: # case == 'put'
 				dirobj_obj, word1, noun_obj = word_lst
+				print("the noun object " + noun_obj.full_name + " in scope state == " + str(active_gs.scope_check(noun_obj)))
 				if active_gs.scope_check(noun_obj) == False:
 						active_gs.buffer("You can't see a " + noun_obj.full_name + " here.")
 						return
