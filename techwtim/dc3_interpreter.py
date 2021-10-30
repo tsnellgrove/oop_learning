@@ -23,7 +23,6 @@ def root_word_count(active_gs, word2_txt):
 						if obj.writing.root_name == word2_txt:
 								root_count += 1
 								obj_name = obj.writing.name
-		print(root_count, obj_name)
 		return root_count, obj_name
 
 # convert user_input str to lst, lower, convert abbreviations, remove articles
@@ -79,18 +78,15 @@ def noun_handling(master_obj_lst, user_input_lst):
 				if root_count < 1:
 						error_msg = "I don't see a " + word2_txt + " here."
 						error_state = True
-						print(error_state, error_msg, word2_obj)
 						return error_state, error_msg, word2_obj
 				elif root_count > 1:
 						error_msg = "I see more than one " + word2_txt + ". Please use the full name."
 						error_state = True
-						print(error_state, error_msg, word2_obj)
 						return error_state, error_msg, word2_obj
 				else:
 						for obj in master_obj_lst[1:]:
 								if obj.name == obj_name:
 										word2_obj = obj
-		print(error_state, error_msg, word2_obj)
 		return error_state, error_msg, word2_obj
 
 # interpreter
@@ -142,11 +138,8 @@ def interpreter(user_input, master_obj_lst):
 						in_position = user_input_lst.index('in')
 						v_n_lst = list(islice(user_input_lst, in_position))
 						p_p_lst = list(islice(user_input_lst, in_position, None))
-#						noun_error_state, error_msg, noun_obj = noun_handling(master_obj_lst, v_n_lst)
-#						dir_obj_error_state, error_msg, dirobj_obj = noun_handling(master_obj_lst, p_p_lst)
 						noun_error_state, noun_error_msg, noun_obj = noun_handling(master_obj_lst, v_n_lst)
 						dir_obj_error_state, dir_obj_error_msg, dirobj_obj = noun_handling(master_obj_lst, p_p_lst)
-#						if noun_error_state or dir_obj_error_state:
 						if noun_error_state:
 								return 'error', [noun_error_msg]
 						elif dir_obj_error_state:

@@ -176,7 +176,6 @@ class GameState(object):
 				open_cont_obj_lst = []
 				for obj in room_containers:
 						if len(obj.contains) > 0 and obj.open_state == True:
-#								print("The " + obj.full_name + " is open == " + str(obj.open_state))
 								open_cont_obj_lst = open_cont_obj_lst + obj.contains
 				scope_lst = scope_lst + open_cont_obj_lst
 				return scope_lst
