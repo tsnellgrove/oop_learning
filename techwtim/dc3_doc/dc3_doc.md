@@ -34,7 +34,7 @@ IN-PROC: obj-not-in-hand error in cmd_exe()
 		DONE: check root_word_count() in interpreter()
 		NOTE: found it! problem is that noun_obj generates the error BUT, I am showing the dir_obj error_msg (doesn't exist because there is a box)
 		NOTE: need to generate a global "put" error_msg based on whichever clause triggers an errro = True
-		TBD: fix it
+		DONE: fix it
 		TBD: clean up troubleshooting print statements
 	TBD: clean up old hand_check()
 	TBD: boolean version of hand_check()
