@@ -151,12 +151,6 @@ class GameState(object):
 				if obj in self.get_hand_lst():
 						return True
 				else:
-#						if obj.root_name == 'key':
-#								item = obj.root_name
-#						else:
-#								item = obj.full_name
-#						output = "You're not holding the " + item + " in your hand."
-#						self.buffer(output)
 						return False
 
 		def scope_lst(self):
@@ -326,7 +320,6 @@ class Item(ViewOnly):
 				hand_lst = active_gs.get_hand_lst()
 				backpack_lst = active_gs.get_backpack_lst()
 				room_obj_lst = room_obj.room_obj_lst
-#				if self in hand_lst:
 				if active_gs.hand_check(self):
 						active_gs.buffer("You're already holding the " + self.full_name)
 				else:
@@ -346,8 +339,6 @@ class Item(ViewOnly):
 														obj.contains_remove(self)
 
 		def drop(self, active_gs):
-#				hand_lst = active_gs.get_hand_lst()
-#				if self not in hand_lst:
 				if not active_gs.hand_check(self):
 						output = "You're not holding the " + self.full_name + " in your hand."
 						active_gs.buffer(output)
@@ -396,12 +387,10 @@ class Door(ViewOnly):
 						active_gs.buffer("The " + self.full_name + " is open.")
 
 		def unlock(self, active_gs):
-#				hand_lst = active_gs.get_hand_lst()
 				if self.unlock_state == True:
 						active_gs.buffer("The " + self.full_name + " is already unlocked.")
 				elif self.key is None:
 						active_gs.buffer("You don't see a keyhole for this door.")
-#				elif self.key not in hand_lst:
 				elif not active_gs.hand_check(self.key):
 						active_gs.buffer("You aren't holding the key.")
 				else:
@@ -427,10 +416,8 @@ class Door(ViewOnly):
 						active_gs.buffer("Closed")
 
 		def lock(self, active_gs):
-#				hand_lst = active_gs.get_hand_lst()
 				if self.open_state == True:
 						active_gs.buffer("You can't lock something that's open.")
-#				elif self.key not in hand_lst:
 				if not active_gs.hand_check(self.key):
 						active_gs.buffer("You aren't holding the key.")
 				elif self.unlock_state == False:
@@ -463,8 +450,6 @@ class Container(Door):
 				self.print_contents_str(active_gs)
 
 		def put(self, obj, active_gs):
-#				hand_lst = active_gs.get_hand_lst()
-#				if obj not in hand_lst:
 				if not active_gs.hand_check(obj):
 						active_gs.buffer("You aren't holding the " + obj.full_name)
 				elif self.open_state == False:
@@ -486,8 +471,6 @@ class Food(Item):
 				return self._eat_desc_key
 
 		def eat(self, active_gs):
-#				hand_lst = active_gs.get_hand_lst()
-#				if self not in hand_lst:
 				if not active_gs.hand_check(self):
 						output = "You're not holding the " + self.full_name + " in your hand."
 						active_gs.buffer(output)
