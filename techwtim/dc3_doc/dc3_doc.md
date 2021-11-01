@@ -39,7 +39,7 @@ IN-PROC: obj-not-in-hand error in cmd_exe()
 	DONE: clean up old hand_check()
 	DONE: boolean version of hand_check()
 	DONE: clean up comments
-	TBD: maybe also a hand_empty() ?
+	DONE: maybe also a hand_empty() ?
 TBD: create 'coding decisions' file
 TBD: Better errors for "read note" and "get water" and "examine lettering"
 	- maybe a 'special errors' funciton in cmd_exe() ??
