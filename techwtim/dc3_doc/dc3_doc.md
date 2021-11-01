@@ -21,8 +21,8 @@ Version 3.49 Goals
 DONE: re-order and consolidate 3.50+ plans and ideas
 DONE: search "somedays" for others
 DONE: Is the Item class worth having? (decision = 'yes')
-IN-PROC: obj-not-in-hand error in cmd_exe()
-	IN-PROC: Strange "blank line" error on trying to put item in box if item is already in box
+DONE: obj-not-in-hand error in cmd_exe()
+	DONE: Strange "blank line" error on trying to put item in box if item is already in box
 	NOTE: Very conflicted re balance between less repitition vs. less readible & less customizable; Pondering
 	DECISION: Now that I've started to standardize hand_check() the code was more readable & customizable before; maybe implement a simple boolean function instead
 	DONE: drop, unlock, lock reversed

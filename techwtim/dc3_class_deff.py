@@ -117,10 +117,6 @@ class GameState(object):
 
 		def hand_check(self, obj):
 				return obj in self.get_hand_lst()
-#				if obj in self.get_hand_lst():
-#						return True
-#				else:
-#						return False
 
 		def hand_empty(self):
 				return len(self.get_hand_lst()) == 0
@@ -327,7 +323,6 @@ class Item(ViewOnly):
 				if active_gs.hand_check(self):
 						active_gs.buffer("You're already holding the " + self.full_name)
 				else:
-#						if len(hand_lst) > 0: # if hand not empty move item to backpack
 						if not active_gs.hand_empty(): # if hand not empty move item to backpack
 								active_gs.backpack_lst_append_item(hand_lst[0])
 								active_gs.hand_lst_remove_item(hand_lst[0])
@@ -509,7 +504,6 @@ class Beverage(ViewOnly):
 
 		def drink(self, active_gs):
 				hand_lst = active_gs.get_hand_lst()
-#				if (len(hand_lst) == 0) or (hand_lst[0].is_container() == False):
 				if (active_gs.hand_empty()) or (hand_lst[0].is_container() == False):
 						output = "You don't seem to be holding a container of " + self.full_name + " in your hand."
 						active_gs.buffer(output)
