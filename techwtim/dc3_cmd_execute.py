@@ -88,8 +88,13 @@ def cmd_execute(active_gs, case, word_lst):
 								active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
 								return
 						else:
-								active_gs.buffer("You can't read the " + word2_obj.full_name + ".")
+								output = "You can't read the " + word2_obj.full_name + ". Try using 'examine' instead."
+								active_gs.buffer(output)
 								return
+				elif (word1 == 'examine') and (active_gs.writing_check(word2_obj)) == True:
+						output = "You can't examine the " + word2_obj.full_name + ". Try using 'read' instead."
+						active_gs.buffer(output)
+						return
 				elif (word1 != 'read') and (active_gs.scope_check(word2_obj) == False):
 						active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
 				else:
