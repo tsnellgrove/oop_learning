@@ -45,8 +45,10 @@ IN-PRIC: Better errors for "read note" and "get water" and "examine lettering"
 	IDEA: maybe a 'special errors' funciton in cmd_exe() ??
 	DONE: 'read' <non-writing>
 	DONE: 'examine' <writing>
-	TBD: 'take' <beverage>
-	TBD: function for special erros
+	DONE: 'take' <beverage>
+		DONE: create method is_beverage() in Writing
+		DONE: create 'take' <beverage> special error
+	TBD: function for special errors
 TBD: fix dup Room 'go' code for doorways and passages (?)
 TBD: clean up use of "import *"
 TBD: rename modules

@@ -97,6 +97,8 @@ def cmd_execute(active_gs, case, word_lst):
 						return
 				elif (word1 != 'read') and (active_gs.scope_check(word2_obj) == False):
 						active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
+				elif (word1 == 'take') and (active_gs.scope_check(word2_obj)) and (word2_obj.is_beverage()):
+						active_gs.buffer("You can't 'take' a beverage.")
 				else:
 ##						getattr(word2_obj, word1)(active_gs) # for troubleshooting
 						try:

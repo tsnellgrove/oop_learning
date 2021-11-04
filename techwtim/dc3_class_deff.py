@@ -222,6 +222,9 @@ class Writing(object):
 		def is_container(self):
 					return hasattr(self, 'contains')
 
+		def is_beverage(self):
+				return hasattr(self, 'drink_desc_key')
+
 		def	print_contents_str(self, active_gs):
 				if self.is_container() and self.open_state == True:
 						container_str = obj_lst_to_str(self.contains)
