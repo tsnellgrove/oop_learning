@@ -105,23 +105,6 @@ def cmd_execute(active_gs, case, word_lst):
 				getattr(room_obj, word1)(word2, active_gs)
 		elif case == '2word':
 				word2_obj, word1 = word_lst
-#				if word1 == 'read' and  active_gs.writing_check(word2_obj) == False:
-#						if active_gs.scope_check(word2_obj) == False:
-#								active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
-#								return
-#						else:
-#								output = "You can't read the " + word2_obj.full_name + ". Try using 'examine' instead."
-#								active_gs.buffer(output)
-#								return
-#				elif (word1 == 'examine') and (active_gs.writing_check(word2_obj)) == True:
-#						output = "You can't examine the " + word2_obj.full_name + ". Try using 'read' instead."
-#						active_gs.buffer(output)
-#						return
-#				elif (word1 != 'read') and (active_gs.scope_check(word2_obj) == False):
-#						active_gs.buffer("You can't see a " + word2_obj.full_name + " here.")
-#				elif (word1 == 'take') and (active_gs.scope_check(word2_obj)) and (word2_obj.is_beverage()):
-#						active_gs.buffer("You can't 'take' a beverage.")
-#				else:
 				if not special_error(active_gs, word2_obj, word1):
 ##						getattr(word2_obj, word1)(active_gs) # for troubleshooting
 						try:

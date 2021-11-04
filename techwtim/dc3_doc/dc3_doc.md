@@ -41,7 +41,7 @@ DONE: obj-not-in-hand error in cmd_exe()
 	DONE: clean up comments
 	DONE: maybe also a hand_empty() ?
 DONE: create 'coding decisions' file
-IN-PRIC: Better errors for "read note" and "get water" and "examine lettering"
+DONE: Better errors for "read note" and "get water" and "examine lettering"
 	IDEA: maybe a 'special errors' funciton in cmd_exe() ??
 	DONE: 'read' <non-writing>
 	DONE: 'examine' <writing>
@@ -49,7 +49,7 @@ IN-PRIC: Better errors for "read note" and "get water" and "examine lettering"
 		DONE: create method is_beverage() in Writing
 		DONE: create 'take' <beverage> special error
 	DONE: function for special errors
-	TBD: clean up comments
+	DONE: clean up comments
 TBD: fix dup Room 'go' code for doorways and passages (?)
 TBD: clean up use of "import *"
 TBD: rename modules
