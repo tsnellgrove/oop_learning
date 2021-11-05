@@ -303,19 +303,8 @@ class Room(ViewOnly):
 						num = random.randint(0, 4)
 						wrong_way_key = 'wrong_way_' + str(num)
 						active_gs.buffer(descript_dict[wrong_way_key])
-#				elif self.door_in_path(direction):
-#				elif (self.door_in_path(direction)) and (self.get_door(direction).open_state == False):
 				elif (door_in_path) and (door_obj.open_state == False):
-#						door_obj = self.get_door(direction)
 						active_gs.buffer("The " +  door_obj.full_name + " is closed.")
-#						door_obj = self.get_door(direction)
-#						door_open = door_obj.open_state
-#						if not door_open:
-#								active_gs.buffer("The " +  door_obj.full_name + " is closed.")
-#						else:
-#								next_room_obj = active_gs.get_next_room(room_obj, direction)
-#								active_gs.set_room(next_room_obj)
-#								next_room_obj.examine(active_gs)
 				else:
 						next_room_obj = active_gs.get_next_room(room_obj, direction)
 						active_gs.set_room(next_room_obj)
