@@ -50,7 +50,8 @@ DONE: Better errors for "read note" and "get water" and "examine lettering"
 		DONE: create 'take' <beverage> special error
 	DONE: function for special errors
 	DONE: clean up comments
-TBD: fix dup Room 'go' code for doorways and passages (?)
+DONE: fix dup Room 'go' code for doorways and passages
+	TBD: clean up comments
 TBD: clean up use of "import *"
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
