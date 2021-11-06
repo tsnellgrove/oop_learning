@@ -7,7 +7,7 @@
 # import statements
 import sys
 from itertools import islice
-from dc3_static_init import * # variables declared in import = global to module
+from dc3_static_init import articles_lst, one_word_only_lst, verbs_lst, abbreviations_dict, one_word_convert_dict
 from dc3_class_deff import *
 
 

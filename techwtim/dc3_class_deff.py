@@ -7,7 +7,7 @@
 # import
 import sys
 import random
-from dc3_static_init import *
+from dc3_static_init import descript_dict, static_dict
 
 
 # class functions

@@ -53,6 +53,10 @@ DONE: Better errors for "read note" and "get water" and "examine lettering"
 DONE: fix dup Room 'go' code for doorways and passages
 	DONE: clean up comments
 TBD: clean up use of "import *"
+	DONE: static_init
+		TBD: consider moving help() to interpreter()
+		TBD: consider moving dicts only used by one mnodule to that module
+	TBD: class_def
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually

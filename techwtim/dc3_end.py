@@ -5,7 +5,7 @@
 
 
 ### imports ###
-from dc3_static_init import *
+from dc3_static_init import descript_dict
 
 
 ### end routine ###

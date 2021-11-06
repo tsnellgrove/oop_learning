@@ -9,7 +9,7 @@
 import sys
 import pickle
 import random
-from dc3_static_init import * # variables declared in import = global to module
+from dc3_static_init import descript_dict
 from dc3_class_deff import *
 
 def start_me_up():

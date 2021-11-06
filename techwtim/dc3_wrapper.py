@@ -7,7 +7,6 @@
 # import statements
 import sys
 import pickle
-from dc3_static_init import * # variables declared in import = global to module
 from dc3_class_deff import *
 from dc3_start_me_up import start_me_up
 from dc3_interpreter import interpreter
@@ -26,7 +25,7 @@ def wrapper(user_input):
 				with open('save_obj_pickle2', 'rb') as f:
 						master_obj_lst = pickle.load(f)
 
-				# object vatiables declared / instantiated from un-pickled list
+				# Gamestate vatiable instantiated from un-pickled list
 				active_gs = master_obj_lst[0]
 
 				active_gs.move_inc()
