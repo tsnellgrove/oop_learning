@@ -10,6 +10,33 @@ from itertools import islice
 from dc3_static_init import articles_lst, one_word_only_lst, verbs_lst, abbreviations_dict, one_word_convert_dict
 from dc3_class_deff import *
 
+def help(active_gs, option):
+		if option == 'basics':
+				output = descript_dict['help_basics']
+		elif option == 'verbs':
+				output = "Available verbs include: " + ', '.join(verbs_lst)
+		elif option == 'one-word-commands':
+				user_one_word_lst = one_word_only_lst
+				user_one_word_lst.pop()
+				output = ("Available one word commands include: "
+								+ ', '.join(user_one_word_lst))
+		elif option == 'articles':
+				output = ("The following articles are supported but not required: "
+								+ ', '.join(articles_lst))
+		elif option == 'adjectives':
+					output = descript_dict['help_adjectives']
+		elif  option == 'abbreviations':
+				pre_out = "Available abbreviations include: "
+				for key in abbreviations_dict:
+						pre_out = pre_out + key + " = " + abbreviations_dict[key] + ", "
+				output = pre_out[:-2]
+		elif option == 'prepositions':
+					output = descript_dict['help_prepositions']
+		elif option == 'read':
+					output = descript_dict['help_read']
+		else:
+				output = descript_dict['help']
+		active_gs.buffer(output)
 
 def root_word_count(active_gs, word2_txt):
 		scope_lst = active_gs.scope_lst()
@@ -130,6 +157,7 @@ def interpreter(user_input, master_obj_lst):
 				return 'go', [room_obj, word1, word2]
 		elif word1 == 'help':
 				word2 = user_input_lst[1]
+				help(active_gs, word2)
 				return 'help', [word2]
 		elif word1 == 'put':
 				if 'in' not in user_input_lst:
