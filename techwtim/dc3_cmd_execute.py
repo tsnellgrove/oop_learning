@@ -34,34 +34,6 @@ def true_one_word(active_gs, word1, room_obj):
 				active_gs.move_dec() # quitting is not deemed to be an actual move
 		return
 
-#def help(active_gs, option):
-#		if option == 'basics':
-#				output = descript_dict['help_basics']
-#		elif option == 'verbs':
-#				output = "Available verbs include: " + ', '.join(verbs_lst)
-#		elif option == 'one-word-commands':
-#				user_one_word_lst = one_word_only_lst
-#				user_one_word_lst.pop()
-#				output = ("Available one word commands include: "
-#								+ ', '.join(user_one_word_lst))
-#		elif option == 'articles':
-#				output = ("The following articles are supported but not required: "
-#								+ ', '.join(articles_lst))
-#		elif option == 'adjectives':
-#					output = descript_dict['help_adjectives']
-#		elif  option == 'abbreviations':
-#				pre_out = "Available abbreviations include: "
-#				for key in abbreviations_dict:
-#						pre_out = pre_out + key + " = " + abbreviations_dict[key] + ", "
-#				output = pre_out[:-2]
-#		elif option == 'prepositions':
-#					output = descript_dict['help_prepositions']
-#		elif option == 'read':
-#					output = descript_dict['help_read']
-#		else:
-#				output = descript_dict['help']
-#		active_gs.buffer(output)
-
 def special_error(active_gs, word2_obj, word1):
 	if word1 == 'read' and  active_gs.writing_check(word2_obj) == False:
 			if active_gs.scope_check(word2_obj) == False:

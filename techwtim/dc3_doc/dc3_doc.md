@@ -57,7 +57,8 @@ TBD: clean up use of "import *"
 		DONE: move score dicts / lists to score() module
 		DONE: clean up comments
 		DONE: move help() to interpreter()
-		
+		DONE: clean up comments
+		TBD: move languate dict & lst to Interpeter
 		TBD: write up code decision
 		TBD: consider moving dicts only used by one module to that module
 	TBD: class_def

@@ -174,7 +174,7 @@ def interpreter(user_input, master_obj_lst):
 								return 'error', [dir_obj_error_msg]
 						else:
 								return 'put', [dirobj_obj, word1, noun_obj]
-		else:
+		else: # '2word' case
 				error_state, error_msg, word2_obj = noun_handling(master_obj_lst, user_input_lst)
 				if error_state:
 						return 'error', [error_msg]
