@@ -61,11 +61,11 @@ TBD: clean up use of "import *"
 		DONE: move languate dict & lst to Interpeter
 		DONE: clean up comments
 		TBD: write up code decision
-		TBD: consider moving dicts only used by one module to that module
 	TBD: class_def
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually
+TBD: re-map modules
 
 	
 ##########################
