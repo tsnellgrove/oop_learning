@@ -59,7 +59,7 @@ TBD: clean up use of "import *"
 		DONE: move help() to interpreter()
 		DONE: clean up comments
 		DONE: move languate dict & lst to Interpeter
-		TBD: clean up comments
+		DONE: clean up comments
 		TBD: write up code decision
 		TBD: consider moving dicts only used by one module to that module
 	TBD: class_def

@@ -4,7 +4,7 @@
 # description: updates score based on post-command execution game state
 
 
-# import statements
+### import statements
 import sys
 
 ### score dictionaries and lists ###

@@ -5,10 +5,11 @@
 # goals vs. dc2: oop, modular, improved interpreter, working containers, 
 #								integrate triggers, replicate full original, add more puzzles!
 
-# import statements
+### import statements
 import sys
 from dc3_wrapper import wrapper
 
+### main routine
 end_of_game = False
 start_of_game = True
 while end_of_game == False:

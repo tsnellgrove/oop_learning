@@ -4,7 +4,7 @@
 # description: app-side wrapper module that calls game functions
 
 
-# import statements
+### import statements
 import sys
 import pickle
 from dc3_class_deff import *
@@ -15,7 +15,7 @@ from  dc3_score import score
 from dc3_end import end
 
 
-# wrapper code - calls interpreter and saves game state
+### wrapper code - loads game obj, calls other modules, and saves game obj
 def wrapper(user_input):
 		if user_input == "xyzzy42":
 				end_of_game, out_buff = start_me_up()

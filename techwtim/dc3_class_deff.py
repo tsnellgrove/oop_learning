@@ -4,13 +4,13 @@
 # description: class deffinition module
 
 
-# import
+### import
 import sys
 import random
 from dc3_static_init import descript_dict, static_dict
 
 
-# class functions
+### class functions
 def obj_lst_to_str(obj_lst):
 		if not isinstance(obj_lst, list):
 				raise ValueError("is not a list")
@@ -23,8 +23,7 @@ def obj_lst_to_str(obj_lst):
 				lst_str = lst_str[:-2]
 		return lst_str
 
-
-# classes
+### classes
 class GameState(object):
 		def __init__(self, name, dynamic_desc_dict, map_dict, points_earned_dict, static_obj_dict, state_dict):
 				self._name = name

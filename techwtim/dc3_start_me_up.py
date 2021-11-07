@@ -5,13 +5,14 @@
 
 
 
-# import statements
+### import statements
 import sys
 import pickle
 import random
 from dc3_static_init import descript_dict
 from dc3_class_deff import *
 
+### start_me_up - gets obj from default_pkl, welcome text, sets starting values
 def start_me_up():
 
 		### object list loaded from default_obj_pickle ###

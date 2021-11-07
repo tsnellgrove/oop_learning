@@ -7,7 +7,6 @@
 ### import statements ###
 import sys
 import random
-#from dc3_static_init import descript_dict, static_dict, articles_lst, one_word_only_lst, verbs_lst, abbreviations_dict
 from dc3_static_init import descript_dict, static_dict
 from dc3_class_deff import *
 

@@ -4,13 +4,12 @@
 # description: converts player input into game commands
 
 
-# import statements
+### import statements
 import sys
 from itertools import islice
-#from dc3_static_init import articles_lst, one_word_only_lst, verbs_lst, abbreviations_dict, one_word_convert_dict
 from dc3_class_deff import *
 
-### interpreter function language variables ###
+### interpreter function language static dictionaries & lists ###
 articles_lst = ['a', 'an', 'the']
 
 one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
@@ -37,6 +36,7 @@ one_word_convert_dict = {
 		'west' : 'go'
 }
 
+### help = print help info
 def help(active_gs, option):
 		if option == 'basics':
 				output = descript_dict['help_basics']
@@ -65,6 +65,7 @@ def help(active_gs, option):
 				output = descript_dict['help']
 		active_gs.buffer(output)
 
+### root_word_count - determines if user command contains root words
 def root_word_count(active_gs, word2_txt):
 		scope_lst = active_gs.scope_lst()
 		root_count = 0
@@ -79,7 +80,7 @@ def root_word_count(active_gs, word2_txt):
 								obj_name = obj.writing.name
 		return root_count, obj_name
 
-# convert user_input str to lst, lower, convert abbreviations, remove articles
+### input_cleanup - convert user_input str to lst, lower, convert abbreviations, remove articles
 def input_cleanup(user_input):
 		# first, convert user input string into word list
 		lst = []
@@ -98,7 +99,7 @@ def input_cleanup(user_input):
 				user_input_lst = [word for word in user_input_lst if word != article]
 		return user_input_lst
 
-# handle nouns and adjectives
+### handle nouns and adjectives
 def noun_handling(master_obj_lst, user_input_lst):
 		active_gs = master_obj_lst[0]
 		error_state = False
@@ -143,7 +144,7 @@ def noun_handling(master_obj_lst, user_input_lst):
 										word2_obj = obj
 		return error_state, error_msg, word2_obj
 
-# interpreter
+### interpreter - determine user intent
 def interpreter(user_input, master_obj_lst):
 		active_gs = master_obj_lst[0]
 		room_obj = active_gs.get_room()
