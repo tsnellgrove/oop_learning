@@ -7,8 +7,35 @@
 # import statements
 import sys
 from itertools import islice
-from dc3_static_init import articles_lst, one_word_only_lst, verbs_lst, abbreviations_dict, one_word_convert_dict
+#from dc3_static_init import articles_lst, one_word_only_lst, verbs_lst, abbreviations_dict, one_word_convert_dict
 from dc3_class_deff import *
+
+### interpreter function language variables ###
+articles_lst = ['a', 'an', 'the']
+
+one_word_only_lst = ['help', 'credits', 'score', 'version', 'inventory', 'look', 'quit', 'xyzzy42']
+
+verbs_lst = ['help', 'examine', 'read', 'go', 'take', 'drop', 'unlock', 'open', 'close', 'lock', 'put', 'eat', 'drink']
+
+abbreviations_dict = {
+		'n' : 'north',
+		's' : 'south',
+		'e' : 'east',
+		'w' : 'west',
+		'i' : 'inventory',
+		'l' : 'look',
+		'get' : 'take',
+		'x' : 'examine',
+		'q' : 'quit',
+		'h' : 'help'
+}
+
+one_word_convert_dict = {
+		'north' : 'go',
+		'south' : 'go',
+		'east' : 'go',
+		'west' : 'go'
+}
 
 def help(active_gs, option):
 		if option == 'basics':
