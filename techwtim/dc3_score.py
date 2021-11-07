@@ -6,7 +6,6 @@
 
 # import statements
 import sys
-#from dc3_static_init import item_score_lst, room_score_lst, score_val_dict
 
 ### score dictionaries and lists ###
 score_val_dict = {
@@ -38,7 +37,6 @@ def score(active_gs):
 		for score_key in item_score_lst:
 				if (not active_gs.hand_empty() and hand_lst[0].name == score_key
 								and active_gs.get_points_earned_state(score_key) == False):
-#				if len(hand_lst) > 0 and hand_lst[0].name == score_key and active_gs.get_points_earned_state(score_key) == False:
 						points = score_val_dict[score_key]
 						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)

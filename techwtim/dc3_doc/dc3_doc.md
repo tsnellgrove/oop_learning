@@ -55,7 +55,7 @@ DONE: fix dup Room 'go' code for doorways and passages
 TBD: clean up use of "import *"
 	DONE: static_init
 		DONE: move score dicts / lists to score() module
-		TBD: clean up comments
+		DONE: clean up comments
 		TBD: move help() to interpreter()
 		TBD: write up code decision
 		TBD: consider moving dicts only used by one module to that module

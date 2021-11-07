@@ -44,29 +44,6 @@ static_dict = {
 }
 
 
-### score dictionaries and lists ###
-#score_val_dict = {
-#		'rusty_key' : 5,
-#		'main_hall' : 10,
-#		'shiny_sword' : 10,
-#		'throne_room' : 10,
-#		'silver_key' : 5,
-#		'kinging_scroll' : 5
-#}
-
-#item_score_lst = [
-#		'rusty_key',
-#		'shiny_sword',
-#		'silver_key',
-#		'kinging_scroll'
-#]
-
-#room_score_lst = [
-#		'main_hall',
-#		'throne_room'
-#]
-
-
 ### description dict ###
 descript_dict = {
 		### one-word commands - non-objeects ###
