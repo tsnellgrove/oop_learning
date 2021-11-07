@@ -6,8 +6,29 @@
 
 # import statements
 import sys
-from dc3_static_init import item_score_lst, room_score_lst, score_val_dict
+#from dc3_static_init import item_score_lst, room_score_lst, score_val_dict
 
+### score dictionaries and lists ###
+score_val_dict = {
+		'rusty_key' : 5,
+		'main_hall' : 10,
+		'shiny_sword' : 10,
+		'throne_room' : 10,
+		'silver_key' : 5,
+		'kinging_scroll' : 5
+}
+
+item_score_lst = [
+		'rusty_key',
+		'shiny_sword',
+		'silver_key',
+		'kinging_scroll'
+]
+
+room_score_lst = [
+		'main_hall',
+		'throne_room'
+]
 
 def score(active_gs):
 		room_obj = active_gs.get_room()
@@ -15,7 +36,9 @@ def score(active_gs):
 
 		# increment item scores
 		for score_key in item_score_lst:
-				if not active_gs.hand_empty and hand_lst[0].name == score_key and active_gs.get_points_earned_state(score_key) == False:
+				if (not active_gs.hand_empty() and hand_lst[0].name == score_key
+								and active_gs.get_points_earned_state(score_key) == False):
+#				if len(hand_lst) > 0 and hand_lst[0].name == score_key and active_gs.get_points_earned_state(score_key) == False:
 						points = score_val_dict[score_key]
 						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)
@@ -23,7 +46,8 @@ def score(active_gs):
 
 		# increment room scores
 		for score_key in room_score_lst:
-				if room_obj.name == score_key and active_gs.get_points_earned_state(score_key) == False:
+				if (room_obj.name == score_key
+								and active_gs.get_points_earned_state(score_key) == False):
 						points = score_val_dict[score_key]
 						active_gs.update_score(points)
 						active_gs.set_points_earned_state(score_key, True)

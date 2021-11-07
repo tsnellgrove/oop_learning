@@ -33,7 +33,7 @@ DONE: obj-not-in-hand error in cmd_exe()
 		NOTE: works for put "full name" cases but NOT for put "root name" cases
 		DONE: check root_word_count() in interpreter()
 		NOTE: found it! problem is that noun_obj generates the error BUT, I am showing the dir_obj error_msg (doesn't exist because there is a box)
-		NOTE: need to generate a global "put" error_msg based on whichever clause triggers an errro = True
+		NOTE: need to generate a global "put" error_msg based on whichever clause triggers an error = True
 		DONE: fix it
 		DONE: clean up troubleshooting print statements
 	DONE: clean up old hand_check()
@@ -54,8 +54,11 @@ DONE: fix dup Room 'go' code for doorways and passages
 	DONE: clean up comments
 TBD: clean up use of "import *"
 	DONE: static_init
-		TBD: consider moving help() to interpreter()
-		TBD: consider moving dicts only used by one mnodule to that module
+		DONE: move score dicts / lists to score() module
+		TBD: clean up comments
+		TBD: move help() to interpreter()
+		TBD: write up code decision
+		TBD: consider moving dicts only used by one module to that module
 	TBD: class_def
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
