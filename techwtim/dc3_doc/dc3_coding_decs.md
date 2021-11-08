@@ -43,6 +43,13 @@ CODING SPECIFICS:
 	- Was very conflicted re balance between less repitition vs. less readible & less customizable; Pondering
 	- The code was more readable & customizable before; maybe implement a simple boolean function instead
 
+- Moving the help() function to interpreter()
+	- The macro organization of the program is for interpreter() to interpret the players intent and for cmd_exe() to execute it
+	- However, at the module level, the idea is that the interpreter() module is uniquely focussed on language semantics
+	- The help() function is also (mostly) focussed on language semantics - specificly exposing them to the player
+	- Moving help() to interpreter() also enables us to make all the static lists and dictionaries local to interpreter()
+	- The balance between module-level structure and macro-program flow seems best served by moving the help() function to interpreter()
+
 
 MODULE FLOW:
 - Idea is that Interpreter returns standard_command and noun_obj to wrapper

@@ -60,8 +60,11 @@ TBD: clean up use of "import *"
 		DONE: clean up comments
 		DONE: move languate dict & lst to Interpeter
 		DONE: clean up comments
-		TBD: write up code decision
-	TBD: class_def
+		DONE: write up code decision
+	IN-PROC: class_def
+		DONE: module other than intperter() and cmd_exe()
+		TBD: interpreter()
+		TBD: cmd_exe()
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually

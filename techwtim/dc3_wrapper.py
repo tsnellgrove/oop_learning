@@ -7,7 +7,7 @@
 ### import statements
 import sys
 import pickle
-from dc3_class_deff import *
+from dc3_class_deff import GameState
 from dc3_start_me_up import start_me_up
 from dc3_interpreter import interpreter
 from dc3_cmd_execute import cmd_execute
