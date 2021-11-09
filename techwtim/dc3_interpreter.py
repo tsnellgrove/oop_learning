@@ -7,7 +7,7 @@
 ### import statements
 import sys
 from itertools import islice
-from dc3_class_deff import *
+#from dc3_class_deff import GameState
 
 ### interpreter function language static dictionaries & lists ###
 articles_lst = ['a', 'an', 'the']
