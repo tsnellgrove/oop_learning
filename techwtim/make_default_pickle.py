@@ -9,7 +9,6 @@ import sys
 import pickle
 from dc3_class_deff import Writing, ViewOnly, Item, Food, Beverage, Container, Jug, Door, Room, GameState
 
-
 # object instantiation - starting state
 rusty_lettering = Writing('rusty_lettering', 'Rusty Lettering', "lettering", 'rusty_lettering')
 dwarven_runes = Writing('dwarven_runes', 'Dwarven Runes', "runes", 'dwarven_runes')

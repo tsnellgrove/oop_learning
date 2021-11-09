@@ -8,7 +8,6 @@
 import sys
 import random
 from dc3_static_init import descript_dict, static_dict
-#from dc3_class_deff import *
 
 def rand_error():
 		num = random.randint(0, 4)

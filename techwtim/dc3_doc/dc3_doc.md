@@ -24,7 +24,8 @@ DONE: Is the Item class worth having? (decision = 'yes')
 DONE: obj-not-in-hand error in cmd_exe()
 	DONE: Strange "blank line" error on trying to put item in box if item is already in box
 	NOTE: Very conflicted re balance between less repitition vs. less readible & less customizable; Pondering
-	DECISION: Now that I've started to standardize hand_check() the code was more readable & customizable before; maybe implement a simple boolean function instead
+	DECISION: Now that I've started to standardize hand_check() I've realized the code was more readable & customizable before
+		IDEA: maybe implement a simple boolean function instead
 	DONE: drop, unlock, lock reversed
 	DONE: reverse put
 	DONE: solve the 'blank response if try to put item in closed container when it's already in the container' (problem in scope_lst() I think)
@@ -52,7 +53,7 @@ DONE: Better errors for "read note" and "get water" and "examine lettering"
 	DONE: clean up comments
 DONE: fix dup Room 'go' code for doorways and passages
 	DONE: clean up comments
-TBD: clean up use of "import *"
+DONE: clean up use of "import *"
 	DONE: static_init
 		DONE: move score dicts / lists to score() module
 		DONE: clean up comments
@@ -61,11 +62,11 @@ TBD: clean up use of "import *"
 		DONE: move languate dict & lst to Interpeter
 		DONE: clean up comments
 		DONE: write up code decision
-	IN-PROC: class_def
+	DONE: class_def
 		DONE: module other than intperter() and cmd_exe()
 		DONE: interpreter() & cmd_exe()
 		NOTE: to my surprise, class_def() is not needed in any module other than mk_default_pkl() - who knew!
-		TBD: clean up comments
+		DONE: clean up comments
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually
