@@ -63,8 +63,9 @@ TBD: clean up use of "import *"
 		DONE: write up code decision
 	IN-PROC: class_def
 		DONE: module other than intperter() and cmd_exe()
-		TBD: interpreter()
-		TBD: cmd_exe()
+		DONE: interpreter() & cmd_exe()
+		NOTE: to my surprise, class_def() is not needed in any module other than mk_default_pkl() - who knew!
+		TBD: clean up comments
 TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually
