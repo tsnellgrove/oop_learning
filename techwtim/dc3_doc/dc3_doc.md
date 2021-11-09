@@ -71,6 +71,7 @@ TBD: rename modules
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually
 TBD: re-map modules
+TBD: map import dependencies
 
 	
 ##########################
