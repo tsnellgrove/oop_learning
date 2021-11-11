@@ -68,12 +68,11 @@ DONE: clean up use of "import *"
 		NOTE: to my surprise, class_def() is not needed in any module other than mk_default_pkl() - who knew!
 		DONE: clean up comments
 TBD: move & rename modules
-	TBD: create \dark_castle3 directory at git root
-		TBD: create \doc sub-directory
-		TBD: create other std sub-dierectories (model off of dc2)
-	TBD: populate \docs
+	DONE: create \dark_castle3 directory at git root
+		DONE: create \doc sub-directory
+	IN-PROC: populate \docs
+		DONE: dc3_done.md => done.md
 		TBD: dc3_doc.md => to_do.md
-		TBD: dc3_done.md => done.md
 		TBD: dc3_coding_decs.md => decisions.md
 	TBD:npopulate \dark_castle3
 		TBD: dc3_static_init.py => static_gbl.py
@@ -87,6 +86,7 @@ TBD: move & rename modules
 		TBD: dc3_end.py => ending.py
 		TBD: make_default_pickle.py => mk_def_pkl.py
 		TBD: rename all module imports within code
+	TBD: create other std sub-dierectories (model off of dc2)
 TBD: Normalize scope_check() for objects of class Writing????
 TBD: map ojbect attributes, methods, and inheritance visually
 TBD: re-map modules
